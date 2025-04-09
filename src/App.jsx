@@ -10,13 +10,31 @@ import PrivacyPage from './pages/PrivacyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import WinePortfolioPage from './pages/WinePortfolioPage';
 
-// Componente de layout para páginas internas
-function InternalLayout() {
+// Componente para selecionar o header correto
+function PageLayout() {
+  const location = useLocation();
+  
+  // Lista de caminhos que devem usar o header transparente
+  const transparentHeaderPaths = [
+    '/',                      // Home page
+    '/contacts',              // Sobre nós
+    '/portfolio/wines',
+    '/sustainability'         // Sustentabilidade
+    // Adicione mais caminhos conforme necessário
+  ];
+  
+  // Verifica se o caminho atual deve usar o header transparente
+  const shouldUseTransparentHeader = transparentHeaderPaths.includes(location.pathname);
+  
+  // Seleciona o header apropriado
+  const HeaderComponent = shouldUseTransparentHeader ? Header : HeaderInternal;
+  
   return (
     <>
-      <HeaderInternal />
+      <HeaderComponent />
       <main className="content">
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/portfolio/wines" element={<WinePortfolioPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/grape-varieties" element={<VarietiesPage />} />
@@ -30,25 +48,11 @@ function InternalLayout() {
   );
 }
 
-// Componente de layout para a página inicial
-function HomeLayout() {
-  return (
-    <>
-      <Header />
-      <main className="content">
-        <HomePage />
-      </main>
-      <Footer />
-    </>
-  );
-}
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomeLayout />} />
-        <Route path="/*" element={<InternalLayout />} />
+        <Route path="*" element={<PageLayout />} />
       </Routes>
     </BrowserRouter>
   );
