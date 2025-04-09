@@ -59,36 +59,66 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  height: 130px; /* Altura inicial muito maior */
+  height: 130px;
   transition: height 0.3s ease-in-out;
 }
 
 .header--scrolled .logo__link {
-  height: 70px; /* Altura um pouco maior quando scrolled (antes era 60px) */
+  height: 90px; /* Aumentado de 70px para 90px */
+}
+
+/* Para o HeaderInternal (que sempre tem a classe header--scrolled) */
+.header--scrolled .logo__link {
+  height: 90px; /* Aumentado para 90px */
 }
 
 /* Navegação */
+.header__nav {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  height: 100vh;
+  width: 280px;
+  background-color: rgba(35, 35, 35, 0.98);
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+  transition: all 0.4s ease-in-out;
+  z-index: 1001;
+}
+
+.header__nav--open {
+  right: 0;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
 .header__nav ul {
   display: flex;
+  flex-direction: column;
   gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
+.header__nav li {
+  width: 100%;
+}
+
 .header__nav a {
-  color: #ffffff; /* Cor inicial branca */
+  color: #ffffff;
   font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: color 0.3s ease-in-out;
   text-decoration: none;
+  display: block;
+  padding: 10px 0;
 }
 
 .header--scrolled .header__nav a {
-  color: #c0a080; /* Muda para cobre quando scrolled */
+  color: #ffffff; /* Mantém branco no menu mobile mesmo quando scrolled */
 }
 
 .header__nav a:hover,
@@ -96,68 +126,59 @@
   color: rgba(255, 255, 255, 0.8); /* Hover branco com transparência */
 }
 
-.header--scrolled .header__nav a:hover,
-.header--scrolled .header__nav a.active {
-  color: rgba(192, 160, 128, 0.8); /* Hover cobre com transparência quando scrolled */
-}
-
-/* Dropdown Menu - Ajustes */
+/* Dropdown Menu */
 .dropdown {
   position: relative;
 }
 
 .dropdown__menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background-color: rgba(255, 255, 255, 0.98);
-  min-width: 120px; /* Mantendo a largura atual */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: static;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0 0 0 20px;
+  max-height: 0;
   opacity: 0;
+  overflow: hidden;
   visibility: hidden;
   transition: all 0.3s ease;
-  border: 1px solid rgba(192, 160, 128, 0.2);
-  padding: 8px 0 4px; /* Padding no topo e menos no fundo */
-  z-index: 1001;
+  transform: none;
+  min-width: auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .dropdown__menu--open {
+  max-height: 500px;
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  padding-top: 2px;
 }
 
 .dropdown__menu li {
-  padding: 0; /* Sem padding */
-  margin: 0; /* Sem margem */
-  width: 100%;
-  line-height: 1; /* Reduz o espaço que a linha ocupa */
+  padding: 0;
+  margin-bottom: 0;
 }
 
 .dropdown__menu li:first-child {
-  margin-bottom: 2px; /* Mínimo espaçamento entre os itens */
+  margin-bottom: 0;
 }
 
 .dropdown__menu a {
-  color: #c0a080 !important;
-  font-size: 0.8rem;
-  display: block;
-  padding: 0; /* Sem padding vertical */
-  width: 100%;
-  line-height: 1.5; /* Altura da linha reduzida */
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.9rem;
+  text-align: left;
+  padding: 2px 0;
+  line-height: 1.3;
 }
 
 .dropdown__menu a:hover {
-  color: rgba(192, 160, 128, 0.8) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Menu Icon para Mobile */
+/* Menu Icon */
 .menu-icon {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 30px;
@@ -176,124 +197,4 @@
 
 .menu-icon__line--scrolled {
   background-color: #c0a080;
-}
-
-/* Media query para telas menores */
-@media (max-width: 768px) {
-  .header {
-    justify-content: space-between;
-    padding: 0 5%;
-    height: 110px; /* Altura inicial em telas menores */
-  }
-
-  .header--scrolled {
-    height: 70px; /* Altura reduzida em telas menores */
-  }
-
-  .logo__link {
-    position: relative;
-    left: auto;
-    transform: none;
-    height: 90px;
-    margin: 0 auto;
-  }
-
-  .header--scrolled .logo__link {
-    height: 55px; /* Um pouco maior que antes (era 50px) */
-  }
-
-  .header__text {
-    margin-right: auto;
-  }
-
-  /* Menu Icon */
-  .menu-icon {
-    display: flex;
-    margin-left: auto;
-  }
-
-  /* Navegação Mobile */
-  .header__nav {
-    position: fixed;
-    top: 0;
-    right: -280px;
-    height: 100vh;
-    width: 280px;
-    background-color: rgba(35, 35, 35, 0.98);
-    padding: 80px 20px 20px;
-    overflow-y: auto;
-    transition: all 0.4s ease-in-out;
-    z-index: 1001;
-  }
-
-  .header__nav--open {
-    right: 0;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .header__nav ul {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .header__nav li {
-    width: 100%;
-  }
-
-  .header__nav a {
-    font-size: 1.1rem;
-    display: block;
-    padding: 10px 0;
-    color: #ffffff;
-  }
-
-  .header--scrolled .header__nav a {
-    color: #ffffff; /* Mantém branco no menu mobile mesmo quando scrolled */
-  }
-
-  /* Dropdown Mobile */
-  .dropdown__menu {
-    position: static;
-    background-color: transparent;
-    box-shadow: none;
-    border: none;
-    padding: 0 0 0 20px;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    transform: none;
-    min-width: auto;
-    left: auto;
-  }
-
-  .dropdown__menu--open {
-    max-height: 500px;
-    opacity: 1;
-    visibility: visible;
-    padding-top: 2px;
-    transform: none;
-  }
-
-  .dropdown__menu li {
-    padding: 0;
-    margin-bottom: 0;
-  }
-
-  .dropdown__menu li:first-child {
-    margin-bottom: 0;
-  }
-
-  .dropdown__menu a {
-    color: rgba(255, 255, 255, 0.85) !important;
-    font-size: 0.9rem;
-    text-align: left;
-    padding: 2px 0;
-    line-height: 1.3;
-  }
-
-  .dropdown__menu a:hover {
-    color: rgba(255, 255, 255, 0.7) !important;
-  }
 }
