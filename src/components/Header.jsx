@@ -66,13 +66,13 @@ function Header() {
           <li className="dropdown">
             <a href="#" onClick={toggleDropdown}>PORTEFÓLIO</a>
             <ul className={`dropdown__menu ${isDropdownOpen ? "dropdown__menu--open" : ""}`}>
-              <li><a href="portfolio/wines">VINHOS</a></li>
-              <li><a href="portfolio/olive-oils">AZEITES</a></li>
+              <li><a href="/portfolio/wines">VINHOS</a></li>
+              <li><a href="/portfolio/olive-oils">AZEITES</a></li>
             </ul>
           </li>
-          <li><a href="about-us">SOBRE NÓS</a></li>
-          <li><a href="sustainability">SUSTENTABILIDADE</a></li>
-          <li><a href="contacts">CONTACTOS</a></li>
+          <li><a href="/about-us">SOBRE NÓS</a></li>
+          <li><a href="/sustainability">SUSTENTABILIDADE</a></li>
+          <li><a href="/contacts">CONTACTOS</a></li>
         </ul>
       </nav>
     </header>
