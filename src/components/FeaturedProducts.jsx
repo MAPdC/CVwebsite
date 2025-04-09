@@ -56,7 +56,7 @@ const FeaturedProducts = () => {
                     Da essência das nossas vinhas de encosta, nascidos do terroir único do Douro, 
                     os nossos vinhos guardam a alma da região em cada garrafa.
                   </p>
-                  <Link to="/vinhos" className="featured-link">EXPLORAR</Link>
+                  <Link to="/portfolio/wines" className="featured-link">EXPLORAR</Link>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ const FeaturedProducts = () => {
                     Colhidas à mão e prensadas a frio, as nossas azeitonas produzem 
                     azeites biológicos de qualidade inigualável.
                   </p>
-                  <Link to="/azeites" className="featured-link">EXPLORAR</Link>
+                  <Link to="/portfolio/olive-oils" className="featured-link">EXPLORAR</Link>
                 </div>
               </div>
             </div>

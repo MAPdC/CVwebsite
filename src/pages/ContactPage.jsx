@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/ContactPage.css";
 // Assumindo que este caminho está correto para a sua estrutura de projeto
-import douroMapImage from "../assets/douro-map-1-mudar.jpg";
+import douroMapImage from "../assets/maps-2.jpg";
 // Imagem de fundo do hero
-import heroBackground from "../assets/douro-1.jpg";
+import heroBackground from "../assets/maps-2.jpg";
 
 const ContactPage = () => {
   // Refs para animações de scroll
