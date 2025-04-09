@@ -1,12 +1,8 @@
 import "../styles/HomePage.css";
 import FeaturedProducts from "../components/FeaturedProducts.jsx";
 import HeritageSection from "../components/HeritageSection.jsx";
-import TerroirSection from "../components/TerroirSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
 import TestimonialsSection from "../components/TestimonialsSection.jsx";
-import SustainabilitySection from "../components/SustainabilitySection.jsx";
-import ContactCTA from "../components/ContactCTA.jsx";
-
 
 import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1.jpg";
@@ -104,21 +100,12 @@ const HomePage = () => {
       
       {/* História & Heritage Section */}
       <HeritageSection />
-      
-      {/* Terroir & Processo Section */}
-      <TerroirSection />
-      
+    
       {/* Awards Section */}
       <AwardsSection />
       
       {/* Testimonials Section */}
       <TestimonialsSection />
-      
-      {/* Sustainability Section */}
-      <SustainabilitySection />
-      
-      {/* Contact CTA Section */}
-      <ContactCTA />
 
     </div>
   );
