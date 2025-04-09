@@ -1,0 +1,140 @@
+.featured-products {
+  padding: 100px 0;
+  background-color: #f5f3f0; /* Changed from #010101 to a light beige/cream */
+  color: #2c2624; /* Changed from white to a dark brown for contrast */
+}
+
+.featured-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.featured-heading {
+  text-align: center;
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2c2624; /* Ensuring heading color matches the new theme */
+}
+
+.featured-line {
+  height: 1px;
+  width: 70px;
+  background-color: #c0a080; /* Kept the gold accent color for luxury */
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.featured-item {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Added subtle shadow for depth */
+}
+
+.featured-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.featured-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.featured-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(44, 38, 36, 0.85) 0%, rgba(44, 38, 36, 0.5) 50%, rgba(44, 38, 36, 0) 100%); /* Adjusted gradient to dark brown */
+  transform: translateY(20px);
+  opacity: 0.9;
+  transition: all 0.4s ease;
+}
+
+.featured-category {
+  display: block;
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  color: #c0a080; /* Kept gold for luxury accent */
+  margin-bottom: 15px;
+}
+
+.featured-description {
+  font-family: 'Cormorant', serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #ffffff; /* Kept white for contrast against dark overlay */
+}
+
+.featured-link {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: transparent;
+  border: 1px solid #c0a080;
+  color: #c0a080;
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.featured-link:hover {
+  background-color: rgba(192, 160, 128, 0.2);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.featured-image-container:hover .featured-image {
+  transform: scale(1.05);
+}
+
+.featured-image-container:hover .featured-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-item {
+    height: 400px;
+  }
+  
+  .featured-heading {
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+  }
+  
+  .featured-category {
+    font-size: 1.3rem;
+  }
+  
+  .featured-description {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,209 @@
+.sustainability-section {
+    position: relative;
+    min-height: 700px;
+    color: #ffffff;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+  .sustainability-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .sustainability-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .sustainability-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+  }
+  
+  .sustainability-overlay {
+    position: relative;
+    z-index: 2;
+    padding: 80px 0;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  .section-title {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: #c0a080;
+    margin: 0 20px;
+  }
+  
+  .section-line {
+    height: 1px;
+    width: 70px;
+    background-color: #c0a080;
+  }
+  
+  .sustainability-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease 0.3s;
+  }
+  
+  .sustainability-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .sustainability-tagline {
+    font-family: 'Cormorant', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+  }
+  
+  .sustainability-practices {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .practice-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .practice-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .practice-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    color: #c0a080;
+    transition: transform 0.3s ease;
+  }
+  
+  .practice-item:hover .practice-icon {
+    transform: scale(1.1);
+  }
+  
+  .practice-title {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #c0a080;
+    margin-bottom: 10px;
+  }
+  
+  .practice-description {
+    font-family: 'Cormorant', serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .sustainability-commitment {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(192, 160, 128, 0.3);
+  }
+  
+  .sustainability-commitment p {
+    font-family: 'Cormorant', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .sustainability-link {
+    display: inline-block;
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #c0a080;
+    text-decoration: none;
+    border: 1px solid #c0a080;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .sustainability-link:hover {
+    background-color: rgba(192, 160, 128, 0.1);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  .arrow {
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .sustainability-link:hover .arrow {
+    transform: translateX(5px);
+  }
+  
+  @media (max-width: 992px) {
+    .sustainability-practices {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.8rem;
+    }
+    
+    .sustainability-tagline {
+      font-size: 1.2rem;
+      padding: 0 20px;
+    }
+    
+    .sustainability-practices {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .practice-item {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+    
+    .sustainability-commitment p {
+      font-size: 1.1rem;
+    }
+    
+    .sustainability-link {
+      width: 100%;
+      text-align: center;
+    }
+  }

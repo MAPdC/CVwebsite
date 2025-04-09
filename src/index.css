@@ -1,0 +1,121 @@
+/* === Reset & Base ===*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores */
+  --bg-dark: #0a0a0a;
+  --bg-white: #f5f5f5;
+
+  /* Vinho Tinto Reserva 2019 (Oaked) */
+  --vto19-1: #dacfdd;
+  /* Vinho Tinto Reserva 2020 (Unoaked) */
+  --vtun20: #af6d73;
+  /* Vinho Branco Colheita 2021 (Unoaked) */
+  --vbun21: #a2b9af;
+  /* Vinho Branco Reserva 2020 (Oaked) */
+  --vbo20: #bacde6;
+  /* Vinho Branco Colheita 2023 (Unoaked) */
+  --vbun23: #a2b9af;
+  /* Vinho Branco Reserva 2022 (Oaked) */
+  --vbo22: #bacde6;
+  /* Vinho Branco Curtimenta Colheita 2023 (Unoaked) */
+  --vbcun23: #f2c1ac;
+  /* Vinho Branco Curtimenta Reserva 2023 (Oaked) */
+  --vbco23: #bcb999;
+  /* Vinho Tinto Reserva 2020 (Oaked) */
+  --vto20: #dad9d6;
+  /* Azeite (Maduro) */
+  --azeite: #f4b43d;
+
+  /* Letra dos rótulos*/
+  --label-letter: #656363;
+
+  /* Cobre do brasão */
+  --copper: #b87333;
+
+  /* Outras cores */
+  --gold-brown: #b46f54;
+  --gold: #c0a080;
+  --gold-light: #e8c9a0;
+  --text-light: #e8e8e8;
+  --wine-red: #722f37;
+  --wine-white: #f3e9e1;
+
+  /* Fontes */
+  --font-primary: 'AgathoRegularCAPS', 'serif';
+  --font-secundary: 'Montserrat', 'serif';
+
+  /* Tamanhos base */
+  --text-base: 1rem;              /* 16px padrão */
+  --text-sm: 0.875rem;            /* 14px */
+  --text-lg: 1.125rem;            /* 18px */
+
+  /* Sistema de espaçamento (base 8px) */
+  --space-unit: 8px;
+  --space-1: calc(var(--space-unit) * 1);   /* 8px */
+  --space-2: calc(var(--space-unit) * 2);   /* 16px */
+  --space-4: calc(var(--space-unit) * 4);   /* 32px */
+
+  /* Bordas */
+  --border-radius-sm: 4px;
+  --border-radius-lg: 8px;
+  --border-gold: 1px solid var(--gold);
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-gold: 0 4px 8px rgba(192, 160, 128, 0.2);
+
+  /* Transições */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-slow: 0.4s ease-in-out;
+}
+
+/* === Estilos Globais === */
+
+/* body -> Conteúdo visivel*/
+body {
+  font-family: var(--font-secundary);
+  background-color: var(--bg-white);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* a -> links da página */
+a {
+  color: var(--copper);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* a:hover -> quando o utilizador passar o rato por cima do link */
+a:hover {
+  color: var(--gold-light);
+}
+
+h1 {
+  font-family: var(--font-primary);
+}
+
+p {
+  font-family: var(--font-secundary);
+}
+
+/* === Tema (opcional) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-white: var(--bg-dark);
+  }
+}
+
+/* === Adicionar fonte Agatho Regular CAPS .otf === */
+@font-face {
+  font-family: 'AgathoRegularCAPS';
+  src: url('/fonts/Agatho_RegularCAPS.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Melhora performance de carregamento */
+}

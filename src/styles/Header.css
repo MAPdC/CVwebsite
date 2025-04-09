@@ -1,0 +1,299 @@
+/* Base do Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px; /* Altura inicial aumentada */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background-color: rgba(255, 255, 255, 0); /* Inicialmente transparente */
+  backdrop-filter: blur(0px); /* Inicialmente sem blur */
+  border-bottom: 1px solid rgba(192, 160, 128, 0); /* Inicialmente sem borda */
+  z-index: 1000;
+  transition: all 0.3s ease-in-out; /* Animação suave para todas as propriedades */
+}
+
+/* Header com fundo ao rolar (classe será adicionada via JavaScript) */
+.header--scrolled {
+  height: 80px; /* Altura reduzida ao scroll */
+  background-color: rgba(255, 255, 255, 0.95); /* Fundo branco com leve transparência */
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(192, 160, 128, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* Logo */
+.logo__image {
+  height: 100%;
+  width: auto;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo__text {
+  text-decoration: none;
+  z-index: 1;
+}
+
+.logo__line1,
+.logo__line2 {
+  display: block;
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1.3px;
+  color: #ffffff; /* Cor inicial branca */
+  line-height: 1.2;
+  transition: color 0.3s ease-in-out;
+}
+
+.header--scrolled .logo__line1,
+.header--scrolled .logo__line2 {
+  color: #c0a080; /* Muda para cobre quando scrolled */
+}
+
+.logo__link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 130px; /* Altura inicial muito maior */
+  transition: height 0.3s ease-in-out;
+}
+
+.header--scrolled .logo__link {
+  height: 70px; /* Altura um pouco maior quando scrolled (antes era 60px) */
+}
+
+/* Navegação */
+.header__nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav a {
+  color: #ffffff; /* Cor inicial branca */
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.header--scrolled .header__nav a {
+  color: #c0a080; /* Muda para cobre quando scrolled */
+}
+
+.header__nav a:hover,
+.header__nav a.active {
+  color: rgba(255, 255, 255, 0.8); /* Hover branco com transparência */
+}
+
+.header--scrolled .header__nav a:hover,
+.header--scrolled .header__nav a.active {
+  color: rgba(192, 160, 128, 0.8); /* Hover cobre com transparência quando scrolled */
+}
+
+/* Dropdown Menu - Ajustes */
+.dropdown {
+  position: relative;
+}
+
+.dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: rgba(255, 255, 255, 0.98);
+  min-width: 120px; /* Mantendo a largura atual */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(192, 160, 128, 0.2);
+  padding: 8px 0 4px; /* Padding no topo e menos no fundo */
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.dropdown__menu--open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown__menu li {
+  padding: 0; /* Sem padding */
+  margin: 0; /* Sem margem */
+  width: 100%;
+  line-height: 1; /* Reduz o espaço que a linha ocupa */
+}
+
+.dropdown__menu li:first-child {
+  margin-bottom: 2px; /* Mínimo espaçamento entre os itens */
+}
+
+.dropdown__menu a {
+  color: #c0a080 !important;
+  font-size: 0.8rem;
+  display: block;
+  padding: 0; /* Sem padding vertical */
+  width: 100%;
+  line-height: 1.5; /* Altura da linha reduzida */
+}
+
+.dropdown__menu a:hover {
+  color: rgba(192, 160, 128, 0.8) !important;
+}
+
+/* Menu Icon para Mobile */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.menu-icon__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon__line--scrolled {
+  background-color: #c0a080;
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+  .header {
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 110px; /* Altura inicial em telas menores */
+  }
+
+  .header--scrolled {
+    height: 70px; /* Altura reduzida em telas menores */
+  }
+
+  .logo__link {
+    position: relative;
+    left: auto;
+    transform: none;
+    height: 90px;
+    margin: 0 auto;
+  }
+
+  .header--scrolled .logo__link {
+    height: 55px; /* Um pouco maior que antes (era 50px) */
+  }
+
+  .header__text {
+    margin-right: auto;
+  }
+
+  /* Menu Icon */
+  .menu-icon {
+    display: flex;
+    margin-left: auto;
+  }
+
+  /* Navegação Mobile */
+  .header__nav {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    height: 100vh;
+    width: 280px;
+    background-color: rgba(35, 35, 35, 0.98);
+    padding: 80px 20px 20px;
+    overflow-y: auto;
+    transition: all 0.4s ease-in-out;
+    z-index: 1001;
+  }
+
+  .header__nav--open {
+    right: 0;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .header__nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .header__nav li {
+    width: 100%;
+  }
+
+  .header__nav a {
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px 0;
+    color: #ffffff;
+  }
+
+  .header--scrolled .header__nav a {
+    color: #ffffff; /* Mantém branco no menu mobile mesmo quando scrolled */
+  }
+
+  /* Dropdown Mobile */
+  .dropdown__menu {
+    position: static;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0 0 0 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    transform: none;
+    min-width: auto;
+    left: auto;
+  }
+
+  .dropdown__menu--open {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    padding-top: 2px;
+    transform: none;
+  }
+
+  .dropdown__menu li {
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .dropdown__menu li:first-child {
+    margin-bottom: 0;
+  }
+
+  .dropdown__menu a {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.9rem;
+    text-align: left;
+    padding: 2px 0;
+    line-height: 1.3;
+  }
+
+  .dropdown__menu a:hover {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+}

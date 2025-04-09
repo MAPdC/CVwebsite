@@ -1,0 +1,65 @@
+/* App.css */
+:root {
+  --bg-white: #fafafa;
+  --text-light: #272727;
+  --gold: #c0a080;
+  --space-4: 2rem;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-white);
+  color: var(--text-light);
+  position: relative;
+}
+
+/* Estrutura principal */
+.app-container {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Compensa header fixo */
+main {
+  padding-top: 80px;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  flex: 1;
+}
+
+/* Container para conteúdo */
+.page-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-4) 0;
+}
+
+/* Efeitos temáticos */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: var(--space-4) 0;
+}
+
+/* Animação de transição de página */
+.page-transition-enter {
+  opacity: 0;
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}

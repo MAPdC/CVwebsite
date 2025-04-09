@@ -1,0 +1,86 @@
+/* RelatedProducts.css - Versão com fundo claro */
+
+.related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .related-product {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s;
+    background-color: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
+  
+  .related-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .related-product__image {
+    height: 300px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(192, 160, 128, 0.1);
+  }
+  
+  .related-product__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .related-product:hover .related-product__image img {
+    transform: scale(1.05);
+  }
+  
+  .related-product__info {
+    text-align: center;
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .related-product__name {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #c0a080;
+    margin: 0 0 8px;
+    letter-spacing: 1px;
+  }
+  
+  .related-product__category {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .related-product__price {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 300;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .related-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .related-products__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .related-product__image {
+      height: 250px;
+    }
+  }
