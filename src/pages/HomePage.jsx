@@ -10,6 +10,7 @@ import heroImage from "../assets/douro-1.jpg";
 const HomePage = () => {
   const heroRef = useRef(null);
   const transitionRef = useRef(null);
+  const featuredProductsRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   
   useEffect(() => {
@@ -58,6 +59,14 @@ const HomePage = () => {
     transform: `translateY(${scrollPosition * 0.4}px)`
   };
 
+  // Function to scroll to Featured Products section
+  const scrollToFeaturedProducts = (e) => {
+    e.preventDefault();
+    featuredProductsRef.current.scrollIntoView({ 
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div className="home">
       {/* Hero Section with Parallax */}
@@ -78,7 +87,7 @@ const HomePage = () => {
             aliadas às novas tecnologias, criamos vinhos que contam a história da nossa 
             família e da nossa terra."
           </p>
-          <a href="/portfolio" className="hero-button">DESCUBRA</a>
+          <a href="#" className="hero-button" onClick={scrollToFeaturedProducts}>DESCUBRA</a>
         </div>
         <div className="hero-year">
           <span className="hero-line"></span>
@@ -96,7 +105,9 @@ const HomePage = () => {
       </div>
 
       {/* FeaturedProducts com animação */}
-      <FeaturedProducts />
+      <div ref={featuredProductsRef}>
+        <FeaturedProducts />
+      </div>
       
       {/* História & Heritage Section */}
       <HeritageSection />
