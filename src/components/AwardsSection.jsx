@@ -6,7 +6,7 @@ import bronzeMedal from "../assets/vinduero-ourof-24.png";
 import decanter from "../assets/decanter-1-mudar.jpg";
 import iwc from "../assets/iwc-1-mudar.jpg";
 import mundus from "../assets/mundus-vini-1-mudar.jpg";
-import reservaBottle from "../assets/vto19.png";
+import reservaBottle from "C:/Users/mpint/Desktop/Miguel/CVwebsite/public/images/vto19-1.png";
 
 const AwardsSection = () => {
   const sectionRef = useRef(null);
