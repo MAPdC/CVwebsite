@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './HistoryPage.css';
+import '../styles/HistoryPage.css';
 
 // Importação de imagens (você precisará adicionar estas imagens aos seus assets)
-import heroImage from '../assets/historia-hero.jpg';
-import founder from '../assets/founder.jpg';
-import vineyard1924 from '../assets/vineyard-1924.jpg';
-import modernization from '../assets/modernization-1967.jpg';
-import bioCertification from '../assets/bio-certification.jpg';
-import familyPortrait from '../assets/family-portrait.jpg';
-import barrels from '../assets/barrels.jpg';
+import heroImage from '../assets/test-gray-1.png';
+import founder from '../assets/test-gray-1.png';
+import vineyard1924 from '../assets/test-gray-1.png';
+import modernization from '../assets/test-gray-1.png';
+import bioCertification from '../assets/test-gray-1.png';
+import familyPortrait from '../assets/test-gray-1.png';
+import barrels from '../assets/test-gray-1.png';
 
 const HistoryPage = () => {
   const [activeEra, setActiveEra] = useState('1873');
