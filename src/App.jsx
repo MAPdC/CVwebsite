@@ -20,6 +20,7 @@ function PageLayout() {
     '/',                      // Home page
     '/contacts',              // Sobre nós
     '/portfolio/wines',
+    '/portfolio/olive-oils',
     '/sustainability'         // Sustentabilidade
     // Adicione mais caminhos conforme necessário
   ];
