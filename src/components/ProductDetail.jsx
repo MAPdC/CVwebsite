@@ -3,8 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import "../styles/ProductDetail.css";
 
 // Componentes
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import RelatedProducts from "../components/RelatedProducts";
 
 function ProductDetail() {
