@@ -214,14 +214,18 @@
   
   .wine-card__image-container {
     position: relative;
-    height: 300px;
+    height: 250px; /* Reduzido de 300px para 250px */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .wine-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 85%; /* Reduzido de 100% para 85% */
+    height: auto; /* Alterado de 100% para auto para manter a proporção */
+    max-height: 340px; /* Limitando a altura máxima */
+    object-fit: contain; /* Alterado de cover para contain para garantir que toda a garrafa seja visível */
     transition: transform 0.5s ease;
   }
   
@@ -420,6 +424,10 @@
     }
     
     .wine-card__image-container {
-      height: 250px;
+      height: 220px;
+    }
+
+    .wine-card__image {
+      max-height: 210px; /* Ajustado para a nova altura do container */
     }
   }

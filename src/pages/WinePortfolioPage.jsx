@@ -2,112 +2,50 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/WinePortfolioPage.css";
 import heroBackground from '../assets/old-references.jpg';
+import { wines } from "../mocks/products"; // Importando os vinhos do arquivo products.js
 
 // Ícones para elementos visuais
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
 
 function WinePortfolioPage() {
-  const [wines, setWines] = useState([]);
+  const [wineList, setWineList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    // Simula busca de vinhos da API
-    const fetchWines = async () => {
+    // Agora usamos os dados do arquivo products.js
+    const loadWines = () => {
       setLoading(true);
       
-      // Mock data - substituir por chamada de API real
-      const mockWines = [
-        {
-          id: "reserva-especial-2020",
-          name: "Reserva Especial",
-          year: "2020",
-          type: "Tinto",
-          category: "Douro DOC",
-          briefDescription: "Um vinho elegante com notas de frutos vermelhos e um toque de madeira.",
-          varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz"],
-          image: "/images/vinho-1.jpg",
-          price: "45,00€",
-          highlighted: true
-        },
-        {
-          id: "grande-reserva-2019",
-          name: "Grande Reserva",
-          year: "2019",
-          type: "Tinto",
-          category: "Douro DOC",
-          briefDescription: "Complexo e estruturado, com taninos aveludados e final persistente.",
-          varieties: ["Touriga Nacional", "Touriga Franca"],
-          image: "/images/vinho-2.jpg",
-          price: "65,00€",
-          highlighted: true
-        },
-        {
-          id: "colheita-seleccionada-2021",
-          name: "Colheita Seleccionada",
-          year: "2021",
-          type: "Branco",
-          category: "Douro DOC",
-          briefDescription: "Aroma a frutas tropicais com notas minerais e frescura vibrante.",
-          varieties: ["Arinto", "Viosinho"],
-          image: "/images/vinho-3.jpg",
-          price: "28,00€",
-          highlighted: false
-        },
-        {
-          id: "vinhas-velhas-2018",
-          name: "Vinhas Velhas",
-          year: "2018",
-          type: "Tinto",
-          category: "Douro DOC",
-          briefDescription: "Intenso e concentrado, produzido a partir de vinhas com mais de 80 anos.",
-          varieties: ["Field Blend"],
-          image: "/images/vinho-4.jpg",
-          price: "55,00€",
-          highlighted: false
-        },
-        {
-          id: "rose-tradicional-2022",
-          name: "Rosé Tradicional",
-          year: "2022",
-          type: "Rosé",
-          category: "Douro DOC",
-          briefDescription: "Delicado e refrescante, com aromas de frutas vermelhas e final seco.",
-          varieties: ["Touriga Nacional", "Tinta Roriz"],
-          image: "/images/vinho-5.jpg",
-          price: "22,00€",
-          highlighted: false
-        },
-        {
-          id: "reserva-branco-2021",
-          name: "Reserva Branco",
-          year: "2021",
-          type: "Branco",
-          category: "Douro DOC",
-          briefDescription: "Encorpado e complexo, envelhecido em barrica, com notas cítricas e minerais.",
-          varieties: ["Arinto", "Gouveio", "Viosinho"],
-          image: "/images/vinho-6.jpg",
-          price: "38,00€",
-          highlighted: true
-        }
-      ];
+      // Mapeamos os dados do arquivo products.js para o formato que precisamos
+      const formattedWines = wines.map(wine => ({
+        id: wine.id,
+        name: wine.name,
+        year: wine.year,
+        type: wine.type,
+        category: wine.category,
+        briefDescription: wine.briefdescription || wine.description.substring(0, 100) + "...",
+        varieties: wine.varieties,
+        image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.jpg",
+        highlighted: wine.highlighted || false
+      }));
       
       // Adicionar um pequeno delay para simular carregamento
       setTimeout(() => {
-        setWines(mockWines);
+        setWineList(formattedWines);
         setLoading(false);
       }, 600);
     };
 
-    fetchWines();
+    loadWines();
     
     // Scroll para o topo ao carregar
     window.scrollTo(0, 0);
   }, []);
 
   // Filtrar vinhos baseado no tipo e termo de busca
-  const filteredWines = wines.filter(wine => {
+  const filteredWines = wineList.filter(wine => {
     const matchesFilter = filter === "all" || wine.type.toLowerCase() === filter;
     const matchesSearch = wine.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           wine.varieties.some(v => v.toLowerCase().includes(searchTerm.toLowerCase())) ||
