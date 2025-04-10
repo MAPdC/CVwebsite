@@ -3,9 +3,6 @@ import Header from './components/Header';
 import HeaderInternal from './components/HeaderInternal';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import AboutUsPage from './pages/AboutUsPage';
-import HistoryPage from './pages/HistoryPage';
-import VarietiesPage from './pages/VarietiesPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -19,9 +16,9 @@ function PageLayout() {
   // Lista de caminhos que devem usar o header transparente
   const transparentHeaderPaths = [
     '/',                      // Home page
-    '/contacts',              // Sobre nós
-    '/portfolio/wines',
-    '/portfolio/olive-oils',
+    '/contacts',              // Contactos
+    '/portfolio/wines',       // Portefólio de vinhos
+    '/portfolio/olive-oils',  // Portefólio de azeites
     '/sustainability'         // Sustentabilidade
     // Adicione mais caminhos conforme necessário
   ];
@@ -40,9 +37,6 @@ function PageLayout() {
           <Route path="/" element={<HomePage />} />
           <Route path="/portfolio/wines" element={<WinePortfolioPage />} />
           <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
-          <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/about-us/history" element={<HistoryPage />} />
-          <Route path="/grape-varieties" element={<VarietiesPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/privacy-policies" element={<PrivacyPage />} />
           <Route path="*" element={<NotFoundPage />} />
