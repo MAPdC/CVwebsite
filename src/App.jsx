@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import WinePortfolioPage from './pages/WinePortfolioPage';
+import OliveOilPortfolioPage from './pages/OliveOilPortfolioPage';
 
 // Componente para selecionar o header correto
 function PageLayout() {
@@ -36,6 +37,7 @@ function PageLayout() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/portfolio/wines" element={<WinePortfolioPage />} />
+          <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/grape-varieties" element={<VarietiesPage />} />
           <Route path="/contacts" element={<ContactPage />} />
