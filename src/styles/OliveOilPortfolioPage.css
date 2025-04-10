@@ -1,0 +1,426 @@
+/* OliveOilPortfolioPage.css */
+
+/* Estilos gerais da página */
+.oil-catalog {
+    background-color: #fafafa;
+    min-height: 100vh;
+  }
+  
+  /* Hero da página */
+  .catalog-hero {
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/olive-grove.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    overflow: hidden;
+  }
+  
+  .catalog-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .catalog-hero__content {
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+    max-width: 900px;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .catalog-hero__title {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fade-in 1.5s ease forwards 0.5s;
+  }
+  
+  .catalog-hero__subtitle {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fade-in 1.5s ease forwards 1s;
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Container principal do conteúdo */
+  .catalog-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 5%;
+  }
+  
+  /* Loading */
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+  }
+  
+  .elegant-loader {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(122, 153, 76, 0.2);
+    border-radius: 50%;
+    border-top-color: #7a994c;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Filtros e busca */
+  .catalog-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .search-bar {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 1px solid rgba(122, 153, 76, 0.3);
+    border-radius: 30px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #555;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .search-bar input:focus {
+    outline: none;
+    border-color: #7a994c;
+    box-shadow: 0 0 0 2px rgba(122, 153, 76, 0.1);
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7a994c;
+    font-size: 1rem;
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filter-btn {
+    padding: 8px 16px;
+    border: 1px solid rgba(122, 153, 76, 0.3);
+    border-radius: 20px;
+    background: none;
+    color: #666;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn:hover {
+    background-color: rgba(122, 153, 76, 0.05);
+  }
+  
+  .filter-btn.active {
+    background-color: rgba(122, 153, 76, 0.9);
+    color: white;
+    border-color: #7a994c;
+  }
+  
+  .results-count {
+    margin-bottom: 30px;
+    color: #888;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+  
+  /* Grid de azeites */
+  .oil-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 40px;
+  }
+  
+  /* Card de azeite */
+  .oil-card {
+    background-color: white;
+    border-radius: 3px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .oil-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .oil-card__image-container {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .oil-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .oil-card:hover .oil-card__image {
+    transform: scale(1.03);
+  }
+  
+  .oil-card__badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 12px;
+    background-color: rgba(122, 153, 76, 0.95);
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    font-family: 'Work Sans', sans-serif;
+  }
+  
+  .oil-card__content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .oil-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  
+  .oil-card__name {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #7a994c;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  .oil-card__year {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #888;
+  }
+  
+  .oil-card__category {
+    display: flex;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+  
+  .oil-type-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .oil-card__description {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  
+  .oil-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .oil-card__varieties {
+    display: flex;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #777;
+  }
+  
+  .variety-icon {
+    color: #7a994c;
+    margin-right: 6px;
+    font-size: 0.9rem;
+  }
+  
+  .oil-card__price {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #7a994c;
+  }
+  
+  .oil-card__cta {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(122, 153, 76, 0.1);
+    border-top: 1px solid rgba(122, 153, 76, 0.1);
+    color: #7a994c;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s;
+  }
+  
+  .oil-card:hover .oil-card__cta {
+    background-color: rgba(122, 153, 76, 0.15);
+  }
+  
+  /* Sem resultados */
+  .no-results {
+    text-align: center;
+    padding: 60px 0;
+    color: #666;
+  }
+  
+  .no-results h3 {
+    font-family: 'AgathoRegularCAPS', 'serif';
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: #7a994c;
+  }
+  
+  .no-results p {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 992px) {
+    .catalog-hero__title {
+      font-size: 2.5rem;
+    }
+    
+    .catalog-filters {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .search-bar {
+      max-width: 100%;
+    }
+    
+    .filter-options {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+    
+    .filter-btn {
+      white-space: nowrap;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .catalog-hero {
+      height: 220px;
+    }
+    
+    .catalog-hero__title {
+      font-size: 2rem;
+    }
+    
+    .catalog-hero__subtitle {
+      font-size: 1rem;
+    }
+    
+    .catalog-content {
+      padding: 40px 5%;
+    }
+    
+    .oil-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .oil-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .oil-card__image-container {
+      height: 250px;
+    }
+  }
