@@ -4,6 +4,7 @@ import HeaderInternal from './components/HeaderInternal';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutUsPage from './pages/AboutUsPage';
+import HistoryPage from './pages/HistoryPage';
 import VarietiesPage from './pages/VarietiesPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
@@ -40,6 +41,7 @@ function PageLayout() {
           <Route path="/portfolio/wines" element={<WinePortfolioPage />} />
           <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/about-us/history" element={<HistoryPage />} />
           <Route path="/grape-varieties" element={<VarietiesPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/privacy-policies" element={<PrivacyPage />} />
