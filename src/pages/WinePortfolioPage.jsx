@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import Header from "../components/Header";
-//import Footer from "../components/Footer";
 import "../styles/WinePortfolioPage.css";
+import heroBackground from '../assets/old-references.jpg';
 
 // Ícones para elementos visuais
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
@@ -127,7 +126,7 @@ function WinePortfolioPage() {
     <>
       
       <main className="wine-catalog">
-        <div className="catalog-hero">
+        <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
             <h1 className="catalog-hero__title">Excelência.</h1>
             <p className="catalog-hero__subtitle">Descubra a expressão do terroir do Douro em cada garrafa</p>

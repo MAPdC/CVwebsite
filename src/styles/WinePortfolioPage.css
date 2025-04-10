@@ -9,7 +9,6 @@
   /* Hero da página */
   .catalog-hero {
     position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/old-references.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh; /* Alterado de 80vh para 100vh para ocupar toda a altura da tela */
@@ -30,9 +29,9 @@
     width: 100%;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.3) 50%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.5) 100%,
     );
     pointer-events: none;
     z-index: 2;
@@ -60,7 +59,7 @@
   }
   
   .catalog-hero__subtitle {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Work Sans', serif;
     font-size: 1.1rem;
     font-weight: 300;
     letter-spacing: 1px;
