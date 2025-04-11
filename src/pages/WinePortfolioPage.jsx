@@ -21,6 +21,7 @@ function WinePortfolioPage() {
       // Mapeamos os dados do arquivo products.js para o formato que precisamos
       const formattedWines = wines.map(wine => ({
         id: wine.id,
+        slug: wine.slug,
         name: wine.name,
         year: wine.year,
         type: wine.type,
@@ -28,7 +29,8 @@ function WinePortfolioPage() {
         briefDescription: wine.briefdescription || wine.description.substring(0, 100) + "...",
         varieties: wine.varieties,
         image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.jpg",
-        highlighted: wine.highlighted || false
+        highlighted: wine.highlighted || false,
+        sold_out: wine.sold_out
       }));
       
       // Adicionar um pequeno delay para simular carregamento
@@ -123,11 +125,14 @@ function WinePortfolioPage() {
               
               <div className="wine-grid">
                 {sortedWines.map((wine) => (
-                  <Link to={`/product/${wine.id}`} className="wine-card" key={wine.id}>
+                  <Link to={`/portfolio/wines/${wine.slug}`} className="wine-card" key={wine.id}>
                     <div className="wine-card__image-container">
                       <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
                       {wine.highlighted && (
                         <div className="wine-card__badge">Destaque</div>
+                      )}
+                      {wine.sold_out && (
+                        <div className="wine-card__badge sold-out">Esgotado</div>
                       )}
                     </div>
                     

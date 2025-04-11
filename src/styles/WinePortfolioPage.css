@@ -302,6 +302,12 @@
     margin-bottom: 20px;
     flex-grow: 1;
   }
+
+  .wine-card__badge.sold-out {
+    background-color: rgba(136, 136, 136, 0.95);
+    left: 15px;
+    right: auto;
+  }
   
   .wine-card__footer {
     display: flex;
