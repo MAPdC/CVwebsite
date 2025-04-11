@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="footer-column">
             <a href="/">
                 <img 
-                  src="./src/assets/cv-logo-castanho.svg" 
+                  src="/images/cv-logo-castanho.svg" 
                   alt="Casttêdo Valley Logo" 
                   className="footer-logo"
                 />
