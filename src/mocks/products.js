@@ -1,6 +1,7 @@
 export const wines = [
     {
-      id: "red-wine-reserve-oaked-2019", 
+      id: 1,
+      slug: "red-reserve-oaked-2019", 
       name: "Reserva | Tinto Oaked", 
       year: "2019",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
@@ -9,9 +10,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
-        "../public/images/vto19-1.png",
-        "../public/images/vto19-2.jpg",
-        "../public/images/vto19-3.jpg"
+        "/images/vto19-1.png",
+        "/images/vto19-2.png",
+        "/images/vto19-3.png"
       ],
       sensorial: {
         visual: "Rubi profundo com reflexos violáceos",
