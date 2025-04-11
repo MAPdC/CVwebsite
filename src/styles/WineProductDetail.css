@@ -366,6 +366,196 @@
     font-weight: 300;
     letter-spacing: 2px;
   }
+
+  /* Adicionar à sua folha de estilo WineProductDetail.css */
+
+/* Melhorias para a galeria de imagens */
+.gallery__thumbnails {
+  display: flex;
+  gap: 15px;
+  height: 80px;
+  margin-top: 15px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(192, 160, 128, 0.15);
+  opacity: 0.7;
+  transition: all 0.3s;
+  background-color: #fff;
+  position: relative;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border-color: #c0a080;
+  box-shadow: 0 2px 8px rgba(192, 160, 128, 0.2);
+}
+
+.thumbnail:hover {
+  opacity: 1;
+  border-color: #c0a080;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.1);
+}
+
+/* Melhorar a transição da imagem principal */
+.gallery__main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s, opacity 0.3s;
+}
+
+.gallery__main img:hover {
+  transform: scale(1.02);
+}
+
+/* Adicione estes estilos ao seu WineProductDetail.css */
+
+/* Estilos para placeholder quando a imagem não carrega */
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  color: #999;
+  font-size: 0.9rem;
+  border: 1px dashed rgba(192, 160, 128, 0.3);
+}
+
+.thumbnail-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  color: #999;
+  font-size: 0.8rem;
+  border: 1px dashed rgba(192, 160, 128, 0.3);
+}
+
+.debug-panel {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.debug-panel summary {
+  cursor: pointer;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+.debug-content {
+  padding: 10px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.debug-content ul {
+  margin: 5px 0;
+  padding-left: 20px;
+}
+
+.debug-content li {
+  margin: 3px 0;
+}
+
+/* Melhoria na exibição das miniaturas */
+.gallery__thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(192, 160, 128, 0.15);
+  opacity: 0.7;
+  transition: all 0.3s;
+  flex-shrink: 0; /* Evita que as miniaturas encolham */
+}
+
+.thumbnail.active {
+  border: 2px solid #c0a080;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.thumbnail:hover {
+  opacity: 1;
+  border-color: #c0a080;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.1);
+}
+
+/* Melhoria na exibição da imagem principal */
+.gallery__main {
+  width: 100%;
+  height: 600px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(192, 160, 128, 0.15);
+  background-color: #fff;
+  position: relative;
+}
+
+/* Animação de loading para imagens */
+@keyframes imageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gallery__main img,
+.thumbnail img {
+  animation: imageFadeIn 0.3s ease;
+}
+
+/* Responsividade para miniaturas */
+@media (max-width: 768px) {
+  .gallery__thumbnails {
+    height: auto;
+    min-height: 60px;
+  }
+  
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+}
   
   /* Responsividade */
   @media (max-width: 992px) {

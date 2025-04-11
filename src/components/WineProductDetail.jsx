@@ -1,83 +1,67 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import "../styles/ProductDetail.css";
+import { Link } from "react-router-dom";
+import "../styles/WineProductDetail.css";
 
-// Componentes
-import RelatedProducts from "../components/RelatedProducts";
-
-function ProductDetail() {
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+function WineProductDetail({ product }) {
   const [activeTab, setActiveTab] = useState("caracteristicas");
-
+  const [mainImage, setMainImage] = useState(null);
+  const [thumbnailImages, setThumbnailImages] = useState([]);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  
+  // Função para verificar se uma URL de imagem é válida (formato básico)
+  const isValidUrl = (url) => {
+    return typeof url === 'string' && url.trim() !== '';
+  };
+  
+  // Efeito para inicializar imagens e rolar para o topo
   useEffect(() => {
-    // Simulação de carregamento de dados - substituir pelo fetch real
-    const fetchProduct = async () => {
-      setLoading(true);
+    window.scrollTo(0, 0);
+    
+    if (product && product.images && Array.isArray(product.images)) {
+      // Log para depuração
+      console.log("Imagens disponíveis:", product.images);
       
-      // Exemplo - substituir por API real
-      const mockProduct = {
-        id: productId,
-        name: "Reserva Especial 2020",
-        type: "vinho", // ou "azeite"
-        category: "Douro DOC",
-        description: "Um vinho de excelência que reflete a riqueza do terroir do Douro. Envelhecido em barricas de carvalho francês durante 18 meses, este vinho apresenta uma complexidade única e um final de boca persistente.",
-        images: [
-          "/images/vinho-principal.jpg",
-          "/images/vinho-garrafa.jpg",
-          "/images/vinho-detalhe.jpg"
-        ],
-        price: "45,00€",
-        varieties: ["Touriga Nacional (40%)", "Touriga Franca (30%)", "Tinta Roriz (30%)"],
-        sensorial: {
-          visual: "Rubi profundo com reflexos violáceos",
-          aroma: "Frutos vermelhos maduros, notas de especiarias e um toque balsâmico",
-          paladar: "Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro"
-        },
-        consumo: "Ideal para acompanhar carnes vermelhas, caça e queijos curados",
-        temperatura: "16-18°C",
-        technical: {
-          alcohol: "14.5%",
-          acidity: "5.3 g/L",
-          sugar: "0.7 g/L",
-          ph: "3.65"
-        },
-        awards: ["Medalha de Ouro - Concurso Mundial 2023", "92 pontos - Revista Wine Spectator"]
-      };
+      // Filtrar apenas URLs válidas
+      const validImages = product.images.filter(url => isValidUrl(url));
+      console.log("Imagens válidas:", validImages);
       
-      setProduct(mockProduct);
-      setLoading(false);
-      
-      // Scroll to top when page loads
-      window.scrollTo(0, 0);
-    };
-
-    fetchProduct();
-  }, [productId]);
-
-  if (loading) {
-    return (
-      <>
-        {/*<Header />*/}
-        <div className="loading-container">
-          <div className="elegant-loader"></div>
-        </div>
-      </>
-    );
+      if (validImages.length > 0) {
+        setMainImage(validImages[0]);
+        setThumbnailImages(validImages);
+      } else {
+        console.error("Nenhuma imagem válida encontrada no produto");
+        setMainImage(null);
+        setThumbnailImages([]);
+      }
+    }
+  }, [product]);
+  
+  // Função para lidar com erros de carregamento de imagem
+  const handleImageError = (e, url) => {
+    console.error(`Erro ao carregar imagem: ${url}`);
+    e.target.src = "https://placehold.co/600x400/f8f8f8/999999?text=Imagem+indisponível";
+  };
+  
+  // Função para trocar a imagem principal
+  const changeMainImage = (index) => {
+    if (thumbnailImages[index]) {
+      setMainImage(thumbnailImages[index]);
+      setActiveImageIndex(index);
+    }
+  };
+  
+  // Verifica se o produto está disponível
+  if (!product) {
+    return <div className="loading-container"><div className="elegant-loader"></div></div>;
   }
 
   return (
     <>
-      {/*<Header />*/}
-      
       <main className="product-detail">
         <div className="product-detail__hero">
           <div className="product-detail__breadcrumb">
             <Link to="/">Início</Link> / 
-            <Link to={`/portfolio/${product.type === "vinho" ? "wines" : "olive-oils"}`}>
-              {product.type === "vinho" ? "Vinhos" : "Azeites"}
-            </Link> / 
+            <Link to={"/portfolio/wines"}>Vinhos</Link> / 
             <span>{product.name}</span>
           </div>
           
@@ -88,21 +72,63 @@ function ProductDetail() {
         <section className="product-detail__content">
           <div className="product-detail__gallery">
             <div className="gallery__main">
-              <img src={product.images[0]} alt={product.name} />
+              {mainImage ? (
+                <img 
+                  src={mainImage} 
+                  alt={`${product.name} - imagem principal`}
+                  onError={(e) => handleImageError(e, mainImage)}
+                />
+              ) : (
+                <div className="image-placeholder">
+                  <span>Imagem não disponível</span>
+                </div>
+              )}
             </div>
             
             <div className="gallery__thumbnails">
-              {product.images.map((image, index) => (
-                <div className="thumbnail" key={index}>
-                  <img src={image} alt={`${product.name} - vista ${index + 1}`} />
+              {thumbnailImages.map((imageUrl, index) => (
+                <div 
+                  className={`thumbnail ${index === activeImageIndex ? 'active' : ''}`}
+                  key={index}
+                  onClick={() => changeMainImage(index)}
+                >
+                  <img 
+                    src={imageUrl}
+                    alt={`${product.name} - miniatura ${index + 1}`}
+                    onError={(e) => handleImageError(e, imageUrl)}
+                  />
                 </div>
               ))}
+              
+              {/* Se não houver miniaturas, mostrar placeholder */}
+              {thumbnailImages.length === 0 && (
+                <div className="thumbnail">
+                  <div className="thumbnail-placeholder">
+                    <span>Sem imagens</span>
+                  </div>
+                </div>
+              )}
             </div>
+            
+            {/* Seção de depuração */}
+            <details className="debug-panel">
+              <summary>Informações de Depuração</summary>
+              <div className="debug-content">
+                <p><strong>Total de imagens:</strong> {product.images ? product.images.length : 0}</p>
+                <p><strong>Imagens válidas:</strong> {thumbnailImages.length}</p>
+                <p><strong>URLs das imagens:</strong></p>
+                <ul style={{fontSize: "0.8rem", wordBreak: "break-all"}}>
+                  {product.images && product.images.map((url, i) => (
+                    <li key={i}>
+                      {i+1}. {typeof url === 'string' ? url : 'URL inválida (não é string)'}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </details>
           </div>
           
           <div className="product-detail__info">
-            <div className="product-info__price">{product.price}</div>
-            
             <div className="product-info__description">
               <p>{product.description}</p>
             </div>
@@ -217,15 +243,9 @@ function ProductDetail() {
             </div>
           </div>
         </section>
-        
-        <section className="related-products">
-          <h2 className="section-title">Outras Sugestões</h2>
-          <RelatedProducts currentProductId={productId} productType={product.type} />
-        </section>
       </main>
-      
     </>
   );
 }
 
-export default ProductDetail;
+export default WineProductDetail;

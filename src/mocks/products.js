@@ -2,7 +2,7 @@ export const wines = [
     {
       id: 1,
       slug: "red-reserve-oaked-2019", 
-      name: "Reserva | Tinto Oaked", 
+      name: "Tinto Reserva Oaked 2019", 
       year: "2019",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
       briefdescription: "Um vinho intenso e elegante com notas de frutos vermelhos maduros e um toque de madeira.",
@@ -32,7 +32,39 @@ export const wines = [
       sold_out: true,
       oaked: true
     },
-    // outros vinhos
+    {
+      id: 2,
+      slug: "red-reserve-unoaked-2020", 
+      name: "Tinto Reserva Unoaked 2020", 
+      year: "2020",
+      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      briefdescription: "Um vinho intenso e elegante com notas de frutos vermelhos maduros e um toque de madeira.",
+      type: "Tinto",
+      category: "Douro DOC",
+      varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
+      images: [
+        "/images/vtun20-1.png",
+        "/images/vtun20-2.png",
+        "/images/vtun20-3.png"
+      ],
+      sensorial: {
+        visual: "Rubi profundo com reflexos violáceos",
+        aroma: "Frutos vermelhos maduros, notas de especiarias e um toque balsâmico",
+        paladar: "Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro"
+      },
+      consumo: "Ideal para acompanhar carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      temperatura: "16 a 18°C",
+      technical: {
+        alcohol: "13,5%",
+        acidity: "5.3 g/L",
+        sugar: "0.7 g/L",
+        ph: "3.65"
+      },
+      awards: ["Medalha de Ouro - Concurso Mundial 2023", "92 pontos - Revista Wine Spectator"],
+      highlighted: false,
+      sold_out: true,
+      oaked: true
+    },
   ];
   
   export const oliveOils = [
