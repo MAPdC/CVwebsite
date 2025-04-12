@@ -11,8 +11,8 @@ export const wines = [
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
         "/images/vto19-1.png",
-        "/images/vto19-2.png",
-        "/images/vto19-3.png"
+        "/images/vto19-2.jpg",
+        "/images/vto19-3.jpg"
       ],
       sensorial: {
         visual: "Rubi profundo com reflexos violáceos",

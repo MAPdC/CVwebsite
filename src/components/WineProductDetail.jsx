@@ -8,39 +8,22 @@ function WineProductDetail({ product }) {
   const [thumbnailImages, setThumbnailImages] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   
-  // Função para verificar se uma URL de imagem é válida (formato básico)
-  const isValidUrl = (url) => {
-    return typeof url === 'string' && url.trim() !== '';
-  };
-  
   // Efeito para inicializar imagens e rolar para o topo
   useEffect(() => {
     window.scrollTo(0, 0);
     
     if (product && product.images && Array.isArray(product.images)) {
-      // Log para depuração
-      console.log("Imagens disponíveis:", product.images);
-      
-      // Filtrar apenas URLs válidas
-      const validImages = product.images.filter(url => isValidUrl(url));
-      console.log("Imagens válidas:", validImages);
+      const validImages = product.images.filter(url => typeof url === 'string' && url.trim() !== '');
       
       if (validImages.length > 0) {
         setMainImage(validImages[0]);
         setThumbnailImages(validImages);
       } else {
-        console.error("Nenhuma imagem válida encontrada no produto");
         setMainImage(null);
         setThumbnailImages([]);
       }
     }
   }, [product]);
-  
-  // Função para lidar com erros de carregamento de imagem
-  const handleImageError = (e, url) => {
-    console.error(`Erro ao carregar imagem: ${url}`);
-    e.target.src = "https://placehold.co/600x400/f8f8f8/999999?text=Imagem+indisponível";
-  };
   
   // Função para trocar a imagem principal
   const changeMainImage = (index) => {
@@ -76,7 +59,6 @@ function WineProductDetail({ product }) {
                 <img 
                   src={mainImage} 
                   alt={`${product.name} - imagem principal`}
-                  onError={(e) => handleImageError(e, mainImage)}
                 />
               ) : (
                 <div className="image-placeholder">
@@ -95,12 +77,10 @@ function WineProductDetail({ product }) {
                   <img 
                     src={imageUrl}
                     alt={`${product.name} - miniatura ${index + 1}`}
-                    onError={(e) => handleImageError(e, imageUrl)}
                   />
                 </div>
               ))}
               
-              {/* Se não houver miniaturas, mostrar placeholder */}
               {thumbnailImages.length === 0 && (
                 <div className="thumbnail">
                   <div className="thumbnail-placeholder">
@@ -109,23 +89,6 @@ function WineProductDetail({ product }) {
                 </div>
               )}
             </div>
-            
-            {/* Seção de depuração */}
-            <details className="debug-panel">
-              <summary>Informações de Depuração</summary>
-              <div className="debug-content">
-                <p><strong>Total de imagens:</strong> {product.images ? product.images.length : 0}</p>
-                <p><strong>Imagens válidas:</strong> {thumbnailImages.length}</p>
-                <p><strong>URLs das imagens:</strong></p>
-                <ul style={{fontSize: "0.8rem", wordBreak: "break-all"}}>
-                  {product.images && product.images.map((url, i) => (
-                    <li key={i}>
-                      {i+1}. {typeof url === 'string' ? url : 'URL inválida (não é string)'}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </details>
           </div>
           
           <div className="product-detail__info">
