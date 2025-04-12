@@ -14,11 +14,7 @@ export const wines = [
         "/images/vto19-2.jpg",
         "/images/vto19-3.jpg"
       ],
-      sensorial: {
-        visual: "Rubi profundo com reflexos violáceos",
-        aroma: "Frutos vermelhos maduros, notas de especiarias e um toque balsâmico",
-        paladar: "Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro"
-      },
+      sensorial: "Rubi profundo com reflexos violáceos. Frutos vermelhos maduros, notas de especiarias e um toque balsâmico. Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro",
       consumo: "Ideal para acompanhar carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
       temperatura: "16 a 18°C",
       technical: {
@@ -47,11 +43,7 @@ export const wines = [
         "/images/vtun20-2.jpg",
         "/images/vtun20-3.jpg"
       ],
-      sensorial: {
-        visual: "Rubi profundo com reflexos violáceos",
-        aroma: "Frutos vermelhos maduros, notas de especiarias e um toque balsâmico",
-        paladar: "Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro"
-      },
+      sensorial: "Rubi profundo com reflexos violáceos. Frutos vermelhos maduros, notas de especiarias e um toque balsâmico. Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro",
       consumo: "Ideal para acompanhar carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
       temperatura: "16 a 18°C",
       technical: {

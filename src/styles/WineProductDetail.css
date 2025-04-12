@@ -1,4 +1,4 @@
-/* ProductDetail.css - Versão otimizada com fundo claro */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
 
 /* Variáveis globais para cores e tipografia */
 :root {
@@ -20,6 +20,7 @@
   --shadow-light: rgba(0, 0, 0, 0.03);
   --font-primary: 'Work Sans', sans-serif;
   --font-display: 'AgathoRegularCAPS', 'serif';
+  --font-paragraph: 'Cormorant Garamond', serif;
 }
 
 /* Estilos gerais */
@@ -227,6 +228,17 @@
   font-size: 1.05rem;
 }
 
+.product-info__description p,
+.tab-content p,
+.award-text,
+.tech-value {
+  font-family: var(--font-paragraph);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #444;
+}
+
 /* Tabs */
 .product-info__tabs {
   border-top: 1px solid var(--primary-light);
@@ -321,25 +333,6 @@
   border-bottom: none;
 }
 
-/* Informações sensoriais */
-.sensorial-item {
-  margin-bottom: 20px;
-}
-
-.sensorial-item h4 {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  color: var(--text-medium);
-  margin-bottom: 5px;
-  font-weight: 400;
-}
-
-.sensorial-item p {
-  color: #555;
-  font-weight: 300;
-  line-height: 1.5;
-}
-
 /* Temperatura */
 .temperature-display {
   display: flex;
@@ -353,8 +346,9 @@
 }
 
 .temperature-value {
-  font-size: 1.2rem;
-  font-weight: 300;
+  font-family: var(--font-paragraph);
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 /* Detalhes técnicos */
@@ -402,11 +396,6 @@
 
 .award-medal {
   font-size: 1.5rem;
-}
-
-.award-text {
-  font-weight: 300;
-  color: #555;
 }
 
 /* Responsividade */

@@ -132,21 +132,7 @@ function WineProductDetail({ product }) {
                     
                     <div className="content-section">
                       <h3>Características Sensoriais</h3>
-                      
-                      <div className="sensorial-item">
-                        <h4>Visual</h4>
-                        <p>{product.sensorial.visual}</p>
-                      </div>
-                      
-                      <div className="sensorial-item">
-                        <h4>Aroma</h4>
-                        <p>{product.sensorial.aroma}</p>
-                      </div>
-                      
-                      <div className="sensorial-item">
-                        <h4>Paladar</h4>
-                        <p>{product.sensorial.paladar}</p>
-                      </div>
+                      <p>{product.sensorial}</p>
                     </div>
                     
                     <div className="content-section">
