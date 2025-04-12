@@ -139,7 +139,6 @@ function WinePortfolioPage() {
                     <div className="wine-card__content">
                       <div className="wine-card__header">
                         <h2 className="wine-card__name">{wine.name}</h2>
-                        <span className="wine-card__year">{wine.year}</span>
                       </div>
                       
                       <div className="wine-card__category">

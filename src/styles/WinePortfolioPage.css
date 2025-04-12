@@ -268,13 +268,6 @@
     letter-spacing: 1px;
   }
   
-  .wine-card__year {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #888;
-  }
-  
   .wine-card__category {
     display: flex;
     align-items: center;
