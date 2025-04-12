@@ -4,23 +4,23 @@
 .wine-catalog {
     background-color: #fafafa;
     min-height: 100vh;
-  }
+}
   
-  /* Hero da página */
-  .catalog-hero {
+/* Hero da página - melhorado para responsividade */
+.catalog-hero {
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Alterado de 80vh para 100vh para ocupar toda a altura da tela */
-    width: 100%; /* Garantir que ocupe 100% da largura */
+    height: 90vh; /* Ajustado para 90vh para melhor responsividade */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0; /* Remover o margin-top de 80px */
+    margin-top: 0;
     overflow: hidden;
-  }
+}
 
-  .catalog-hero::before {
+.catalog-hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -31,101 +31,106 @@
       to bottom,
       rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0.1) 50%,
-      rgba(0, 0, 0, 0.5) 100%,
+      rgba(0, 0, 0, 0.5) 100%
     );
     pointer-events: none;
     z-index: 2;
-  }
+}
   
-  .catalog-hero__content {
+.catalog-hero__content {
     text-align: center;
-  color: #fff;
-  padding: 0 20px;
-  max-width: 900px;
-  position: relative;
-  z-index: 3;
-  }
+    color: #fff;
+    padding: 0 20px;
+    max-width: 900px;
+    position: relative;
+    z-index: 3;
+}
   
-  .catalog-hero__title {
+.catalog-hero__title {
     font-family: 'AgathoRegularCAPS', 'serif';
-    font-size: 3rem;
+    font-size: 4rem; /* Aumentado para maior impacto */
     font-weight: 300;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 3px; /* Aumentado o espaçamento entre letras */
+    margin-bottom: 25px; /* Aumentado espaço entre título e subtítulo */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateY(-30px);
     animation: fade-in 1.5s ease forwards 0.5s;
-  }
+}
   
-  .catalog-hero__subtitle {
+/* Subtítulo mais elegante */
+.catalog-hero__subtitle {
     font-family: 'Work Sans', serif;
-    font-size: 1.1rem;
+    font-size: 1.25rem; /* Aumentado para melhor leitura */
     font-weight: 300;
-    letter-spacing: 1px;
+    font-style: italic; /* Adicionado itálico para elegância */
+    letter-spacing: 1.5px; /* Aumentado espaçamento entre letras */
+    line-height: 1.6; /* Melhor espaçamento entre linhas */
     max-width: 700px;
     margin: 0 auto;
     opacity: 0;
     transform: translateY(-20px);
     animation: fade-in 1.5s ease forwards 1s;
-  }
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra sutil para legibilidade */
+}
 
-  @keyframes fade-in {
+/* Animação melhorada */
+@keyframes fade-in {
     0% {
-      opacity: 0;
-      transform: translateY(-20px);
+        opacity: 0;
+        transform: translateY(-25px);
     }
     100% {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}
   
-  /* Container principal do conteúdo */
-  .catalog-content {
+/* Container principal do conteúdo */
+.catalog-content {
     max-width: 1300px;
     margin: 0 auto;
     padding: 60px 5%;
-  }
+}
   
-  /* Loading */
-  .loading-container {
+/* Loading */
+.loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
-  }
+}
   
-  .elegant-loader {
+.elegant-loader {
     width: 40px;
     height: 40px;
     border: 3px solid rgba(192, 160, 128, 0.2);
     border-radius: 50%;
     border-top-color: #c0a080;
     animation: spin 1s ease-in-out infinite;
-  }
+}
   
-  @keyframes spin {
+@keyframes spin {
     to { transform: rotate(360deg); }
-  }
+}
   
-  /* Filtros e busca */
-  .catalog-filters {
+/* Filtros e busca */
+.catalog-filters {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
     flex-wrap: wrap;
     gap: 20px;
-  }
+}
   
-  .search-bar {
+.search-bar {
     position: relative;
     max-width: 400px;
     width: 100%;
-  }
+}
   
-  .search-bar input {
+.search-bar input {
     width: 100%;
     padding: 12px 20px 12px 45px;
     border: 1px solid rgba(192, 160, 128, 0.3);
@@ -135,29 +140,29 @@
     color: #555;
     background-color: white;
     transition: all 0.3s ease;
-  }
+}
   
-  .search-bar input:focus {
+.search-bar input:focus {
     outline: none;
     border-color: #c0a080;
     box-shadow: 0 0 0 2px rgba(192, 160, 128,.1);
-  }
+}
   
-  .search-icon {
+.search-icon {
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
     color: #c0a080;
     font-size: 1rem;
-  }
+}
   
-  .filter-options {
+.filter-options {
     display: flex;
     gap: 10px;
-  }
+}
   
-  .filter-btn {
+.filter-btn {
     padding: 8px 16px;
     border: 1px solid rgba(192, 160, 128, 0.3);
     border-radius: 20px;
@@ -167,35 +172,35 @@
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
+}
   
-  .filter-btn:hover {
+.filter-btn:hover {
     background-color: rgba(192, 160, 128, 0.05);
-  }
+}
   
-  .filter-btn.active {
+.filter-btn.active {
     background-color: rgba(192, 160, 128, 0.9);
     color: white;
     border-color: #c0a080;
-  }
+}
   
-  .results-count {
+.results-count {
     margin-bottom: 30px;
     color: #888;
     font-family: 'Work Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 300;
-  }
+}
   
-  /* Grid de vinhos */
-  .wine-grid {
+/* Grid de vinhos */
+.wine-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 40px;
-  }
+}
   
-  /* Card de vinho */
-  .wine-card {
+/* Card de vinho */
+.wine-card {
     background-color: white;
     border-radius: 3px;
     overflow: hidden;
@@ -205,35 +210,35 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-  }
+}
   
-  .wine-card:hover {
+.wine-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
-  }
+}
   
-  .wine-card__image-container {
+.wine-card__image-container {
     position: relative;
-    height: 250px; /* Reduzido de 300px para 250px */
+    height: 250px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
   
-  .wine-card__image {
-    width: 85%; /* Reduzido de 100% para 85% */
-    height: auto; /* Alterado de 100% para auto para manter a proporção */
-    max-height: 340px; /* Limitando a altura máxima */
-    object-fit: contain; /* Alterado de cover para contain para garantir que toda a garrafa seja visível */
+.wine-card__image {
+    width: 85%;
+    height: auto;
+    max-height: 340px;
+    object-fit: contain;
     transition: transform 0.5s ease;
-  }
+}
   
-  .wine-card:hover .wine-card__image {
+.wine-card:hover .wine-card__image {
     transform: scale(1.03);
-  }
+}
   
-  .wine-card__badge {
+.wine-card__badge {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -243,32 +248,32 @@
     font-size: 0.8rem;
     border-radius: 15px;
     font-family: 'Work Sans', sans-serif;
-  }
+}
   
-  .wine-card__content {
+.wine-card__content {
     padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-  }
+}
   
-  .wine-card__header {
+.wine-card__header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 8px;
-  }
+}
   
-  .wine-card__name {
+.wine-card__name {
     font-family: 'AgathoRegularCAPS', 'serif';
     font-size: 1.5rem;
     font-weight: 300;
     color: #c0a080;
     margin: 0;
     letter-spacing: 1px;
-  }
+}
   
-  .wine-card__category {
+.wine-card__category {
     display: flex;
     align-items: center;
     font-family: 'Work Sans', sans-serif;
@@ -277,60 +282,60 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 15px;
-  }
+}
   
-  .wine-type-indicator {
+.wine-type-indicator {
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     margin-right: 8px;
-  }
+}
   
-  .wine-card__description {
+.wine-card__description {
     font-family: 'Work Sans', sans-serif;
     font-size: 0.95rem;
     color: #555;
     line-height: 1.6;
     margin-bottom: 20px;
     flex-grow: 1;
-  }
+}
 
-  .wine-card__badge.sold-out {
+.wine-card__badge.sold-out {
     background-color: rgba(136, 136, 136, 0.95);
     left: 15px;
     right: auto;
-  }
+}
   
-  .wine-card__footer {
+.wine-card__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-  }
+}
   
-  .wine-card__varieties {
+.wine-card__varieties {
     display: flex;
     align-items: center;
     font-family: 'Work Sans', sans-serif;
     font-size: 0.85rem;
     color: #777;
-  }
+}
   
-  .variety-icon {
+.variety-icon {
     color: #c0a080;
     margin-right: 6px;
     font-size: 0.9rem;
-  }
+}
   
-  .wine-card__price {
+.wine-card__price {
     font-family: 'Work Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 400;
     color: #c0a080;
-  }
+}
   
-  .wine-card__cta {
+.wine-card__cta {
     text-align: center;
     padding: 10px;
     background-color: rgba(192, 160, 128, 0.1);
@@ -341,92 +346,141 @@
     font-weight: 400;
     letter-spacing: 0.5px;
     transition: background-color 0.3s;
-  }
+}
   
-  .wine-card:hover .wine-card__cta {
+.wine-card:hover .wine-card__cta {
     background-color: rgba(192, 160, 128, 0.15);
-  }
+}
   
-  /* Sem resultados */
-  .no-results {
+/* Sem resultados */
+.no-results {
     text-align: center;
     padding: 60px 0;
     color: #666;
-  }
+}
   
-  .no-results h3 {
+.no-results h3 {
     font-family: 'AgathoRegularCAPS', 'serif';
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 15px;
     color: #c0a080;
-  }
+}
   
-  .no-results p {
+.no-results p {
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     font-weight: 300;
-  }
+}
   
-  /* Responsividade */
-  @media (max-width: 992px) {
+/* Responsividade melhorada */
+@media (max-width: 1200px) {
     .catalog-hero__title {
-      font-size: 2.5rem;
-    }
-    
-    .catalog-filters {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    
-    .search-bar {
-      max-width: 100%;
-    }
-    
-    .filter-options {
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 5px;
-    }
-    
-    .filter-btn {
-      white-space: nowrap;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .catalog-hero {
-      height: 220px;
-    }
-    
-    .catalog-hero__title {
-      font-size: 2rem;
+        font-size: 3.5rem;
     }
     
     .catalog-hero__subtitle {
-      font-size: 1rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .catalog-hero {
+        height: 70vh; /* Ajustado para telas médias */
+    }
+    
+    .catalog-hero__title {
+        font-size: 3rem;
+    }
+    
+    .catalog-hero__subtitle {
+        font-size: 1.15rem;
+    }
+    
+    .catalog-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-bar {
+        max-width: 100%;
+    }
+    
+    .filter-options {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        justify-content: center; /* Centraliza os botões */
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+}
+  
+@media (max-width: 768px) {
+    .catalog-hero {
+        height: 50vh; /* Ajustado para tablets */
+    }
+    
+    .catalog-hero__title {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .catalog-hero__subtitle {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
     }
     
     .catalog-content {
-      padding: 40px 5%;
+        padding: 40px 5%;
     }
     
     .wine-grid {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
     }
-  }
+}
+
+@media (max-width: 576px) {
+    .catalog-hero {
+        height: 40vh; /* Ajustado para celulares maiores */
+    }
+    
+    .catalog-hero__title {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+    
+    .catalog-hero__subtitle {
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+    }
+}
   
-  @media (max-width: 480px) {
+@media (max-width: 480px) {
+    .catalog-hero {
+        height: 300px; /* Altura fixa para dispositivos muito pequenos */
+    }
+    
+    .catalog-hero__title {
+        font-size: 1.8rem;
+    }
+    
+    .catalog-hero__subtitle {
+        font-size: 0.95rem;
+    }
+    
     .wine-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
     
     .wine-card__image-container {
-      height: 220px;
+        height: 220px;
     }
 
     .wine-card__image {
-      max-height: 210px; /* Ajustado para a nova altura do container */
+        max-height: 210px;
     }
-  }
+}
