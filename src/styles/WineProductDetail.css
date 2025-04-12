@@ -10,6 +10,10 @@
   --text-medium: #666;
   --text-light: #888;
   --text-lighter: #999;
+  --tab-inactive: #666; /* Nova cor para tabs inativas (mais escura) */
+  --breadcrumb-color: #666; /* Nova cor para o breadcrumb (mais escura) */
+  --tech-label-color: #666; /* Nova cor para os rótulos dos detalhes técnicos */
+  --tech-border-color: #c9c9c9; /* Nova cor mais escura para as bordas das caixas técnicas */
   --bg-light: #fafafa;
   --bg-white: #fff;
   --border-light: #eee;
@@ -73,12 +77,12 @@
 .product-detail__breadcrumb {
   font-size: 0.85rem;
   margin-bottom: 24px;
-  color: var(--text-light);
+  color: var(--breadcrumb-color); /* Alterado para um cinzento mais escuro */
   font-weight: 300;
 }
 
 .product-detail__breadcrumb a {
-  color: var(--text-light);
+  color: var(--breadcrumb-color); /* Alterado para um cinzento mais escuro */
   text-decoration: none;
   transition: color 0.3s;
 }
@@ -240,7 +244,7 @@
   border: none;
   padding: 10px 20px;
   font-family: var(--font-display);
-  color: var(--text-light);
+  color: var(--tab-inactive); /* Alterado para um cinzento mais escuro */
   font-size: 0.9rem;
   letter-spacing: 1.5px;
   cursor: pointer;
@@ -362,7 +366,7 @@
 
 .tech-item {
   padding: 15px;
-  border: 1px solid var(--primary-light);
+  border: 1px solid var(--tech-border-color); /* Alterado para borda mais escura */
   display: flex;
   flex-direction: column;
   transition: all 0.3s;
@@ -377,7 +381,7 @@
 
 .tech-label {
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: var(--tech-label-color); /* Alterado para um cinzento mais escuro */
   margin-bottom: 8px;
 }
 
