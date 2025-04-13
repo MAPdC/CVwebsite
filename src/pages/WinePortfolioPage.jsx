@@ -29,8 +29,9 @@ function WinePortfolioPage() {
         briefDescription: wine.briefdescription || wine.description.substring(0, 100) + "...",
         varieties: wine.varieties,
         image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.jpg",
-        highlighted: wine.highlighted || false,
-        sold_out: wine.sold_out
+        onmarket: wine.onmarket || false,
+        collection: wine.collection || false,
+        awards: wine.awards || []
       }));
       
       // Adicionar um pequeno delay para simular carregamento
@@ -55,10 +56,10 @@ function WinePortfolioPage() {
     return matchesFilter && matchesSearch;
   });
 
-  // Destaque vinhos em destaque primeiro
+  // Ordenar vinhos - Vinhos "Disponível" aparecem primeiro
   const sortedWines = [...filteredWines].sort((a, b) => {
-    if (a.highlighted && !b.highlighted) return -1;
-    if (!a.highlighted && b.highlighted) return 1;
+    if (a.onmarket && !b.onmarket) return -1;
+    if (!a.onmarket && b.onmarket) return 1;
     return 0;
   });
 
@@ -128,11 +129,24 @@ function WinePortfolioPage() {
                   <Link to={`/portfolio/wines/${wine.slug}`} className="wine-card" key={wine.id}>
                     <div className="wine-card__image-container">
                       <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
-                      {wine.highlighted && (
-                        <div className="wine-card__badge">Destaque</div>
+                      
+                      {/* Badge para Disponível ou Coleção */}
+                      {wine.onmarket && (
+                        <div className="wine-card__badge wine-card__badge--onmarket">Disponível</div>
                       )}
-                      {wine.sold_out && (
-                        <div className="wine-card__badge sold-out">Esgotado</div>
+                      {wine.collection && (
+                        <div className="wine-card__badge wine-card__badge--collection">Coleção</div>
+                      )}
+                      
+                      {/* Mostrar Medalhas */}
+                      {wine.awards && wine.awards.length > 0 && (
+                        <div className="wine-card__awards">
+                          {wine.awards.map((award, index) => (
+                            <div key={index} className="wine-card__award" title={`${award[2]} (${award[3]})`}>
+                              <img src={award[1]} alt={award[2]} className="award-medal" />
+                            </div>
+                          ))}
+                        </div>
                       )}
                     </div>
                     
@@ -158,8 +172,6 @@ function WinePortfolioPage() {
                           <FaWineGlassAlt className="variety-icon" />
                           <span>{wine.varieties.slice(0, 2).join(", ")}{wine.varieties.length > 2 ? "..." : ""}</span>
                         </div>
-                        
-                        <div className="wine-card__price">{wine.price}</div>
                       </div>
                       
                       <div className="wine-card__cta">

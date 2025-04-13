@@ -334,6 +334,51 @@
     font-weight: 400;
     color: #c0a080;
 }
+
+/* Ajustes para as novas badges */
+.wine-card__badge--onmarket {
+    background-color: rgba(192, 160, 128, 0.95);
+    left: 15px;
+    right: auto;
+  }
+  
+  .wine-card__badge--collection {
+    background-color: rgba(70, 90, 110, 0.95);
+    left: 15px;
+    right: auto;
+  }
+  
+  /* Área de medalhas */
+  .wine-card__awards {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+  }
+  
+  .wine-card__award {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .wine-card__award:hover {
+    transform: scale(1.2);
+  }
+  
+  .award-medal {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+  }
   
 .wine-card__cta {
     text-align: center;
@@ -457,6 +502,11 @@
         font-size: 1rem;
         letter-spacing: 0.5px;
     }
+
+    .wine-card__award {
+        width: 35px;
+        height: 35px;
+      }
 }
   
 @media (max-width: 480px) {
