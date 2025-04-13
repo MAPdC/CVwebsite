@@ -16,7 +16,7 @@ const WineProductPage = () => {
     (p) =>
       (p.category === currentProduct.category || p.type === currentProduct.type) &&
       p.slug !== currentProduct.slug
-  ).slice(0, 4);
+  ).slice(0, 3);
 
   return (
     <div className="wine-page">
