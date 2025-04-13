@@ -14,16 +14,16 @@ export const wines = [
         "/images/vto19-2.jpg",
         "/images/vto19-3.jpg"
       ],
-      sensorial: "Rubi profundo com reflexos violáceos. Frutos vermelhos maduros, notas de especiarias e um toque balsâmico. Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro",
-      consumo: "Ideal para acompanhar carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
+      consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
       temperatura: "16 a 18°C",
       technical: {
         alcohol: "13,5%",
-        acidity: "5.3 g/L",
-        sugar: "0.7 g/L",
-        ph: "3.65"
+        acidity: "0.0 g/L",
+        sugar: "0.0 g/L",
+        ph: "0.0"
       },
-      awards: ["Medalha de Ouro - Concurso Mundial 2023", "92 pontos - Revista Wine Spectator"],
+      awards: [["/images/logo-vinduero.png", "/images/vinduero-ourof-23.png", "Medalha de Ouro em Feminino 2023","90,00"]],
       highlighted: false,
       sold_out: true,
       oaked: true
@@ -34,7 +34,7 @@ export const wines = [
       name: "Tinto Reserva Unoaked 2020", 
       year: "2020",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
-      briefdescription: "Um vinho intenso e elegante com notas de frutos vermelhos maduros e um toque de madeira.",
+      briefdescription: "Um vinho intenso, elegante e frutado com notas de compota de frutos vermelhos bem maduros.",
       type: "Tinto",
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
@@ -43,19 +43,19 @@ export const wines = [
         "/images/vtun20-2.jpg",
         "/images/vtun20-3.jpg"
       ],
-      sensorial: "Rubi profundo com reflexos violáceos. Frutos vermelhos maduros, notas de especiarias e um toque balsâmico. Encorpado, com taninos presentes mas sedosos. Final longo com notas de chocolate negro",
-      consumo: "Ideal para acompanhar carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas de compota de frutos vermelhos bem maduros.",
+      consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
       temperatura: "16 a 18°C",
       technical: {
-        alcohol: "13,5%",
-        acidity: "5.3 g/L",
-        sugar: "0.7 g/L",
-        ph: "3.65"
+        alcohol: "14,5%",
+        acidity: "0.0 g/L",
+        sugar: "0.0 g/L",
+        ph: "0"
       },
-      awards: ["Medalha de Ouro - Concurso Mundial 2023", "92 pontos - Revista Wine Spectator"],
+      awards: [["/images/logo-vinduero.png", "/images/vinduero-ouro-24.png", "Medalha de Ouro 2024","92,55"], ["/images/logo-vinduero.png", "/images/vinduero-ourof-24.png", "Medalha de Ouro em Feminino 2024", "92,93"]],
       highlighted: false,
       sold_out: true,
-      oaked: true
+      oaked: false
     },
   ];
   
