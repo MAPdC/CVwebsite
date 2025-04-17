@@ -9,6 +9,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import WinePortfolioPage from './pages/WinePortfolioPage';
 import OliveOilPortfolioPage from './pages/OliveOilPortfolioPage';
 import WineProductPage from './pages/WineProductPage';
+import FindUsPage from './pages/FindUsPage';
 
 // Componente para selecionar o header correto
 function PageLayout() {
@@ -20,6 +21,7 @@ function PageLayout() {
     '/contacts',              // Contactos
     '/portfolio/wines',       // Portefólio de vinhos
     '/portfolio/olive-oils',  // Portefólio de azeites
+    '/find-us',               // Onde nos encontrar?
     '/sustainability'         // Sustentabilidade
     // Adicione mais caminhos conforme necessário
   ];
@@ -39,6 +41,7 @@ function PageLayout() {
           <Route path="/portfolio/wines" element={<WinePortfolioPage />} />
           <Route path="/portfolio/wines/:slug" element={<WineProductPage />} />
           <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
+          <Route path="/find-us" element={<FindUsPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/privacy-policies" element={<PrivacyPage />} />
           <Route path="*" element={<NotFoundPage />} />
