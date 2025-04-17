@@ -13,13 +13,13 @@ import { faMapMarkerAlt, faPhone, faEnvelope, faGlobe, faWineBottle } from '@for
 import { faInstagram, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 const FindUsPage = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
-  const [activeRegion, setActiveRegion] = useState("norte");
+  const [activeRegion, setActiveRegion] = useState("todas");
+  const [availableRegions, setAvailableRegions] = useState([]);
   const pageRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   
-  // Filtros por tipo de estabelecimento
-  const filters = [
+  // Todos os filtros possíveis (mantido para referência de rótulos)
+  const allFilters = [
     { id: "all", label: "Todos" },
     { id: "restaurant", label: "Restaurantes" },
     { id: "retailer", label: "Revendedores" },
@@ -27,8 +27,8 @@ const FindUsPage = () => {
     { id: "hotel", label: "Hotéis" }
   ];
   
-  // Regiões do país
-  const regions = [
+  // Regiões do país - será filtrado para mostrar apenas as que têm estabelecimentos
+  const allRegions = [
     { id: "norte", name: "Norte" },
     { id: "centro", name: "Centro" },
     { id: "lisboa", name: "Lisboa" },
@@ -36,7 +36,8 @@ const FindUsPage = () => {
     { id: "alentejo", name: "Alentejo" },
     { id: "algarve", name: "Algarve" },
     { id: "madeira", name: "Madeira" },
-    { id: "acores", name: "Açores" }
+    { id: "acores", name: "Açores" },
+    { id: "todas", name: "Todas" } // Movido para o final
   ];
   
   // Função para obter imagem principal baseada nos tipos de estabelecimento
@@ -74,7 +75,7 @@ const FindUsPage = () => {
         contact: "+351 965 056 114",
         email: null,
         website: null,
-        image: "/images/my-wines-1.jpg",
+        image: "/images/my-wines-3.png",
         instagram: "https://www.instagram.com/mywinesportugal",
         facebook: "https://www.facebook.com/mywinesportugal",
         products: []
@@ -88,7 +89,7 @@ const FindUsPage = () => {
         contact: "+351 915 859 414",
         email: null,
         website: null,
-        image: "/images/a-do-nuno-1.jpg",
+        image: "/images/a-do-nuno-2.png",
         instagram: "https://www.instagram.com/adonuno/",
         facebook: "https://www.facebook.com/adonuno.pt/?locale=pt_BR",
         products: []
@@ -102,7 +103,7 @@ const FindUsPage = () => {
         contact: "+351 938 214 850",
         email: "info@pastorwine.pt",
         website: "https://www.pastorwine.pt/pt/",
-        image: "/images/pastor-wine-1.png",
+        image: "/images/pastor-wine-4.png",
         instagram: "https://www.instagram.com/pastorwine/",
         facebook: null,
         products: []
@@ -116,7 +117,7 @@ const FindUsPage = () => {
         contact: null,
         email: "info@fieldblend.pt",
         website: "http://www.fieldblend.pt/",
-        image: "/images/field-blend-1.jpg",
+        image: "/images/field-blend-2.png",
         instagram: "https://www.instagram.com/field.blend/",
         facebook: "https://www.facebook.com/profile.php?id=100089206597347&locale=pt_BR",
         products: []
@@ -136,6 +137,22 @@ const FindUsPage = () => {
         products: []
       }
   ];
+
+  // Função para determinar quais regiões têm estabelecimentos
+  const getAvailableRegions = () => {
+    // Obter todas as regiões que têm pelo menos um estabelecimento
+    const regionsWithLocations = new Set(locations.map(location => location.region));
+    
+    // Filtrar a lista de regiões para incluir apenas as que têm estabelecimentos, mais a opção "todas"
+    return allRegions.filter(region => 
+      region.id === "todas" || regionsWithLocations.has(region.id)
+    );
+  };
+  
+  // Inicializar as regiões disponíveis quando o componente montar
+  useEffect(() => {
+    setAvailableRegions(getAvailableRegions());
+  }, []);
   
   useEffect(() => {
     const observerOptions = {
@@ -176,23 +193,27 @@ const FindUsPage = () => {
     transform: `translateY(${scrollPosition * 0.4}px)`
   };
 
-  // Filtrar locais por tipo e região
+  // Filtrar locais por região
   const filteredLocations = locations.filter(location => {
-    return (activeFilter === "all" || location.types.includes(activeFilter)) && 
-           location.region === activeRegion;
+    return (activeRegion === "todas" || location.region === activeRegion);
   });
 
   // Renderiza os tipos de estabelecimento
   const renderLocationTypes = (locationTypes) => {
     if (locationTypes.length === 1) {
       // Se só tem um tipo, mostrar o label desse tipo
-      return filters.find(f => f.id === locationTypes[0])?.label;
+      return allFilters.find(f => f.id === locationTypes[0])?.label;
     } else {
       // Se tem múltiplos tipos, mostrar uma lista separada por "/"
       return locationTypes
-        .map(type => filters.find(f => f.id === type)?.label)
+        .map(type => allFilters.find(f => f.id === type)?.label)
         .join(" / ");
     }
+  };
+
+  // Função para mudar a região
+  const handleRegionChange = (regionId) => {
+    setActiveRegion(regionId);
   };
 
   return (
@@ -234,33 +255,20 @@ const FindUsPage = () => {
           </p>
         </div>
 
-        {/* Seletor de região */}
+        {/* Seletor de região - apenas regiões com estabelecimentos + "todas" no fim */}
         <div className="region-selector">
           <h3>SELECIONE A SUA REGIÃO</h3>
           <div className="region-tabs">
-            {regions.map(region => (
+            {availableRegions.map(region => (
               <button 
                 key={region.id}
                 className={`region-tab ${activeRegion === region.id ? 'active' : ''}`}
-                onClick={() => setActiveRegion(region.id)}
+                onClick={() => handleRegionChange(region.id)}
               >
                 {region.name}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Filtros de tipo */}
-        <div className="filter-options">
-          {filters.map(filter => (
-            <button 
-              key={filter.id}
-              className={`filter-button ${activeFilter === filter.id ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter.id)}
-            >
-              {filter.label}
-            </button>
-          ))}
         </div>
 
         {/* Lista de locais */}
@@ -337,7 +345,7 @@ const FindUsPage = () => {
           ) : (
             <div className="no-locations">
               <p>Não encontrámos locais com os critérios selecionados.</p>
-              <p>Por favor, tente outra região ou tipo de estabelecimento.</p>
+              <p>Por favor, tente outra região.</p>
             </div>
           )}
         </div>
