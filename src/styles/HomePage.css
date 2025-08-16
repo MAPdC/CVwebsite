@@ -156,6 +156,43 @@
   animation: fade-in-transition 1.5s ease forwards 1s;
 }
 
+/* Estilo para o nome do autor clicável */
+.author-link {
+  cursor: pointer;
+  color: #c0a080;
+  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.author-link:hover {
+  color: #d4b896;
+  transform: translateY(-1px);
+  text-shadow: 0 2px 4px rgba(192, 160, 128, 0.3);
+}
+
+.author-link:focus {
+  outline: 2px solid #c0a080;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.author-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #c0a080;
+  transition: width 0.3s ease;
+}
+
+.author-link:hover::after {
+  width: 100%;
+}
+
 @keyframes fade-in-transition {
   0% {
     opacity: 0;

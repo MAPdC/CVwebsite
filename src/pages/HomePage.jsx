@@ -60,6 +60,13 @@ const HomePage = () => {
     transform: `translateY(${scrollPosition * 0.4}px)`
   };
 
+  // Function to handle author click
+  const handleAuthorClick = (event) => {
+    window.open('https://pt.wikipedia.org/wiki/Robert_Louis_Stevenson', '_blank', 'noopener,noreferrer');
+    // Remove focus after click to avoid the selection box when returning
+    event.target.blur();
+  };
+
   return (
     <div className="home">
       {/* Hero Section with Parallax */}
@@ -86,8 +93,22 @@ const HomePage = () => {
       {/* Transition Element */}
       <div className="hero-transition" ref={transitionRef}>
         <div className="transition-content">
-          <span className="transition-quote">"O vinho é poesia engarrafada"</span>
-          <span className="transition-author">- Robert Louis Stevenson</span>
+          <span className="transition-quote">"Aqui, Douro. O Paraíso do vinho e do suor."</span>
+          <span className="transition-author">
+            <span 
+              className="author-link" 
+              onClick={handleAuthorClick}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  handleAuthorClick(e);
+                }
+              }}
+            >
+              António Joaquim Magalhães Cabral, Aqui, Douro (2004)
+            </span>
+          </span>
         </div>
       </div>
 
