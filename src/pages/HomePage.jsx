@@ -62,7 +62,7 @@ const HomePage = () => {
 
   // Function to handle author click
   const handleAuthorClick = (event) => {
-    window.open('https://pt.wikipedia.org/wiki/Robert_Louis_Stevenson', '_blank', 'noopener,noreferrer');
+    window.open('https://pt.wikipedia.org/wiki/Ant%C3%B3nio_Cabral_(escritor)', '_blank', 'noopener,noreferrer');
     // Remove focus after click to avoid the selection box when returning
     event.target.blur();
   };
@@ -106,7 +106,7 @@ const HomePage = () => {
                 }
               }}
             >
-              António Joaquim Magalhães Cabral, Aqui, Douro (2004)
+              António Joaquim Magalhães Cabral, Aqui, Douro (1979)
             </span>
           </span>
         </div>
