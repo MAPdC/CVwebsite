@@ -6,6 +6,7 @@ import TestimonialsSection from "../components/TestimonialsSection.jsx";
 
 import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1.jpg";
+import logoBranco from "../assets/cv-logo-branco.png";
 
 const HomePage = () => {
   const heroRef = useRef(null);
@@ -59,14 +60,6 @@ const HomePage = () => {
     transform: `translateY(${scrollPosition * 0.4}px)`
   };
 
-  // Function to scroll to Featured Products section
-  const scrollToFeaturedProducts = (e) => {
-    e.preventDefault();
-    featuredProductsRef.current.scrollIntoView({ 
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div className="home">
       {/* Hero Section with Parallax */}
@@ -79,20 +72,14 @@ const HomePage = () => {
           />
         </div>
         <div className="hero-overlay">
+          <div className="hero-logo">
+            <img 
+              src={logoBranco} 
+              alt="Casttêdo Valley Logo" 
+              className="hero-logo-image"
+            />
+          </div>
           <h1 className="hero-title">CASTTÊDO VALLEY</h1>
-          <p className="hero-subtitle">TRADIÇÃO EM CADA GOTA</p>
-          <p className="hero-tagline">
-            "Da essência de um terroir único, nascem vinhos com personalidade única.
-            Entre vinhas cuidadosamente selecionadas e técnicas herdadas de gerações 
-            aliadas às novas tecnologias, criamos vinhos que contam a história da nossa 
-            família e da nossa terra."
-          </p>
-          <a href="#" className="hero-button" onClick={scrollToFeaturedProducts}>DESCUBRA</a>
-        </div>
-        <div className="hero-year">
-          <span className="hero-line"></span>
-          DESDE 1873
-          <span className="hero-line"></span>
         </div>
       </section>
 

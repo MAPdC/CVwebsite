@@ -47,7 +47,7 @@ function HeaderInternal() {
           </li>
           <li><a href="/about-us">SOBRE NÓS</a></li>
           <li><a href="/sustainability">SUSTENTABILIDADE</a></li>
-          <li><a href="/find-us">ONDE NOS ENCONTRAR?</a></li>
+          <li><a href="/history">HISTÓRIA</a></li>
           <li><a href="/contacts">CONTACTOS</a></li>
         </ul>
       </nav>

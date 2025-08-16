@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../styles/Header.css";
 import logoBranco from "../assets/cv-logo-branco.png";
 import logoCobre from "../assets/cv-logo-castanho.png";
@@ -7,6 +8,10 @@ function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const location = useLocation();
+  
+  // Verificar se estamos na HomePage
+  const isHomePage = location.pathname === '/' || location.pathname === '/home';
 
   useEffect(() => {
     // Função que verifica o scroll da página
@@ -41,13 +46,13 @@ function Header() {
   };
 
   return (
-    <header className={`header ${isScrolled ? "header--scrolled" : ""}`}>
+    <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHomePage ? "header--homepage" : ""}`}>
       <a href="/" className="header__text">
         <span className="logo__line1">CASTTÊDO</span>
         <span className="logo__line2">VALLEY</span>
       </a>
       
-      <a href="/" className="logo__link">
+      <a href="/" className={`logo__link ${isHomePage && !isScrolled ? "logo__link--hidden" : ""}`}>
         <img 
           src={isScrolled ? logoCobre : logoBranco} 
           alt="CASTTÊDO VALLEY" 
@@ -72,7 +77,7 @@ function Header() {
           </li>
           <li><a href="/about-us">SOBRE NÓS</a></li>
           <li><a href="/sustainability">SUSTENTABILIDADE</a></li>
-          <li><a href="/find-us">ONDE NOS ENCONTRAR?</a></li>
+          <li><a href="/history">HISTÓRIA</a></li>
           <li><a href="/contacts">CONTACTOS</a></li>
         </ul>
       </nav>

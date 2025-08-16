@@ -42,7 +42,7 @@
   }
 }
 
-/* Overlay escuro que cobre toda a imagem */
+/* Overlay escuro mais transparente */
 .hero-container::before {
   content: "";
   position: absolute;
@@ -50,7 +50,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Overlay uniforme */
+  background: rgba(0, 0, 0, 0.25); /* Reduzido de 0.5 para 0.25 */
   z-index: 2;
 }
 
@@ -69,107 +69,41 @@
   z-index: 3;
 }
 
-/* Conteúdo interno centralizado */
-.hero-content {
-  max-width: 800px;
-  width: 90%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Logo grande na hero section - com sombra mais intensa */
+.hero-logo {
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fade-in 2s ease forwards 0.8s;
+}
+
+.hero-logo-image {
+  height: 250px;
+  width: auto;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.8)) 
+          drop-shadow(0 4px 8px rgba(0,0,0,0.6))
+          drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease;
+}
+
+.hero-logo-image:hover {
+  transform: scale(1.03);
 }
 
 .hero-title {
   font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 300;
   letter-spacing: 8px;
-  margin: 0 0 5px 0;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  margin: 0;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.9),
+               0 8px 16px rgba(0,0,0,0.7),
+               0 2px 4px rgba(0,0,0,0.8),
+               2px 2px 4px rgba(0,0,0,0.6),
+               -2px -2px 4px rgba(0,0,0,0.6);
   color: white;
   opacity: 0;
-  animation: fade-in 1.5s ease forwards 0.5s;
+  animation: fade-in 1.8s ease forwards 1.4s;
   width: 100%;
-}
-
-.hero-subtitle {
-  font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 1.8rem;
-  font-weight: 300;
-  letter-spacing: 5px;
-  margin: 5px 0 30px 0;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-  color: white;
-  opacity: 0;
-  animation: fade-in 1.5s ease forwards 1s;
-  width: 100%;
-}
-
-.hero-tagline {
-  font-family: 'Cormorant', serif;
-  font-size: 1.4rem;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.6;
-  margin: 0 auto;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-  color: white;
-  opacity: 0;
-  animation: fade-in 1.5s ease forwards 1.5s;
-  width: 100%;
-  max-width: 700px;
-}
-
-.hero-button {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 12px 30px;
-  background-color: transparent;
-  border: 1px solid #c0a080;
-  color: #c0a080;
-  font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 0.9rem;
-  letter-spacing: 3px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  opacity: 0;
-  animation: fade-in 1.5s ease forwards 2s;
-}
-
-.hero-button:hover {
-  background-color: rgba(192, 160, 128, 0.2);
-  border-color: #ffffff;
-  color: #ffffff;
-}
-
-/* Ano no fundo */
-.hero-year {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Cormorant', serif;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 5px;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-  opacity: 0;
-  animation: fade-in 1.5s ease forwards 2.5s;
-  z-index: 4;
-}
-
-.hero-line {
-  height: 1px;
-  width: 70px;
-  background-color: #c0a080;
-  margin: 0 15px;
 }
 
 /* Transição */
@@ -244,24 +178,15 @@
   }
 }
 
-/* Responsivo */
+/* Responsivo - AJUSTADO */
 @media (max-width: 768px) {
+  .hero-logo-image {
+    height: 220px;
+  }
+  
   .hero-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     letter-spacing: 5px;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.4rem;
-    letter-spacing: 3px;
-  }
-  
-  .hero-tagline {
-    font-size: 1.1rem;
-  }
-  
-  .hero-year {
-    font-size: 1rem;
   }
   
   .transition-quote {
@@ -274,6 +199,27 @@
   
   .hero-transition {
     height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo-image {
+    height: 180px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    letter-spacing: 4px;
+    /* Sombra adicional para mobile */
+    text-shadow: 0 4px 8px rgba(0,0,0,0.95),
+                 0 8px 16px rgba(0,0,0,0.8),
+                 0 2px 4px rgba(0,0,0,0.9),
+                 2px 2px 4px rgba(0,0,0,0.7),
+                 -2px -2px 4px rgba(0,0,0,0.7);
+  }
+  
+  .hero-logo {
+    margin-bottom: 30px;
   }
 }
 

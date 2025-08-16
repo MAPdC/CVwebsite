@@ -25,15 +25,8 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
 }
 
-/* Logo */
-.logo__image {
-  height: 100%;
-  width: auto;
-  display: block;
-  transition: all 0.3s ease-in-out;
-}
-
-.logo__text {
+/* Texto do Logo */
+.header__text {
   text-decoration: none;
   z-index: 1;
 }
@@ -55,21 +48,51 @@
   color: #c0a080; /* Muda para cobre quando scrolled */
 }
 
+/* Logo Image */
 .logo__link {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   height: 130px;
-  transition: height 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
+  visibility: visible;
 }
 
 .header--scrolled .logo__link {
-  height: 90px; /* Aumentado de 70px para 90px */
+  height: 90px; /* Altura reduzida quando scrolled */
 }
 
-/* Para o HeaderInternal (que sempre tem a classe header--scrolled) */
-.header--scrolled .logo__link {
-  height: 90px; /* Aumentado para 90px */
+/* Logo escondido na HomePage quando não scrolled */
+.logo__link--hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-20px);
+}
+
+/* Animação suave quando o logo aparece no scroll */
+.header--homepage.header--scrolled .logo__link {
+  animation: logo-slide-in 0.5s ease forwards;
+}
+
+@keyframes logo-slide-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.logo__image {
+  height: 100%;
+  width: auto;
+  display: block;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Navegação */
@@ -197,4 +220,30 @@
 
 .menu-icon__line--scrolled {
   background-color: #c0a080;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .header {
+    height: 100px;
+    padding: 0 3%;
+  }
+  
+  .header--scrolled {
+    height: 70px;
+  }
+  
+  .logo__link {
+    height: 80px;
+  }
+  
+  .header--scrolled .logo__link {
+    height: 60px;
+  }
+  
+  .logo__line1,
+  .logo__line2 {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
 }
