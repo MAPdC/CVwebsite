@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HeritageSection.css';
-import heritageBgImage from '../assets/adega-barrica-1.jpg';
+import heritageBgImage from '../assets/padre-antonio-veiga-douro.jpg';
 
 const HeritageSection = () => {
   const sectionRef = useRef(null);
@@ -44,49 +44,23 @@ const HeritageSection = () => {
       
       <div className="heritage-content">
         <div className="heritage-title-container">
-          <span className="heritage-line"></span>
           <h2 className="heritage-title">A NOSSA HISTÓRIA</h2>
-          <span className="heritage-line"></span>
         </div>
         
         <div className="heritage-info">
           <p className="heritage-year-highlighted">1873</p>
+          <p className="heritage-intro-text">
+            A referência mais antiga associada ao Casttêdo Valley remonta a 1873, data em que se ergueram os nossos lagares de granito.
+          </p>
           <p className="heritage-text">
-            Desde a fundação da nossa adega familiar nas encostas do Douro até aos dias de hoje, 
-            cinco gerações dedicaram suas vidas a aperfeiçoar a arte de produzir vinhos e azeites excepcionais.
-            A tradição e o conhecimento transmitido através dos tempos, aliados à inovação, fazem 
-            do Casttêdo Valley um símbolo de excelência e qualidade.
+            A arte da produção de vinhos e azeites é uma tradição familiar que se estende há, pelo menos, quatro gerações. 
+            As vinhas e oliveiras herdadas de geração em geração foram alvo de várias reestruturações e modernizações ao longo dos anos,
+            respeitando sempre a tradição e o terroir único do Douro.
           </p>
           <Link to="/historia" className="heritage-link">
-            DESCUBRA A NOSSA JORNADA
+            SAIBA MAIS SOBRE O NOSSO LEGADO
             <span className="heritage-link-arrow">→</span>
           </Link>
-        </div>
-        
-        <div className="heritage-timeline">
-          <div className="timeline-item">
-            <span className="timeline-date">1873</span>
-            <span className="timeline-dot"></span>
-            <span className="timeline-label">Fundação</span>
-          </div>
-          <div className="timeline-line"></div>
-          <div className="timeline-item">
-            <span className="timeline-date">1924</span>
-            <span className="timeline-dot"></span>
-            <span className="timeline-label">Primeiro Prêmio</span>
-          </div>
-          <div className="timeline-line"></div>
-          <div className="timeline-item">
-            <span className="timeline-date">1967</span>
-            <span className="timeline-dot"></span>
-            <span className="timeline-label">Modernização</span>
-          </div>
-          <div className="timeline-line"></div>
-          <div className="timeline-item">
-            <span className="timeline-date">2021</span>
-            <span className="timeline-dot"></span>
-            <span className="timeline-label">Certificação Bio</span>
-          </div>
         </div>
       </div>
     </section>

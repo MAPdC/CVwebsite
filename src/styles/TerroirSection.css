@@ -1,188 +1,552 @@
 .terroir-section {
-    padding: 100px 0;
-    background-color: #f5f3f0; /* Changed from #010101 to a light beige/cream */
-    color: #2c2624; /* Changed from white to a dark brown for contrast */
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
+  position: relative;
+  padding: 120px 0;
+  background: linear-gradient(135deg, #1a1815 0%, #2c2624 40%, #1f1d1a 100%);
+  color: #f5f3f0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.terroir-background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(ellipse at 30% 70%, rgba(192, 160, 128, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(192, 160, 128, 0.06) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 48%, rgba(192, 160, 128, 0.02) 49%, rgba(192, 160, 128, 0.02) 51%, transparent 52%);
+  pointer-events: none;
+}
+
+.terroir-section.reveal-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.terroir-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.terroir-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.terroir-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 30px;
+}
+
+.terroir-subtitle {
+  font-family: 'Cormorant', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #c0a080;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+.terroir-title {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 2.8rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin: 0;
+  color: #f5f3f0;
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.8s;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.terroir-line {
+  height: 1px;
+  width: 100px;
+  background: linear-gradient(90deg, transparent 0%, #c0a080 30%, #d4b896 70%, transparent 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.terroir-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,184,150,0.8) 50%, transparent 100%);
+  animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.terroir-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.terroir-text-column {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.terroir-intro-wrapper {
+  margin-bottom: 60px;
+}
+
+.terroir-intro {
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  color: rgba(245, 243, 240, 0.95);
+  text-align: justify;
+}
+
+.terroir-intro strong {
+  color: #d4b896;
+  font-weight: 600;
+}
+
+.terroir-heritage {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 25px 30px;
+  background: rgba(192, 160, 128, 0.12);
+  border-left: 3px solid #c0a080;
+  border-radius: 0 15px 15px 0;
+  backdrop-filter: blur(10px);
+}
+
+.heritage-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.heritage-text {
+  font-family: 'Cormorant', serif;
+  font-style: italic;
+  color: rgba(245, 243, 240, 0.9);
+  font-size: 1.1rem;
+}
+
+.terroir-facts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  gap: 25px;
+}
+
+.terroir-fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 35px 25px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: 1px solid rgba(192, 160, 128, 0.15);
+  backdrop-filter: blur(15px);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.terroir-fact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(192, 160, 128, 0.08) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.terroir-fact:hover::before {
+  opacity: 1;
+}
+
+.terroir-fact.animate-fact {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.terroir-fact:hover {
+  transform: translateY(-8px);
+  border-color: rgba(192, 160, 128, 0.3);
+}
+
+.fact-number {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 2.8rem;
+  color: #d4b896;
+  margin-bottom: 10px;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.fact-label {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1.1rem;
+  color: #f5f3f0;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.fact-detail {
+  font-family: 'Cormorant', serif;
+  font-size: 1rem;
+  color: rgba(245, 243, 240, 0.7);
+  font-style: italic;
+}
+
+.terroir-quote {
+  margin-bottom: 60px;
+  padding: 35px 40px;
+  background: linear-gradient(135deg, rgba(192, 160, 128, 0.15) 0%, rgba(0,0,0,0.2) 100%);
+  border-radius: 20px;
+  border-left: 4px solid #c0a080;
+  backdrop-filter: blur(10px);
+}
+
+.terroir-quote blockquote {
+  font-family: 'Cormorant', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: rgba(245, 243, 240, 0.95);
+  margin: 0 0 20px 0;
+  line-height: 1.7;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.terroir-quote cite {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1rem;
+  color: #c0a080;
+  letter-spacing: 1px;
+}
+
+.terroir-link {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #f5f3f0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, rgba(192, 160, 128, 0.2) 0%, rgba(0,0,0,0.3) 100%);
+  border: 2px solid #c0a080;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+  backdrop-filter: blur(10px);
+}
+
+.terroir-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #c0a080 0%, #d4b896 100%);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.terroir-link:hover::before {
+  left: 0;
+}
+
+.terroir-link:hover {
+  color: #1a1815;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(192, 160, 128, 0.3);
+}
+
+.link-arrow {
+  margin-left: 18px;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.terroir-link:hover .link-arrow {
+  transform: translateX(6px);
+}
+
+.terroir-images-column {
+  position: relative;
+}
+
+.terroir-image-container {
+  position: relative;
+  height: 600px;
+  width: 100%;
+}
+
+.terroir-image-wrapper {
+  position: absolute;
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.terroir-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #c0a080, #d4b896, #c0a080, #d4b896);
+  border-radius: 28px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.terroir-image-wrapper:hover::before {
+  opacity: 0.6;
+}
+
+.terroir-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(0.85) contrast(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  display: flex;
+  align-items: end;
+  padding: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.terroir-image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  color: #f5f3f0;
+}
+
+.overlay-title {
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.overlay-description {
+  font-family: 'Cormorant', serif;
+  font-size: 1rem;
+  opacity: 0.95;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Nova disposição mais natural e orgânica das imagens */
+.terroir-image-1 {
+  width: 65%;
+  height: 70%;
+  top: 0;
+  right: 10%;
+  z-index: 3;
+  transform: rotate(-1deg);
+}
+
+.terroir-image-2 {
+  width: 55%;
+  height: 60%;
+  bottom: 5%;
+  left: 0;
+  z-index: 2;
+  transform: rotate(2deg);
+}
+
+.terroir-image-3 {
+  width: 45%;
+  height: 50%;
+  top: 35%;
+  left: 35%;
+  z-index: 1;
+  transform: rotate(-0.5deg);
+}
+
+.terroir-image-wrapper:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 10 !important;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-element {
+  position: absolute;
+  color: rgba(192, 160, 128, 0.2);
+  font-size: 2rem;
+  animation: float 8s ease-in-out infinite;
+}
+
+.element-1 {
+  top: 15%;
+  right: 5%;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  bottom: 65%;
+  left: -5%;
+  animation-delay: 3s;
+}
+
+.element-3 {
+  top: 75%;
+  right: 25%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.2;
   }
-  
-  .terroir-section.reveal-section {
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  .terroir-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .terroir-title-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 60px;
-  }
-  
-  .terroir-title {
-    font-family: 'AgathoRegularCAPS', 'serif';
-    font-size: 2rem;
-    font-weight: 300;
-    letter-spacing: 5px;
-    margin: 0 15px;
-    color: #2c2624; /* Ensuring title color matches the new theme */
-  }
-  
-  .terroir-line {
-    height: 1px;
-    width: 70px;
-    background-color: #c0a080; /* Kept the gold accent color for luxury */
-    display: inline-block;
-  }
-  
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
   .terroir-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  
-  .terroir-text-column {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .terroir-intro {
-    font-family: 'Cormorant', serif;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    color: #2c2624; /* Updated text color */
-  }
-  
-  .terroir-facts {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-  }
-  
-  .terroir-fact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .fact-number {
-    font-family: 'AgathoRegularCAPS', 'serif';
-    font-size: 2.2rem;
-    color: #c0a080; /* Kept gold color for emphasis */
-    margin-bottom: 5px;
-  }
-  
-  .fact-label {
-    font-family: 'Cormorant', serif;
-    font-size: 1rem;
-    color: rgba(44, 38, 36, 0.8); /* Updated with semi-transparent dark brown */
-  }
-  
-  .terroir-link {
-    font-family: 'AgathoRegularCAPS', 'serif';
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    color: #c0a080;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    transition: all 0.3s ease;
-    align-self: flex-start;
-    margin-top: 20px;
-  }
-  
-  .terroir-link-arrow {
-    margin-left: 10px;
-    transition: transform 0.3s ease;
-  }
-  
-  .terroir-link:hover {
-    color: #2c2624; /* Changed hover color to dark brown instead of white */
-  }
-  
-  .terroir-link:hover .terroir-link-arrow {
-    transform: translateX(5px);
-  }
-  
-  .terroir-images-column {
-    width: 100%;
+    gap: 70px;
   }
   
   .terroir-image-container {
-    position: relative;
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .terroir-section {
+    padding: 80px 0;
+  }
+  
+  .terroir-container {
+    padding: 0 20px;
+  }
+  
+  .terroir-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  
+  .terroir-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+  
+  .terroir-facts {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .terroir-image-container {
     height: 450px;
-    width: 100%;
+    margin-top: 30px;
   }
   
-  .terroir-image {
-    position: absolute;
-    border: 5px solid #f5f3f0; /* Changed border color to match new background */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s ease;
+  .terroir-link {
+    align-self: center;
+    font-size: 0.95rem;
+    padding: 18px 35px;
+  }
+
+  .terroir-image-1, .terroir-image-2, .terroir-image-3 {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .terroir-title-container {
+    margin-bottom: 60px;
   }
   
-  .terroir-image-1 {
-    width: 70%;
-    height: 60%;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    z-index: 3;
+  .terroir-line {
+    width: 80px;
   }
   
-  .terroir-image-2 {
-    width: 55%;
-    height: 50%;
-    object-fit: cover;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
+  .terroir-intro {
+    font-size: 1.3rem;
   }
   
-  .terroir-image-3 {
-    width: 40%;
-    height: 40%;
-    object-fit: cover;
-    bottom: 15%;
-    left: 20%;
-    z-index: 1;
+  .terroir-image-container {
+    height: 400px;
   }
   
-  .terroir-image:hover {
-    transform: scale(1.03);
-    z-index: 10;
+  .terroir-title {
+    font-size: 1.9rem;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .terroir-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-    
-    .terroir-image-container {
-      height: 350px;
-      margin-top: 30px;
-    }
-    
-    .terroir-facts {
-      flex-wrap: wrap;
-    }
-    
-    .terroir-fact {
-      width: 33%;
-      margin-bottom: 20px;
-    }
-    
-    .terroir-link {
-      align-self: center;
-    }
-  }
+}

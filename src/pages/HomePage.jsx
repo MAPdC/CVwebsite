@@ -1,8 +1,11 @@
 import "../styles/HomePage.css";
-import FeaturedProducts from "../components/FeaturedProducts.jsx";
+{/*import FeaturedProducts from "../components/FeaturedProducts.jsx";*/}
 import HeritageSection from "../components/HeritageSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
 import TestimonialsSection from "../components/TestimonialsSection.jsx";
+import TerroirSection from "../components/TerroirSection.jsx";
+import WineCarousel from "../components/WineCarousel.jsx";
+import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
 import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1.jpg";
@@ -112,13 +115,24 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* História & Heritage Section */}
+      <HeritageSection />
+
       {/* FeaturedProducts com animação */}
+      {/*
       <div ref={featuredProductsRef}>
         <FeaturedProducts />
       </div>
-      
-      {/* História & Heritage Section */}
-      <HeritageSection />
+      */}
+
+      {/* Wine Carousel */}
+      <WineCarousel />
+
+      {/* Olive Oil Carousel */}
+      <OliveOilCarousel />
+
+      {/*Terroir Section */}
+      <TerroirSection />
     
       {/* Awards Section */}
       <AwardsSection />

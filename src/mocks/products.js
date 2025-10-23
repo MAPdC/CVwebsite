@@ -1,3 +1,55 @@
+// IMPORTAÇÃO DE IMAGENS
+
+// Imagens do Tinto Reserva Oaked 2019 (Coleção)
+import vto19_1 from '../assets/vto19-1.png';
+import vto19_2 from '../assets/vto19-2.jpg';
+import vto19_3 from '../assets/vto19-3.jpg';
+
+// Imagens do Tinto Reserva Unoaked 2020 (Coleção)
+import vtun20_1 from '../assets/vtun20-1.png';
+import vtun20_2 from '../assets/vtun20-2.jpg';
+import vtun20_3 from '../assets/vtun20-3.jpg';
+
+// Imagens do Branco Reserva Oaked 2020 (Coleção)
+import vbo20_1 from '../assets/vbo20-1.png';
+import vbo20_2 from '../assets/vbo20-2.jpg';
+import vbo20_3 from '../assets/vbo20-3.jpg';
+
+// Imagens do Branco Colheita Unoaked 2021 (Coleção)
+import vbun21_1 from '../assets/vbun21-1.png';
+import vbun21_2 from '../assets/vbun21-2.jpg';
+import vbun21_3 from '../assets/vbun21-3.jpg';
+import vbun21_4 from '../assets/vbun21-4.jpg';
+
+// Imagens do Branco Colheita Curtimenta Unoaked 2023 (Coleção)
+import vbcun23_1 from '../assets/vbcun23-1.png';
+// É preciso mais imagens para este vinho
+
+// Imagens do Branco Reserva Curtimenta Oaked 2023 (Coleção)
+import vbco23_1 from '../assets/vbco23-1.png';
+// É preciso mais imagens para este vinho
+
+// Imagens do Branco Colheita Unoaked 2023 (No Mercado)
+// Estão com as imagens da referência anterior (21) porque ainda não há fotos do 23
+import vbun23_1 from '../assets/vbun21-1.png';
+import vbun23_2 from '../assets/vbun21-2.jpg';
+import vbun23_3 from '../assets/vbun21-3.jpg';
+import vbun23_4 from '../assets/vbun21-4.jpg';
+
+// Imagens do Branco Reserva Oaked 2022 (No Mercado)
+// Estão com as imagens da referência anterior (20) porque ainda não há fotos do 22
+import vbo22_1 from '../assets/vbo20-1.png';
+import vbo22_2 from '../assets/vbo20-2.jpg';
+import vbo22_3 from '../assets/vbo20-3.jpg';
+
+// Imagens do Tinto Reserva Oaked 2020 (No Mercado)
+// Estão com as imagens da referência anterior (19) porque ainda não há fotos do 20
+import vto20_1 from '../assets/vto19-1.png';
+import vto20_2 from '../assets/vto19-2.jpg';
+import vto20_3 from '../assets/vto19-3.jpg';
+
+
+
 export const wines = [
     {
       id: 1,
@@ -10,9 +62,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
-        "/images/vto19-1.png",
-        "/images/vto19-2.jpg",
-        "/images/vto19-3.jpg"
+        vto19_1,
+        vto19_2,
+        vto19_3
       ],
       sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
       consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
@@ -40,9 +92,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
-        "/images/vtun20-1.png",
-        "/images/vtun20-2.jpg",
-        "/images/vtun20-3.jpg"
+        vtun20_1,
+        vtun20_2,
+        vtun20_3
       ],
       sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas de compota de frutos vermelhos bem maduros.",
       consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
@@ -70,9 +122,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
-        "/images/vbo20-1.png",
-        "/images/vbo20-2.jpg",
-        "/images/vbo20-3.jpg"
+        vbo20_1,
+        vbo20_2,
+        vbo20_3
       ],
       sensorial: "Aroma fresco com notas de baunilha, na boca é cítrico, intenso e estruturado com equilíbrio entre a fruta fresca e a madeira, mostrando a sua elegância e persistência no final de boca.",
       consumo: "Carne de aves, peixes grelhados e fritos, mariscos confecionados, entradas e lanches com fritos ou simplesmente só.",
@@ -100,10 +152,10 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
-        "/images/vbun21-1.png",
-        "/images/vbun21-2.jpg",
-        "/images/vbun21-3.jpg",
-        "/images/vbun21-4.jpg"
+        vbun21_1,
+        vbun21_2,
+        vbun21_3,
+        vbun21_4
       ],
       sensorial: "Aroma com notas florais frescas, na boca é notável, com o sabor cítrico de acidez natural vibrante e de agradável persistência.",
       consumo: "Peixes, mariscos, shushi, pratos picantes e salgados, francesinha, saladas ou simplesmente só.",
@@ -131,10 +183,10 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
-        "/images/vbun21-1.png", // MUDAR IMAGEM!
-        "/images/vbun21-2.jpg", // MUDAR IMAGEM!
-        "/images/vbun21-3.jpg", // MUDAR IMAGEM!
-        "/images/vbun21-4.jpg" // MUDAR IMAGEM!
+        vbun23_1,
+        vbun23_2,
+        vbun23_3,
+        vbun23_4
       ],
       sensorial: "Aroma com notas florais frescas, na boca é notável, com o sabor cítrico de acidez natural vibrante e de agradável persistência.",
       consumo: "Peixe, mariscos, shushi, ceviche, pratos picantes e salgados, saladas ou simplesmente só.",
@@ -162,9 +214,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
-        "/images/vbo20-1.png", // TIRAR FOTOS NOVAS!
-        "/images/vbo20-2.jpg", // TIRAR FOTOS NOVAS!
-        "/images/vbo20-3.jpg" // TIRAR FOTOS NOVAS!
+        vbo22_1,
+        vbo22_2,
+        vbo22_3
       ],
       sensorial: "Aroma fresco com notas de baunilha, na boca é cítrico, intenso e estruturado com equilíbrio entre a fruta fresca e a madeira, mostrando a sua elegância e persistência no final de boca.",
       consumo: "Carne de aves, peixes grelhados e fritos, mariscos confecionados, entradas e lanches com fritos ou simplesmente só.",
@@ -192,9 +244,7 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"], // COLOCAR % DE CADA CASTA?
       images: [
-        "/images/vbcun23-1.png",
-        "/images/vbo20-2.jpg", // TIRAR FOTOS NOVAS!
-        "/images/vbo20-3.jpg" // TIRAR FOTOS NOVAS!
+        vbcun23_1
       ],
       sensorial: "Aroma intenso com sabor encorpado, estruturado e persistente, marcado por notas de casca de laranja, pêssego, pêra e manga bem maduros.",
       consumo: "Carnes e peixes grelhados, cozinha exótica, queijos e patês.",
@@ -206,8 +256,8 @@ export const wines = [
         ph: "0" // VALE A PENA?
       },
       awards: [],
-      onmarket: true,
-      collection: false,
+      onmarket: false,
+      collection: true,
       oaked: false,
       curtimenta: true
     },
@@ -222,9 +272,7 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"], // COLOCAR % DE CADA CASTA?
       images: [
-        "/images/vbco23-1.png",
-        "/images/vbo20-2.jpg", // TIRAR FOTOS NOVAS!
-        "/images/vbo20-3.jpg" // TIRAR FOTOS NOVAS!
+        vbco23_1
       ],
       sensorial: "Aroma intenso com sabor encorpado e persistente, notas estruturadas de pêssego, pêra e laranja e com nuances de cacau, coco e a cresta dos cortiços.",
       consumo: "Leitão, borrego e cabrito assados no forno a lenha, pratos de caça, bacalhau, comidas exóticas intensas, enchidos, queijos e patês.",
@@ -236,8 +284,8 @@ export const wines = [
         ph: "0" // VALE A PENA?
       },
       awards: [],
-      onmarket: true,
-      collection: false,
+      onmarket: false,
+      collection: true,
       oaked: true,
       curtimenta: true
     },
@@ -252,9 +300,9 @@ export const wines = [
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"], // COLOCAR % DE CADA CASTA?
       images: [
-        "/images/vto19-1.png", // TIRAR FOTOS NOVAS!
-        "/images/vto19-2.jpg", // TIRAR FOTOS NOVAS!
-        "/images/vto19-3.jpg" // TIRAR FOTOS NOVAS!
+        vto20_1,
+        vto20_2,
+        vto20_3
       ],
       sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
       consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
