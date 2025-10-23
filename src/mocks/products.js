@@ -106,8 +106,8 @@ export const wines = [
         ph: "0"
       },
       awards: [["/images/logo-vinduero.png", "/images/vinduero-ouro-24.png", "Medalha de Ouro 2024","92,55"], ["/images/logo-vinduero.png", "/images/vinduero-ourof-24.png", "Medalha de Ouro em Feminino 2024", "92,93"]],
-      onmarket: true,
-      collection: false,
+      onmarket: false,
+      collection: true,
       oaked: false,
       curtimenta: false
     },

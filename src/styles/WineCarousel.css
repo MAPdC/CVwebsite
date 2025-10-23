@@ -1,12 +1,12 @@
 /* Main Section */
 .wine-carousel-premium {
-  padding: 120px 0;
+  padding: 100px 0; /* Reduzido padding vertical */
   background: linear-gradient(180deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
   position: relative;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(40px); /* Reduzido translateY */
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); /* Transição ligeiramente mais rápida */
 }
 
 .wine-carousel-premium.visible {
@@ -20,9 +20,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  background: radial-gradient(ellipse at center, rgba(192, 160, 128, 0.08) 0%, transparent 70%);
+  width: 70%; /* Reduzido glow */
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(192, 160, 128, 0.06) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -32,43 +32,44 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #c0a080, transparent);
+  background: linear-gradient(90deg, transparent, rgba(192, 160, 128, 0.7), transparent); /* Gradiente mais subtil */
 }
 
 /* Container */
 .wine-carousel-container-premium {
-  max-width: 1600px;
+  max-width: 1400px; /* Container ligeiramente mais estreito */
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 30px; /* Reduzido padding horizontal */
   position: relative;
 }
 
 /* Header Section */
 .wine-carousel-header-premium {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px; /* Reduzida margem inferior */
 }
 
 .wine-carousel-subtitle-premium {
   font-family: 'AgathoRegularCAPS', serif;
-  font-size: 0.85rem;
-  letter-spacing: 4px;
+  font-size: 0.8rem; /* Reduzido tamanho fonte */
+  letter-spacing: 3px; /* Reduzido espaçamento */
   color: #c0a080;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduzida margem inferior */
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px; /* Reduzido gap */
 }
 
 .wine-carousel-title-premium {
   font-family: 'Cormorant', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  /* Tamanho de fonte ligeiramente reduzido com clamp */
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   font-weight: 300;
   color: #f8f6f3;
-  margin: 0 0 30px 0;
-  letter-spacing: 2px;
+  margin: 0 0 25px 0; /* Reduzida margem inferior */
+  letter-spacing: 1.5px; /* Reduzido espaçamento */
 }
 
 /* Ornament */
@@ -76,12 +77,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 15px; /* Reduzido gap */
 }
 
 .ornament-line-left,
 .ornament-line-right {
-  width: 60px;
+  width: 50px; /* Reduzida largura linha */
   height: 1px;
 }
 
@@ -94,8 +95,8 @@
 }
 
 .ornament-diamond {
-  width: 8px;
-  height: 8px;
+  width: 7px; /* Reduzido tamanho diamante */
+  height: 7px;
   background: #c0a080;
   transform: rotate(45deg);
 }
@@ -103,6 +104,12 @@
 /* Carousel Wrapper */
 .wine-carousel-wrapper-premium {
   position: relative;
+  display: flex; /* Adicionado para centralizar quando menos de 3 itens */
+  align-items: center; /* Adicionado */
+}
+
+.wine-carousel-wrapper-premium.justify-center {
+  justify-content: center; /* Centraliza a grelha quando necessário */
 }
 
 /* Navigation Buttons */
@@ -110,12 +117,12 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 60px;
-  height: 60px;
+  width: 50px; /* Reduzido tamanho botão */
+  height: 50px; /* Reduzido tamanho botão */
   border-radius: 50%;
-  border: 2px solid rgba(192, 160, 128, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(192, 160, 128, 0.25); /* Borda mais subtil */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px); /* Blur ligeiramente reduzido */
   color: #c0a080;
   cursor: pointer;
   display: flex;
@@ -126,49 +133,65 @@
 }
 
 .carousel-nav-premium.prev {
-  left: -70px;
+  left: -60px; /* Ajustada posição */
 }
 
 .carousel-nav-premium.next {
-  right: -70px;
+  right: -60px; /* Ajustada posição */
 }
 
 .carousel-nav-premium:hover {
-  background: #c0a080;
+  background: rgba(192, 160, 128, 0.9); /* Cor sólida no hover */
   color: white;
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.08); /* Scale ligeiramente reduzido */
   border-color: #c0a080;
-  box-shadow: 0 8px 25px rgba(192, 160, 128, 0.4);
+  box-shadow: 0 6px 20px rgba(192, 160, 128, 0.35); /* Sombra ligeiramente reduzida */
 }
 
 /* Wine Cards Grid */
 .wine-cards-grid-premium {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 0 20px;
+  gap: 25px; /* Reduzido gap entre cartões */
+  width: 100%; /* Ocupa espaço disponível */
+  transition: transform 0.5s ease; /* Adicionado para suavizar a centralização */
 }
+
+.wine-cards-grid-premium.triple {
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 10px; /* Padding reduzido */
+}
+.wine-cards-grid-premium.double {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: calc(66.66% - 15px); /* Ajusta largura para 2 cartões */
+  margin: 0 auto; /* Centraliza */
+}
+.wine-cards-grid-premium.single {
+  grid-template-columns: 1fr;
+  max-width: calc(33.33% - 15px); /* Ajusta largura para 1 cartão */
+  margin: 0 auto; /* Centraliza */
+}
+
 
 /* Wine Card */
 .wine-card-premium {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(192, 160, 128, 0.05) 100%);
-  border-radius: 20px;
-  border: 1px solid rgba(192, 160, 128, 0.2);
-  backdrop-filter: blur(20px);
-  padding: 30px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(192, 160, 128, 0.04) 100%); /* Fundo mais subtil */
+  border-radius: 16px; /* Raio ligeiramente reduzido */
+  border: 1px solid rgba(192, 160, 128, 0.15); /* Borda mais subtil */
+  backdrop-filter: blur(15px); /* Blur ligeiramente reduzido */
+  padding: 25px; /* Reduzido padding interno */
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Transição ligeiramente mais rápida */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* Sombra ligeiramente reduzida */
   cursor: pointer;
   overflow: hidden;
 }
 
 .wine-card-premium.hovered {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 60px rgba(192, 160, 128, 0.2);
+  transform: translateY(-8px); /* Elevação ligeiramente reduzida */
+  box-shadow: 0 15px 45px rgba(192, 160, 128, 0.15); /* Sombra hover mais subtil */
 }
 
 /* Shimmer Effect */
@@ -178,70 +201,66 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent); /* Shimmer mais subtil */
   pointer-events: none;
 }
 
 .wine-card-premium.hovered .wine-card-shimmer {
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 1.8s infinite; /* Animação ligeiramente mais lenta */
 }
 
 @keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 200%;
-  }
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 /* Badges */
 .wine-badges-premium {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 15px; /* Ajustada posição */
+  right: 15px; /* Ajustada posição */
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px; /* Reduzido gap */
   z-index: 2;
 }
 
 .badge-premium {
   color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+  padding: 3px 10px; /* Reduzido padding */
+  border-radius: 15px; /* Reduzido raio */
+  font-size: 0.65rem; /* Reduzido tamanho fonte */
+  font-weight: 500; /* Peso ligeiramente reduzido */
+  letter-spacing: 0.8px; /* Reduzido espaçamento */
   text-transform: uppercase;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px); /* Reduzido blur */
 }
 
 .badge-premium.oaked {
-  background: rgba(139, 69, 19, 0.9);
+  background: rgba(139, 69, 19, 0.85); /* Ligeiramente menos opaco */
 }
 
 .badge-premium.curtimenta {
-  background: rgba(192, 160, 128, 0.9);
+  background: rgba(192, 160, 128, 0.85); /* Ligeiramente menos opaco */
 }
 
 /* Wine Image */
 .wine-image-wrapper-premium {
   position: relative;
-  margin-bottom: 30px;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-bottom: 25px; /* Reduzida margem inferior */
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Transição mais rápida */
 }
 
 .wine-card-premium.hovered .wine-image-wrapper-premium {
-  transform: scale(1.05);
+  transform: scale(1.04); /* Scale ligeiramente reduzido */
 }
 
 .wine-image-premium {
-  width: 200px;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 12px;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+  width: 160px; /* Reduzida largura imagem */
+  height: 320px; /* Reduzida altura imagem */
+  object-fit: cover; /* Mantido cover para preencher */
+  border-radius: 10px; /* Reduzido raio */
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35)); /* Sombra ligeiramente ajustada */
 }
 
 /* Wine Info */
@@ -252,62 +271,62 @@
 
 .wine-category-premium {
   font-family: 'AgathoRegularCAPS', serif;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
+  font-size: 0.7rem; /* Reduzido tamanho fonte */
+  letter-spacing: 1.5px; /* Reduzido espaçamento */
   color: #c0a080;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 10px; /* Reduzida margem */
 }
 
 .wine-name-premium {
   font-family: 'Cormorant', serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem; /* Reduzido tamanho fonte */
   font-weight: 400;
   color: #f8f6f3;
-  margin: 0 0 8px 0;
-  line-height: 1.3;
-  letter-spacing: 0.5px;
+  margin: 0 0 6px 0; /* Reduzida margem */
+  line-height: 1.25; /* Reduzida altura linha */
+  letter-spacing: 0.3px; /* Reduzido espaçamento */
 }
 
 .wine-year-premium {
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Reduzido tamanho fonte */
   color: #c0a080;
-  margin-bottom: 16px;
-  font-weight: 500;
+  margin-bottom: 12px; /* Reduzida margem */
+  font-weight: 400; /* Reduzido peso */
 }
 
 .wine-description-premium {
-  color: #b0aba6;
-  line-height: 1.6;
-  font-size: 0.9rem;
-  margin: 0 0 20px 0;
-  min-height: 60px;
+  color: #a09a96; /* Cor ligeiramente mais clara */
+  line-height: 1.5; /* Reduzida altura linha */
+  font-size: 0.85rem; /* Reduzido tamanho fonte */
+  margin: 0 0 18px 0; /* Reduzida margem */
+  min-height: 50px; /* Reduzida altura mínima */
 }
 
 /* Varieties */
 .wine-varieties-premium {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px; /* Reduzido gap */
   justify-content: center;
-  margin-bottom: 25px;
-  min-height: 32px;
+  margin-bottom: 20px; /* Reduzida margem */
+  min-height: 28px; /* Reduzida altura mínima */
 }
 
 .variety-tag-premium {
-  background: rgba(192, 160, 128, 0.1);
-  color: #d4b896;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid rgba(192, 160, 128, 0.3);
+  background: rgba(192, 160, 128, 0.08); /* Fundo mais subtil */
+  color: #c4a886; /* Cor ligeiramente ajustada */
+  padding: 5px 10px; /* Reduzido padding */
+  border-radius: 15px; /* Reduzido raio */
+  font-size: 0.7rem; /* Reduzido tamanho fonte */
+  font-weight: 400; /* Reduzido peso */
+  border: 1px solid rgba(192, 160, 128, 0.2); /* Borda mais subtil */
 }
 
 .variety-more-premium {
   color: #c0a080;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.7rem; /* Reduzido tamanho fonte */
+  font-weight: 500; /* Reduzido peso */
   display: flex;
   align-items: center;
 }
@@ -317,26 +336,26 @@
   background: linear-gradient(135deg, #c0a080, #d4b896);
   color: white;
   border: none;
-  padding: 14px 32px;
-  border-radius: 50px;
+  padding: 12px 28px; /* Reduzido padding */
+  border-radius: 30px; /* Reduzido raio */
   font-family: 'AgathoRegularCAPS', serif;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+  font-size: 0.8rem; /* Reduzido tamanho fonte */
+  letter-spacing: 1.5px; /* Reduzido espaçamento */
   text-transform: uppercase;
   cursor: pointer;
-  display: flex;
+  display: inline-flex; /* Mudado para inline-flex */
   align-items: center;
-  gap: 10px;
-  margin: 0 auto;
+  gap: 8px; /* Reduzido gap */
+  /* margin: 0 auto; - Removido para que o inline-flex funcione */
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(192, 160, 128, 0.3);
-  font-weight: 600;
+  box-shadow: 0 6px 15px rgba(192, 160, 128, 0.25); /* Sombra reduzida */
+  font-weight: 500; /* Reduzido peso */
 }
 
 .wine-card-premium.hovered .wine-cta-premium {
   background: linear-gradient(135deg, #d4b896, #e6c9a8);
   transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(192, 160, 128, 0.5);
+  box-shadow: 0 10px 25px rgba(192, 160, 128, 0.4); /* Sombra hover reduzida */
 }
 
 .cta-arrow-premium {
@@ -344,125 +363,219 @@
 }
 
 .wine-card-premium.hovered .cta-arrow-premium {
-  transform: translateX(5px);
+  transform: translateX(4px); /* Movimento reduzido */
 }
 
 /* Indicators */
 .wine-carousel-indicators-premium {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 60px;
+  gap: 10px; /* Reduzido gap */
+  margin-top: 50px; /* Reduzida margem */
 }
 
 .indicator-premium {
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
+  width: 10px; /* Reduzido tamanho */
+  height: 10px; /* Reduzido tamanho */
+  border-radius: 5px; /* Ajustado raio */
   border: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15); /* Cor inativa mais subtil */
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); /* Transição mais rápida */
 }
 
 .indicator-premium.active {
-  width: 40px;
+  width: 30px; /* Largura ativa reduzida */
   background: linear-gradient(90deg, #c0a080, #d4b896);
-  box-shadow: 0 4px 15px rgba(192, 160, 128, 0.4);
+  box-shadow: 0 3px 10px rgba(192, 160, 128, 0.3); /* Sombra reduzida */
 }
 
 .indicator-premium:not(.active):hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3); /* Hover inativo mais subtil */
+}
+
+/* Estilos para o Link Geral do Portefólio */
+.carousel-portfolio-link-container {
+  text-align: center; /* Centraliza o link */
+  margin-top: 60px; /* Espaçamento acima do link (ajuste conforme necessário) */
+}
+
+.carousel-portfolio-link {
+  display: inline-flex; /* Para alinhar o ícone com o texto */
+  align-items: center;
+  gap: 10px; /* Espaço entre texto e seta */
+  padding: 14px 35px; /* Padding similar ao botão original */
+  background: transparent; /* Fundo transparente */
+  border: 1px solid #c0a080; /* Borda dourada */
+  color: #c0a080; /* Texto dourado */
+  border-radius: 50px; /* Bordas arredondadas */
+  font-family: 'AgathoRegularCAPS', serif;
+  font-size: 0.9rem; /* Tamanho da fonte */
+  letter-spacing: 2px; /* Espaçamento entre letras */
+  text-transform: uppercase;
+  text-decoration: none; /* Remove sublinhado padrão do link */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-portfolio-link:hover {
+  background-color: rgba(192, 160, 128, 0.1); /* Fundo leve no hover */
+  color: #d4b896; /* Cor ligeiramente mais clara no hover */
+  border-color: #d4b896;
+  transform: translateY(-2px); /* Efeito de elevação */
+  box-shadow: 0 8px 20px rgba(192, 160, 128, 0.2); /* Sombra no hover */
+}
+
+.portfolio-link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.carousel-portfolio-link:hover .portfolio-link-arrow {
+  transform: translateX(5px); /* Movimento da seta no hover */
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
   .carousel-nav-premium.prev {
-    left: -50px;
+    left: -40px; /* Ajustada posição */
   }
-  
+
   .carousel-nav-premium.next {
-    right: -50px;
+    right: -40px; /* Ajustada posição */
   }
-  
+
   .wine-cards-grid-premium {
-    gap: 20px;
+    gap: 20px; /* Gap entre cartões ligeiramente reduzido */
   }
 }
 
 @media (max-width: 968px) {
   .wine-carousel-premium {
-    padding: 80px 0;
+    padding: 70px 0; /* Padding vertical reduzido */
   }
-  
+
   .wine-carousel-container-premium {
-    padding: 0 20px;
+    padding: 0 15px; /* Padding horizontal reduzido */
   }
-  
+
   .wine-carousel-title-premium {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 3rem); /* Tamanho de fonte reduzido */
   }
-  
-  .wine-cards-grid-premium {
-    grid-template-columns: repeat(2, 1fr);
+
+  .wine-cards-grid-premium.triple {
+      grid-template-columns: repeat(2, 1fr); /* Passa para 2 colunas */
+      max-width: calc(66.66% - 10px); /* Ajusta largura */
+      margin: 0 auto; /* Centraliza */
   }
-  
+  .wine-cards-grid-premium.double { /* Mantém 2 colunas */
+      max-width: calc(66.66% - 10px);
+      margin: 0 auto;
+  }
+  .wine-cards-grid-premium.single { /* Mantém 1 coluna */
+      max-width: calc(33.33% - 10px);
+      margin: 0 auto;
+  }
+
+  /* Esconde o terceiro cartão em telas médias quando há 3+ vinhos */
+  .wine-cards-grid-premium.triple .wine-card-premium:nth-child(3) {
+       display: none;
+  }
+
   .carousel-nav-premium {
-    width: 50px;
-    height: 50px;
+    width: 45px; /* Botão ligeiramente menor */
+    height: 45px;
   }
-  
+
   .carousel-nav-premium.prev {
-    left: -10px;
+    left: 5px; /* Posição ajustada */
   }
-  
+
   .carousel-nav-premium.next {
-    right: -10px;
+    right: 5px; /* Posição ajustada */
   }
-  
+
   .wine-image-premium {
-    width: 180px;
-    height: 360px;
+    width: 150px; /* Imagem mais pequena */
+    height: 300px;
   }
 }
 
 @media (max-width: 640px) {
+
+  .carousel-portfolio-link-container {
+    margin-top: 40px; /* Menos margem em mobile */
+  }
+  .carousel-portfolio-link {
+    font-size: 0.8rem; /* Fonte ligeiramente menor em mobile */
+    padding: 12px 28px;
+  }
+
   .wine-carousel-premium {
-    padding: 60px 0;
+    padding: 50px 0; /* Padding vertical reduzido */
   }
-  
+
   .wine-carousel-header-premium {
-    margin-bottom: 50px;
+    margin-bottom: 40px; /* Margem reduzida */
   }
-  
+
   .wine-carousel-title-premium {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Tamanho reduzido */
   }
-  
-  .wine-cards-grid-premium {
+
+  /* Força 1 coluna em mobile */
+  .wine-cards-grid-premium,
+  .wine-cards-grid-premium.triple,
+  .wine-cards-grid-premium.double,
+  .wine-cards-grid-premium.single {
     grid-template-columns: 1fr;
-    gap: 30px;
+    max-width: 320px; /* Largura máxima do cartão */
+    margin: 0 auto; /* Centraliza */
     padding: 0;
   }
-  
+
+  /* Mostra apenas 1 cartão visível em mobile */
+   .wine-cards-grid-premium .wine-card-premium:nth-child(n+2) {
+       display: none;
+   }
+
   .carousel-nav-premium {
-    display: none;
+    top: auto; /* Posição vertical automática */
+    bottom: 20px; /* Posição no fundo */
+    transform: translateY(0); /* Remove transform vertical */
+    width: 40px;
+    height: 40px;
   }
-  
+   .carousel-nav-premium.prev {
+       left: calc(50% - 50px); /* Centraliza botão esquerdo */
+   }
+   .carousel-nav-premium.next {
+       right: calc(50% - 50px); /* Centraliza botão direito */
+   }
+
   .wine-card-premium {
-    padding: 25px;
+    padding: 20px; /* Padding reduzido */
   }
-  
+
   .wine-image-premium {
-    width: 160px;
-    height: 320px;
+    width: 140px; /* Imagem ligeiramente menor */
+    height: 280px;
   }
-  
+
   .wine-name-premium {
-    font-size: 1.3rem;
+    font-size: 1.2rem; /* Fonte menor */
   }
-  
+
   .wine-description-premium {
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Fonte menor */
+    min-height: 40px; /* Altura mínima reduzida */
+  }
+
+  .wine-cta-premium {
+     padding: 10px 24px; /* Padding reduzido */
+     font-size: 0.75rem; /* Fonte menor */
+  }
+
+  .wine-carousel-indicators-premium {
+      margin-top: 80px; /* Mais espaço para os botões */
   }
 }
