@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/OliveOilPortfolioPage.css";
+import heroBackground from '../assets/oliveira-1.jpg';
+import { oliveOils } from "../mocks/products";
 
 // Ícones para elementos visuais
 import { FaLeaf, FaSearch } from "react-icons/fa";
