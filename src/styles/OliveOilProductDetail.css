@@ -1,0 +1,250 @@
+/* Importar fontes se necessário (já deve estar no index.css ou similar) */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
+
+/* Variáveis - Pode ajustar cores específicas para azeite se desejar */
+:root {
+  --oil-primary-color: #7A994C; /* Verde azeitona médio */
+  --oil-primary-light: rgba(122, 153, 76, 0.15);
+  --oil-primary-lighter: rgba(122, 153, 76, 0.1);
+  --oil-primary-bg-hover: rgba(122, 153, 76, 0.02);
+  --oil-text-dark: #3a3a3a; /* Ajustado para melhor contraste */
+  --oil-text-medium: #555;
+  --oil-text-light: #777;
+  --oil-text-lighter: #999;
+  --oil-tab-inactive: #555;
+  --oil-breadcrumb-color: #555;
+  --oil-tech-label-color: #555;
+  --oil-tech-border-color: #d1d1d1; /* Borda ligeiramente mais escura */
+  --oil-bg-light: #fdfdfa; /* Fundo ligeiramente esverdeado/creme */
+  --oil-bg-white: #fff;
+  --oil-border-light: #f0f0f0;
+  --oil-shadow-light: rgba(0, 0, 0, 0.04);
+  /* Fontes - assumindo que já estão definidas globalmente */
+  /* --font-primary: 'Work Sans', sans-serif; */
+  /* --font-display: 'AgathoRegularCAPS', 'serif'; */
+  /* --font-paragraph: 'Cormorant Garamond', serif; */
+}
+
+/* Estilos gerais */
+/* Usar prefixo 'oil-detail' para as classes */
+.oil-detail {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 5% 80px;
+  color: var(--oil-text-dark);
+  font-family: var(--font-primary); /* Usar variável global */
+  background-color: var(--oil-bg-light);
+}
+
+/* Loading (igual ao do vinho) */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: var(--oil-bg-light);
+}
+.elegant-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--oil-primary-light);
+  border-radius: 50%;
+  border-top-color: var(--oil-primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes imageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Hero */
+.oil-detail__hero {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  background-color: var(--oil-bg-white);
+  padding: 40px 0;
+  box-shadow: 0 1px 3px var(--oil-shadow-light);
+}
+
+.oil-detail__breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+  color: var(--oil-breadcrumb-color);
+  font-weight: 300;
+}
+.oil-detail__breadcrumb a {
+  color: var(--oil-breadcrumb-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.oil-detail__breadcrumb a:hover {
+  color: var(--oil-primary-color);
+}
+
+.oil-detail__title {
+  font-family: var(--font-display); /* Usar variável global */
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--oil-primary-color);
+  letter-spacing: 2px;
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+
+.oil-detail__category {
+  font-family: var(--font-primary); /* Usar variável global */
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--oil-text-medium);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 5px; /* Espaço antes das badges */
+}
+
+/* Badges no Hero */
+.oil-detail__badges {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.oil-detail__badges .badge {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.oil-detail__badges .badge.organic {
+  background-color: var(--oil-primary-color);
+  color: white;
+}
+.oil-detail__badges .badge.late-harvest {
+  background-color: #B8860B; /* Cor dourada para colheita tardia */
+  color: white;
+}
+
+
+/* Conteúdo principal */
+.oil-detail__content {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  gap: 4%;
+  margin-bottom: 100px;
+  background-color: var(--oil-bg-white);
+  padding: 40px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px var(--oil-shadow-light);
+}
+
+/* Galeria (igual à do vinho) */
+.oil-detail__gallery { position: relative; }
+.gallery__main {
+  width: 100%;
+  height: 600px; /* Ajustar altura se necessário */
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid var(--oil-primary-light);
+  background-color: var(--oil-bg-white);
+  position: relative;
+  display: flex; /* Para centralizar a imagem */
+  align-items: center;
+  justify-content: center;
+}
+.gallery__main img {
+  max-width: 100%; /* Garante que não ultrapassa o container */
+  max-height: 100%; /* Garante que não ultrapassa o container */
+  width: auto; /* Mantém proporção */
+  height: auto; /* Mantém proporção */
+  object-fit: contain; /* Mostra a imagem inteira */
+  transition: transform 0.5s, opacity 0.3s;
+  animation: imageFadeIn 0.3s ease;
+}
+/* Efeito de zoom pode ser removido se 'contain' for preferido */
+/* .gallery__main img:hover { transform: scale(1.02); } */
+
+.gallery__thumbnails {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; height: auto; min-height: 80px;
+}
+.thumbnail {
+  width: 80px; height: 80px; overflow: hidden; cursor: pointer; border: 1px solid var(--oil-primary-light); opacity: 0.7; transition: all 0.3s; background-color: var(--oil-bg-white); position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+}
+.thumbnail.active { opacity: 1; border-color: var(--oil-primary-color); box-shadow: 0 2px 8px rgba(122, 153, 76, 0.2); }
+.thumbnail:hover { opacity: 1; border-color: var(--oil-primary-color); }
+.thumbnail img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease; animation: imageFadeIn 0.3s ease; }
+/* .thumbnail:hover img { transform: scale(1.1); } */
+
+/* Placeholders (igual ao do vinho) */
+.image-placeholder, .thumbnail-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f8f8f8; color: var(--oil-text-lighter); border: 1px dashed rgba(122, 153, 76, 0.3); }
+.image-placeholder { font-size: 0.9rem; }
+.thumbnail-placeholder { font-size: 0.8rem; }
+
+/* Informações do produto */
+.oil-detail__info { padding: 20px 0; }
+.oil-info__description { margin-bottom: 40px; line-height: 1.6; color: #555; font-weight: 300; font-size: 1.05rem; }
+.oil-info__description p, .tab-content p, .award-text, .tech-value { font-family: var(--font-paragraph); font-size: 1.15rem; line-height: 1.5; font-weight: 400; color: #444; }
+
+/* Tabs */
+.oil-info__tabs { border-top: 1px solid var(--oil-primary-light); padding-top: 30px; }
+.tabs__header { display: flex; border-bottom: 1px solid var(--oil-primary-light); margin-bottom: 30px; }
+.tab-button { background: none; border: none; padding: 10px 20px; font-family: var(--font-display); color: var(--oil-tab-inactive); font-size: 0.9rem; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s; position: relative; text-transform: uppercase; }
+.tab-button::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 2px; background-color: var(--oil-primary-color); transition: width 0.3s; }
+.tab-button.active { color: var(--oil-primary-color); }
+.tab-button.active::after { width: 100%; }
+.tab-button:hover { color: var(--oil-primary-color); }
+.tab-button:focus, .thumbnail:focus { outline: 2px solid var(--oil-primary-color); outline-offset: 2px; }
+.tabs__content { min-height: 300px; } /* Ajustar altura mínima se necessário */
+.tab-content { animation: fadeIn 0.5s; }
+
+/* Secções de conteúdo */
+.content-section { margin-bottom: 30px; }
+.content-section h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--oil-primary-color); margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+
+/* Listas */
+.varieties-list, .awards-list, .nutrition-list, .extra-info-list { list-style: none; padding: 0; margin: 0; }
+.varieties-list li { padding: 8px 0; border-bottom: 1px solid var(--oil-primary-lighter); font-weight: 300; }
+.varieties-list li:last-child { border-bottom: none; }
+
+/* Detalhes técnicos */
+.technical-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tech-item { padding: 15px; border: 1px solid var(--oil-tech-border-color); display: flex; flex-direction: column; transition: all 0.3s; background-color: var(--oil-bg-white); border-radius: 2px; }
+.tech-item:hover { border-color: var(--oil-primary-color); background-color: var(--oil-primary-bg-hover); }
+.tech-label { font-size: 0.9rem; color: var(--oil-tech-label-color); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+.tech-value { font-size: 1.1rem; color: #333; font-weight: 300; }
+
+/* Info Adicional */
+.nutrition-note { font-size: 0.8rem; color: var(--oil-text-light); font-style: italic; margin-left: 5px; }
+.nutrition-list li, .extra-info-list li { margin-bottom: 8px; font-family: var(--font-paragraph); font-size: 1.05rem; display: flex; align-items: center; gap: 8px;}
+.nutrition-list li.sub-item { margin-left: 20px; }
+.extra-info-list svg { color: var(--oil-primary-color); }
+
+/* Prémios (igual ao vinho) */
+.award-item { display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid var(--oil-primary-lighter); }
+.award-medal-icon { width: 30px; height: auto; }
+/* .award-competition-logo { height: 25px; width: auto; margin-left: auto; opacity: 0.7; } */
+
+/* Responsividade (igual à do vinho, ajustando nomes de classe se necessário) */
+@media (max-width: 992px) {
+  .oil-detail__content { grid-template-columns: 1fr; gap: 40px; }
+  .gallery__main { height: 500px; }
+  .oil-detail__title { font-size: 2.2rem; }
+}
+@media (max-width: 768px) {
+  .oil-detail { padding: 100px 5% 60px; }
+  .oil-detail__content { padding: 30px 20px; grid-template-columns: 1fr; }
+  .gallery__main { height: 400px; }
+  .technical-specs { grid-template-columns: 1fr; }
+  .tabs__header { overflow-x: auto; white-space: nowrap; padding-bottom: 5px; }
+  .gallery__thumbnails { height: auto; min-height: 60px; }
+  .thumbnail { width: 60px; height: 60px; }
+}
+@media (max-width: 480px) {
+  .oil-detail__title { font-size: 1.8rem; }
+  .gallery__main { height: 300px; }
+  .thumbnail { width: 60px; height: 60px; }
+  .oil-detail__badges { flex-direction: column; gap: 5px; align-items: center;}
+}

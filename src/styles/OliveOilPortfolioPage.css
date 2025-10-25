@@ -214,16 +214,26 @@
   }
   
   .oil-card__image-container {
-    position: relative;
-    height: 300px;
+    width: 100%;
+    height: 250px; /* Ou a altura que definiu, ajuste se necessário */
     overflow: hidden;
+    position: relative;
+    background-color: var(--wine-bg-white); /* Fundo branco ou claro */
+    display: flex; /* Para centralizar a imagem */
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--wine-border-light);
   }
   
   .oil-card__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+    width: auto; /* Permite que a largura se ajuste à proporção */
+    height: auto; /* Permite que a altura se ajuste à proporção */
+    max-width: 90%; /* Limita o tamanho da imagem dentro do container */
+    max-height: 90%; /* Limita o tamanho da imagem dentro do container */
+    object-fit: contain; /* <--- MUDANÇA AQUI: Garante que a imagem completa é visível */
+    transition: transform 0.3s ease;
+    /* Remover/ajustar se tiver um hover de zoom */
+    /* transform: scale(0.9); */ /* Pode adicionar um scale inicial para que fique sempre um pouco menor */
   }
   
   .oil-card:hover .oil-card__image {
