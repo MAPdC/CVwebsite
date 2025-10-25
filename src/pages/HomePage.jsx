@@ -1,5 +1,4 @@
 import "../styles/HomePage.css";
-{/*import FeaturedProducts from "../components/FeaturedProducts.jsx";*/}
 import HeritageSection from "../components/HeritageSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
 import TestimonialsSection from "../components/TestimonialsSection.jsx";
@@ -117,13 +116,6 @@ const HomePage = () => {
 
       {/* História & Heritage Section */}
       <HeritageSection />
-
-      {/* FeaturedProducts com animação */}
-      {/*
-      <div ref={featuredProductsRef}>
-        <FeaturedProducts />
-      </div>
-      */}
 
       {/* Wine Carousel */}
       <WineCarousel />

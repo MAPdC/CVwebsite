@@ -47,7 +47,11 @@ import vbo22_3 from '../assets/vbo20-3.jpg';
 import vto20_1 from '../assets/vto19-1.png';
 import vto20_2 from '../assets/vto19-2.jpg';
 import vto20_3 from '../assets/vto19-3.jpg';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
+// Imagens do Azeite Virgem Extra Biológico Colheita Tardia
+// É preciso importar as imagens usadas nos azeites
+import lateharvest from '../assets/azeite.png';
 
 
 export const wines = [
@@ -304,9 +308,9 @@ export const wines = [
         vto20_2,
         vto20_3
       ],
-      sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
-      consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
-      temperatura: "16 a 18°C",
+      sensory: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
+      pairing: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      temperature: "16 a 18°C",
       technical: {
         alcohol: "13,5%",
         acidity: "0.0 g/L",
@@ -326,10 +330,41 @@ export const wines = [
   export const oliveOils = [
     {
       id: 1,
-      name: "Azeite Virgem Extra Casttêdo",
-      description: "...",
-      price: 15.99
-      // outras propriedades
+      slug: "organic-extra-virgin-olive-oil-late-harvest",
+      name: "Azeite Virgem Extra | Biológico & Colheita Tardia",
+      description: "Azeite de categoria superior obtido diretamente de azeitonas, unicamente por processos mecânicos. Produzido a partir de azeitonas cultivadas em modo biológico, colhidas tardiamente para garantir um sabor mais intenso e complexo.",
+      briefDescription: "Um azeite de colheita tardia feita no mês de Dezembro, perfeito para gastronomia gourmet.",
+      type: "Virgem Extra",
+      varieties: ["Cordovil", "Cobrançosa", "Verdeal"],
+      images: [
+        lateharvest
+      ],
+      sensory: "No sabor é ligeiramente picante e amargo com notas marcantes de amêndoa. É sedoso e aveludado. Com um aroma subtil a rama de tomateiro e a folhas verdes de oliveira moídas com azeitonas maduras.",
+      pairing: "Pratos delicados. Peixes, carnes e legumes cozidos a vapor, pão torrado com ligeiro toque de alho e ervas aromáticas.",
+      technical: {
+        acidity: "≤ 0,4%",
+        peroxide: "≤ 20 meqO2/kg",
+        k232: "≤ 2,50",
+        k268: "≤ 0,22"
+      },
+      nutritionDeclaration: {
+        energy: "3421 kJ / 821 kcal",
+        fat: "91,2 g",
+        saturatedFat: "13,1 g",
+        carbohydrates: "0 g",
+        sugars: "0 g",
+        protein: "0 g",
+        salt: "0 g"
+      },
+      extraInfo: {
+        store: "Conservar ao abrigo da luz, ar, fontes de calor e odores intensos.",
+        available: "Disponível em garrafas de 500ml."
+      },
+      awards: [],
+      onmarket: true,
+      soldout: false,
+      organic: true,
+      lateHarvest: true,
     },
     // outros azeites
   ];
