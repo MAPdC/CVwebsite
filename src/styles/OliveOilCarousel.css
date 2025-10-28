@@ -203,8 +203,8 @@
   .olive-oil-title-premium { font-size: clamp(1.8rem, 5vw, 2.5rem); }
   .olive-oil-cards-grid-premium, .olive-oil-cards-grid-premium.triple, .olive-oil-cards-grid-premium.double, .olive-oil-cards-grid-premium.single { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; padding: 0; }
   .olive-oil-cards-grid-premium .oil-card-premium:nth-child(n+2) { display: none; }
-  .carousel-nav-premium.oil-nav { bottom: 20px; top: auto; transform: translateY(0); width: 40px; height: 40px; }
-  .carousel-nav-premium.oil-nav.prev { left: calc(50% - 50px); } .carousel-nav-premium.oil-nav.next { right: calc(50% - 50px); }
+  .carousel-nav-premium.oil-nav { bottom: 65px; width: 40px; height: 40px; } .carousel-nav-premium.oil-nav:hover { background: var(--olive-gold); color: var(--olive-green-dark); border-color: var(--olive-gold); box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);}
+  .carousel-nav-premium.oil-nav.prev { left: calc(50% - 60px); } .carousel-nav-premium.oil-nav.next { right: calc(50% - 60px); }
   .oil-card-premium { padding: 20px; } .oil-image-wrapper-premium { height: 200px; width: 120px; }
   .oil-name-premium { font-size: 1.3rem; } .oil-description-premium { font-size: 0.85rem; min-height: 45px; }
   .carousel-portfolio-link-container.oil-link-container { margin-top: 80px; }

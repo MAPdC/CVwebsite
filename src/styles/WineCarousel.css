@@ -556,17 +556,23 @@
    }
 
   .carousel-nav-premium {
-    top: auto; /* Posição vertical automática */
-    bottom: 20px; /* Posição no fundo */
-    transform: translateY(0); /* Remove transform vertical */
+    bottom: 65px; 
     width: 40px;
     height: 40px;
   }
+
+  .carousel-nav-premium:hover {
+    background: rgba(192, 160, 128, 0.9);
+    color: white;
+    border-color: #c0a080;
+    box-shadow: 0 6px 20px rgba(192, 160, 128, 0.35);
+  }
+
    .carousel-nav-premium.prev {
-       left: calc(50% - 50px); /* Centraliza botão esquerdo */
+       left: calc(50% - 60px);; /* Centraliza botão esquerdo */
    }
    .carousel-nav-premium.next {
-       right: calc(50% - 50px); /* Centraliza botão direito */
+       right: calc(50% - 60px);; /* Centraliza botão direito */
    }
 
   .wine-card-premium {
@@ -593,6 +599,6 @@
   }
 
   .wine-carousel-indicators-premium {
-      margin-top: 80px; /* Mais espaço para os botões */
+      margin-top: 50px; /* Mais espaço para os botões */
   }
 }
