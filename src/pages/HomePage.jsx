@@ -1,8 +1,8 @@
 import "../styles/HomePage.css";
 import HeritageSection from "../components/HeritageSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
-import TestimonialsSection from "../components/TestimonialsSection.jsx";
-import TerroirSection from "../components/TerroirSection.jsx";
+// import TestimonialsSection from "../components/TestimonialsSection.jsx";
+// import TerroirSection from "../components/TerroirSection.jsx";
 import WineCarousel from "../components/WineCarousel.jsx";
 import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
@@ -13,7 +13,6 @@ import logoBranco from "../assets/cv-logo-branco.png";
 const HomePage = () => {
   const heroRef = useRef(null);
   const transitionRef = useRef(null);
-  const featuredProductsRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   
   useEffect(() => {
@@ -92,28 +91,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Transition Element */}
-      <div className="hero-transition" ref={transitionRef}>
-        <div className="transition-content">
-          <span className="transition-quote">"Aqui, Douro. O Paraíso do vinho e do suor."</span>
-          <span className="transition-author">
-            <span 
-              className="author-link" 
-              onClick={handleAuthorClick}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  handleAuthorClick(e);
-                }
-              }}
-            >
-              António Joaquim Magalhães Cabral, Aqui, Douro (1979)
-            </span>
-          </span>
-        </div>
-      </div>
-
       {/* História & Heritage Section */}
       <HeritageSection />
 
@@ -123,14 +100,16 @@ const HomePage = () => {
       {/* Olive Oil Carousel */}
       <OliveOilCarousel />
 
-      {/*Terroir Section */}
-      <TerroirSection />
+      {/*
+      <TerroirSection /> 
+      */}
     
       {/* Awards Section */}
       <AwardsSection />
       
-      {/* Testimonials Section */}
+      {/*
       <TestimonialsSection />
+      */}
 
     </div>
   );
