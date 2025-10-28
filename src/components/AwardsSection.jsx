@@ -67,7 +67,7 @@ const AwardsSection = () => {
           <div className="highlight-awards-subtitle">
              Reconhecimento & Prestígio
           </div>
-          <h2 className="highlight-awards-title">PRODUTOS PREMIADOS</h2>
+          <h2 className="highlight-awards-title">DISTINÇÕES</h2>
           <div className="highlight-awards-ornament">
             <div className="ornament-line-left" />
             <Award size={14} className="ornament-icon"/>
