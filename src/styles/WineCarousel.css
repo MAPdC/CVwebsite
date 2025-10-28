@@ -1,12 +1,28 @@
 /* Main Section */
 .wine-carousel-premium {
   padding: 100px 0; /* Reduzido padding vertical */
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a1410 50%, #0a0a0a 100%);
+  background-image: url('../assets/garrafas-1.jpg'); /* ADICIONADO: Caminho para a sua imagem */
+  background-size: cover; /* ADICIONADO: Para cobrir toda a área */
+  background-position: center; /* ADICIONADO: Para centralizar a imagem */
+  background-attachment: fixed; /* ADICIONADO: Efeito Parallax (opcional) */
   position: relative;
   overflow: hidden;
   opacity: 0;
   transform: translateY(40px); /* Reduzido translateY */
   transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); /* Transição ligeiramente mais rápida */
+  z-index: 1; /* ADICIONADO: Para garantir que o ::before fique por cima */
+}
+
+/* ADICIONADO: Overlay para escurecer o fundo e manter contraste */
+.wine-carousel-premium::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.85); /* Cor escura com opacidade (ajuste 0.85 conforme necessário) */
+  z-index: -1; /* Coloca o overlay atrás do conteúdo, mas por cima da imagem de fundo */
 }
 
 .wine-carousel-premium.visible {
@@ -41,6 +57,7 @@
   margin: 0 auto;
   padding: 0 30px; /* Reduzido padding horizontal */
   position: relative;
+  z-index: 2; /* ADICIONADO: Conteúdo acima do overlay */
 }
 
 /* Header Section */
