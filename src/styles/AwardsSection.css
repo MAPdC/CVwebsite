@@ -14,6 +14,32 @@
   transform: translateY(0);
 }
 
+.section-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%; /* Reduzido glow */
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(192, 160, 128, 0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.section-line-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  /* Gradiente dourado similar ao do WineCarousel */
+  background: linear-gradient(90deg, transparent, rgba(192, 160, 128, 0.7), transparent);
+  z-index: 3; /* Ajuste o z-index se necessário para ficar por cima de outros elementos */
+  pointer-events: none; /* Para não interferir com cliques */
+}
+
+.section-line-top {
+  top: 0;
+}
+
 .highlight-awards-container {
   max-width: 1300px;
   margin: 0 auto;

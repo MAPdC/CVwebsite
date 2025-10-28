@@ -61,6 +61,8 @@ const AwardsSection = () => {
       ref={sectionRef}
       className={`highlight-awards-section ${isVisible ? 'visible' : ''}`}
     >
+      <div className="section-glow" />
+      <div className="section-line-top" />
       <div className="highlight-awards-container">
         {/* Header da Secção */}
         <div className="highlight-awards-header">

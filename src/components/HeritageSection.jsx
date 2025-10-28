@@ -37,6 +37,8 @@ const HeritageSection = () => {
 
   return (
     <section className="heritage-section" ref={sectionRef}>
+      <div className="section-glow" />
+      <div className="section-line-top" />
       <div className="heritage-background">
         <div className="heritage-overlay"></div>
         <img src={heritageBgImage} alt="Adega histórica Casttêdo" className="heritage-bg-image" />
