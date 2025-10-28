@@ -210,3 +210,60 @@
   .carousel-portfolio-link-container.oil-link-container { margin-top: 80px; }
   .carousel-portfolio-link.oil-link { font-size: 0.8rem; padding: 12px 28px; }
 }
+
+@media (max-width: 400px) {
+  .olive-oil-carousel-premium {
+    padding: 40px 0; /* Padding ainda mais reduzido */
+  }
+
+  .olive-oil-container-premium {
+    padding: 0 10px; /* Padding horizontal reduzido */
+  }
+
+  .olive-oil-title-premium {
+    font-size: clamp(1.6rem, 6vw, 2.2rem); /* Tamanho de título ligeiramente menor */
+  }
+
+  .olive-oil-cards-grid-premium {
+    max-width: 260px; /* Largura máxima do cartão ainda menor */
+  }
+
+  .oil-card-premium {
+    padding: 15px; /* Padding interno do cartão reduzido */
+  }
+
+  .oil-image-wrapper-premium {
+    height: 180px; /* Altura da imagem menor */
+    width: 100px; /* Largura da imagem menor */
+  }
+
+  .oil-name-premium {
+    font-size: 1.2rem; /* Nome do azeite menor */
+  }
+
+  .oil-description-premium {
+    font-size: 0.8rem; /* Descrição menor */
+    min-height: 40px; /* Altura mínima reduzida */
+  }
+
+  .oil-features-premium span {
+    font-size: 0.7rem; /* Features menores */
+    padding: 4px 8px;
+  }
+
+   .carousel-nav-premium.oil-nav.prev {
+    left: calc(50% - 50px); /* Ajusta posição dos botões */
+  }
+   .carousel-nav-premium.oil-nav.next {
+    right: calc(50% - 50px); /* Ajusta posição dos botões */
+  }
+
+  .carousel-portfolio-link.oil-link {
+    font-size: 0.75rem; /* Link geral menor */
+    padding: 10px 25px;
+  }
+
+  .olive-oil-indicators-premium {
+    margin-top: 45px; /* Ajusta margem dos indicadores */
+  }
+}

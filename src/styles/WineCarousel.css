@@ -602,3 +602,60 @@
       margin-top: 50px; /* Mais espaço para os botões */
   }
 }
+
+@media (max-width: 400px) {
+  .wine-carousel-premium {
+    padding: 40px 0; /* Padding ainda mais reduzido */
+  }
+
+  .wine-carousel-container-premium {
+    padding: 0 10px; /* Padding horizontal reduzido */
+  }
+
+  .wine-carousel-title-premium {
+    font-size: clamp(1.6rem, 6vw, 2.2rem); /* Tamanho de título ligeiramente menor */
+  }
+
+  .wine-cards-grid-premium {
+    max-width: 280px; /* Largura máxima do cartão ainda menor */
+  }
+
+  .wine-card-premium {
+    padding: 15px; /* Padding interno do cartão reduzido */
+  }
+
+  .wine-image-premium {
+    width: 120px; /* Imagem ainda menor */
+    height: 240px;
+  }
+
+  .wine-name-premium {
+    font-size: 1.1rem; /* Nome do vinho menor */
+  }
+
+  .wine-description-premium {
+    font-size: 0.75rem; /* Descrição menor */
+    min-height: 35px; /* Altura mínima reduzida */
+  }
+
+  .variety-tag-premium {
+    font-size: 0.65rem; /* Tags de castas menores */
+    padding: 4px 8px;
+  }
+
+  .carousel-nav-premium.prev {
+    left: calc(50% - 50px); /* Ajusta posição dos botões */
+  }
+  .carousel-nav-premium.next {
+    right: calc(50% - 50px); /* Ajusta posição dos botões */
+  }
+
+  .carousel-portfolio-link {
+    font-size: 0.75rem; /* Link geral menor */
+    padding: 10px 25px;
+  }
+
+  .wine-carousel-indicators-premium {
+    margin-top: 45px; /* Ajusta margem dos indicadores */
+  }
+}
