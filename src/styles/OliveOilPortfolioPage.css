@@ -395,6 +395,7 @@
       width: 100%;
       overflow-x: auto;
       padding-bottom: 5px;
+      justify-content: center; /* Centraliza botões se couberem */
     }
     
     .filter-btn {
@@ -404,11 +405,11 @@
   
   @media (max-width: 768px) {
     .catalog-hero {
-      height: 220px;
+      height: 50vh;
     }
     
     .catalog-hero__title {
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
     
     .catalog-hero__subtitle {
@@ -423,14 +424,76 @@
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 30px;
     }
+
+    .oil-card__image-container {
+        height: 280px; /* Altura da imagem ajustada */
+    }
+
+    .oil-card__name {
+        font-size: 1.4rem; /* Nome ligeiramente menor */
+    }
+
+    .oil-card__description {
+        font-size: 0.9rem; /* Descrição ligeiramente menor */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .catalog-hero {
+      height: 40vh; /* Altura ajustada para telemóveis maiores */
+    }
+
+    .catalog-hero__title {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .catalog-hero__subtitle {
+      font-size: 0.95rem;
+    }
+
+    .oil-grid {
+      /* Força uma coluna */
+      grid-template-columns: 1fr;
+      gap: 25px; /* Espaçamento entre cartões */
+    }
+
+    .oil-card__image-container {
+      height: 300px; /* Imagem maior em layout de 1 coluna */
+    }
+
+    .filter-options {
+        justify-content: flex-start; /* Alinha botões à esquerda para scroll */
+    }
   }
   
-  @media (max-width: 480px) {
-    .oil-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .oil-card__image-container {
-      height: 250px;
-    }
+@media (max-width: 480px) {
+  .catalog-hero {
+    height: 300px; /* Altura fixa para dispositivos muito pequenos */
   }
+
+  .catalog-hero__title {
+    font-size: 1.8rem;
+  }
+
+  .catalog-hero__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .oil-card__image-container {
+    height: 280px; /* Ajusta altura da imagem */
+  }
+
+   .oil-card__name {
+      font-size: 1.3rem;
+  }
+
+  .search-bar input {
+      font-size: 0.9rem; /* Reduz tamanho da fonte na barra de pesquisa */
+  }
+
+  .filter-btn {
+      font-size: 0.85rem; /* Reduz tamanho da fonte nos botões de filtro */
+      padding: 6px 12px;
+  }
+}

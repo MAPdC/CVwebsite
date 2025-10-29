@@ -486,6 +486,18 @@
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 30px;
     }
+
+    .wine-card__image-container {
+        height: 280px; /* Altura da imagem ajustada */
+    }
+
+    .wine-card__name {
+        font-size: 1.4rem; /* Nome ligeiramente menor */
+    }
+
+    .wine-card__description {
+        font-size: 0.9rem; /* Descrição ligeiramente menor */
+    }
 }
 
 @media (max-width: 576px) {
@@ -503,10 +515,24 @@
         letter-spacing: 0.5px;
     }
 
+    .wine-grid {
+        /* Força uma coluna */
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .wine-card__image-container {
+        height: 300px; /* Imagem maior em layout de 1 coluna */
+    }
+
     .wine-card__award {
         width: 35px;
         height: 35px;
-      }
+    }
+
+    .filter-options {
+        justify-content: flex-start; /* Alinha botões à esquerda para scroll */
+    }
 }
   
 @media (max-width: 480px) {
@@ -522,15 +548,26 @@
         font-size: 0.95rem;
     }
     
-    .wine-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .wine-card__image-container {
-        height: 220px;
+        height: 280px;
     }
 
     .wine-card__image {
-        max-height: 210px;
+        /* Garante que a imagem não fique cortada (se for mais alta) */
+        max-height: 90%;
+        width: auto;
+    }
+
+    .wine-card__name {
+        font-size: 1.3rem;
+    }
+
+    .search-bar input {
+        font-size: 0.9rem; /* Reduz tamanho da fonte na barra de pesquisa */
+    }
+
+    .filter-btn {
+        font-size: 0.85rem; /* Reduz tamanho da fonte nos botões de filtro */
+        padding: 6px 12px;
     }
 }
