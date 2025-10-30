@@ -59,7 +59,6 @@ function OliveOilPortfolioPage() {
   const filteredOils = oilList.filter(oil => {
     // Adaptação do filtro: 'all', 'organic', 'lateHarvest'
     const matchesFilter = filter === "all" ||
-                          (filter === "organic" && oil.organic) ||
                           (filter === "lateHarvest" && oil.lateHarvest);
 
     const matchesSearch = oil.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,6 +88,12 @@ function OliveOilPortfolioPage() {
             <h1 className="catalog-hero__title">Pureza.</h1>
             <p className="catalog-hero__subtitle">A essência do campo e a tradição centenária em cada gota de azeite</p>
           </div>
+          {/* ----- INÍCIO DA ALTERAÇÃO ----- */}
+          {/* Indicador de Scroll para baixo */}
+          <div className="scroll-down-prompt">
+            <div className="scroll-down-arrow"></div>
+          </div>
+          {/* ----- FIM DA ALTERAÇÃO ----- */}
         </div>
 
         <div className="catalog-content">
@@ -113,13 +118,7 @@ function OliveOilPortfolioPage() {
                 Todos
               </button>
               <button
-                className={`filter-btn ${filter === "organic" ? "active" : ""}`}
-                onClick={() => setFilter("organic")}
-              >
-                Biológico
-              </button>
-              <button
-                className={`filter-btn ${filter === "lateHarvest" ? "active" : ""}`}
+                className={`filter-btn filter-btn--late-harvest ${filter === "lateHarvest" ? "active" : ""}`}
                 onClick={() => setFilter("lateHarvest")}
               >
                 Colheita Tardia
@@ -145,18 +144,11 @@ function OliveOilPortfolioPage() {
                   <Link to={`/portfolio/olive-oils/${oil.slug}`} className="oil-card" key={oil.id}>
                     <div className="oil-card__image-container">
                       <img src={oil.image} alt={oil.name} className="oil-card__image" />
-                      {/* Badges para Biológico e Colheita Tardia */}
-                      {oil.organic && (
-                        <div className="oil-card__badge oil-card__badge--organic">Biológico</div>
-                      )}
-                       {/* Badge para Esgotado ou Disponível */}
+                       {/* Badge para Esgotado */}
                        {!oil.onmarket && oil.soldout && (
                          <div className="oil-card__badge oil-card__badge--soldout">Esgotado</div>
                        )}
-                       {oil.lateHarvest && !oil.organic && ( // Só mostra se não for biológico para não sobrepor
-                         <div className="oil-card__badge oil-card__badge--lateharvest">Colheita Tardia</div>
-                       )}
-                       {oil.onmarket && !oil.soldout && !oil.organic && !oil.lateHarvest && (
+                       {oil.onmarket && !oil.soldout && (
                          <div className="oil-card__badge oil-card__badge--available">Disponível</div>
                        )}
                        {/* Adicionar badge para prémios se existirem? */}

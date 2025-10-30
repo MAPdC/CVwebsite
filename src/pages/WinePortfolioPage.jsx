@@ -72,6 +72,10 @@ function WinePortfolioPage() {
             <h1 className="catalog-hero__title">Excelência.</h1>
             <p className="catalog-hero__subtitle">Descubra a expressão do terroir do Douro em cada garrafa</p>
           </div>
+          {/* Indicador de Scroll para baixo */}
+          <div className="scroll-down-prompt">
+            <div className="scroll-down-arrow"></div>
+          </div>
         </div>
         
         <div className="catalog-content">
@@ -88,29 +92,31 @@ function WinePortfolioPage() {
             
             <div className="filter-options">
               <button 
-                className={`filter-btn ${filter === "all" ? "active" : ""}`}
+                className={`filter-btn ${filter === "all" ? "active-all" : ""}`}
                 onClick={() => setFilter("all")}
               >
                 Todos
               </button>
               <button 
-                className={`filter-btn ${filter === "tinto" ? "active" : ""}`}
+                className={`filter-btn ${filter === "tinto" ? "active-tinto" : ""}`}
                 onClick={() => setFilter("tinto")}
               >
                 Tintos
               </button>
               <button 
-                className={`filter-btn ${filter === "branco" ? "active" : ""}`}
+                className={`filter-btn ${filter === "branco" ? "active-branco" : ""}`}
                 onClick={() => setFilter("branco")}
               >
                 Brancos
               </button>
+              {/*
               <button 
-                className={`filter-btn ${filter === "rosé" ? "active" : ""}`}
+                className={`filter-btn ${filter === "rosé" ? "active-rose" : ""}`}
                 onClick={() => setFilter("rosé")}
               >
                 Rosés
               </button>
+              */}
             </div>
           </div>
           
@@ -185,7 +191,7 @@ function WinePortfolioPage() {
               {sortedWines.length === 0 && (
                 <div className="no-results">
                   <h3>Nenhum vinho encontrado</h3>
-                  <p>Tente uma busca diferente ou remova os filtros.</p>
+                  <p>Tente uma procura diferente ou remova os filtros.</p>
                 </div>
               )}
             </>

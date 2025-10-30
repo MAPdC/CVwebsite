@@ -11,7 +11,7 @@
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 90vh; /* Ajustado para 90vh para melhor responsividade */
+    height: 100vh; /* Ajustado para 90vh para melhor responsividade */
     width: 100%;
     display: flex;
     align-items: center;
@@ -85,6 +85,43 @@
         transform: translateY(0);
     }
 }
+
+/* ----- INÍCIO: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
+.scroll-down-prompt {
+  display: none; /* Escondido por defeito */
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Acima da sobreposição ::before */
+  cursor: pointer;
+  text-align: center;
+  padding-top: 50px; /* Espaço para a seta */
+}
+
+.scroll-down-arrow {
+  width: 24px;
+  height: 24px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg);
+  animation: bounce 2s infinite;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Animação da seta */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) rotate(-45deg);
+  }
+  40% {
+    transform: translateY(-20px) rotate(-45deg);
+  }
+  60% {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
+/* ----- FIM: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
   
 /* Container principal do conteúdo */
 .catalog-content {
@@ -179,9 +216,31 @@
 }
   
 .filter-btn.active {
-    background-color: rgba(192, 160, 128, 0.9);
     color: white;
-    border-color: #c0a080;
+}
+
+.filter-btn.active-all {
+  background-color: rgba(192, 160, 128, 0.9); /* Cor original para "Todos" */
+  border-color: #c0a080;
+  color: white;
+}
+
+.filter-btn.active-tinto {
+  background-color: #7b0323; /* Tom de vinho tinto (roxo/vermelho escuro) */
+  border-color: #6a021e;
+  color: white;
+}
+
+.filter-btn.active-branco {
+  background-color: #d4af37; /* Tom de ouro / branco encorpado */
+  border-color: #c29e31;
+  color: white;
+}
+
+.filter-btn.active-rose {
+  background-color: #d96c8a; /* Tom de rosé mais escuro */
+  border-color: #c85a78;
+  color: white;
 }
   
 .results-count {
@@ -337,7 +396,7 @@
 
 /* Ajustes para as novas badges */
 .wine-card__badge--onmarket {
-    background-color: rgba(192, 160, 128, 0.95);
+    background-color: rgba(60, 120, 60, 0.95);
     left: 15px;
     right: auto;
   }
@@ -430,9 +489,6 @@
 }
 
 @media (max-width: 992px) {
-    .catalog-hero {
-        height: 70vh; /* Ajustado para telas médias */
-    }
     
     .catalog-hero__title {
         font-size: 3rem;
@@ -464,10 +520,11 @@
 }
   
 @media (max-width: 768px) {
-    .catalog-hero {
-        height: 50vh; /* Ajustado para tablets */
+
+    .scroll-down-prompt {
+      display: block; /* Mostra o indicador de scroll */
     }
-    
+
     .catalog-hero__title {
         font-size: 2.5rem;
         margin-bottom: 15px;
@@ -501,9 +558,6 @@
 }
 
 @media (max-width: 576px) {
-    .catalog-hero {
-        height: 40vh; /* Ajustado para celulares maiores */
-    }
     
     .catalog-hero__title {
         font-size: 2rem;
@@ -536,9 +590,6 @@
 }
   
 @media (max-width: 480px) {
-    .catalog-hero {
-        height: 300px; /* Altura fixa para dispositivos muito pequenos */
-    }
     
     .catalog-hero__title {
         font-size: 1.8rem;
