@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/WinePortfolioPage.css";
 import heroBackground from '../assets/old-references.jpg';
-import { wines } from "../mocks/products"; // Importando os vinhos do arquivo products.js
-
-// Ícones para elementos visuais
+import { wines } from "../mocks/products";
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
 
 function WinePortfolioPage() {
@@ -127,7 +125,7 @@ function WinePortfolioPage() {
           ) : (
             <>
               <div className="results-count">
-                {sortedWines.length} {sortedWines.length === 1 ? "vinho" : "vinhos"} encontrados
+                {sortedWines.length} {sortedWines.length === 1 ? "vinho encontrado" : "vinhos encontrados"}
               </div>
               
               <div className="wine-grid">
@@ -191,7 +189,7 @@ function WinePortfolioPage() {
               {sortedWines.length === 0 && (
                 <div className="no-results">
                   <h3>Nenhum vinho encontrado</h3>
-                  <p>Tente uma procura diferente ou remova os filtros.</p>
+                  <p>Tente uma pesquisa diferente ou remova os filtros.</p>
                 </div>
               )}
             </>
