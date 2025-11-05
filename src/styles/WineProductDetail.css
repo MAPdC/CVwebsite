@@ -1,63 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap');
-
-/* Variáveis globais para cores e tipografia */
+/* src/styles/WineProductDetail.css */
+/* Reset básico e variáveis (assumindo que estão em index.css) */
 :root {
   --primary-color: #c0a080;
   --primary-light: rgba(192, 160, 128, 0.15);
   --primary-lighter: rgba(192, 160, 128, 0.1);
-  --primary-bg-hover: rgba(192, 160, 128, 0.02);
-  --text-dark: #444;
-  --text-medium: #666;
-  --text-light: #888;
-  --text-lighter: #999;
-  --tab-inactive: #666; /* Nova cor para tabs inativas (mais escura) */
-  --breadcrumb-color: #666; /* Nova cor para o breadcrumb (mais escura) */
-  --tech-label-color: #666; /* Nova cor para os rótulos dos detalhes técnicos */
-  --tech-border-color: #c9c9c9; /* Nova cor mais escura para as bordas das caixas técnicas */
-  --bg-light: #fafafa;
+  --text-dark: #3a3a3a;
+  --text-medium: #555;
+  --text-light: #777;
+  --bg-light: #fdfdfa;
   --bg-white: #fff;
   --border-light: #eee;
-  --shadow-light: rgba(0, 0, 0, 0.03);
   --font-primary: 'Work Sans', sans-serif;
   --font-display: 'AgathoRegularCAPS', 'serif';
   --font-paragraph: 'Cormorant Garamond', serif;
 }
 
-/* Estilos gerais */
-.product-detail {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 120px 5% 80px;
-  color: var(--text-dark);
-  font-family: var(--font-primary);
-  background-color: var(--bg-light);
-}
-
-/* Loading */
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  background-color: var(--bg-light);
-}
-
-.elegant-loader {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(192, 160, 128, 0.2);
-  border-radius: 50%;
-  border-top-color: var(--primary-color);
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
+/* Animações */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes imageFadeIn {
@@ -65,44 +26,70 @@
   to { opacity: 1; }
 }
 
-/* Hero */
-.product-detail__hero {
-  text-align: center;
-  margin-bottom: 60px;
-  position: relative;
-  background-color: var(--bg-white);
-  padding: 40px 0;
-  box-shadow: 0 1px 3px var(--shadow-light);
+/* Loader */
+.new-product-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: var(--bg-light);
+}
+.elegant-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--primary-light);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Estrutura principal */
+.new-wine-detail {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 5% 80px; /* 120px de padding-top para compensar o header fixo */
+  color: var(--text-dark);
+  font-family: var(--font-primary);
+  background-color: var(--bg-light);
 }
 
-.product-detail__breadcrumb {
+/* Hero (Título e Breadcrumbs) */
+.new-wine-hero {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.new-wine-breadcrumb {
   font-size: 0.85rem;
-  margin-bottom: 24px;
-  color: var(--breadcrumb-color); /* Alterado para um cinzento mais escuro */
+  margin-bottom: 20px;
+  color: var(--text-light);
   font-weight: 300;
 }
-
-.product-detail__breadcrumb a {
-  color: var(--breadcrumb-color); /* Alterado para um cinzento mais escuro */
+.new-wine-breadcrumb a {
+  color: var(--text-light);
   text-decoration: none;
   transition: color 0.3s;
 }
-
-.product-detail__breadcrumb a:hover {
+.new-wine-breadcrumb a:hover {
   color: var(--primary-color);
 }
+.new-wine-breadcrumb span {
+  color: var(--text-dark);
+}
 
-.product-detail__title {
+.new-wine-title {
   font-family: var(--font-display);
   font-size: 2.8rem;
   font-weight: 300;
   color: var(--primary-color);
   letter-spacing: 2px;
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   line-height: 1.2;
 }
 
-.product-detail__category {
+.new-wine-category {
   font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 300;
@@ -111,202 +98,144 @@
   text-transform: uppercase;
 }
 
-/* Conteúdo principal */
-.product-detail__content {
-  display: grid;
-  grid-template-columns: 48% 48%;
-  gap: 4%;
-  margin-bottom: 100px;
-  background-color: var(--bg-white);
-  padding: 40px;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px var(--shadow-light);
-}
-
-/* Galeria */
-.product-detail__gallery {
-  position: relative;
-}
-
-.gallery__main {
-  width: 100%;
-  height: 600px;
-  margin-bottom: 20px;
-  overflow: hidden;
-  border: 1px solid var(--primary-light);
-  background-color: var(--bg-white);
-  position: relative;
-}
-
-.gallery__main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s, opacity 0.3s;
-  animation: imageFadeIn 0.3s ease;
-}
-
-.gallery__main img:hover {
-  transform: scale(1.02);
-}
-
-.gallery__thumbnails {
+/* Conteúdo Principal (Mobile-first) */
+.new-wine-content {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-  height: auto;
-  min-height: 80px;
-}
-
-.thumbnail {
-  width: 80px;
-  height: 80px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid var(--primary-light);
-  opacity: 0.7;
-  transition: all 0.3s;
+  flex-direction: column; /* Pilha em mobile */
+  gap: 40px;
   background-color: var(--bg-white);
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Galeria (Mobile-first) */
+.new-wine-gallery {
+  width: 100%;
   position: relative;
-  flex-shrink: 0;
 }
 
-.thumbnail.active {
-  opacity: 1;
-  border-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(192, 160, 128, 0.2);
-}
-
-.thumbnail:hover {
-  opacity: 1;
-  border-color: var(--primary-color);
-}
-
-.thumbnail img {
+.gallery-main-container {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  animation: imageFadeIn 0.3s ease;
-}
-
-.thumbnail:hover img {
-  transform: scale(1.1);
-}
-
-/* Placeholders para imagens */
-.image-placeholder, .thumbnail-placeholder {
-  width: 100%;
-  height: 100%;
+  /* A CHAVE DA CORREÇÃO: aspect-ratio */
+  aspect-ratio: 4 / 5; /* Mais alto que largo, bom para garrafas */
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
-  color: var(--text-lighter);
-  border: 1px dashed rgba(192, 160, 128, 0.3);
 }
 
-.image-placeholder {
-  font-size: 0.9rem;
+.gallery-main-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Garante que a imagem inteira caiba */
+  transition: transform 0.4s ease, opacity 0.3s;
+  animation: imageFadeIn 0.4s ease;
 }
 
-.thumbnail-placeholder {
-  font-size: 0.8rem;
+.gallery-main-container:hover .gallery-main-image {
+  transform: scale(1.05);
 }
 
-/* Informações do produto */
-.product-detail__info {
-  padding: 20px 0;
+.gallery-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap; /* Permite quebrar linha se não houver espaço */
 }
 
-.product-info__description {
-  margin-bottom: 40px;
-  line-height: 1.6;
-  color: #555;
-  font-weight: 300;
-  font-size: 1.05rem;
+.thumbnail-item {
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--border-light);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+.thumbnail-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.thumbnail-item.active {
+  opacity: 1;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(192, 160, 128, 0.3);
+}
+.thumbnail-item:hover {
+  opacity: 1;
 }
 
-.product-info__description p,
-.tab-content p,
-.award-text,
-.tech-value {
+/* Informações (Mobile-first) */
+.new-wine-info {
+  width: 100%;
+}
+
+.info-description {
+  margin-bottom: 30px;
   font-family: var(--font-paragraph);
   font-size: 1.15rem;
-  line-height: 1.5;
+  line-height: 1.7;
+  color: var(--text-medium);
   font-weight: 400;
-  color: #444;
+  text-align: justify; /* Texto justificado */
 }
 
-/* Tabs */
-.product-info__tabs {
-  border-top: 1px solid var(--primary-light);
-  padding-top: 30px;
+.info-tabs {
+  border-top: 1px solid var(--border-light);
+  margin-top: 30px;
 }
 
-.tabs__header {
+.tabs-header {
   display: flex;
-  border-bottom: 1px solid var(--primary-light);
+  border-bottom: 1px solid var(--border-light);
   margin-bottom: 30px;
+  flex-wrap: wrap; /* Permite que os botões quebrem linha em ecrãs pequenos */
 }
 
 .tab-button {
   background: none;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 18px;
   font-family: var(--font-display);
-  color: var(--tab-inactive); /* Alterado para um cinzento mais escuro */
+  color: var(--text-light);
   font-size: 0.9rem;
   letter-spacing: 1.5px;
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
   text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; /* Alinha com a borda inferior */
 }
-
-.tab-button::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: width 0.3s;
-}
-
 .tab-button.active {
   color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
 }
-
-.tab-button.active::after {
-  width: 100%;
-}
-
 .tab-button:hover {
-  color: var(--primary-color);
+  color: var(--text-dark);
 }
 
-.tab-button:focus,
-.thumbnail:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+.tabs-content {
+  min-height: 250px;
 }
 
-.tabs__content {
-  min-height: 300px;
+.tab-panel {
+  animation: fadeIn 0.5s ease;
 }
 
-.tab-content {
-  animation: fadeIn 0.5s;
-}
-
-/* Seções de conteúdo */
 .content-section {
   margin-bottom: 30px;
 }
-
 .content-section h3 {
   font-family: var(--font-display);
   font-size: 1.2rem;
@@ -314,152 +243,141 @@
   margin-bottom: 15px;
   font-weight: 300;
   letter-spacing: 1px;
-}
-
-/* Listas */
-.varieties-list, .awards-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.varieties-list li {
-  padding: 8px 0;
-  border-bottom: 1px solid var(--primary-lighter);
-  font-weight: 300;
-}
-
-.varieties-list li:last-child {
-  border-bottom: none;
-}
-
-/* Temperatura */
-.temperature-display {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-.temperature-icon {
-  font-size: 1.5rem;
-  color: var(--primary-color);
+.content-section p,
+.content-section li {
+  font-family: var(--font-paragraph);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-medium);
+}
+.varieties-list {
+  list-style: none;
+  padding: 0;
+}
+.varieties-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.varieties-list li:first-child {
+  border-top: 1px solid var(--border-light);
 }
 
 .temperature-value {
   font-family: var(--font-paragraph);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
-/* Detalhes técnicos */
 .technical-specs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr; /* 1 coluna por defeito (mobile) */
+  gap: 15px;
 }
 
 .tech-item {
   padding: 15px;
-  border: 1px solid var(--tech-border-color); /* Alterado para borda mais escura */
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s;
-  background-color: var(--bg-white);
-  border-radius: 2px;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  transition: all 0.3s ease;
 }
-
 .tech-item:hover {
-  border-color: var(--primary-color);
-  background-color: var(--primary-bg-hover);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
 }
-
 .tech-label {
-  font-size: 0.9rem;
-  color: var(--tech-label-color); /* Alterado para um cinzento mais escuro */
-  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-
 .tech-value {
+  font-family: var(--font-paragraph);
   font-size: 1.1rem;
-  color: #333;
-  font-weight: 300;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
-/* Prêmios */
+.awards-list {
+  list-style: none;
+  padding: 0;
+}
 .award-item {
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--primary-lighter);
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--border-light);
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+.award-item:hover {
+  background-color: #fcfcfc;
+}
+.award-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+.award-details {
+  flex-grow: 1;
+}
+.award-text {
+  font-family: var(--font-paragraph);
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  font-weight: 500;
+}
+.award-points {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-left: 8px;
+}
+.award-medal-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-left: auto;
 }
 
-.award-medal {
-  font-size: 1.5rem;
-}
+/* --- Media Queries (Desktop) --- */
 
-/* Responsividade */
-@media (max-width: 992px) {
-  .product-detail__content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .gallery__main {
-    height: 500px;
-  }
-  
-  .product-detail__title {
-    font-size: 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .product-detail {
-    padding: 100px 5% 60px;
-  }
-  
-  .product-detail__content {
-    padding: 30px 20px;
-    grid-template-columns: 1fr;
-  }
-  
-  .gallery__main {
-    height: 400px;
-  }
-  
+/* Ecrãs médios (tablets) - ajusta a grelha técnica */
+@media (min-width: 600px) {
   .technical-specs {
-    grid-template-columns: 1fr;
-  }
-  
-  .tabs__header {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 5px;
-  }
-  
-  .gallery__thumbnails {
-    height: auto;
-    min-height: 60px;
-  }
-  
-  .thumbnail {
-    width: 60px;
-    height: 60px;
+    grid-template-columns: 1fr 1fr; /* 2 colunas */
   }
 }
 
-@media (max-width: 480px) {
-  .product-detail__title {
-    font-size: 1.8rem;
+/* Adicionado para telas pequenas */
+@media (max-width: 600px) {
+  .info-description {
+    font-size: 1.05rem; /* Fonte ligeiramente mais pequena */
+    line-height: 1.6;
   }
-  
-  .gallery__main {
-    height: 300px;
+}
+
+/* Ecrãs grandes (desktops) - layout principal de 2 colunas */
+@media (min-width: 992px) {
+  .new-wine-content {
+    flex-direction: row; /* Lado a lado */
+    gap: 4%;
   }
-  
-  .thumbnail {
-    width: 60px;
-    height: 60px;
+  .new-wine-gallery {
+    width: 48%;
+    flex-shrink: 0;
+    position: sticky; /* Efeito "Sticky" para a galeria */
+    top: 120px; /* (padding-top + 20px de margem) */
+    align-self: flex-start; /* Impede que estique */
+  }
+  .new-wine-info {
+    width: 48%;
+    flex-grow: 1;
   }
 }

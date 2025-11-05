@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/WineProductDetail.css";
+import { Award, Thermometer, Info, GlassWater, BookOpen, Star } from "lucide-react";
+
+// Importar o novo CSS (caminho corrigido)
+import "/src/styles/WineProductDetail.css";
 
 function WineProductDetail({ product }) {
   const [activeTab, setActiveTab] = useState("caracteristicas");
   const [mainImage, setMainImage] = useState(null);
   const [thumbnailImages, setThumbnailImages] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  
+
   // Efeito para inicializar imagens e rolar para o topo
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,9 +21,11 @@ function WineProductDetail({ product }) {
       if (validImages.length > 0) {
         setMainImage(validImages[0]);
         setThumbnailImages(validImages);
+        setActiveImageIndex(0);
       } else {
         setMainImage(null);
         setThumbnailImages([]);
+        setActiveImageIndex(0);
       }
     }
   }, [product]);
@@ -35,165 +40,179 @@ function WineProductDetail({ product }) {
   
   // Verifica se o produto está disponível
   if (!product) {
-    return <div className="loading-container"><div className="elegant-loader"></div></div>;
+    return (
+      <div className="new-product-loading">
+        <div className="elegant-loader"></div>
+      </div>
+    );
   }
 
   return (
-    <>
-      <main className="product-detail">
-        <div className="product-detail__hero">
-          <div className="product-detail__breadcrumb">
-            <Link to="/">Início</Link> / 
-            <Link to={"/portfolio/wines"}>Vinhos</Link> / 
-            <span>{product.name}</span>
+    <main className="new-wine-detail">
+      {/* --- Secção Hero --- */}
+      <section className="new-wine-hero">
+        <div className="new-wine-breadcrumb">
+          <Link to="/">Início</Link> / 
+          <Link to={"/portfolio/wines"}>Vinhos</Link> / 
+          <span>{product.name}</span>
+        </div>
+        <h1 className="new-wine-title">{product.name}</h1>
+        <div className="new-wine-category">{product.category}</div>
+      </section>
+      
+      {/* --- Conteúdo Principal (Layout Flexível) --- */}
+      <section className="new-wine-content">
+        
+        {/* --- Galeria de Imagens (Lado Esquerdo) --- */}
+        <div className="new-wine-gallery">
+          <div className="gallery-main-container">
+            {mainImage ? (
+              <img 
+                src={mainImage} 
+                alt={`${product.name} - imagem principal`}
+                className="gallery-main-image"
+              />
+            ) : (
+              <div className="image-placeholder">
+                <span>Imagem não disponível</span>
+              </div>
+            )}
           </div>
           
-          <h1 className="product-detail__title">{product.name}</h1>
-          <div className="product-detail__category">{product.category}</div>
+          <div className="gallery-thumbnails">
+            {thumbnailImages.map((imageUrl, index) => (
+              <div 
+                className={`thumbnail-item ${index === activeImageIndex ? 'active' : ''}`}
+                key={index}
+                onClick={() => changeMainImage(index)}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && changeMainImage(index)}
+                tabIndex={0}
+                role="button"
+                aria-label={`Ver imagem ${index + 1}`}
+              >
+                <img 
+                  src={imageUrl}
+                  alt={`${product.name} - miniatura ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
         
-        <section className="product-detail__content">
-          <div className="product-detail__gallery">
-            <div className="gallery__main">
-              {mainImage ? (
-                <img 
-                  src={mainImage} 
-                  alt={`${product.name} - imagem principal`}
-                />
-              ) : (
-                <div className="image-placeholder">
-                  <span>Imagem não disponível</span>
-                </div>
-              )}
-            </div>
-            
-            <div className="gallery__thumbnails">
-              {thumbnailImages.map((imageUrl, index) => (
-                <div 
-                  className={`thumbnail ${index === activeImageIndex ? 'active' : ''}`}
-                  key={index}
-                  onClick={() => changeMainImage(index)}
-                >
-                  <img 
-                    src={imageUrl}
-                    alt={`${product.name} - miniatura ${index + 1}`}
-                  />
-                </div>
-              ))}
-              
-              {thumbnailImages.length === 0 && (
-                <div className="thumbnail">
-                  <div className="thumbnail-placeholder">
-                    <span>Sem imagens</span>
-                  </div>
-                </div>
-              )}
-            </div>
+        {/* --- Informações do Vinho (Lado Direito) --- */}
+        <div className="new-wine-info">
+          <div className="info-description">
+            <p>{product.description}</p>
           </div>
           
-          <div className="product-detail__info">
-            <div className="product-info__description">
-              <p>{product.description}</p>
-            </div>
-            
-            <div className="product-info__tabs">
-              <div className="tabs__header">
-                <button 
-                  className={`tab-button ${activeTab === "caracteristicas" ? "active" : ""}`}
-                  onClick={() => setActiveTab("caracteristicas")}
-                >
-                  Características
-                </button>
-                <button 
-                  className={`tab-button ${activeTab === "tecnico" ? "active" : ""}`}
-                  onClick={() => setActiveTab("tecnico")}
-                >
-                  Detalhes Técnicos
-                </button>
+          <div className="info-tabs">
+            <div className="tabs-header">
+              <button 
+                className={`tab-button ${activeTab === "caracteristicas" ? "active" : ""}`}
+                onClick={() => setActiveTab("caracteristicas")}
+              >
+                Características
+              </button>
+              <button 
+                className={`tab-button ${activeTab === "tecnico" ? "active" : ""}`}
+                onClick={() => setActiveTab("tecnico")}
+              >
+                Detalhes Técnicos
+              </button>
+              {product.awards && product.awards.length > 0 && (
                 <button 
                   className={`tab-button ${activeTab === "premios" ? "active" : ""}`}
                   onClick={() => setActiveTab("premios")}
                 >
                   Prémios
                 </button>
-              </div>
-              
-              <div className="tabs__content">
-                {activeTab === "caracteristicas" && (
-                  <div className="tab-content">
-                    <div className="content-section">
-                      <h3>Castas</h3>
-                      <ul className="varieties-list">
-                        {product.varieties.map((variety, index) => (
-                          <li key={index}>{variety}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div className="content-section">
-                      <h3>Características Sensoriais</h3>
-                      <p>{product.sensorial}</p>
-                    </div>
-                    
-                    <div className="content-section">
-                      <h3>Sugestão de Consumo</h3>
-                      <p>{product.consumo}</p>
-                    </div>
-                    
-                    <div className="content-section temperature">
-                      <h3>Temperatura Recomendada</h3>
-                      <div className="temperature-display">
-                        <span className="temperature-icon">🌡️</span>
-                        <span className="temperature-value">{product.temperatura}</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                {activeTab === "tecnico" && (
-                  <div className="tab-content">
-                    <div className="technical-specs">
-                      <div className="tech-item">
-                        <span className="tech-label">Teor Alcoólico</span>
-                        <span className="tech-value">{product.technical.alcohol}</span>
-                      </div>
-                      
-                      <div className="tech-item">
-                        <span className="tech-label">Acidez Total</span>
-                        <span className="tech-value">{product.technical.acidity}</span>
-                      </div>
-                      
-                      <div className="tech-item">
-                        <span className="tech-label">Açúcares Residuais</span>
-                        <span className="tech-value">{product.technical.sugar}</span>
-                      </div>
-                      
-                      <div className="tech-item">
-                        <span className="tech-label">pH</span>
-                        <span className="tech-value">{product.technical.ph}</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                
-                {activeTab === "premios" && (
-                  <div className="tab-content">
-                    <ul className="awards-list">
-                      {product.awards.map((award, index) => (
-                        <li key={index} className="award-item">
-                          <span className="award-medal">🏅</span>
-                          <span className="award-text">{award}</span>
-                        </li>
+              )}
+            </div>
+            
+            <div className="tabs-content">
+              {/* -- Tab Características -- */}
+              {activeTab === "caracteristicas" && (
+                <div className="tab-panel">
+                  <div className="content-section">
+                    <h3><BookOpen size={18} /> Castas</h3>
+                    <ul className="varieties-list">
+                      {product.varieties.map((variety, index) => (
+                        <li key={index}>{variety}</li>
                       ))}
                     </ul>
                   </div>
-                )}
-              </div>
+                  
+                  <div className="content-section">
+                    <h3><Info size={18} /> Características Sensoriais</h3>
+                    <p>{product.sensorial || "Informação não disponível."}</p>
+                  </div>
+                  
+                  <div className="content-section">
+                    <h3><GlassWater size={18} /> Sugestão de Consumo</h3>
+                    <p>{product.consumo || "Informação não disponível."}</p>
+                  </div>
+                  
+                  <div className="content-section temperature">
+                    <h3><Thermometer size={18} /> Temperatura Recomendada</h3>
+                    <div className="temperature-display">
+                      <span className="temperature-value">{product.temperatura || "N/A"}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* -- Tab Detalhes Técnicos -- */}
+              {activeTab === "tecnico" && (
+                <div className="tab-panel">
+                  <div className="technical-specs">
+                    <div className="tech-item">
+                      <span className="tech-label">Teor Alcoólico</span>
+                      <span className="tech-value">{product.technical.alcohol || "N/A"}</span>
+                    </div>
+                    <div className="tech-item">
+                      <span className="tech-label">Acidez Total</span>
+                      <span className="tech-value">{product.technical.acidity || "N/A"}</span>
+                    </div>
+                    <div className="tech-item">
+                      <span className="tech-label">Açúcares Residuais</span>
+                      <span className="tech-value">{product.technical.sugar || "N/A"}</span>
+                    </div>
+                    <div className="tech-item">
+                      <span className="tech-label">pH</span>
+                      <span className="tech-value">{product.technical.ph || "N/A"}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* -- Tab Prémios -- */}
+              {activeTab === "premios" && (
+                <div className="tab-panel">
+                  <ul className="awards-list">
+                    {product.awards.map((award, index) => (
+                      <li key={index} className="award-item">
+                        <Award size={20} className="award-icon" />
+                        <div className="award-details">
+                          <span className="award-text">{award[2]}</span>
+                          {award[3] && <span className="award-points">({award[3]} pts)</span>}
+                        </div>
+                        {award[1] && (
+                          <img 
+                            src={award[1]} 
+                            alt="Medalha" 
+                            className="award-medal-image"
+                          />
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
-        </section>
-      </main>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }
 
