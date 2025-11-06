@@ -1,0 +1,158 @@
+/* src/styles/NotFoundPage.css */
+
+/* Variáveis (assumindo que estão em :root) */
+:root {
+  --primary-color: #c0a080;
+  --text-dark: #3a3a3a;
+  --bg-light: #fdfdfa;
+  --font-display: 'AgathoRegularCAPS', 'serif';
+  --font-paragraph: 'Cormorant', serif;
+  --font-sans: 'Work Sans', sans-serif;
+}
+
+.not-found-page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  
+  /* Garante que ocupa o ecrã, compensando o header */
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 20px; /* 80px para o header */
+  
+  /* Imagem de Fundo */
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  
+  /* Animação de entrada */
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.not-found-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* Animação de conteúdo */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease 0.5s forwards;
+}
+
+.not-found-icon {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.not-found-404 {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  font-weight: 300;
+  color: white;
+  letter-spacing: 5px;
+  line-height: 1;
+  margin-bottom: 10px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.not-found-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--primary-color);
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.not-found-text {
+  font-family: var(--font-paragraph);
+  font-size: 1.5rem;
+  font-style: italic;
+  max-width: 500px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.not-found-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 35px;
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.not-found-link svg {
+  transition: transform 0.3s ease;
+}
+
+.not-found-link:hover {
+  background-color: rgba(192, 160, 128, 0.1);
+  color: #fff;
+  border-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.not-found-link:hover svg {
+  transform: translateX(-4px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .not-found-404 {
+    font-size: 6rem;
+  }
+  .not-found-title {
+    font-size: 2rem;
+  }
+  .not-found-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-404 {
+    font-size: 4.5rem;
+  }
+  .not-found-title {
+    font-size: 1.8rem;
+  }
+  .not-found-text {
+    font-size: 1.1rem;
+  }
+  .not-found-link {
+    padding: 12px 28px;
+    font-size: 0.8rem;
+  }
+}
