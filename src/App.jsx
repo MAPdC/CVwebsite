@@ -10,7 +10,7 @@ import WinePortfolioPage from './pages/WinePortfolioPage';
 import OliveOilPortfolioPage from './pages/OliveOilPortfolioPage';
 import WineProductPage from './pages/WineProductPage';
 import OliveOilProductPage from './pages/OliveOilProductPage';
-import HistoryPage from './pages/HistoryPage';
+import UnderConstructionPage from './pages/UnderConstructionPage';
 
 // Componente para selecionar o header correto
 function PageLayout() {
@@ -22,8 +22,8 @@ function PageLayout() {
     '/contacts',              // Contactos
     '/portfolio/wines',       // Portefólio de vinhos
     '/portfolio/olive-oils',  // Portefólio de azeites
-    '/find-us',               // Onde nos encontrar?
-    '/sustainability'         // Sustentabilidade
+    // '/about-us',               // Onde nos encontrar?
+    // '/sustainability'         // Sustentabilidade
     // Adicione mais caminhos conforme necessário
   ];
   
@@ -43,9 +43,13 @@ function PageLayout() {
           <Route path="/portfolio/wines/:slug" element={<WineProductPage />} />
           <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
           <Route path="/portfolio/olive-oils/:slug" element={<OliveOilProductPage />} />
-          <Route path="/history" element={<HistoryPage />} />
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/privacy-policies" element={<PrivacyPage />} />
+
+          <Route path="/history" element={<UnderConstructionPage />} />
+          <Route path="/sustainability" element={<UnderConstructionPage />} />
+          <Route path="/about-us" element={<UnderConstructionPage />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

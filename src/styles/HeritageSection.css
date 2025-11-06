@@ -1,7 +1,10 @@
+/* src/styles/HeritageSection.css */
+
 .heritage-section {
   position: relative;
   width: 100%;
-  height: 600px;
+  min-height: 600px; 
+  height: 90vh; /* Altura relativa à viewport, com um mínimo */
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -20,7 +23,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%; /* Reduzido glow */
+  width: 70%; 
   height: 70%;
   background: radial-gradient(ellipse at center, rgba(192, 160, 128, 0.06) 0%, transparent 65%);
   pointer-events: none;
@@ -31,10 +34,9 @@
   left: 0;
   right: 0;
   height: 1px;
-  /* Gradiente dourado similar ao do WineCarousel */
   background: linear-gradient(90deg, transparent, rgba(192, 160, 128, 0.7), transparent);
-  z-index: 3; /* Ajuste o z-index se necessário para ficar por cima de outros elementos */
-  pointer-events: none; /* Para não interferir com cliques */
+  z-index: 3; 
+  pointer-events: none; 
 }
 
 .section-line-top {
@@ -52,7 +54,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%; /* Move a imagem para baixo para mostrar a parte importante */
+  object-position: center 30%; 
   filter: grayscale(0.3) brightness(0.5);
   transition: all 0.8s ease;
 }
@@ -68,8 +70,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);
+  /* Gradiente mais forte em ecrãs pequenos (default) */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 100%);
   z-index: 2;
+  transition: background 0.5s ease;
 }
 
 .heritage-content {
@@ -77,26 +81,30 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 0 10%;
+  justify-content: center; /* Centra verticalmente (Mantém) */
+  padding: 0 8%; /* Padding para ecrãs pequenos */
   height: 100%;
   color: white;
   max-width: 1400px;
   margin: 0 auto;
+  
+  /* --- ESTILO DEFAULT (MOBILE) --- */
+  text-align: center; /* Centra o texto horizontalmente */
+  align-items: center; /* Centra os blocos (como o link) */
 }
 
 .heritage-title-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center; /* DEFAULT: Centrado */
   margin-bottom: 40px;
 }
 
 .heritage-title {
   font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 2.2rem;
+  font-size: 1.8rem; /* Tamanho para mobile */
   font-weight: 300;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   margin: 0;
 }
 
@@ -104,21 +112,21 @@
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  margin-bottom: 40px;
+  width: 100%; /* Garante que ocupa a largura em mobile */
+  margin: 0 auto 30px auto; /* DEFAULT: Centrado */
 }
 
 .heritage-year-highlighted {
   font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 4rem;
+  font-size: 3rem; /* Tamanho para mobile */
   color: #c0a080;
   line-height: 1;
   margin: 0 0 20px 0;
 }
 
-/* Novo estilo para a frase de introdução */
 .heritage-intro-text {
   font-family: 'Cormorant', serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Tamanho para mobile */
   font-weight: 500;
   line-height: 1.5;
   margin-bottom: 25px;
@@ -129,7 +137,7 @@
 
 .heritage-text {
   font-family: 'Cormorant', serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Tamanho para mobile */
   line-height: 1.6;
   margin-bottom: 30px;
   color: #e0e0e0;
@@ -137,14 +145,14 @@
 
 .heritage-link {
   font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Tamanho para mobile */
   letter-spacing: 2px;
   color: #c0a080;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
-  align-self: flex-start;
+  align-self: center; /* DEFAULT: Centrado */
 }
 
 .heritage-link-arrow {
@@ -160,94 +168,114 @@
   transform: translateX(5px);
 }
 
+/* Timeline (Ocultado em mobile para simplicidade, mas centrado por defeito) */
 .heritage-timeline {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 40px;
+  flex-direction: column; /* DEFAULT: Coluna */
+  justify-content: center;
 }
-
+.timeline-line {
+  width: 1px;
+  height: 20px;
+  background-color: rgba(192, 160, 128, 0.5);
+  margin: 5px 0;
+}
 .timeline-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-}
-
-.timeline-date {
-  font-family: 'AgathoRegularCAPS', 'serif';
-  font-size: 1rem;
-  color: #c0a080;
-  margin-bottom: 10px;
-}
-
-.timeline-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #c0a080;
   margin: 5px 0;
 }
+/* ... (outros estilos de timeline) ... */
 
-.timeline-label {
-  font-family: 'Cormorant', serif;
-  font-size: 0.9rem;
-  margin-top: 10px;
-}
 
-.timeline-line {
-  flex-grow: 1;
-  height: 1px;
-  background-color: rgba(192, 160, 128, 0.5);
-  margin: 0 10px;
-}
+/* --- Media Queries (Responsividade) --- */
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .heritage-section {
-    height: 700px;
-  }
-  
-  .heritage-bg-image {
-    object-position: center 25%; /* Ajuste para mobile */
-  }
+/* Breakpoint para TABLET e PC (onde o alinhamento muda) */
+@media (min-width: 769px) {
   
   .heritage-overlay {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 100%);
+    /* Retorna ao gradiente original em ecrãs maiores */
+    background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);
   }
-  
+
   .heritage-content {
-    padding: 0 5%;
-    text-align: center;
+    /* --- ALTERAÇÃO AQUI --- */
+    text-align: left; /* Alinha o texto à esquerda */
+    align-items: flex-start; /* Alinha os blocos (link) à esquerda */
+    padding: 0 10%; /* Padding lateral para desktop */
   }
-  
+
   .heritage-title-container {
-    justify-content: center;
+    /* --- ALTERAÇÃO AQUI --- */
+    justify-content: flex-start; /* Alinha o título à esquerda */
   }
-  
+
   .heritage-info {
-    margin: 0 auto 30px auto;
+    /* --- ALTERAÇÃO AQUI --- */
+    margin: 0 0 30px 0; /* Remove a margem automática */
   }
-  
-  .heritage-intro-text {
-    font-size: 1.3rem;
-  }
-  
+
   .heritage-link {
-    align-self: center;
+    /* --- ALTERAÇÃO AQUI --- */
+    align-self: flex-start; /* Alinha o link à esquerda */
+    font-size: 0.9rem;
   }
-  
+
+  /* Ajustes de fonte para ecrãs maiores */
+  .heritage-title {
+    font-size: 2.2rem;
+    letter-spacing: 5px;
+  }
+  .heritage-year-highlighted {
+    font-size: 4rem; 
+  }
+  .heritage-intro-text {
+    font-size: 1.4rem; 
+  }
+  .heritage-text {
+    font-size: 1.2rem; 
+  }
+
+  /* Restaura o timeline horizontal (se desejar) */
   .heritage-timeline {
-    flex-direction: column;
-    margin-top: 40px;
+    flex-direction: row; 
+    justify-content: flex-start;
   }
-  
   .timeline-line {
-    width: 1px;
-    height: 20px;
-    margin: 5px 0;
+    width: auto;
+    flex-grow: 1;
+    height: 1px;
+    margin: 0 10px;
   }
-  
   .timeline-item {
-    margin: 5px 0;
+    margin: 0 5px;
+  }
+}
+
+/* Media query adicional para telemóveis pequenos (apenas ajustes finos) */
+@media (max-width: 480px) {
+  .heritage-section {
+    min-height: 650px; 
+  }
+
+  .heritage-content {
+    padding: 0 6%; /* Padding mais apertado */
+  }
+
+  .heritage-title {
+    font-size: 1.6rem;
+  }
+  .heritage-year-highlighted {
+    font-size: 2.5rem; 
+  }
+  .heritage-intro-text {
+    font-size: 1.1rem;
+  }
+  .heritage-text {
+    font-size: 1rem;
   }
 }

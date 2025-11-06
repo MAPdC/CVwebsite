@@ -1,122 +1,261 @@
+/* Assumindo que as variáveis :root de index.css estão disponíveis */
+
 .footer {
-    background-color: black;
-    color: white;
-    padding: 40px 0;
-  }
-  
-  .footer-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
+  background-color: #f5f3f0; /* Alterado de preto para creme */
+  color: var(--text-medium, #555); /* Alterado de branco para texto médio */
+  padding: 60px 0 40px;
+  border-top: 1px solid var(--border-light, #eee);
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column; /* Mobile-first */
+  justify-content: space-between;
+  align-items: center; /* Mobile-first */
+  margin-bottom: 40px; /* Reduzido o margin-bottom */
+  gap: 40px; /* Adicionado gap para mobile */
+}
+
+.footer-column {
+  width: 100%;
+  max-width: 350px; /* Limite para colunas em mobile */
+  text-align: center; /* Mobile-first */
+}
+
+.column-title {
+  color: var(--primary-color, #c0a080); /* Cor primária (dourado) */
+  font-family: var(--font-display, 'AgathoRegularCAPS', 'serif');
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.column-title.social-title {
+  margin-top: 30px;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espaçamento entre links */
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: var(--text-medium, #555); /* Cor do texto */
+  transition: color 0.3s;
+  font-family: var(--font-primary, 'Work Sans', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 400; /* Peso da fonte para links */
+  letter-spacing: 0.5px;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-color, #c0a080); /* Cor dourada no hover */
+}
+
+.footer-logo {
+  width: 160px; /* Aumentado de 120px */
+  height: 160px; /* Aumentado de 120px */
+  margin: 0 auto 15px auto;
+}
+
+.footer-logo-text {
+  text-decoration: none;
+}
+
+.footer-logo-text .logo__line1,
+.footer-logo-text .logo__line2 {
+  display: block;
+  font-family: 'AgathoRegularCAPS', 'serif';
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 1.3px;
+  color: var(--primary-color, #c0a080);
+  line-height: 1.2;
+}
+
+/* Estilos de Contacto */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--font-primary, 'Work Sans', sans-serif);
+  font-size: 0.9rem;
+  color: var(--text-medium, #555);
+}
+
+.contact-info p {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; /* Mobile-first */
+  margin: 0;
+  line-height: 1.5;
+}
+
+.contact-info svg {
+  color: var(--primary-color, #c0a080);
+  margin-right: 10px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.contact-info a {
+  color: var(--text-medium, #555);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-info a:hover {
+  color: var(--primary-color, #c0a080);
+}
+
+/* Estilos para morada e telefone */
+.contact-info .address-multi-line span {
+  display: block;
+  line-height: 1.6;
+}
+
+.contact-info .phone-numbers {
+  display: flex;
+  flex-direction: column; /* Empilha os números em mobile */
+  gap: 4px; /* Pequeno espaço entre números */
+}
+.contact-info .phone-separator {
+  display: none; /* Esconde o separador "/" em mobile */
+}
+
+
+/* Redes Sociais */
+.social-icons {
+  display: flex;
+  justify-content: center; /* Mobile-first */
+  gap: 20px; /* Aumentado o gap */
+}
+
+.social-icons a {
+  color: var(--text-dark, #3a3a3a); /* Cor escura para ícones */
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color, #c0a080); /* Cor dourada no hover */
+  transform: scale(1.1);
+}
+
+/* Secção Inferior */
+.footer-bottom {
+  border-top: 1px solid var(--border-light, #eee);
+  padding-top: 30px; /* Aumentado padding */
+  margin-top: 40px; /* Aumentado margem */
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 16px;
+  gap: 10px; /* Adicionado gap */
+}
+
+.footer-links a {
+  color: var(--text-light, #777);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-family: var(--font-primary, 'Work Sans', sans-serif);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color, #c0a080);
+}
+
+.copyright {
+  color: var(--text-light, #777);
+  font-family: var(--font-primary, 'Work Sans', sans-serif);
+  font-size: 0.8rem;
+}
+
+/* Media Query for larger screens (Tablets e Desktops) */
+@media (min-width: 992px) {
   .footer-top {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 64px;
+    flex-direction: row;
+    align-items: flex-start; /* Alinha colunas no topo */
+    gap: 40px; /* Gap entre colunas */
   }
   
   .footer-column {
-    margin-bottom: 32px;
+    text-align: left; /* Alinha à esquerda por defeito */
+    width: auto;
+    max-width: none;
+  }
+
+  .footer-column.footer-logo-container {
+    flex: 0 1 250px; /* Define uma base para o logo */
     text-align: center;
+    padding: 0 20px;
   }
-  
-  .column-title {
-    color: #b87333;
-    font-size: 1.25rem;
-    margin-bottom: 24px;
+
+  .footer-column.footer-nav-links {
+    flex: 1;
+    text-align: left;
   }
-  
-  .footer-nav {
-    list-style: none;
-    padding: 0;
+
+  .footer-column.footer-contacts {
+    flex: 1;
+    text-align: right; /* Alinha contactos à direita */
   }
-  
-  .footer-nav li {
-    margin-bottom: 8px;
+
+  .contact-info p {
+    justify-content: flex-end; /* Alinha items de contacto à direita */
   }
-  
-  .footer-nav a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s;
-    font-family: var(--font-primary);
+
+  .contact-info .address-multi-line {
+    text-align: right; /* Alinha o texto da morada à direita */
   }
-  
-  .footer-nav a:hover {
-    color: #C59B76;
+
+  .contact-info .phone-numbers {
+    flex-direction: row; /* Lado a lado em desktop */
+    gap: 8px;
+    justify-content: flex-end; /* Alinha à direita */
   }
-  
-  .footer-logo {
-    width: 250px;
-    height: 250px;
-    margin: 0 auto;
+  .contact-info .phone-separator {
+    display: inline; /* Mostra o separador "/" em desktop */
+    color: var(--text-light, #777); /* Cor suave para o separador */
   }
-  
+
   .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-  }
-  
-  .social-icons a {
-    color: white;
-    transition: color 0.3s;
-  }
-  
-  .social-icons a:hover {
-    color: #C59B76;
+    justify-content: flex-end; /* Alinha ícones sociais à direita */
   }
   
   .footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 24px;
-    text-align: center;
-  }
-  
-  .footer-links {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 16px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    gap: 32px;
+    margin-bottom: 0;
   }
   
   .footer-links a {
-    color: #888;
-    text-decoration: none;
-    margin: 6px 0;
-    transition: color 0.3s;
+    margin: 0;
   }
-  
-  .footer-links a:hover {
-    color: #C59B76;
-  }
-  
-  .copyright {
-    color: #888;
-    font-size: 0.875rem;
-  }
-  
-  /* Media Query for larger screens */
-  @media (min-width: 768px) {
-    .footer-top {
-      flex-direction: row;
-    }
-    
-    .footer-column {
-      margin-bottom: 0;
-      text-align: left;
-    }
-    
-    .footer-links {
-      flex-direction: row;
-      gap: 32px;
-    }
-    
-    .footer-links a {
-      margin: 0;
-    }
-  }
+}

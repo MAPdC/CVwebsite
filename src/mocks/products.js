@@ -240,13 +240,13 @@ export const wines = [
     {
       id: 7,
       slug: "white-harvest-curtimenta-unoaked-2023", 
-      name: "Branco Colheita Curtimenta Unoaked 2023", // NOS DETAILS COLOCAR 'CURTIMENTA' DE FORMA DIFERENTE?
+      name: "Branco Colheita Curtimenta Unoaked 2023",
       year: "2023",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
       briefdescription: "Um vinho intenso com sabor encorpado marcado por notas de casca de laranja.",
       type: "Branco",
       category: "Douro DOC",
-      varieties: ["Arinto", "Verdelho", "Viosinho"], // COLOCAR % DE CADA CASTA?
+      varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
         vbcun23_1
       ],
@@ -255,9 +255,9 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L", // VALE A PENA?
-        sugar: "0.0 g/L", // VALE A PENA?
-        ph: "0" // VALE A PENA?
+        acidity: "0.0 g/L",
+        sugar: "0.0 g/L", 
+        ph: "0"
       },
       awards: [],
       onmarket: false,
@@ -274,7 +274,7 @@ export const wines = [
       briefdescription: "Um vinho intenso, encorpado e persistente com notas da cresta dos cortiços.",
       type: "Branco",
       category: "Douro DOC",
-      varieties: ["Arinto", "Verdelho", "Viosinho"], // COLOCAR % DE CADA CASTA?
+      varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
         vbco23_1
       ],
@@ -283,9 +283,9 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L", // VALE A PENA?
-        sugar: "0.0 g/L", // VALE A PENA?
-        ph: "0" // VALE A PENA?
+        acidity: "0.0 g/L",
+        sugar: "0.0 g/L",
+        ph: "0"
       },
       awards: [],
       onmarket: false,
@@ -308,9 +308,9 @@ export const wines = [
         vto20_2,
         vto20_3
       ],
-      sensory: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
-      pairing: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
-      temperature: "16 a 18°C",
+      sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas a frutos vermelhos bem maduros e nuances de baunilha e cacau elegantemente cedidos pela madeira.",
+      consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      temperatura: "16 a 18°C",
       technical: {
         alcohol: "13,5%",
         acidity: "0.0 g/L",
