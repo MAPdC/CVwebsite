@@ -104,12 +104,7 @@ p {
   font-family: var(--font-secundary);
 }
 
-/* === Tema (opcional) === */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-white: var(--bg-dark);
-  }
-}
+
 
 /* === Adicionar fonte Agatho Regular CAPS .otf === */
 @font-face {
