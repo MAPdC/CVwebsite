@@ -16,11 +16,11 @@ const Footer = () => {
               <h3 className="column-title">Navegação</h3>
               <ul className="footer-nav">
                 <li><a href="/">Início</a></li>
-                <li><a href="/about-us">Sobre Nós</a></li>
-                <li><a href="/history">História</a></li>
-                <li><a href="/sustainability">Sustentabilidade</a></li>
                 <li><a href="/portfolio/wines">Vinhos</a></li>
                 <li><a href="/portfolio/olive-oils">Azeites</a></li>
+                {/*<li><a href="/about-us">Sobre Nós</a></li>*/}
+                {/*<li><a href="/history">História</a></li>*/}
+                {/*<li><a href="/sustainability">Sustentabilidade</a></li>*/}
                 <li><a href="/contacts">Contactos</a></li>
               </ul>
             </div>
