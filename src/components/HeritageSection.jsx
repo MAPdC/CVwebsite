@@ -59,7 +59,7 @@ const HeritageSection = () => {
             As vinhas e oliveiras herdadas de geração em geração foram alvo de várias reestruturações e modernizações ao longo dos anos,
             respeitando sempre a tradição e o terroir único do Douro.
           </p>
-          <Link to="/historia" className="heritage-link">
+          <Link to="/history" className="heritage-link">
             SAIBA MAIS SOBRE O NOSSO LEGADO
             <span className="heritage-link-arrow">→</span>
           </Link>
