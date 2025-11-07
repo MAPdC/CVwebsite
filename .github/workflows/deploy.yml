@@ -47,6 +47,10 @@ jobs:
       - name: Build
         run: npm run build # Este comando executa "vite build"
 
+      # 4.5. Copia o index.html para 404.html para o React Router funcionar
+      - name: Create 404.html for SPA
+        run: cp dist/index.html dist/404.html
+
       # 5. Configura o GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
