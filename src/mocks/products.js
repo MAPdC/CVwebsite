@@ -53,6 +53,13 @@ import { text } from '@fortawesome/fontawesome-svg-core';
 // É preciso importar as imagens usadas nos azeites
 import lateharvest from '../assets/azeite.png';
 
+// Imagens de prémios
+import vinduero from '../assets/logo-vinduero.png';
+import ourof23 from '../assets/vinduero-ourof-23.png';
+import ouro24 from '../assets/vinduero-ouro-24.png';
+import ouro22 from '../assets/vinduero-ouro-22.png';
+import ourof24 from '../assets/vinduero-ourof-24.png';
+
 
 export const wines = [
     {
@@ -79,7 +86,7 @@ export const wines = [
         sugar: "0.0 g/L",
         ph: "0.0"
       },
-      awards: [["/images/logo-vinduero.png", "/images/vinduero-ourof-23.png", "Medalha de Ouro em Feminino 2023","90,00"]],
+      awards: [[vinduero, ourof23, "Medalha de Ouro em Feminino 2023","90,00"]],
       onmarket: false,
       collection: true,
       oaked: true,
@@ -109,7 +116,7 @@ export const wines = [
         sugar: "0.0 g/L",
         ph: "0"
       },
-      awards: [["/images/logo-vinduero.png", "/images/vinduero-ouro-24.png", "Medalha de Ouro 2024","92,55"], ["/images/logo-vinduero.png", "/images/vinduero-ourof-24.png", "Medalha de Ouro em Feminino 2024", "92,93"]],
+      awards: [[vinduero, ouro24, "Medalha de Ouro 2024","92,55"], [vinduero, ourof24, "Medalha de Ouro em Feminino 2024", "92,93"]],
       onmarket: false,
       collection: true,
       oaked: false,
@@ -139,7 +146,7 @@ export const wines = [
         sugar: "0.0 g/L",
         ph: "0"
       },
-      awards: [["/images/logo-vinduero.png", "/images/vinduero-ouro-22.png", "Medalha de Ouro 2022","90,77"]],
+      awards: [[vinduero, ouro22, "Medalha de Ouro 2022","90,77"]],
       onmarket: false,
       collection: true,
       oaked: true,
