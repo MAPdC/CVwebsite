@@ -1,7 +1,7 @@
 /* Main Section */
 .wine-carousel-premium {
   padding: 100px 0; /* Reduzido padding vertical */
-  background-image: url('../assets/garrafas-1.jpg'); /* ADICIONADO: Caminho para a sua imagem */
+  background-image: url('../assets/garrafas-1-tiny.jpg'); /* ADICIONADO: Caminho para a sua imagem */
   background-size: cover; /* ADICIONADO: Para cobrir toda a área */
   background-position: center; /* ADICIONADO: Para centralizar a imagem */
   background-attachment: fixed; /* ADICIONADO: Efeito Parallax (opcional) */

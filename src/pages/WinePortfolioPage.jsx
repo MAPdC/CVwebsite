@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/WinePortfolioPage.css";
-import heroBackground from '../assets/old-references.jpg';
+import heroBackground from '../assets/old-references-tiny.jpg';
 import { wines } from "../mocks/products";
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
 

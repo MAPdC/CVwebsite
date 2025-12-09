@@ -1,13 +1,11 @@
 import "../styles/HomePage.css";
 import HeritageSection from "../components/HeritageSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
-// import TestimonialsSection from "../components/TestimonialsSection.jsx";
-// import TerroirSection from "../components/TerroirSection.jsx";
 import WineCarousel from "../components/WineCarousel.jsx";
 import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
 import React, { useEffect, useRef, useState } from "react";
-import heroImage from "../assets/douro-1.jpg";
+import heroImage from "../assets/douro-1-tiny.jpg";
 import logoBranco from "../assets/cv-logo-branco.png";
 
 const HomePage = () => {
@@ -61,12 +59,6 @@ const HomePage = () => {
     transform: `translateY(${scrollPosition * 0.4}px)`
   };
 
-  // Function to handle author click
-  const handleAuthorClick = (event) => {
-    window.open('https://pt.wikipedia.org/wiki/Ant%C3%B3nio_Cabral_(escritor)', '_blank', 'noopener,noreferrer');
-    // Remove focus after click to avoid the selection box when returning
-    event.target.blur();
-  };
 
   return (
     <div className="home">
@@ -75,7 +67,7 @@ const HomePage = () => {
         <div className="hero-container parallax-bg" style={parallaxStyle}>
           <img 
             src={heroImage} 
-            alt="Vista panorâmica do Casttêdo Valley" 
+            alt="Vista panorâmica do Vale do Douro" 
             className="hero-image"
           />
         </div>

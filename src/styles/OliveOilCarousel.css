@@ -14,7 +14,7 @@
 /* --- Secção Principal --- */
 .olive-oil-carousel-premium {
   padding: 100px 0;
-  background-image: url('../assets/oliveira-2.jpg'); /* ADICIONADO: Caminho para a imagem de fundo do azeite */
+  background-image: url('../assets/oliveira-2-tiny.jpg'); /* ADICIONADO: Caminho para a imagem de fundo do azeite */
   background-size: cover; /* ADICIONADO: Para cobrir toda a área */
   background-position: center; /* ADICIONADO: Para centralizar a imagem */
   background-attachment: fixed; /* ADICIONADO: Efeito Parallax (opcional) */

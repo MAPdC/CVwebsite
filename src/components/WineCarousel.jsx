@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom'; // Manter a importação
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
-import { wines } from '../mocks/products.js'; // Verifique o caminho
-import "../styles/WineCarousel.css"; // Verifique o caminho
+import { wines } from '../mocks/products.js';
+import "../styles/WineCarousel.css";
 
 const WineCard = ({ wine, isHovered, setIsHovered }) => {
   return (
-    // O div wrapper do cartão agora é o elemento clicável que leva aos detalhes
     <Link to={`/portfolio/wines/${wine.slug}`} className={`wine-card-premium ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ textDecoration: 'none', color: 'inherit' }} // Garante que não parece um link padrão
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <div className="wine-card-shimmer" />
 
@@ -41,11 +40,8 @@ const WineCard = ({ wine, isHovered, setIsHovered }) => {
             <span className="variety-more-premium">+{wine.varieties.length - 2}</span>
           )}
         </div>
-
-        {/* REMOVIDO o Link/Botão 'Ver Portefólio' daqui */}
-
       </div>
-    </Link> // Fechar o Link que envolve o cartão
+    </Link>
   );
 };
 
@@ -124,7 +120,6 @@ const WineCarouselPremium = () => {
       <div className="wine-carousel-line-top" />
 
       <div className="wine-carousel-container-premium">
-        {/* Header (Título, Subtítulo, Ornamento) - Mantém-se igual */}
         <div className="wine-carousel-header-premium">
           <div className="wine-carousel-subtitle-premium">
             <Sparkles size={12} />
@@ -139,7 +134,6 @@ const WineCarouselPremium = () => {
           </div>
         </div>
 
-        {/* Wrapper do Carrossel (Botões + Grelha) - Mantém-se igual */}
         <div className={`wine-carousel-wrapper-premium ${totalSlides < 3 ? 'justify-center' : ''}`}>
           {totalSlides > 1 && (
              <button onClick={prevSlide} className="carousel-nav-premium prev" aria-label="Vinho anterior">
@@ -163,7 +157,6 @@ const WineCarouselPremium = () => {
           )}
         </div>
 
-        {/* Indicadores - Mantêm-se iguais */}
         {totalSlides > 1 && (
           <div className="wine-carousel-indicators-premium">
             {availableWines.map((_, index) => (
@@ -172,14 +165,12 @@ const WineCarouselPremium = () => {
           </div>
         )}
 
-        {/* ADICIONADO: Link geral para o portefólio */}
         <div className="carousel-portfolio-link-container">
           <Link to="/portfolio/wines" className="carousel-portfolio-link">
             Ver Todo o Portefólio
             <ArrowRight size={16} className="portfolio-link-arrow" />
           </Link>
         </div>
-        {/* Fim da adição */}
 
       </div>
     </section>

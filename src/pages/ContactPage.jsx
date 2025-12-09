@@ -1,15 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import "../styles/ContactPage.css"; // Vamos usar o novo CSS
-
-// Imagens
-import heroBackground from "../assets/douro-2.jpeg"; 
-
-// Ícones
+import "../styles/ContactPage.css";
+import heroBackground from "../assets/douro-2-tiny.jpeg"; 
 import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
-// Ícones para "Como Chegar" (pode substituir por SVGs se preferir)
 import { Car, Train, Ship } from 'lucide-react'; 
 
-// Componente de Cartão de Experiência (para limpar o JSX principal)
 const ExperienceCard = ({ icon, title, text }) => (
   <div className="experience-card">
     <div className="experience-icon">{icon}</div>
@@ -18,7 +12,6 @@ const ExperienceCard = ({ icon, title, text }) => (
   </div>
 );
 
-// Componente de Item de Direção (para limpar o JSX principal)
 const DirectionItem = ({ icon, title, text }) => (
   <div className="directions-item">
     <div className="directions-icon">{icon}</div>
@@ -31,7 +24,6 @@ const DirectionItem = ({ icon, title, text }) => (
 
 
 const ContactPage = () => {
-  // Refs para animações de scroll
   const refs = {
     hero: useRef(null),
     content: useRef(null),
@@ -40,7 +32,7 @@ const ContactPage = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Garante que a página carrega no topo
+    window.scrollTo(0, 0);
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
