@@ -7,7 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output (gerado automaticamente pelo GitHub Actions)
+dist
 dist-ssr
 *.local
 
@@ -21,3 +25,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Ficheiros de sistema
+desktop.ini
+Thumbs.db
+
+# Notas e rascunhos internos
+notes.md
+references.md
