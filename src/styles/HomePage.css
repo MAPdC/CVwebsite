@@ -106,6 +106,22 @@
   width: 100%;
 }
 
+/* Transição suave do Banner Dinâmico */
+.brand-transition {
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.brand-transition.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none; /* Para não bloquear cliques */
+}
+
+.brand-transition.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
 
 @keyframes fade-in-transition {
   0% {

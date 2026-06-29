@@ -231,15 +231,19 @@
   color: white;
 }
 
+.filter-btn.active-tinto:hover {
+  background-color: #6a021e; /* Mantém a cor escura */
+  color: white;
+}
+
 .filter-btn.active-branco {
   background-color: #d4af37; /* Tom de ouro / branco encorpado */
   border-color: #c29e31;
   color: white;
 }
 
-.filter-btn.active-rose {
-  background-color: #d96c8a; /* Tom de rosé mais escuro */
-  border-color: #c85a78;
+.filter-btn.active-branco:hover {
+  background-color: #c29e31; 
   color: white;
 }
   

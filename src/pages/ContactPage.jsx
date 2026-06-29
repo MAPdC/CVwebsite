@@ -167,17 +167,17 @@ const ContactPage = () => {
                 <DirectionItem 
                   icon={<Car size={30} />}
                   title="De Carro"
-                  text="Do Porto: Siga a A4 em direção a Vila Real, depois a N322 até Alijó e siga as indicações para Castedo."
+                  text="Do Porto: Siga a A4 em direção a Vila Real, saia para o IC5, depois siga pela N322 até Alijó e siga pela M597 até ao Castêdo."
                 />
                 <DirectionItem 
                   icon={<Train size={30} />}
                   title="De Comboio"
-                  text="Linha do Douro até à estação de Pinhão, depois táxi até Castedo (aproximadamente 15 minutos)."
+                  text="Linha do Douro até à estação do Pinhão ou do Tua, depois apanhe um táxi até ao Castêdo."
                 />
                 <DirectionItem 
                   icon={<Ship size={30} />}
                   title="De Barco"
-                  text="Cruzeiro no Douro até Pinhão, depois táxi até Castedo."
+                  text="Cruzeiro no Douro até ao Pinhão, depois apanhe um táxi até ao Castêdo (aproximadamente 25 minutos)."
                 />
               </div>
             </div>

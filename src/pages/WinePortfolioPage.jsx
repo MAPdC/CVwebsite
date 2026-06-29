@@ -99,13 +99,13 @@ function WinePortfolioPage() {
                 className={`filter-btn ${filter === "tinto" ? "active-tinto" : ""}`}
                 onClick={() => setFilter("tinto")}
               >
-                Tintos
+                Tinto
               </button>
               <button 
                 className={`filter-btn ${filter === "branco" ? "active-branco" : ""}`}
                 onClick={() => setFilter("branco")}
               >
-                Brancos
+                Branco
               </button>
               {/*
               <button 

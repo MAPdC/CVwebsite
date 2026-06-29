@@ -45,9 +45,10 @@ function HeaderInternal() {
               <li><a href="/portfolio/olive-oils">AZEITES</a></li>
             </ul>
           </li>
-          <li><a href="/about-us">SOBRE NÓS</a></li>
+          {/* <li><a href="/about-us">SOBRE NÓS</a></li>
           <li><a href="/sustainability">SUSTENTABILIDADE</a></li>
           <li><a href="/history">HISTÓRIA</a></li>
+          */}
           <li><a href="/contacts">CONTACTOS</a></li>
         </ul>
       </nav>

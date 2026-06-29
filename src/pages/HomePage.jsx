@@ -7,13 +7,22 @@ import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1-tiny.jpg";
 import logoBranco from "../assets/cv-logo-branco.png";
+import logoCamuflado from "../assets/camuflado-logo.png";
 
 const HomePage = () => {
   const heroRef = useRef(null);
   const transitionRef = useRef(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+
+  // Estado para controlar a marca atual (0 = Casttêdo, 1 = Camuflado)
+  const [activeBrand, setActiveBrand] = useState(0);
   
   useEffect(() => {
+    // Alternar o banner a cada 6 segundos
+    const brandInterval = setInterval(() => {
+      setActiveBrand((prev) => (prev === 0 ? 1 : 0));
+    }, 6000);
+
     const observerOptions = {
       root: null,
       rootMargin: '0px',
@@ -44,12 +53,9 @@ const HomePage = () => {
     window.addEventListener('scroll', handleScroll);
     
     return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-      if (transitionRef.current) {
-        observer.unobserve(transitionRef.current);
-      }
+      clearInterval(brandInterval); // Limpar o temporizador
+      if (heroRef.current) observer.unobserve(heroRef.current);
+      if (transitionRef.current) observer.unobserve(transitionRef.current);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -71,7 +77,9 @@ const HomePage = () => {
             className="hero-image"
           />
         </div>
-        <div className="hero-overlay">
+
+        {/* --- Renderização Condicional com Fade --- */}
+        <div className={`hero-overlay brand-transition ${activeBrand === 0 ? 'visible' : 'hidden'}`}>
           <div className="hero-logo">
             <img 
               src={logoBranco} 
@@ -81,6 +89,21 @@ const HomePage = () => {
           </div>
           <h1 className="hero-title">CASTTÊDO VALLEY</h1>
         </div>
+
+        <div className={`hero-overlay brand-transition ${activeBrand === 1 ? 'visible' : 'hidden'}`}>
+          <div className="hero-logo">
+            <img 
+              src={logoCamuflado} 
+              alt="Camuflado Logo" 
+              className="hero-logo-image"
+              style={{ filter: "brightness(0) invert(1)" }} /* Força a imagem a ficar branca caso seja preta */
+            />
+          </div>
+          <h1 className="hero-title" style={{ fontFamily: 'Work Sans', fontWeight: '400', letterSpacing: '4px' }}>
+            A NATUREZA METAMORFOSEADA
+          </h1>
+        </div>
+
       </section>
 
       {/* História & Heritage Section */}
