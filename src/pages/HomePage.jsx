@@ -6,126 +6,125 @@ import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
 import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1-tiny.jpg";
+import heroImage2 from "../assets/douro-camuflado.jpeg";
 import logoBranco from "../assets/cv-logo-branco.png";
-import logoCamuflado from "../assets/camuflado-logo.png";
+import logoRaposa from "../assets/camuflado-raposa-logo-branco.png";
+import logoLebre  from "../assets/camuflado-lebre-logo-branco.png";
+
+const HERO_SLIDES = [
+  {
+    id: "casttedo",
+    image: heroImage,
+    brand: "CASTTÊDO VALLEY",
+    logos: [logoBranco],
+    logoAlt: ["Casttêdo Valley Logo"],
+  },
+  {
+    id: "camuflado",
+    image: heroImage,
+    brand: "CAMUFLADO",
+    logos: [
+      logoRaposa,
+      logoLebre,
+    ],
+    logoAlt: ["Camuflado Raposa Logo", "Camuflado Lebre Logo"],
+  },
+];
+
+const SLIDE_DURATION = 5000; // ms que cada slide fica visível
 
 const HomePage = () => {
-  const heroRef = useRef(null);
-  const transitionRef = useRef(null);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollY, setScrollY]   = useState(0);
+  const [active, setActive]     = useState(0);
+  const timerRef                = useRef(null);
 
-  // Estado para controlar a marca atual (0 = Casttêdo, 1 = Camuflado)
-  const [activeBrand, setActiveBrand] = useState(0);
-  
   useEffect(() => {
-    // Alternar o banner a cada 6 segundos
-    const brandInterval = setInterval(() => {
-      setActiveBrand((prev) => (prev === 0 ? 1 : 0));
-    }, 6000);
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-    
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-    
-    if (transitionRef.current) {
-      observer.observe(transitionRef.current);
-    }
-    
-    // Handle scroll for parallax effect
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      clearInterval(brandInterval); // Limpar o temporizador
-      if (heroRef.current) observer.unobserve(heroRef.current);
-      if (transitionRef.current) observer.unobserve(transitionRef.current);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Calculate parallax transform
-  const parallaxStyle = {
-    transform: `translateY(${scrollPosition * 0.4}px)`
+  const startTimer = (from) => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActive((cur) => (cur + 1) % HERO_SLIDES.length);
+    }, SLIDE_DURATION);
   };
 
+  useEffect(() => {
+    startTimer(0);
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  const goTo = (i) => {
+    setActive(i);
+    startTimer(i);
+  };
+
+  const parallax = { transform: `translateY(${scrollY * 0.4}px)` };
 
   return (
     <div className="home">
-      {/* Hero Section with Parallax */}
-      <section className="hero parallax-scroll" ref={heroRef}>
-        <div className="hero-container parallax-bg" style={parallaxStyle}>
-          <img 
-            src={heroImage} 
-            alt="Vista panorâmica do Vale do Douro" 
-            className="hero-image"
-          />
+      <section className="hero">
+
+        {/* Imagens de fundo — cross-fade entre si */}
+        {HERO_SLIDES.map((slide, i) => (
+          <div
+            key={slide.id}
+            className={`hero-slide ${i === active ? "hero-slide--active" : ""}`}
+          >
+            <div className="hero-bg" style={parallax}>
+              <img src={slide.image} alt="" className="hero-image" />
+            </div>
+          </div>
+        ))}
+
+        {/* Overlay escuro — acima das imagens, abaixo do conteúdo */}
+        <div className="hero-overlay-home" />
+
+        {/* Conteúdo do slide ativo — fora do loop, sempre por cima, com fade suave */}
+        <div className="hero-body">
+          {HERO_SLIDES.map((slide, i) => (
+            <div
+              key={slide.id}
+              className={`hero-content-slide ${i === active ? "hero-content-slide--active" : ""}`}
+            >
+              <div className={`hero-logos hero-logos--${slide.id}`}>
+                {slide.logos.map((logo, li) => (
+                  <img
+                    key={li}
+                    src={logo}
+                    alt={slide.logoAlt[li]}
+                    className="hero-logo"
+                  />
+                ))}
+              </div>
+              <h1 className="hero-title">{slide.brand}</h1>
+            </div>
+          ))}
         </div>
 
-        {/* --- Renderização Condicional com Fade --- */}
-        <div className={`hero-overlay brand-transition ${activeBrand === 0 ? 'visible' : 'hidden'}`}>
-          <div className="hero-logo">
-            <img 
-              src={logoBranco} 
-              alt="Casttêdo Valley Logo" 
-              className="hero-logo-image"
-            />
+        {/* Indicadores */}
+        {HERO_SLIDES.length > 1 && (
+          <div className="hero-dots">
+            {HERO_SLIDES.map((s, i) => (
+              <button
+                key={s.id}
+                className={`hero-dot ${i === active ? "hero-dot--active" : ""}`}
+                aria-label={`Ver ${s.brand}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
           </div>
-          <h1 className="hero-title">CASTTÊDO VALLEY</h1>
-        </div>
+        )}
 
-        <div className={`hero-overlay brand-transition ${activeBrand === 1 ? 'visible' : 'hidden'}`}>
-          <div className="hero-logo">
-            <img 
-              src={logoCamuflado} 
-              alt="Camuflado Logo" 
-              className="hero-logo-image"
-              style={{ filter: "brightness(0) invert(1)" }} /* Força a imagem a ficar branca caso seja preta */
-            />
-          </div>
-          <h1 className="hero-title" style={{ fontFamily: 'Work Sans', fontWeight: '400', letterSpacing: '4px' }}>
-            A NATUREZA METAMORFOSEADA
-          </h1>
-        </div>
 
       </section>
 
-      {/* História & Heritage Section */}
       <HeritageSection />
-
-      {/* Wine Carousel */}
       <WineCarousel />
-
-      {/* Olive Oil Carousel */}
       <OliveOilCarousel />
-
-      {/*
-      <TerroirSection /> 
-      */}
-    
-      {/* Awards Section */}
       <AwardsSection />
-      
-      {/*
-      <TestimonialsSection />
-      */}
-
     </div>
   );
 };

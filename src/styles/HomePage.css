@@ -1,4 +1,7 @@
-/* Estrutura básica */
+/* ─────────────────────────────────────────────
+   HomePage.css
+   ───────────────────────────────────────────── */
+
 .home {
   display: flex;
   flex-direction: column;
@@ -6,7 +9,9 @@
   background: #f5f3f0;
 }
 
-/* Hero section principal */
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
 .hero {
   position: relative;
   width: 100%;
@@ -14,14 +19,41 @@
   overflow: hidden;
 }
 
-/* Container da imagem de fundo */
-.hero-container {
+/* ── Overlay escuro — z-index alto, NUNCA anima ── */
+.hero-overlay-home {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.35) 55%,
+    rgba(0, 0, 0, 0.30) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Slides — todos absolute, empilhados ── */
+.hero-slide {
+  position: absolute;
+  inset: 0;
   z-index: 1;
+  opacity: 0;
+  /* Transição suave de opacidade — 1.6s com curva personalizada */
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slide activo fica opaco */
+.hero-slide--active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* ── Imagem de fundo com parallax ── */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
 }
 
 .hero-image {
@@ -29,151 +61,130 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.8);
-  animation: subtle-zoom 20s infinite alternate;
+  filter: brightness(0.80);
+  animation: zoom 24s ease-in-out infinite alternate;
 }
 
-@keyframes subtle-zoom {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.05);
-  }
+@keyframes zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.07); }
 }
 
-/* Overlay escuro mais transparente */
-.hero-container::before {
-  content: "";
+/* ── Conteúdo centrado (logos + título) ── */
+.hero-body {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.25); /* Reduzido de 0.5 para 0.25 */
-  z-index: 2;
+  inset: 0;
+  /* Acima do overlay */
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
-/* Container centralizado para o conteúdo */
-.hero-overlay {
+.hero-content-slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  z-index: 3;
-}
-
-/* Logo grande na hero section - com sombra mais intensa */
-.hero-logo {
-  margin-bottom: 40px;
+  padding: 0 24px;
   opacity: 0;
-  animation: fade-in 2s ease forwards 0.8s;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hero-logo-image {
-  height: 250px;
+.hero-content-slide--active {
+  opacity: 1;
+}
+
+/* ── Logos ── */
+.hero-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.hero-logo {
+  height: 240px;
   width: auto;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.8)) 
-          drop-shadow(0 4px 8px rgba(0,0,0,0.6))
-          drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-  transition: transform 0.3s ease;
+  filter:
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.80))
+    drop-shadow(0 2px 6px  rgba(0, 0, 0, 0.55));
+  transition: transform 0.35s ease;
 }
 
-.hero-logo-image:hover {
-  transform: scale(1.03);
+.hero-logo:hover {
+  transform: scale(1.04);
 }
 
+.hero-logos--camuflado .hero-logo {
+  height: 130px;
+}
+
+/* ── Título — sempre texto ── */
 .hero-title {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'AgathoRegularCAPS', serif;
   font-size: 3.5rem;
   font-weight: 300;
   letter-spacing: 8px;
+  color: #ffffff;
   margin: 0;
-  text-shadow: 0 4px 8px rgba(0,0,0,0.9),
-               0 8px 16px rgba(0,0,0,0.7),
-               0 2px 4px rgba(0,0,0,0.8),
-               2px 2px 4px rgba(0,0,0,0.6),
-               -2px -2px 4px rgba(0,0,0,0.6);
-  color: white;
-  opacity: 0;
-  animation: fade-in 1.8s ease forwards 1.4s;
-  width: 100%;
+  text-shadow:
+    0 3px 8px  rgba(0, 0, 0, 0.90),
+    0 6px 18px rgba(0, 0, 0, 0.65),
+    2px  2px 4px rgba(0, 0, 0, 0.55),
+   -2px -2px 4px rgba(0, 0, 0, 0.55);
 }
 
-/* Transição suave do Banner Dinâmico */
-.brand-transition {
-  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+/* ── Dots ── */
+.hero-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  gap: 10px;
 }
 
-.brand-transition.hidden {
-  opacity: 0;
-  transform: scale(0.95);
-  pointer-events: none; /* Para não bloquear cliques */
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.38);
+  cursor: pointer;
+  transition: all 0.4s ease;
 }
 
-.brand-transition.visible {
-  opacity: 1;
-  transform: scale(1);
+.hero-dot--active {
+  width: 26px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.90);
 }
 
-
-@keyframes fade-in-transition {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-dot:hover:not(.hero-dot--active) {
+  background: rgba(255, 255, 255, 0.62);
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsivo - AJUSTADO */
+/* ═══════════════════════════════════════════
+   RESPONSIVO
+   ═══════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-logo-image {
-    height: 220px;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-    letter-spacing: 5px;
-  }
+  .hero-logo  { height: 200px; }
+  .hero-title { font-size: 2.5rem; letter-spacing: 5px; }
+  .hero-logos { gap: 18px; margin-bottom: 28px; }
+  .hero-logos--camuflado .hero-logo { height: 105px; }
 }
 
 @media (max-width: 480px) {
-  .hero-logo-image {
-    height: 180px;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-    letter-spacing: 4px;
-    /* Sombra adicional para mobile */
-    text-shadow: 0 4px 8px rgba(0,0,0,0.95),
-                 0 8px 16px rgba(0,0,0,0.8),
-                 0 2px 4px rgba(0,0,0,0.9),
-                 2px 2px 4px rgba(0,0,0,0.7),
-                 -2px -2px 4px rgba(0,0,0,0.7);
-  }
-  
-  .hero-logo {
-    margin-bottom: 30px;
-  }
+  .hero-logo  { height: 160px; }
+  .hero-title { font-size: 1.9rem; letter-spacing: 4px; }
+  .hero-logos { gap: 12px; margin-bottom: 20px; }
+  .hero-logos--camuflado .hero-logo { height: 80px; }
 }
