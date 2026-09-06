@@ -8,8 +8,8 @@ import React, { useEffect, useRef, useState } from "react";
 import heroImage from "../assets/douro-1-tiny.jpg";
 import heroImage2 from "../assets/douro-camuflado.jpeg";
 import logoBranco from "../assets/cv-logo-branco.png";
-import logoRaposa from "../assets/camuflado-raposa-logo-branco.png";
-import logoLebre  from "../assets/camuflado-lebre-logo-branco.png";
+import logoRaposa from "../assets/camuflado-raposa-vermelho.png";
+import logoLebre  from "../assets/camuflado-lebre-azul.png";
 
 const HERO_SLIDES = [
   {
