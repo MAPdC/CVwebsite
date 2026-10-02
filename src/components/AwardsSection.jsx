@@ -92,6 +92,7 @@ const AwardsSection = () => {
                     src={product.images[0]}
                     alt={product.name}
                     className="award-card-image"
+                    loading="lazy"
                   />
                   <div className="award-card-image-overlay"></div>
                   {allMedalUrls.length > 0 && (
@@ -102,6 +103,7 @@ const AwardsSection = () => {
                           src={medalUrl}
                           alt={`Medalha ${medalIndex + 1}`}
                           className="award-card-medal-stacked"
+                          loading="lazy"
                           style={{ zIndex: allMedalUrls.length - medalIndex }} // Para empilhar corretamente
                         />
                       ))}
@@ -117,7 +119,7 @@ const AwardsSection = () => {
                     {product.awards.map((award, awardIndex) => (
                       <div className="award-card-details-item" key={awardIndex}>
                         {/* Opcional: Mostrar a medalha pequena ao lado de cada descrição */}
-                        {award[1] && <img src={award[1]} alt="Medalha pequena" className="award-medal-icon-small" />}
+                        {award[1] && <img src={award[1]} alt="Medalha pequena" className="award-medal-icon-small" loading="lazy" />}
                         <span className="award-name">{award[2]}</span>
                         {award[3] && <span className="award-score">({award[3]} pts)</span>}
                       </div>

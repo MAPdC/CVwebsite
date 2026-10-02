@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/ContactCTA.css";
-import douroMapImage from "../assets/douro-map-1-mudar.jpg";
+import douroMapImage from "../assets/douro-map-1-mudar.webp";
 
 const ContactCTA = () => {
   const sectionRef = useRef(null);

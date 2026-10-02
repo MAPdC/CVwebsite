@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/ContactPage.css";
-import heroBackground from "../assets/douro-2-tiny.jpeg"; 
+import heroBackground from "../assets/douro-2-tiny.webp"; 
 import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
 import { Car, Train, Ship } from 'lucide-react'; 
 
@@ -80,7 +80,7 @@ const ContactPage = () => {
         <div className="hero-image" style={{ backgroundImage: `url(${heroBackground})` }} />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1 className="hero-title">Contacte-nos</h1>
+          <h1 className="contact-hero-title">Contacte-nos</h1>
           <p className="hero-subtitle">Estamos no coração do Douro, prontos para o receber.</p>
         </div>
         {/* Seta de scroll para mobile */}

@@ -24,7 +24,8 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
           src={oil.images} // Usa a imagem do objeto oil
           alt={oil.name}
           className="oil-image-premium"
-          onError={(e) => { e.target.src = '/placeholder-image.png'; }} // Imagem de fallback
+          onError={(e) => { e.target.src = '/placeholder-image.webp'; }} // Imagem de fallback
+          loading="lazy"
         />
         <div className="oil-image-reflection"></div>
       </div>

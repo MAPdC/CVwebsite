@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/TerroirSection.css';
-import terroirImage1 from '../assets/adega-barrica-1.jpg';
-import terroirImage2 from '../assets/vinha-1.jpg';
-import terroirImage3 from '../assets/douro-1.jpg';
+import terroirImage1 from '../assets/adega-barrica-1.webp';
+import terroirImage2 from '../assets/vinha-1.webp';
+import terroirImage3 from '../assets/douro-1.webp';
 
 const TerroirSection = () => {
   const sectionRef = useRef(null);

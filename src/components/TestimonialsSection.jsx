@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/TestimonialsSection.css";
-import client1 from "../assets/client-3-mudar.jpg";
-import client2 from "../assets/client-2-mudar.jpg";
-import client3 from "../assets/client-1-mudar.jpg";
+import client1 from "../assets/client-3-mudar.webp";
+import client2 from "../assets/client-2-mudar.webp";
+import client3 from "../assets/client-1-mudar.webp";
 
 const TestimonialsSection = () => {
   const sectionRef = useRef(null);
