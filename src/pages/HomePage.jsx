@@ -1,15 +1,16 @@
 import "../styles/HomePage.css";
+import { Link } from "react-router-dom";
 import HeritageSection from "../components/HeritageSection.jsx";
+import CamufladoSection from "../components/CamufladoSection.jsx";
 import AwardsSection from "../components/AwardsSection.jsx";
 import WineCarousel from "../components/WineCarousel.jsx";
 import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
 import React, { useEffect, useRef, useState } from "react";
-import heroImage from "../assets/douro-1-tiny.jpg";
-import heroImage2 from "../assets/douro-camuflado.jpeg";
-import logoBranco from "../assets/cv-logo-branco.png";
-import logoRaposa from "../assets/camuflado-raposa-vermelho.png";
-import logoLebre  from "../assets/camuflado-lebre-azul.png";
+import heroImage from "../assets/douro-1-tiny.webp";
+import logoBranco from "../assets/cv-logo-branco.webp";
+import logoRaposa from "../assets/camuflado-raposa-vermelho.webp";
+import logoLebre  from "../assets/camuflado-lebre-azul.webp";
 
 const HERO_SLIDES = [
   {
@@ -28,6 +29,8 @@ const HERO_SLIDES = [
       logoLebre,
     ],
     logoAlt: ["Camuflado Raposa Logo", "Camuflado Lebre Logo"],
+    link: "/camuflado",
+    linkLabel: "Descobrir Camuflado",
   },
 ];
 
@@ -99,7 +102,14 @@ const HomePage = () => {
                   />
                 ))}
               </div>
-              <h1 className="hero-title">{slide.brand}</h1>
+              <h1 className={`hero-title ${slide.id === "camuflado" ? "hero-title--camuflado" : ""}`}>
+                {slide.brand}
+              </h1>
+              {slide.link && (
+                <Link to={slide.link} className="hero-cta" tabIndex={i === active ? 0 : -1}>
+                  {slide.linkLabel}
+                </Link>
+              )}
             </div>
           ))}
         </div>
@@ -123,6 +133,7 @@ const HomePage = () => {
 
       <HeritageSection />
       <WineCarousel />
+      <CamufladoSection />
       <OliveOilCarousel />
       <AwardsSection />
     </div>

@@ -11,6 +11,8 @@ import OliveOilPortfolioPage from './pages/OliveOilPortfolioPage';
 import WineProductPage from './pages/WineProductPage';
 import OliveOilProductPage from './pages/OliveOilProductPage';
 import UnderConstructionPage from './pages/UnderConstructionPage';
+import CamufladoLandingPage from './pages/CamufladoLandingPage';
+import CamufladoProductPage from './pages/CamufladoProductPage';
 
 // Componente para selecionar o header correto
 function PageLayout() {
@@ -43,6 +45,11 @@ function PageLayout() {
           <Route path="/portfolio/wines/:slug" element={<WineProductPage />} />
           <Route path="/portfolio/olive-oils" element={<OliveOilPortfolioPage />} />
           <Route path="/portfolio/olive-oils/:slug" element={<OliveOilProductPage />} />
+          
+          {/* Camuflado (usa o HeaderInternal com tema Camuflado) */}
+          <Route path="/camuflado" element={<CamufladoLandingPage />} />
+          <Route path="/camuflado/:slug" element={<CamufladoProductPage />} />
+
           <Route path="/contacts" element={<ContactPage />} />
           <Route path="/privacy-policies" element={<PrivacyPage />} />
 

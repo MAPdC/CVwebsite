@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom"; // Importar Link adicionado
 import "../styles/Header.css";
-import logoBranco from "../assets/cv-logo-branco.png";
-import logoCobre from "../assets/cv-logo-castanho.png";
+import logoBranco from "../assets/cv-logo-branco.webp";
+import logoCobre from "../assets/cv-logo-castanho.webp";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,25 +12,21 @@ function Header() {
   
   // Verificar se estamos na HomePage
   const isHomePage = location.pathname === '/' || location.pathname === '/home';
+  
+  // Verificar se estamos no universo Camuflado
+  const isCamuflado = location.pathname.startsWith('/camuflado');
 
   useEffect(() => {
-    // Função que verifica o scroll da página
     const handleScroll = () => {
-      // Pode ajustar este valor conforme necessário
       const scrolled = window.scrollY > 20;
-      
       if (scrolled !== isScrolled) {
         setIsScrolled(scrolled);
       }
     };
 
-    // Adiciona o evento de scroll
     window.addEventListener("scroll", handleScroll);
-    
-    // Verifica o scroll inicial
     handleScroll();
     
-    // Limpa o evento quando o componente for desmontado
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -45,20 +41,29 @@ function Header() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // Função para fechar o menu ao clicar num link (muito útil em mobile)
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
   return (
-    <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHomePage ? "header--homepage" : ""}`}>
-      <a href="/" className="header__text">
+    // Adicionada classe dinâmica header--camuflado
+    <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHomePage ? "header--homepage" : ""} ${isCamuflado ? "header--camuflado" : ""}`}>
+      
+      {/* Uso de Link em vez de a href */}
+      <Link to="/" className="header__text" onClick={closeMenu}>
         <span className="logo__line1">CASTTÊDO</span>
         <span className="logo__line2">VALLEY</span>
-      </a>
+      </Link>
       
-      <a href="/" className={`logo__link ${isHomePage && !isScrolled ? "logo__link--hidden" : ""}`}>
+      <Link to="/" className={`logo__link ${isHomePage && !isScrolled ? "logo__link--hidden" : ""}`} onClick={closeMenu}>
         <img 
           src={isScrolled ? logoCobre : logoBranco} 
           alt="CASTTÊDO VALLEY" 
           className="logo__image" 
         />
-      </a>
+      </Link>
 
       <div className="menu-icon" onClick={toggleMenu}>
         <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
@@ -71,14 +76,17 @@ function Header() {
           <li className="dropdown">
             <a href="#" onClick={toggleDropdown}>PORTEFÓLIO</a>
             <ul className={`dropdown__menu ${isDropdownOpen ? "dropdown__menu--open" : ""}`}>
-              <li><a href="/portfolio/wines">VINHOS</a></li>
-              <li><a href="/portfolio/olive-oils">AZEITES</a></li>
+              <li><Link to="/portfolio/wines" onClick={closeMenu}>VINHOS</Link></li>
+              <li><Link to="/portfolio/olive-oils" onClick={closeMenu}>AZEITES</Link></li>
+              {/* Item Camuflado com classe própria */}
+              <li>
+                <Link to="/camuflado" className="nav-item-camuflado" onClick={closeMenu}>
+                  CAMUFLADO
+                </Link>
+              </li>
             </ul>
           </li>
-          {/*<li><a href="/about-us">SOBRE NÓS</a></li>*/}
-          {/*<li><a href="/sustainability">SUSTENTABILIDADE</a></li>*/}
-          {/*<li><a href="/history">HISTÓRIA</a></li>*/}
-          <li><a href="/contacts">CONTACTOS</a></li>
+          <li><Link to="/contacts" onClick={closeMenu}>CONTACTOS</Link></li>
         </ul>
       </nav>
     </header>

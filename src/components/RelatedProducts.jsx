@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import "../styles/RelatedProducts.css";
 
-function RelatedProducts({ products, title = "Também pode gostar" }) {
+function RelatedProducts({ products, title = "Também pode gostar", basePath = "/portfolio/wines" }) {
   const productsRef = useRef(null);
   
   useEffect(() => {
@@ -43,7 +43,7 @@ function RelatedProducts({ products, title = "Também pode gostar" }) {
       <div className="related-products__grid" ref={productsRef}>
         {products.map((product) => (
           <Link 
-            to={`/portfolio/wines/${product.slug}`} 
+            to={`${basePath}/${product.slug}`} 
             className="related-product" 
             key={product.id}
           >

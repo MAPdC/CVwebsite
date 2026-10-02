@@ -1,0 +1,257 @@
+/* src/styles/CamufladoLandingPage.css */
+
+.camuflado-landing {
+  --camuflado-render-bg: #ede9e6; /* cor de fundo do render das garrafas, para fundir a imagem */
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+.camuflado-landing p {
+  font-family: var(--font-secondary-camuflado);
+}
+
+/* ── Hero ── */
+.camuflado-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 130px 5% 60px; /* compensa o header fixo */
+  background-color: var(--camuflado-render-bg);
+  text-align: center;
+}
+
+.camuflado-hero__wordmark {
+  width: min(520px, 80%);
+  height: auto;
+}
+
+.camuflado-hero__subtitle {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--camuflado-muted);
+}
+
+.camuflado-hero__bottles {
+  width: min(900px, 100%);
+  height: auto;
+  margin-top: 30px;
+}
+
+.camuflado-hero__by {
+  margin-top: 10px;
+  font-family: var(--font-primary-camuflado);
+  font-style: italic;
+  color: var(--camuflado-muted);
+}
+
+/* ── Blocos de texto ── */
+.camuflado-block {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 90px 5%;
+  text-align: center;
+}
+
+.camuflado-block p + p {
+  margin-top: 1em;
+}
+
+.camuflado-block__title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.camuflado-block--alt {
+  max-width: none;
+  background-color: #ffffff;
+}
+
+.camuflado-block--alt > * {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Lebre & Raposa ── */
+.camuflado-animals {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 90px 5%;
+}
+
+.camuflado-animal {
+  text-align: center;
+}
+
+.camuflado-animal__logo {
+  height: 160px;
+  width: auto;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.camuflado-animal__name {
+  font-size: 2rem;
+}
+
+.camuflado-animal__variety {
+  display: block;
+  margin: 6px 0 18px;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.camuflado-animal--lebre .camuflado-animal__variety {
+  color: var(--camuflado-accent-lebre);
+}
+
+.camuflado-animal--raposa .camuflado-animal__variety {
+  color: var(--camuflado-accent-raposa);
+}
+
+.camuflado-animal__text {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* ── Os vinhos ── */
+.camuflado-wines {
+  padding: 90px 5%;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.camuflado-wines__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.camuflado-wine-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 24px 36px;
+  border-top: 3px solid var(--camuflado-accent);
+  background-color: var(--camuflado-bg);
+  color: var(--camuflado-text);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.camuflado-wine-card:hover {
+  color: var(--camuflado-text);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.camuflado-wine-card__image img {
+  height: 380px;
+  width: auto;
+}
+
+.camuflado-wine-card__tag {
+  margin-top: 20px;
+  font-family: var(--font-primary-camuflado);
+  font-style: italic;
+  color: var(--camuflado-accent);
+}
+
+.camuflado-wine-card__name {
+  font-size: 1.5rem;
+  margin: 4px 0;
+}
+
+.camuflado-wine-card__meta {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--camuflado-muted);
+}
+
+.camuflado-wine-card__text {
+  margin: 16px 0 24px;
+  font-size: 0.95rem;
+}
+
+.camuflado-wine-card__cta {
+  margin-top: auto;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--camuflado-accent);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--camuflado-accent);
+}
+
+/* ── Detalhe oculto ── */
+.camuflado-secret .camuflado-block__title {
+  font-style: italic;
+}
+
+/* ── Contacto ── */
+.camuflado-contact {
+  padding: 70px 5% 100px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.camuflado-contact p {
+  margin-bottom: 24px;
+}
+
+.camuflado-button {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 1px solid var(--camuflado-text);
+  color: var(--camuflado-text);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.camuflado-button:hover {
+  background-color: var(--camuflado-text);
+  color: var(--camuflado-bg);
+}
+
+/* ── Desktop ── */
+@media (min-width: 768px) {
+  .camuflado-animals {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .camuflado-wines__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .camuflado-hero {
+    padding-top: 100px;
+  }
+
+  .camuflado-block,
+  .camuflado-animals,
+  .camuflado-wines {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .camuflado-animal__logo {
+    height: 120px;
+  }
+
+  .camuflado-wine-card__image img {
+    height: 300px;
+  }
+}

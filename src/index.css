@@ -1,3 +1,29 @@
+/* A Agatho que temos é a versão demo: acentos (Ê, Ã, Ç…) e vários símbolos (/ : ( ) # % €…)
+   são substituídos pelo aviso "PERSONAL USE ONLY". Enquanto não houver a versão comercial,
+   esses caracteres vêm da Playfair Display, ajustada à altura das maiúsculas da Agatho.
+   Ordem importa: esta regra tem de vir ANTES da Agatho (a última declarada é testada primeiro). */
+@font-face {
+  font-family: 'AgathoRegularCAPS';
+  src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 87%; /* maiúsculas Playfair (71) -> Agatho (62) */
+}
+
+@font-face {
+  font-family: 'AgathoRegularCAPS';
+  src:  url('/fonts/Agatho_RegularCAPS.woff2') format('woff2'),
+        url('/fonts/Agatho_ RegularCAPS.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Melhora performance de carregamento */
+  /* Só os caracteres que a versão demo desenha mesmo */
+  unicode-range: U+0020-0022, U+0024, U+0026-0027, U+002C-002E, U+0030-0039, U+003F-005A,
+                 U+0060-007A, U+00A0, U+00AB, U+00AD, U+00B4, U+00B8, U+00BB, U+2013,
+                 U+2018-201E, U+2039-203A;
+}
+
 /* === Reset & Base ===*/
 * {
   margin: 0;
@@ -105,12 +131,94 @@ p {
 }
 
 
+/* ************************ */
+/*         Camuflado        */
+/* ************************ */
 
-/* === Adicionar fonte Agatho Regular CAPS .otf === */
+/* Playfair Display - Regular */
 @font-face {
-  font-family: 'AgathoRegularCAPS';
-  src: url('/fonts/Agatho_RegularCAPS.otf') format('opentype');
-  font-weight: normal;
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2'); /* Ajusta o caminho */
+  font-weight: 400;
   font-style: normal;
-  font-display: swap; /* Melhora performance de carregamento */
+  font-display: swap;
+}
+
+/* Playfair Display - Italic */
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Montserrat - Regular */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montserrat - Medium */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variáveis do Tema Camuflado (globais para o header/footer/homepage também as usarem) */
+:root {
+  --font-primary-camuflado: 'Playfair Display', serif;
+  --font-secondary-camuflado: 'Montserrat', sans-serif;
+
+  --camuflado-bg: #F5F4F0; /* Pantone Warm Gray 1 U (50%) adaptado */
+  --camuflado-text: #1A1A1A;
+  --camuflado-muted: #6b6862;
+
+  /* Cores das Castas */
+  --camuflado-accent-raposa: #C12E35; /* Pantone 4059 U */
+  --camuflado-accent-lebre: #2C5898; /* Pantone 2132 U */
+  --camuflado-accent-lebre-oaked: #8B5A43; /* Castanho Terracota */
+}
+
+/* Aplica o "universo" Camuflado a um bloco/página */
+.theme-camuflado {
+  --camuflado-accent: var(--camuflado-text); /* cada vinho redefine esta variável */
+  background-color: var(--camuflado-bg);
+  color: var(--camuflado-text);
+  font-family: var(--font-secondary-camuflado);
+}
+
+.theme-camuflado h1,
+.theme-camuflado h2,
+.theme-camuflado h3 {
+  font-family: var(--font-primary-camuflado);
+  font-weight: 400;
+}
+
+/* Efeito de revelação — imita o rótulo termocrómico:
+   "quente" o animal quase desaparece, "frio" (.is-revealed ou hover) ganha cor */
+.camuflado-reveal {
+  filter: grayscale(1) blur(1px);
+  opacity: 0.25;
+  transition: filter 1.2s ease, opacity 1.2s ease;
+}
+
+.camuflado-reveal.is-revealed,
+.camuflado-reveal:hover {
+  filter: none;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camuflado-reveal {
+    filter: none;
+    opacity: 1;
+    transition: none;
+  }
 }

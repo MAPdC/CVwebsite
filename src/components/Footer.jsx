@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { MapPin, Phone, Mail } from 'lucide-react'; // Importar ícones
-import logoCobre from '../assets/cv-logo-castanho.png'; // Importar o logo correto
+import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo correto
 import "../styles/Footer.css"; // Manter o link para o CSS
 
 const Footer = () => {
@@ -18,6 +18,7 @@ const Footer = () => {
                 <li><a href="/">Início</a></li>
                 <li><a href="/portfolio/wines">Vinhos</a></li>
                 <li><a href="/portfolio/olive-oils">Azeites</a></li>
+                <li><a href="/camuflado">Camuflado</a></li>
                 {/*<li><a href="/about-us">Sobre Nós</a></li>*/}
                 {/*<li><a href="/history">História</a></li>*/}
                 {/*<li><a href="/sustainability">Sustentabilidade</a></li>*/}
