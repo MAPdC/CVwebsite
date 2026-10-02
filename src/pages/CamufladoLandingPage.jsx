@@ -16,7 +16,7 @@ const ANIMALS = [
     name: "A Lebre",
     logo: lebre,
     variety: "Touriga Nacional",
-    text: "Rápida e discreta, a lebre esconde-se entre as ervas que crescem nas entrelinhas. Representaos dois Camuflado de Touriga Nacional, um sem madeira, outro com estágio em barrica de carvalho português.",
+    text: "Rápida e discreta, a lebre esconde-se entre as ervas que crescem nas entrelinhas. Representa os dois Camuflado de Touriga Nacional, um sem madeira, outro com estágio em barrica de carvalho português.",
   },
   {
     id: "raposa",

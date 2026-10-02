@@ -67,7 +67,7 @@
 }
 
 .wine-carousel-subtitle-premium {
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: 0.8rem; /* Reduzido tamanho fonte */
   letter-spacing: 3px; /* Reduzido espaçamento */
   color: #c0a080;
@@ -287,7 +287,7 @@
 }
 
 .wine-category-premium {
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: 0.7rem; /* Reduzido tamanho fonte */
   letter-spacing: 1.5px; /* Reduzido espaçamento */
   color: #c0a080;
@@ -355,7 +355,7 @@
   border: none;
   padding: 12px 28px; /* Reduzido padding */
   border-radius: 30px; /* Reduzido raio */
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: 0.8rem; /* Reduzido tamanho fonte */
   letter-spacing: 1.5px; /* Reduzido espaçamento */
   text-transform: uppercase;
@@ -426,7 +426,7 @@
   border: 1px solid #c0a080; /* Borda dourada */
   color: #c0a080; /* Texto dourado */
   border-radius: 50px; /* Bordas arredondadas */
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: 0.9rem; /* Tamanho da fonte */
   letter-spacing: 2px; /* Espaçamento entre letras */
   text-transform: uppercase;

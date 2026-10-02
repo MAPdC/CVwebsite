@@ -1,143 +1,144 @@
-/* src/styles/RelatedProducts.css - Versão V2 (Mobile-First) */
+/* src/styles/RelatedProducts.css
+   Usa as variáveis --wd-* de WineDetail.css (com valores por defeito, para a página dos azeites). */
 
 .related-products-section {
-  /* Fundo creme/claro para separar da secção de detalhes */
-  background-color: var(--bg-light, #fdfdfa); 
-  padding: 60px 5%; /* Padding responsivo */
-  max-width: 1400px;
-  margin: 60px auto 0 auto;
-  border-top: 1px solid var(--border-light, #eee);
+  padding: 96px 5% 120px;
+  background-color: var(--wd-bg, #faf8f5);
+  border-top: 1px solid var(--wd-line, rgba(44, 38, 36, 0.12));
 }
 
 .related-products__heading {
   text-align: center;
-  margin-bottom: 50px;
-  position: relative;
+  margin-bottom: 56px;
+}
+
+.related-products__eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--wd-label-font, 'Montserrat', sans-serif);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--wd-accent, #b46f54);
 }
 
 .related-products__title {
-  font-family: var(--font-display, 'AgathoRegularCAPS', 'serif');
-  font-size: clamp(1.8rem, 4vw, 2.2rem); /* Título responsivo */
-  color: var(--primary-color, #a78655);
-  font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-  text-transform: uppercase;
+  margin: 0;
+  font-family: var(--wd-display, 'Cormorant SC', serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--wd-ink, #2c2624);
 }
 
-.related-products__divider {
-  position: relative;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    var(--primary-light, rgba(192, 160, 128, 0.4)) 50%, 
-    transparent
-  );
-  width: 60%;
-  max-width: 250px;
-  margin: 0 auto;
-}
-
-.divider-icon {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--bg-light, #fdfdfa); /* Fundo igual à secção */
-  padding: 0 15px;
-  color: var(--primary-color, #c0a080);
-  font-size: 1.2rem;
-}
-
-/* Grid (Mobile-first: 1 coluna) */
+/* Grid (mobile-first: 1 coluna); com menos de 3 vinhos os cartões ficam centrados */
 .related-products__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
-  margin: 0;
+  justify-content: center;
+  gap: 48px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .related-product {
-  text-decoration: none;
-  color: inherit;
-  background-color: var(--bg-white, #fff);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  
-  /* Para animação de entrada */
+  display: flex;
+  flex-direction: column;
+  color: var(--wd-ink, #2c2624);
+
+  /* Animação de entrada */
   opacity: 0;
   transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .product-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .related-product:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  color: var(--wd-ink, #2c2624);
 }
 
+/* Painel com a garrafa inteira */
 .related-product__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 4;
+  padding: 36px 24px;
+  background-color: var(--wd-tint, #efe9e3);
   overflow: hidden;
-  position: relative;
-  width: 100%;
-  /* A CHAVE DA CORREÇÃO: aspect-ratio */
-  aspect-ratio: 4 / 5; /* Proporção de retrato */
-  background-color: #f9f9f9;
 }
 
 .related-product__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 'Cover' é bom para cards */
-  transition: transform 0.6s ease;
+  object-fit: contain;
+  mix-blend-mode: darken;
+  transform: var(--crop, none);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .related-product:hover .related-product__image img {
-  transform: scale(1.08);
+  transform: translateY(-8px) var(--crop, none);
 }
 
 .related-product__info {
+  padding: 24px 4px 0;
   text-align: center;
-  padding: 25px 20px;
-  background-color: var(--bg-white, #fff);
-  border-top: 1px solid var(--border-light, #eee);
-  position: relative;
-}
-
-.related-product__name {
-  font-family: var(--font-display, 'AgathoRegularCAPS', 'serif');
-  font-size: 1.3rem;
-  font-weight: 300;
-  color: var(--primary-color, #a78655);
-  margin: 0 0 10px;
-  letter-spacing: 1.5px;
 }
 
 .related-product__category {
-  font-size: 0.8rem;
-  color: var(--text-light, #888);
+  font-family: var(--wd-label-font, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 300;
+  color: var(--wd-muted, #8a7f78);
 }
 
-/* --- Media Queries (Desktop) --- */
+.related-product__name {
+  margin: 10px 0 16px;
+  font-family: var(--wd-display, 'Cormorant SC', serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
 
-/* Ecrãs médios (tablets) - 2 colunas */
+.related-product__cta {
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--wd-accent, #b46f54);
+  font-family: var(--wd-label-font, 'Montserrat', sans-serif);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.related-product:hover .related-product__cta {
+  color: var(--wd-accent, #b46f54);
+}
+
+/* Tablet - 2 colunas */
 @media (min-width: 600px) {
   .related-products__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 360px));
   }
 }
 
-/* Ecrãs grandes (desktops) - 3 colunas */
+/* Desktop - 3 colunas */
 @media (min-width: 992px) {
   .related-products__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .related-product {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

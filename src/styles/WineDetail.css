@@ -1,0 +1,453 @@
+/* src/styles/WineDetail.css
+   Página de detalhe de vinho — layout editorial: garrafa fixa à esquerda, texto à direita.
+   Tudo depende das variáveis --wd-*; o Camuflado redefine-as em CamufladoProductPage.css. */
+
+:root {
+  --wd-display: 'Cormorant SC', serif;
+  --wd-body: 'Cormorant', 'Playfair Display', Georgia, serif;
+  --wd-label-font: 'Montserrat', sans-serif;
+
+  --wd-ink: #2c2624;
+  --wd-muted: #8a7f78;
+  --wd-accent: #b46f54;          /* cobre do brasão */
+  --wd-line: rgba(44, 38, 36, 0.12);
+  --wd-bg: #faf8f5;
+  --wd-tint: #efe9e3;            /* painel por trás da garrafa */
+
+  --wd-header: 80px;             /* altura do header fixo */
+}
+
+@keyframes wd-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes wd-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.wd {
+  background-color: var(--wd-bg);
+  color: var(--wd-ink);
+  padding-top: var(--wd-header);
+}
+
+.wd-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Garrafa / galeria ── */
+.wd-media {
+  position: relative;
+  background-color: var(--wd-tint);
+}
+
+.wd-media__stage {
+  height: 72vh;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wd-media__image {
+  display: block;
+  animation: wd-fade 0.6s ease;
+}
+
+/* Garrafa inteira, com margem; darken funde o fundo branco/creme da foto com o painel
+   (o zoom para a garrafa ocupar o painel é calculado no JSX) */
+.wd-media__stage--packshot {
+  padding: 48px 24px 96px;
+}
+
+.wd-media__stage--packshot .wd-media__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: darken;
+  transform: var(--crop, none);
+}
+
+/* Fotografias de ambiente ocupam o painel todo */
+.wd-media__stage--photo .wd-media__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wd-media__placeholder {
+  font-family: var(--wd-label-font);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+.wd-thumbs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wd-thumb {
+  width: 48px;
+  height: 64px;
+  padding: 4px;
+  border: 1px solid transparent;
+  background-color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s, border-color 0.3s;
+}
+
+.wd-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* miniatura mostra a imagem inteira */
+  mix-blend-mode: darken;
+}
+
+.wd-thumb:hover,
+.wd-thumb--active {
+  opacity: 1;
+}
+
+.wd-thumb--active {
+  border-color: var(--wd-ink);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8); /* visível também sobre fotografias escuras */
+}
+
+.wd-thumb:focus-visible {
+  outline: 1px solid var(--wd-accent);
+  outline-offset: 2px;
+}
+
+/* ── Conteúdo ── */
+.wd-content {
+  padding: 56px 24px 80px;
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.wd-intro {
+  animation: wd-fade-up 0.8s ease both;
+}
+
+.wd-breadcrumb {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  font-family: var(--wd-label-font);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+.wd-breadcrumb a {
+  color: var(--wd-muted);
+}
+
+.wd-breadcrumb a:hover {
+  color: var(--wd-accent);
+}
+
+.wd-eyebrow {
+  margin: 0 0 18px;
+  font-family: var(--wd-label-font);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  white-space: pre; /* mantém o espaçamento à volta dos "·" */
+  color: var(--wd-accent);
+}
+
+.wd-title {
+  margin: 0;
+  font-family: var(--wd-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  color: var(--wd-ink);
+}
+
+.wd-rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin: 32px 0;
+  background-color: var(--wd-accent);
+}
+
+.wd-lead {
+  margin: 0 0 40px;
+  font-family: var(--wd-body);
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--wd-ink);
+}
+
+/* Factos principais: 3 colunas com linhas finas */
+.wd-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+  border-top: 1px solid var(--wd-line);
+  border-bottom: 1px solid var(--wd-line);
+}
+
+.wd-facts > div {
+  padding: 18px 0;
+}
+
+.wd-facts > div + div {
+  border-top: 1px solid var(--wd-line);
+}
+
+.wd-facts dt,
+.wd-notes dt,
+.wd-specs dt {
+  font-family: var(--wd-label-font);
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+.wd-facts dd {
+  margin: 6px 0 0;
+  font-family: var(--wd-body);
+  font-size: 1.2rem;
+  line-height: 1.35;
+}
+
+/* ── Secções ── */
+.wd-section {
+  margin-top: 72px;
+}
+
+.wd .wd-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 28px;
+  font-family: var(--wd-label-font);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--wd-accent);
+}
+
+.wd .wd-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--wd-line);
+}
+
+.wd-story {
+  margin: 0;
+  font-family: var(--wd-body);
+  font-size: 1.3rem;
+  line-height: 1.75;
+  color: var(--wd-ink);
+}
+
+.wd-story::first-letter {
+  float: left;
+  margin: 8px 10px 0 0;
+  font-family: var(--wd-display);
+  font-size: 4.4rem;
+  line-height: 0.8;
+  color: var(--wd-accent);
+}
+
+.wd-notes {
+  margin: 0;
+}
+
+.wd-notes > div + div {
+  margin-top: 28px;
+}
+
+.wd-notes dd {
+  margin: 8px 0 0;
+  font-family: var(--wd-body);
+  font-size: 1.2rem;
+  line-height: 1.65;
+}
+
+.wd-quote {
+  margin: 0;
+  padding: 8px 0 8px 28px;
+  border-left: 1px solid var(--wd-accent);
+  font-family: var(--wd-body);
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.55;
+  color: var(--wd-ink);
+}
+
+/* Ficha técnica: linhas finas, rótulo à esquerda e valor à direita */
+.wd-specs {
+  margin: 0;
+}
+
+.wd-specs > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--wd-line);
+}
+
+.wd-specs > div:first-child {
+  border-top: 1px solid var(--wd-line);
+}
+
+.wd-specs dd {
+  margin: 0;
+  font-family: var(--wd-body);
+  font-size: 1.15rem;
+  text-align: right;
+}
+
+.wd-downloads {
+  margin: 28px 0 0;
+  font-family: var(--wd-label-font);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+.wd-downloads a {
+  margin-left: 16px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--wd-accent);
+  color: var(--wd-ink);
+}
+
+.wd-downloads a:hover {
+  color: var(--wd-accent);
+}
+
+.wd-awards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wd-award {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.wd-award + .wd-award {
+  margin-top: 20px;
+}
+
+.wd-award__medal {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.wd-award__name {
+  display: block;
+  font-family: var(--wd-body);
+  font-size: 1.2rem;
+}
+
+.wd-award__points {
+  font-family: var(--wd-label-font);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+/* ── Tablet ── */
+@media (min-width: 600px) {
+  .wd-facts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .wd-facts > div {
+    padding: 20px 20px 20px 0;
+  }
+
+  .wd-facts > div + div {
+    border-top: none;
+    border-left: 1px solid var(--wd-line);
+    padding-left: 20px;
+  }
+
+  .wd-notes > div {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+  }
+
+  .wd-notes dt {
+    padding-top: 6px;
+  }
+
+  .wd-notes dd {
+    margin: 0;
+  }
+}
+
+/* ── Desktop: garrafa fixa à esquerda ── */
+@media (min-width: 992px) {
+  .wd-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .wd-media {
+    position: sticky;
+    top: var(--wd-header);
+    width: 46%;
+    height: calc(100vh - var(--wd-header));
+    flex-shrink: 0;
+  }
+
+  .wd-media__stage {
+    height: 100%;
+  }
+
+  .wd-media__stage--packshot {
+    padding: 64px 48px 120px;
+  }
+
+  .wd-thumbs {
+    bottom: 32px;
+  }
+
+  .wd-content {
+    padding: 72px 6% 120px;
+    max-width: 760px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wd-intro,
+  .wd-media__image {
+    animation: none;
+  }
+}

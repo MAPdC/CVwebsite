@@ -1,48 +1,44 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Award, Thermometer, Info, GlassWater, BookOpen, Star, Wine, Eye, FileDown } from "lucide-react";
-
-// Importar o novo CSS (caminho corrigido)
-import "/src/styles/WineProductDetail.css";
+import { getPackshotTransform } from "../utils/packshotTransform";
+import "../styles/WineDetail.css";
 
 // null = valor ainda por confirmar; vazio/undefined = não se aplica
-const techValue = (value) => (value === null ? "Em breve" : value || "N/A");
+const techValue = (value) => (value === null ? "Em breve" : value || "—");
 
+// Página de detalhe de um vinho (Casttêdo Valley e Camuflado).
+// O aspeto vem das variáveis --wd-* (ver WineDetail.css); cada marca pode redefini-las num wrapper.
 // heroAddon: conteúdo opcional por cima do título (ex.: animal Camuflado)
 function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel = "Vinhos", heroAddon = null }) {
-  const [activeTab, setActiveTab] = useState("caracteristicas");
-  const [mainImage, setMainImage] = useState(null);
-  const [thumbnailImages, setThumbnailImages] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [packshotTransform, setPackshotTransform] = useState(null);
+  const imageRef = useRef(null);
 
-  // Efeito para inicializar imagens e rolar para o topo
+  const images = (product?.images || []).filter((url) => typeof url === "string" && url.trim() !== "");
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    if (product && product.images && Array.isArray(product.images)) {
-      const validImages = product.images.filter(url => typeof url === 'string' && url.trim() !== '');
-      
-      if (validImages.length > 0) {
-        setMainImage(validImages[0]);
-        setThumbnailImages(validImages);
-        setActiveImageIndex(0);
-      } else {
-        setMainImage(null);
-        setThumbnailImages([]);
-        setActiveImageIndex(0);
-      }
-    }
+    setActiveImageIndex(0);
+    setPackshotTransform(null);
   }, [product]);
-  
-  // Função para trocar a imagem principal
-  const changeMainImage = (index) => {
-    if (thumbnailImages[index]) {
-      setMainImage(thumbnailImages[index]);
-      setActiveImageIndex(index);
+
+  // Zoom da garrafa (só na primeira imagem); recalculado quando a janela muda de tamanho
+  const updatePackshot = () => {
+    const img = imageRef.current;
+    if (activeImageIndex !== 0 || !img || !img.complete) return;
+    try {
+      setPackshotTransform(getPackshotTransform(img));
+    } catch {
+      setPackshotTransform(null); // sem acesso aos píxeis: mostra a imagem tal como está
     }
   };
-  
-  // Verifica se o produto está disponível
+
+  useEffect(() => {
+    updatePackshot(); // imagem já em cache: o onLoad pode ter disparado antes
+    window.addEventListener("resize", updatePackshot);
+    return () => window.removeEventListener("resize", updatePackshot);
+  }, [activeImageIndex, product]); // eslint-disable-line react-hooks/exhaustive-deps
+
   if (!product) {
     return (
       <div className="new-product-loading">
@@ -51,201 +47,170 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
     );
   }
 
+  // A primeira imagem é a garrafa (packshot); as restantes são fotografias de ambiente
+  const isPackshot = activeImageIndex === 0;
+  const mainImage = images[activeImageIndex];
+
+  const specs = [
+    ["Denominação", product.category],
+    ["Colheita", product.year],
+    ["Tipo", product.type],
+    ["Castas", product.varieties?.join(", ")],
+    product.maturation ? ["Maturação", product.maturation] : null,
+    ["Teor alcoólico", techValue(product.technical?.alcohol)],
+    ["Acidez total", techValue(product.technical?.acidity)],
+    ["Açúcares residuais", techValue(product.technical?.sugar)],
+    ["pH", techValue(product.technical?.ph)],
+  ].filter(Boolean);
+
   return (
-    <main className="new-wine-detail">
-      {/* --- Secção Hero --- */}
-      <section className="new-wine-hero">
-        <div className="new-wine-breadcrumb">
-          <Link to="/">Início</Link> / 
-          <Link to={basePath}>{baseLabel}</Link> / 
-          <span>{product.name}</span>
-        </div>
-        {heroAddon}
-        <h1 className="new-wine-title">{product.name}</h1>
-        <div className="new-wine-category">{product.category}</div>
-      </section>
-      
-      {/* --- Conteúdo Principal (Layout Flexível) --- */}
-      <section className="new-wine-content">
-        
-        {/* --- Galeria de Imagens (Lado Esquerdo) --- */}
-        <div className="new-wine-gallery">
-          <div className="gallery-main-container">
+    <main className="wd">
+      <div className="wd-layout">
+        {/* --- Garrafa / galeria (fixa em desktop) --- */}
+        <aside className="wd-media">
+          <div className={`wd-media__stage ${isPackshot ? "wd-media__stage--packshot" : "wd-media__stage--photo"}`}>
             {mainImage ? (
-              <img 
-                src={mainImage} 
-                alt={`${product.name} - imagem principal`}
-                className="gallery-main-image"
+              <img
+                key={mainImage}
+                src={mainImage}
+                alt={`${product.name}${isPackshot ? "" : ` — imagem ${activeImageIndex + 1}`}`}
+                ref={imageRef}
+                className="wd-media__image"
+                onLoad={updatePackshot}
+                style={isPackshot && packshotTransform ? { "--crop": packshotTransform } : undefined}
               />
             ) : (
-              <div className="image-placeholder">
-                <span>Imagem não disponível</span>
-              </div>
+              <span className="wd-media__placeholder">Imagem não disponível</span>
             )}
           </div>
-          
-          <div className="gallery-thumbnails">
-            {thumbnailImages.map((imageUrl, index) => (
-              <div 
-                className={`thumbnail-item ${index === activeImageIndex ? 'active' : ''}`}
-                key={index}
-                onClick={() => changeMainImage(index)}
-                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && changeMainImage(index)}
-                tabIndex={0}
-                role="button"
-                aria-label={`Ver imagem ${index + 1}`}
-              >
-                <img 
-                  src={imageUrl}
-                  alt={`${product.name} - miniatura ${index + 1}`}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        {/* --- Informações do Vinho (Lado Direito) --- */}
-        <div className="new-wine-info">
-          <div className="info-description">
-            <p>{product.description}</p>
-          </div>
-          
-          <div className="info-tabs">
-            <div className="tabs-header">
-              <button 
-                className={`tab-button ${activeTab === "caracteristicas" ? "active" : ""}`}
-                onClick={() => setActiveTab("caracteristicas")}
-              >
-                Características
-              </button>
-              <button 
-                className={`tab-button ${activeTab === "tecnico" ? "active" : ""}`}
-                onClick={() => setActiveTab("tecnico")}
-              >
-                Detalhes Técnicos
-              </button>
-              {product.awards && product.awards.length > 0 && (
-                <button 
-                  className={`tab-button ${activeTab === "premios" ? "active" : ""}`}
-                  onClick={() => setActiveTab("premios")}
+
+          {images.length > 1 && (
+            <div className="wd-thumbs" role="tablist" aria-label="Imagens do vinho">
+              {images.map((imageUrl, index) => (
+                <button
+                  type="button"
+                  key={imageUrl}
+                  className={`wd-thumb ${index === activeImageIndex ? "wd-thumb--active" : ""}`}
+                  onClick={() => setActiveImageIndex(index)}
+                  aria-label={`Ver imagem ${index + 1}`}
+                  aria-selected={index === activeImageIndex}
+                  role="tab"
                 >
-                  Prémios
+                  <img src={imageUrl} alt="" />
                 </button>
-              )}
-            </div>
-            
-            <div className="tabs-content">
-              {/* -- Tab Características -- */}
-              {activeTab === "caracteristicas" && (
-                <div className="tab-panel">
-                  <div className="content-section">
-                    <h3><BookOpen size={18} /> Castas</h3>
-                    <ul className="varieties-list">
-                      {product.varieties.map((variety, index) => (
-                        <li key={index}>{variety}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="content-section">
-                    <h3><Info size={18} /> Características Sensoriais</h3>
-                    <p>{product.sensorial || "Informação não disponível."}</p>
-                  </div>
-                  
-                  {product.maturation && (
-                    <div className="content-section">
-                      <h3><Wine size={18} /> Maturação</h3>
-                      <p>{product.maturation}</p>
-                    </div>
-                  )}
-
-                  <div className="content-section">
-                    <h3><GlassWater size={18} /> Sugestão de Consumo</h3>
-                    <p>{product.consumo || "Informação não disponível."}</p>
-                  </div>
-                  
-                  <div className="content-section temperature">
-                    <h3><Thermometer size={18} /> Temperatura Recomendada</h3>
-                    <div className="temperature-display">
-                      <span className="temperature-value">{product.temperatura || "N/A"}</span>
-                    </div>
-                  </div>
-
-                  {product.presentation && (
-                    <div className="content-section">
-                      <h3><Eye size={18} /> Apresentação</h3>
-                      <p>{product.presentation}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-              
-              {/* -- Tab Detalhes Técnicos -- */}
-              {activeTab === "tecnico" && (
-                <div className="tab-panel">
-                  <div className="technical-specs">
-                    <div className="tech-item">
-                      <span className="tech-label">Teor Alcoólico</span>
-                      <span className="tech-value">{techValue(product.technical.alcohol)}</span>
-                    </div>
-                    <div className="tech-item">
-                      <span className="tech-label">Acidez Total</span>
-                      <span className="tech-value">{techValue(product.technical.acidity)}</span>
-                    </div>
-                    <div className="tech-item">
-                      <span className="tech-label">Açúcares Residuais</span>
-                      <span className="tech-value">{techValue(product.technical.sugar)}</span>
-                    </div>
-                    <div className="tech-item">
-                      <span className="tech-label">pH</span>
-                      <span className="tech-value">{techValue(product.technical.ph)}</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
-              {/* -- Tab Prémios -- */}
-              {activeTab === "premios" && (
-                <div className="tab-panel">
-                  <ul className="awards-list">
-                    {product.awards.map((award, index) => (
-                      <li key={index} className="award-item">
-                        <Award size={20} className="award-icon" />
-                        <div className="award-details">
-                          <span className="award-text">{award[2]}</span>
-                          {award[3] && <span className="award-points">({award[3]} pts)</span>}
-                        </div>
-                        {award[1] && (
-                          <img 
-                            src={award[1]} 
-                            alt="Medalha" 
-                            className="award-medal-image"
-                          />
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {product.datasheets && (
-            <div className="datasheet-links">
-              {product.datasheets.pt && (
-                <a href={product.datasheets.pt} target="_blank" rel="noopener noreferrer" className="datasheet-link">
-                  <FileDown size={18} /> Ficha Técnica (PT)
-                </a>
-              )}
-              {product.datasheets.en && (
-                <a href={product.datasheets.en} target="_blank" rel="noopener noreferrer" className="datasheet-link">
-                  <FileDown size={18} /> Technical Sheet (EN)
-                </a>
-              )}
+              ))}
             </div>
           )}
-        </div>
-      </section>
+        </aside>
+
+        {/* --- Conteúdo --- */}
+        <article className="wd-content">
+          <header className="wd-intro">
+            <nav className="wd-breadcrumb" aria-label="Navegação">
+              <Link to="/">Início</Link>
+              <span aria-hidden="true">·</span>
+              <Link to={basePath}>{baseLabel}</Link>
+            </nav>
+
+            {heroAddon}
+
+            <p className="wd-eyebrow">
+              {[product.category, product.type, product.year].filter(Boolean).join("  ·  ")}
+            </p>
+            <h1 className="wd-title">{product.name}</h1>
+            <span className="wd-rule" aria-hidden="true" />
+
+            {product.briefdescription && <p className="wd-lead">{product.briefdescription}</p>}
+
+            <dl className="wd-facts">
+              <div>
+                <dt>{product.varieties?.length > 1 ? "Castas" : "Casta"}</dt>
+                <dd>{product.varieties?.join(", ")}</dd>
+              </div>
+              <div>
+                <dt>Teor alcoólico</dt>
+                <dd>{techValue(product.technical?.alcohol)}</dd>
+              </div>
+              <div>
+                <dt>Servir a</dt>
+                <dd>{product.temperatura || "—"}</dd>
+              </div>
+            </dl>
+          </header>
+
+          <section className="wd-section">
+            <h2 className="wd-label">O Vinho</h2>
+            <p className="wd-story">{product.description}</p>
+          </section>
+
+          <section className="wd-section">
+            <h2 className="wd-label">Prova</h2>
+            <dl className="wd-notes">
+              <div>
+                <dt>Notas de prova</dt>
+                <dd>{product.sensorial || "Informação não disponível."}</dd>
+              </div>
+              <div>
+                <dt>Harmonização</dt>
+                <dd>{product.consumo || "Informação não disponível."}</dd>
+              </div>
+              {product.maturation && (
+                <div>
+                  <dt>Maturação</dt>
+                  <dd>{product.maturation}</dd>
+                </div>
+              )}
+            </dl>
+          </section>
+
+          {product.presentation && (
+            <section className="wd-section">
+              <blockquote className="wd-quote">{product.presentation}</blockquote>
+            </section>
+          )}
+
+          <section className="wd-section">
+            <h2 className="wd-label">Ficha Técnica</h2>
+            <dl className="wd-specs">
+              {specs.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {product.datasheets && (
+              <p className="wd-downloads">
+                Descarregar ficha técnica
+                {product.datasheets.pt && (
+                  <a href={product.datasheets.pt} target="_blank" rel="noopener noreferrer">PT</a>
+                )}
+                {product.datasheets.en && (
+                  <a href={product.datasheets.en} target="_blank" rel="noopener noreferrer">EN</a>
+                )}
+              </p>
+            )}
+          </section>
+
+          {product.awards && product.awards.length > 0 && (
+            <section className="wd-section">
+              <h2 className="wd-label">Distinções</h2>
+              <ul className="wd-awards">
+                {product.awards.map((award, index) => (
+                  <li key={index} className="wd-award">
+                    {award[1] && <img src={award[1]} alt="" className="wd-award__medal" />}
+                    <div>
+                      <span className="wd-award__name">{award[2]}</span>
+                      {award[3] && <span className="wd-award__points">{award[3]} pontos</span>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </article>
+      </div>
     </main>
   );
 }

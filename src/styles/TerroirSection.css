@@ -62,7 +62,7 @@
 }
 
 .terroir-title {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 2.8rem;
   font-weight: 300;
   letter-spacing: 3px;
@@ -204,7 +204,7 @@
 }
 
 .fact-number {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 2.8rem;
   color: #d4b896;
   margin-bottom: 10px;
@@ -213,7 +213,7 @@
 }
 
 .fact-label {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1.1rem;
   color: #f5f3f0;
   margin-bottom: 8px;
@@ -247,14 +247,14 @@
 }
 
 .terroir-quote cite {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1rem;
   color: #c0a080;
   letter-spacing: 1px;
 }
 
 .terroir-link {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1rem;
   letter-spacing: 1px;
   color: #f5f3f0;
@@ -373,7 +373,7 @@
 }
 
 .overlay-title {
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1.2rem;
   margin-bottom: 10px;
   letter-spacing: 1px;
