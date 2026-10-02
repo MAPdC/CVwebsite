@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 78 },
+      webp: { quality: 78 },
+    }),
+  ],
   build: {
-    assetsInclude: ['**/*.otf'], // Garante que as fonts sejam incluídas no build
+    assetsInclude: ['/public/fonts/*.woff2'], // Garante que as fonts sejam incluídas no build
   },
 })

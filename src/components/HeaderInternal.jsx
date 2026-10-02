@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../styles/Header.css";
-import logoCobre from "../assets/cv-logo-castanho.png";
+import logoCobre from "../assets/cv-logo-castanho.webp";
 
 function HeaderInternal() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const location = useLocation();
+
+  // Verificar se estamos no universo Camuflado
+  const isCamuflado = location.pathname.startsWith('/camuflado');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,7 +21,7 @@ function HeaderInternal() {
   };
 
   return (
-    <header className="header header--scrolled">
+    <header className={`header header--scrolled ${isCamuflado ? "header--camuflado" : ""}`}>
       <a href="/" className="header__text">
         <span className="logo__line1">CASTTÊDO</span>
         <span className="logo__line2">VALLEY</span>
@@ -43,6 +48,7 @@ function HeaderInternal() {
             <ul className={`dropdown__menu ${isDropdownOpen ? "dropdown__menu--open" : ""}`}>
               <li><a href="/portfolio/wines">VINHOS</a></li>
               <li><a href="/portfolio/olive-oils">AZEITES</a></li>
+              <li><a href="/camuflado" className="nav-item-camuflado">CAMUFLADO</a></li>
             </ul>
           </li>
           {/* <li><a href="/about-us">SOBRE NÓS</a></li>

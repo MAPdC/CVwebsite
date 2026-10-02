@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Award, Thermometer, Info, GlassWater, BookOpen, Star } from "lucide-react";
+import { Award, Thermometer, Info, GlassWater, BookOpen, Star, Wine, Eye, FileDown } from "lucide-react";
 
 // Importar o novo CSS (caminho corrigido)
 import "/src/styles/WineProductDetail.css";
 
-function WineProductDetail({ product }) {
+// null = valor ainda por confirmar; vazio/undefined = não se aplica
+const techValue = (value) => (value === null ? "Em breve" : value || "N/A");
+
+// heroAddon: conteúdo opcional por cima do título (ex.: animal Camuflado)
+function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel = "Vinhos", heroAddon = null }) {
   const [activeTab, setActiveTab] = useState("caracteristicas");
   const [mainImage, setMainImage] = useState(null);
   const [thumbnailImages, setThumbnailImages] = useState([]);
@@ -53,9 +57,10 @@ function WineProductDetail({ product }) {
       <section className="new-wine-hero">
         <div className="new-wine-breadcrumb">
           <Link to="/">Início</Link> / 
-          <Link to={"/portfolio/wines"}>Vinhos</Link> / 
+          <Link to={basePath}>{baseLabel}</Link> / 
           <span>{product.name}</span>
         </div>
+        {heroAddon}
         <h1 className="new-wine-title">{product.name}</h1>
         <div className="new-wine-category">{product.category}</div>
       </section>
@@ -147,6 +152,13 @@ function WineProductDetail({ product }) {
                     <p>{product.sensorial || "Informação não disponível."}</p>
                   </div>
                   
+                  {product.maturation && (
+                    <div className="content-section">
+                      <h3><Wine size={18} /> Maturação</h3>
+                      <p>{product.maturation}</p>
+                    </div>
+                  )}
+
                   <div className="content-section">
                     <h3><GlassWater size={18} /> Sugestão de Consumo</h3>
                     <p>{product.consumo || "Informação não disponível."}</p>
@@ -158,6 +170,13 @@ function WineProductDetail({ product }) {
                       <span className="temperature-value">{product.temperatura || "N/A"}</span>
                     </div>
                   </div>
+
+                  {product.presentation && (
+                    <div className="content-section">
+                      <h3><Eye size={18} /> Apresentação</h3>
+                      <p>{product.presentation}</p>
+                    </div>
+                  )}
                 </div>
               )}
               
@@ -167,19 +186,19 @@ function WineProductDetail({ product }) {
                   <div className="technical-specs">
                     <div className="tech-item">
                       <span className="tech-label">Teor Alcoólico</span>
-                      <span className="tech-value">{product.technical.alcohol || "N/A"}</span>
+                      <span className="tech-value">{techValue(product.technical.alcohol)}</span>
                     </div>
                     <div className="tech-item">
                       <span className="tech-label">Acidez Total</span>
-                      <span className="tech-value">{product.technical.acidity || "N/A"}</span>
+                      <span className="tech-value">{techValue(product.technical.acidity)}</span>
                     </div>
                     <div className="tech-item">
                       <span className="tech-label">Açúcares Residuais</span>
-                      <span className="tech-value">{product.technical.sugar || "N/A"}</span>
+                      <span className="tech-value">{techValue(product.technical.sugar)}</span>
                     </div>
                     <div className="tech-item">
                       <span className="tech-label">pH</span>
-                      <span className="tech-value">{product.technical.ph || "N/A"}</span>
+                      <span className="tech-value">{techValue(product.technical.ph)}</span>
                     </div>
                   </div>
                 </div>
@@ -210,6 +229,21 @@ function WineProductDetail({ product }) {
               )}
             </div>
           </div>
+
+          {product.datasheets && (
+            <div className="datasheet-links">
+              {product.datasheets.pt && (
+                <a href={product.datasheets.pt} target="_blank" rel="noopener noreferrer" className="datasheet-link">
+                  <FileDown size={18} /> Ficha Técnica (PT)
+                </a>
+              )}
+              {product.datasheets.en && (
+                <a href={product.datasheets.en} target="_blank" rel="noopener noreferrer" className="datasheet-link">
+                  <FileDown size={18} /> Technical Sheet (EN)
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </section>
     </main>

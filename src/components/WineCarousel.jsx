@@ -23,6 +23,7 @@ const WineCard = ({ wine, isHovered, setIsHovered }) => {
           src={wine.images[0]}
           alt={wine.name}
           className="wine-image-premium"
+          loading="lazy"
         />
       </div>
 

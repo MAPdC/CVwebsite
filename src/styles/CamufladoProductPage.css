@@ -1,0 +1,41 @@
+/* src/styles/CamufladoProductPage.css */
+/* Reaproveita WineProductDetail.css e RelatedProducts.css, trocando só as variáveis
+   para o universo Camuflado. --camuflado-accent é definido por vinho no JSX. */
+
+.camuflado-product {
+  --primary-color: var(--camuflado-accent);
+  --primary-light: color-mix(in srgb, var(--camuflado-accent) 15%, transparent);
+  --primary-lighter: color-mix(in srgb, var(--camuflado-accent) 8%, transparent);
+  --text-dark: var(--camuflado-text);
+  --text-medium: #4a4844;
+  --text-light: var(--camuflado-muted);
+  --bg-light: var(--camuflado-bg);
+  --font-display: var(--font-primary-camuflado);
+  --font-primary: var(--font-secondary-camuflado);
+  --font-paragraph: var(--font-secondary-camuflado);
+}
+
+.camuflado-product .new-wine-title {
+  letter-spacing: 1px;
+}
+
+.camuflado-product .related-products__title {
+  text-transform: none;
+}
+
+.camuflado-product__animal {
+  display: block;
+  height: 90px;
+  width: auto;
+  margin: 0 auto 20px;
+}
+
+@media (max-width: 600px) {
+  .camuflado-product .new-wine-title {
+    font-size: 2rem;
+  }
+
+  .camuflado-product__animal {
+    height: 70px;
+  }
+}

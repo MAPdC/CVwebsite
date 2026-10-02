@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HeritageSection.css';
-import heritageBgImage from '../assets/padre-antonio-veiga-douro-tiny.jpg';
+import heritageBgImage from '../assets/padre-antonio-veiga-douro-tiny.webp';
 
 const HeritageSection = () => {
   const sectionRef = useRef(null);
@@ -41,7 +41,7 @@ const HeritageSection = () => {
       <div className="section-line-top" />
       <div className="heritage-background">
         <div className="heritage-overlay"></div>
-        <img src={heritageBgImage} alt="Fotografia histórica" className="heritage-bg-image" />
+        <img src={heritageBgImage} alt="Padre António Veiga - Douro" className="heritage-bg-image" loading="lazy" />
       </div>
       
       <div className="heritage-content">

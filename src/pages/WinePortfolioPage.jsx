@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/WinePortfolioPage.css";
-import heroBackground from '../assets/old-references-tiny.jpg';
+import heroBackground from '../assets/old-references-tiny.webp';
 import { wines } from "../mocks/products";
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
 
@@ -26,7 +26,7 @@ function WinePortfolioPage() {
         category: wine.category,
         briefDescription: wine.briefdescription || wine.description.substring(0, 100) + "...",
         varieties: wine.varieties,
-        image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.jpg",
+        image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.webp",
         onmarket: wine.onmarket || false,
         collection: wine.collection || false,
         awards: wine.awards || []

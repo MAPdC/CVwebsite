@@ -140,6 +140,34 @@
    -2px -2px 4px rgba(0, 0, 0, 0.55);
 }
 
+/* Botão do slide (ex.: Camuflado) — o .hero-body tem pointer-events: none */
+.hero-cta {
+  margin-top: 28px;
+  padding: 10px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-content-slide--active .hero-cta {
+  pointer-events: auto;
+}
+
+.hero-cta:hover {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.hero-title--camuflado {
+  font-family: var(--font-primary-camuflado);
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: none;
+}
+
 /* ── Dots ── */
 .hero-dots {
   position: absolute;

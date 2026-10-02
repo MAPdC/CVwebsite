@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/FeaturedProducts.css';
 
-import wineImage from '../assets/old-references.jpg';
-import oliveOilImage from '../assets/azeite.png';
+import wineImage from '../assets/old-references.webp';
+import oliveOilImage from '../assets/azeite.webp';
 
 const FeaturedProducts = () => {
     const sectionRef = useRef(null);

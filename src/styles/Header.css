@@ -222,6 +222,20 @@
   background-color: #c0a080;
 }
 
+/* Item Camuflado no dropdown: tipografia da marca (a cor segue a dos outros itens do menu escuro) */
+.header__nav .nav-item-camuflado {
+  font-family: var(--font-primary-camuflado);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Header nas páginas Camuflado: mesmo header CV, em tons creme */
+.header--camuflado.header--scrolled {
+  background-color: rgba(245, 244, 240, 0.95); /* --camuflado-bg com transparência */
+  border-bottom-color: rgba(26, 26, 26, 0.08);
+}
+
 /* Responsivo */
 @media (max-width: 768px) {
   .header {

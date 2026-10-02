@@ -1,64 +1,64 @@
 // IMPORTAÇÃO DE IMAGENS
 
 // Imagens do Tinto Reserva Oaked 2019 (Coleção)
-import vto19_1 from '../assets/vto19-1.png';
-import vto19_2 from '../assets/vto19-2.jpg';
-import vto19_3 from '../assets/vto19-3.jpg';
+import vto19_1 from '../assets/vto19-1.webp';
+import vto19_2 from '../assets/vto19-2.webp';
+import vto19_3 from '../assets/vto19-3.webp';
 
 // Imagens do Tinto Reserva Unoaked 2020 (Coleção)
-import vtun20_1 from '../assets/vtun20-1.png';
-import vtun20_2 from '../assets/vtun20-2.jpg';
-import vtun20_3 from '../assets/vtun20-3.jpg';
+import vtun20_1 from '../assets/vtun20-1.webp';
+import vtun20_2 from '../assets/vtun20-2.webp';
+import vtun20_3 from '../assets/vtun20-3.webp';
 
 // Imagens do Branco Reserva Oaked 2020 (Coleção)
-import vbo20_1 from '../assets/vbo20-1.png';
-import vbo20_2 from '../assets/vbo20-2.jpg';
-import vbo20_3 from '../assets/vbo20-3.jpg';
+import vbo20_1 from '../assets/vbo20-1.webp';
+import vbo20_2 from '../assets/vbo20-2.webp';
+import vbo20_3 from '../assets/vbo20-3.webp';
 
 // Imagens do Branco Colheita Unoaked 2021 (Coleção)
-import vbun21_1 from '../assets/vbun21-1.png';
-import vbun21_2 from '../assets/vbun21-2.jpg';
-import vbun21_3 from '../assets/vbun21-3.jpg';
-import vbun21_4 from '../assets/vbun21-4.jpg';
+import vbun21_1 from '../assets/vbun21-1.webp';
+import vbun21_2 from '../assets/vbun21-2.webp';
+import vbun21_3 from '../assets/vbun21-3.webp';
+import vbun21_4 from '../assets/vbun21-4.webp';
 
 // Imagens do Branco Colheita Curtimenta Unoaked 2023 (Coleção)
-import vbcun23_1 from '../assets/vbcun23-1.png';
+import vbcun23_1 from '../assets/vbcun23-1.webp';
 // É preciso mais imagens para este vinho
 
 // Imagens do Branco Reserva Curtimenta Oaked 2023 (Coleção)
-import vbco23_1 from '../assets/vbco23-1.png';
+import vbco23_1 from '../assets/vbco23-1.webp';
 // É preciso mais imagens para este vinho
 
 // Imagens do Branco Colheita Unoaked 2023 (No Mercado)
 // Estão com as imagens da referência anterior (21) porque ainda não há fotos do 23
-import vbun23_1 from '../assets/vbun21-1.png';
-import vbun23_2 from '../assets/vbun21-2.jpg';
-import vbun23_3 from '../assets/vbun21-3.jpg';
-import vbun23_4 from '../assets/vbun21-4.jpg';
+import vbun23_1 from '../assets/vbun21-1.webp';
+import vbun23_2 from '../assets/vbun21-2.webp';
+import vbun23_3 from '../assets/vbun21-3.webp';
+import vbun23_4 from '../assets/vbun21-4.webp';
 
 // Imagens do Branco Reserva Oaked 2022 (No Mercado)
 // Estão com as imagens da referência anterior (20) porque ainda não há fotos do 22
-import vbo22_1 from '../assets/vbo20-1.png';
-import vbo22_2 from '../assets/vbo20-2.jpg';
-import vbo22_3 from '../assets/vbo20-3.jpg';
+import vbo22_1 from '../assets/vbo20-1.webp';
+import vbo22_2 from '../assets/vbo20-2.webp';
+import vbo22_3 from '../assets/vbo20-3.webp';
 
 // Imagens do Tinto Reserva Oaked 2020 (No Mercado)
 // Estão com as imagens da referência anterior (19) porque ainda não há fotos do 20
-import vto20_1 from '../assets/vto19-1.png';
-import vto20_2 from '../assets/vto19-2.jpg';
-import vto20_3 from '../assets/vto19-3.jpg';
+import vto20_1 from '../assets/vto19-1.webp';
+import vto20_2 from '../assets/vto19-2.webp';
+import vto20_3 from '../assets/vto19-3.webp';
 import { text } from '@fortawesome/fontawesome-svg-core';
 
 // Imagens do Azeite Virgem Extra Biológico Colheita Tardia
 // É preciso importar as imagens usadas nos azeites
-import lateharvest from '../assets/azeite.png';
+import lateharvest from '../assets/azeite.webp';
 
 // Imagens de prémios
-import vinduero from '../assets/logo-vinduero.png';
-import ourof23 from '../assets/vinduero-ourof-23.png';
-import ouro24 from '../assets/vinduero-ouro-24.png';
-import ouro22 from '../assets/vinduero-ouro-22.png';
-import ourof24 from '../assets/vinduero-ourof-24.png';
+import vinduero from '../assets/logo-vinduero.webp';
+import ourof23 from '../assets/vinduero-ourof-23.webp';
+import ouro24 from '../assets/vinduero-ouro-24.webp';
+import ouro22 from '../assets/vinduero-ouro-22.webp';
+import ourof24 from '../assets/vinduero-ourof-24.webp';
 
 
 export const wines = [

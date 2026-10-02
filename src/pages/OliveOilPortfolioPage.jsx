@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/OliveOilPortfolioPage.css";
-import heroBackground from '../assets/oliveira-1.jpg';
+import heroBackground from '../assets/oliveira-1.webp';
 import { oliveOils as productsData } from "../mocks/products";
 import { FaLeaf, FaSearch } from "react-icons/fa";
 
@@ -22,7 +22,7 @@ function OliveOilPortfolioPage() {
         category: "Azeite Virgem Extra",
         briefDescription: oil.briefDescription,
         varieties: oil.varieties,
-        image: oil.images && oil.images.length > 0 ? oil.images[0] : "/placeholder-image.png",
+        image: oil.images && oil.images.length > 0 ? oil.images[0] : "/placeholder-image.webp",
         onmarket: oil.onmarket,
         soldout: oil.soldout,
         organic: oil.organic,

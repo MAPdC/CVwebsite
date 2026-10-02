@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/SustainabilitySection.css";
-import sustainabilityBg from "../assets/sustainability-1-mudar.jpg"; // Imagem de fundo (você precisará substituir)
+import sustainabilityBg from "../assets/sustainability-1-mudar.webp"; // Imagem de fundo (você precisará substituir)
 
 const SustainabilitySection = () => {
   const sectionRef = useRef(null);
