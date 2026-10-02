@@ -12,7 +12,7 @@
 
 .featured-heading {
   text-align: center;
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: 5px;
@@ -72,7 +72,7 @@
 
 .featured-category {
   display: block;
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1.5rem;
   letter-spacing: 3px;
   color: #c0a080; /* Kept gold for luxury accent */
@@ -93,7 +93,7 @@
   background-color: transparent;
   border: 1px solid #c0a080;
   color: #c0a080;
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 0.8rem;
   letter-spacing: 2px;
   text-decoration: none;

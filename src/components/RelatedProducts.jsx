@@ -1,65 +1,82 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { getPackshotTransform } from "../utils/packshotTransform";
 import "../styles/RelatedProducts.css";
+
+// Amplia a garrafa para ocupar o painel (as fotos têm margens diferentes)
+const applyCrop = (img) => {
+  try {
+    const transform = getPackshotTransform(img);
+    if (transform) img.style.setProperty("--crop", transform);
+  } catch {
+    // sem acesso aos píxeis: fica a imagem tal como está
+  }
+};
 
 function RelatedProducts({ products, title = "Também pode gostar", basePath = "/portfolio/wines" }) {
   const productsRef = useRef(null);
-  
+
+  // Os cartões aparecem com um fade ao entrar no ecrã
   useEffect(() => {
-    const observeElements = () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('product-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      
-      if (productsRef.current) {
-        const products = productsRef.current.querySelectorAll('.related-product');
-        products.forEach(product => observer.observe(product));
-      }
-    };
-    
-    observeElements();
-    
+    if (!productsRef.current) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("product-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    productsRef.current.querySelectorAll(".related-product").forEach((product) => observer.observe(product));
+
+    // Recorte das garrafas: já carregadas (cache) ou quando acabarem de carregar
+    const images = [...productsRef.current.querySelectorAll(".related-product__image img")];
+    const onLoad = (event) => applyCrop(event.currentTarget);
+    images.forEach((img) => {
+      if (img.complete && img.naturalWidth) applyCrop(img);
+      else img.addEventListener("load", onLoad);
+    });
+
     return () => {
-      // Cleanup if needed
+      observer.disconnect();
+      images.forEach((img) => img.removeEventListener("load", onLoad));
     };
   }, [products]);
 
   if (!products || products.length === 0) return null;
 
   return (
-    <div className="related-products-section">
+    <section className="related-products-section">
       <div className="related-products__heading">
+        <span className="related-products__eyebrow">Continue a descobrir</span>
         <h2 className="related-products__title">{title}</h2>
-        <div className="related-products__divider">
-          <span className="divider-icon">✦</span>
-        </div>
       </div>
-      
+
       <div className="related-products__grid" ref={productsRef}>
         {products.map((product) => (
-          <Link 
-            to={`${basePath}/${product.slug}`} 
-            className="related-product" 
+          <Link
+            to={`${basePath}/${product.slug}`}
+            className="related-product"
             key={product.id}
           >
             <div className="related-product__image">
-              <img src={product.images[0]} alt={product.name} />
+              <img src={product.images[0]} alt={product.name} loading="lazy" />
             </div>
-            
+
             <div className="related-product__info">
+              <span className="related-product__category">
+                {[product.category, product.year].filter(Boolean).join(" · ")}
+              </span>
               <h3 className="related-product__name">{product.name}</h3>
-              <div className="related-product__category">{product.category}</div>
+              <span className="related-product__cta">Descobrir</span>
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
-};
+}
 
 export default RelatedProducts;

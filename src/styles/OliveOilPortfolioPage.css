@@ -48,7 +48,7 @@
   }
   
   .catalog-hero__title {
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 3rem;
     font-weight: 300;
     letter-spacing: 2px;
@@ -317,7 +317,7 @@
   }
   
   .oil-card__name {
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 1.5rem;
     font-weight: 300;
     color: #7a994c;
@@ -413,7 +413,7 @@
   }
   
   .no-results h3 {
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 15px;

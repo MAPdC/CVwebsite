@@ -1,41 +1,44 @@
 /* src/styles/CamufladoProductPage.css */
-/* Reaproveita WineProductDetail.css e RelatedProducts.css, trocando só as variáveis
+/* Reaproveita WineDetail.css e RelatedProducts.css, trocando só as variáveis
    para o universo Camuflado. --camuflado-accent é definido por vinho no JSX. */
 
 .camuflado-product {
-  --primary-color: var(--camuflado-accent);
-  --primary-light: color-mix(in srgb, var(--camuflado-accent) 15%, transparent);
-  --primary-lighter: color-mix(in srgb, var(--camuflado-accent) 8%, transparent);
-  --text-dark: var(--camuflado-text);
-  --text-medium: #4a4844;
-  --text-light: var(--camuflado-muted);
-  --bg-light: var(--camuflado-bg);
-  --font-display: var(--font-primary-camuflado);
-  --font-primary: var(--font-secondary-camuflado);
-  --font-paragraph: var(--font-secondary-camuflado);
+  --wd-display: var(--font-primary-camuflado);
+  --wd-body: var(--font-primary-camuflado);
+  --wd-label-font: var(--font-secondary-camuflado);
+
+  --wd-ink: var(--camuflado-text);
+  --wd-muted: var(--camuflado-muted);
+  --wd-accent: var(--camuflado-accent);
+  --wd-bg: var(--camuflado-bg);
+  --wd-tint: #e9e7e5; /* fundo das fotos das garrafas (o tom mais escuro, para o darken o apagar) */
 }
 
-.camuflado-product .new-wine-title {
-  letter-spacing: 1px;
+/* A Playfair é mais "cheia" que a Cormorant: textos ligeiramente mais pequenos */
+.camuflado-product .wd-lead {
+  font-size: 1.3rem;
 }
 
-.camuflado-product .related-products__title {
-  text-transform: none;
+.camuflado-product .wd-story,
+.camuflado-product .wd-notes dd,
+.camuflado-product .wd-quote {
+  font-size: 1.1rem;
+}
+
+.camuflado-product .wd-facts dd,
+.camuflado-product .wd-specs dd {
+  font-size: 1.05rem;
 }
 
 .camuflado-product__animal {
   display: block;
-  height: 90px;
+  height: 72px;
   width: auto;
-  margin: 0 auto 20px;
+  margin: 0 0 28px;
 }
 
 @media (max-width: 600px) {
-  .camuflado-product .new-wine-title {
-    font-size: 2rem;
-  }
-
   .camuflado-product__animal {
-    height: 70px;
+    height: 56px;
   }
 }

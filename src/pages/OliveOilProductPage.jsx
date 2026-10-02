@@ -1,5 +1,5 @@
 // src/pages/OliveOilProductPage.jsx
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 // Importar dados de azeites e vinhos (para produtos relacionados mistos, se desejar)
 import { oliveOils, wines } from "../mocks/products";
 // Importar o novo componente de detalhe
@@ -52,7 +52,7 @@ const OliveOilProductPage = () => {
 
       {/* Renderiza a secção de produtos relacionados */}
       {/* O título pode ser personalizado */}
-      <RelatedProducts products={relatedProducts} title="Explore Outros Azeites" />
+      <RelatedProducts products={relatedProducts} title="Explore Outros Azeites" basePath="/portfolio/olive-oils" />
       {/* Ou se usar misto: <RelatedProducts products={mixedRelatedProducts} title="Pode Também Gostar" /> */}
     </div>
   );

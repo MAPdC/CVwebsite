@@ -34,7 +34,7 @@
 .logo__line1,
 .logo__line2 {
   display: block;
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 1.3px;
@@ -129,7 +129,7 @@
 
 .header__nav a {
   color: #ffffff;
-  font-family: 'AgathoRegularCAPS', 'serif';
+  font-family: 'Cormorant SC', serif;
   font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 1px;

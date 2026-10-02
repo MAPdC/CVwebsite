@@ -11,7 +11,7 @@
   --bg-white: #fff;
   --border-light: #eee;
   --font-primary: 'Work Sans', sans-serif;
-  --font-display: 'AgathoRegularCAPS', 'serif';
+  --font-display: 'Cormorant SC', serif;
   --font-paragraph: 'Cormorant Garamond', serif;
 }
 
@@ -380,29 +380,4 @@
     width: 48%;
     flex-grow: 1;
   }
-}
-/* Downloads das fichas técnicas (só aparecem se o produto tiver "datasheets") */
-.datasheet-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.datasheet-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border: 1px solid var(--primary-color);
-  border-radius: 4px;
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.datasheet-link:hover {
-  background-color: var(--primary-color);
-  color: var(--bg-white);
 }

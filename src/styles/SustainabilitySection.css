@@ -43,7 +43,7 @@
   }
   
   .section-title {
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 2.2rem;
     font-weight: 300;
     letter-spacing: 5px;
@@ -113,7 +113,7 @@
   }
   
   .practice-title {
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 1rem;
     font-weight: 300;
     letter-spacing: 2px;
@@ -146,7 +146,7 @@
   
   .sustainability-link {
     display: inline-block;
-    font-family: 'AgathoRegularCAPS', 'serif';
+    font-family: 'Cormorant SC', serif;
     font-size: 0.9rem;
     letter-spacing: 2px;
     color: #c0a080;

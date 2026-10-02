@@ -66,7 +66,7 @@
 }
 
 .highlight-awards-title {
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: clamp(2rem, 4vw, 2.8rem); /* Tamanho de fonte responsivo */
   font-weight: 300;
   color: #3a2e28; /* Cor castanho escuro */
@@ -228,7 +228,7 @@
 }
 
 .award-card-name {
-  font-family: 'AgathoRegularCAPS', serif;
+  font-family: 'Cormorant SC', serif;
   font-size: 1.35rem;
   font-weight: 300;
   color: #4a3728; /* Castanho escuro */
