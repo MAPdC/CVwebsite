@@ -63,6 +63,7 @@
 
 /* Painel com a garrafa inteira */
 .related-product__image {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,6 +84,31 @@
 
 .related-product:hover .related-product__image img {
   transform: translateY(-8px) var(--crop, none);
+}
+
+/* Etiqueta Disponível / Coleção (mesmas cores do portefólio de vinhos) */
+.related-product__status {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  font-family: var(--wd-label-font, 'Montserrat', sans-serif);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.related-product__status--available {
+  background-color: rgb(60, 120, 60);
+  color: #fff;
+}
+
+.related-product__status--collection {
+  border-color: rgb(70, 90, 110);
+  color: rgb(70, 90, 110);
 }
 
 .related-product__info {

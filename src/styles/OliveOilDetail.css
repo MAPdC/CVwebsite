@@ -1,0 +1,32 @@
+/* src/styles/OliveOilDetail.css
+   Página de detalhe do azeite: reaproveita WineDetail.css, trocando o cobre pelo verde-oliva
+   do portefólio de azeites. Aplica-se também à secção de produtos relacionados (.oil-product-page). */
+
+.oil-product-page {
+  --wd-accent: #5f7a35;   /* verde-oliva (#7a994c escurecido para ter contraste no texto) */
+  --wd-tint: #eceee4;     /* painel por trás da garrafa */
+}
+
+/* "por 100 ml" ao lado do título da secção */
+.oil-detail .oil-detail__label-note {
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
+  color: var(--wd-muted);
+}
+
+/* "dos quais saturados / açúcares" ficam recolhidos e mais discretos */
+.oil-detail .oil-detail__sub {
+  padding-left: 20px;
+}
+
+.oil-detail .oil-detail__sub dt {
+  letter-spacing: 1px;
+  text-transform: none;
+  font-size: 0.78rem;
+}
+
+.oil-detail .oil-detail__sub dd {
+  font-size: 1rem;
+  color: var(--wd-muted);
+}

@@ -49,7 +49,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Espaçamento entre links */
+  gap: 12px; /* Espaçamento entre links */
 }
 
 .footer-nav a {
@@ -57,7 +57,7 @@
   color: var(--text-medium, #555); /* Cor do texto */
   transition: color 0.3s;
   font-family: var(--font-primary, 'Work Sans', sans-serif);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400; /* Peso da fonte para links */
   letter-spacing: 0.5px;
 }
@@ -172,7 +172,7 @@
 }
 
 .footer-links a {
-  color: var(--text-light, #777);
+  color: #6b625c; /* --text-light é claro demais para este fundo */
   text-decoration: none;
   font-size: 0.8rem;
   font-family: var(--font-primary, 'Work Sans', sans-serif);
@@ -186,7 +186,7 @@
 }
 
 .copyright {
-  color: var(--text-light, #777);
+  color: #6b625c; /* --text-light é claro demais para este fundo */
   font-family: var(--font-primary, 'Work Sans', sans-serif);
   font-size: 0.8rem;
 }
@@ -236,7 +236,7 @@
   }
   .contact-info .phone-separator {
     display: inline; /* Mostra o separador "/" em desktop */
-    color: var(--text-light, #777); /* Cor suave para o separador */
+    color: #6b625c; /* Cor suave para o separador */
   }
 
   .social-icons {
