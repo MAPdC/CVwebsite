@@ -62,15 +62,15 @@ const Footer = () => {
                 <p>
                   <Phone size={14} />
                   <span className="phone-numbers">
-                    <a href="tel:+351933305966">+351 933 305 966</a>
+                    <a href="tel:+351933305966" data-umami-event="telefone" data-umami-event-local="rodape">+351 933 305 966</a>
                     <span className="phone-separator"> / </span>
-                    <a href="tel:+351933467002">+351 933 467 002</a> 
+                    <a href="tel:+351933467002" data-umami-event="telefone" data-umami-event-local="rodape">+351 933 467 002</a>
                   </span>
                 </p>
                 
                 <p>
                   <Mail size={14} />
-                  <a href="mailto:casttedovalley@gmail.com">casttedovalley@gmail.com</a>
+                  <a href="mailto:casttedovalley@gmail.com" data-umami-event="email" data-umami-event-local="rodape">casttedovalley@gmail.com</a>
                 </p>
               </div>
               
@@ -81,6 +81,8 @@ const Footer = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Facebook"
+                    data-umami-event="rede-social"
+                    data-umami-event-rede="facebook"
                 >
                   <FaFacebook size={24} />
                 </a>
@@ -89,6 +91,8 @@ const Footer = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     aria-label="Instagram"
+                    data-umami-event="rede-social"
+                    data-umami-event-rede="instagram"
                 >
                   <FaInstagram size={24} />
                 </a>

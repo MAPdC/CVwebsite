@@ -187,10 +187,24 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
               <p className="wd-downloads">
                 Descarregar ficha técnica
                 {product.datasheets.pt && (
-                  <a href={product.datasheets.pt} target="_blank" rel="noopener noreferrer">PT</a>
+                  <a
+                    href={product.datasheets.pt}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-umami-event="ficha-tecnica"
+                    data-umami-event-produto={product.name}
+                    data-umami-event-idioma="pt"
+                  >PT</a>
                 )}
                 {product.datasheets.en && (
-                  <a href={product.datasheets.en} target="_blank" rel="noopener noreferrer">EN</a>
+                  <a
+                    href={product.datasheets.en}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-umami-event="ficha-tecnica"
+                    data-umami-event-produto={product.name}
+                    data-umami-event-idioma="en"
+                  >EN</a>
                 )}
               </p>
             )}
