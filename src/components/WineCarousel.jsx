@@ -3,10 +3,34 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 import { wines } from '../mocks/products.js';
 import "../styles/WineCarousel.css";
+import { localizeProduct, useLang } from '../i18n';
+import { COMMON } from '../i18n/common';
+
+const TEXT = {
+  pt: {
+    subtitle: 'A Nossa Seleção',
+    title: 'VINHOS',
+    prev: 'Vinho anterior',
+    next: 'Próximo vinho',
+    goTo: (n) => `Ir para vinho ${n}`,
+    portfolio: 'Ver Todo o Portefólio',
+  },
+  en: {
+    subtitle: 'Our Selection',
+    title: 'WINES',
+    prev: 'Previous wine',
+    next: 'Next wine',
+    goTo: (n) => `Go to wine ${n}`,
+    portfolio: 'View the Full Portfolio',
+  },
+};
 
 const WineCard = ({ wine, isHovered, setIsHovered }) => {
+  const { lang, to } = useLang();
+  const badges = COMMON[lang].badges;
+
   return (
-    <Link to={`/portfolio/wines/${wine.slug}`} className={`wine-card-premium ${isHovered ? 'hovered' : ''}`}
+    <Link to={to(`/portfolio/wines/${wine.slug}`)} className={`wine-card-premium ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ textDecoration: 'none', color: 'inherit' }}
@@ -14,8 +38,8 @@ const WineCard = ({ wine, isHovered, setIsHovered }) => {
       <div className="wine-card-shimmer" />
 
       <div className="wine-badges-premium">
-        {wine.oaked && <span className="badge-premium oaked">Oaked</span>}
-        {wine.curtimenta && <span className="badge-premium curtimenta">Curtimenta</span>}
+        {wine.oaked && <span className="badge-premium oaked">{badges.oaked}</span>}
+        {wine.curtimenta && <span className="badge-premium curtimenta">{badges.curtimenta}</span>}
       </div>
 
       <div className="wine-image-wrapper-premium">
@@ -51,8 +75,10 @@ const WineCarouselPremium = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
 
-  const availableWines = wines.filter(wine => wine.onmarket);
+  const availableWines = wines.filter(wine => wine.onmarket).map(wine => localizeProduct(wine, lang));
   const totalSlides = availableWines.length;
 
   useEffect(() => {
@@ -124,10 +150,10 @@ const WineCarouselPremium = () => {
         <div className="wine-carousel-header-premium">
           <div className="wine-carousel-subtitle-premium">
             <Sparkles size={12} />
-            <span>A Nossa Seleção</span>
+            <span>{text.subtitle}</span>
             <Sparkles size={12} />
           </div>
-          <h2 className="wine-carousel-title-premium">VINHOS</h2>
+          <h2 className="wine-carousel-title-premium">{text.title}</h2>
           <div className="wine-carousel-ornament">
             <div className="ornament-line-left" />
             <div className="ornament-diamond" />
@@ -137,7 +163,7 @@ const WineCarouselPremium = () => {
 
         <div className={`wine-carousel-wrapper-premium ${totalSlides < 3 ? 'justify-center' : ''}`}>
           {totalSlides > 1 && (
-             <button onClick={prevSlide} className="carousel-nav-premium prev" aria-label="Vinho anterior">
+             <button onClick={prevSlide} className="carousel-nav-premium prev" aria-label={text.prev}>
                <ChevronLeft size={20} />
              </button>
           )}
@@ -152,7 +178,7 @@ const WineCarouselPremium = () => {
             ))}
           </div>
           {totalSlides > 1 && (
-            <button onClick={nextSlide} className="carousel-nav-premium next" aria-label="Próximo vinho">
+            <button onClick={nextSlide} className="carousel-nav-premium next" aria-label={text.next}>
               <ChevronRight size={20} />
             </button>
           )}
@@ -161,14 +187,14 @@ const WineCarouselPremium = () => {
         {totalSlides > 1 && (
           <div className="wine-carousel-indicators-premium">
             {availableWines.map((_, index) => (
-              <button key={index} className={`indicator-premium ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir para vinho ${index + 1}`} />
+              <button key={index} className={`indicator-premium ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} />
             ))}
           </div>
         )}
 
         <div className="carousel-portfolio-link-container">
-          <Link to="/portfolio/wines" className="carousel-portfolio-link">
-            Ver Todo o Portefólio
+          <Link to={to("/portfolio/wines")} className="carousel-portfolio-link">
+            {text.portfolio}
             <ArrowRight size={16} className="portfolio-link-arrow" />
           </Link>
         </div>

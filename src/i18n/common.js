@@ -1,0 +1,78 @@
+// Textos partilhados por vários componentes (menus, rodapé, etiquetas de produto).
+// Os textos próprios de cada página ficam junto do respetivo componente.
+export const COMMON = {
+  pt: {
+    nav: {
+      portfolio: "Portefólio",
+      wines: "Vinhos",
+      oliveOils: "Azeites",
+      camuflado: "Camuflado",
+      contacts: "Contactos",
+      home: "Início",
+    },
+    footer: {
+      navigation: "Navegação",
+      contacts: "Contactos",
+      social: "Redes Sociais",
+      privacy: "Política de Privacidade",
+      rights: (year) => `©${year} por Casttêdo Valley. Todos os direitos reservados.`,
+      logoAlt: "Logótipo Casttêdo Valley",
+    },
+    menu: "Abrir menu",
+    language: "Idioma",
+    wineTypes: { Tinto: "Tinto", Branco: "Branco" },
+    badges: {
+      oaked: "Oaked",
+      unoaked: "Unoaked",
+      curtimenta: "Curtimenta",
+      organic: "Biológico",
+      lateHarvest: "Colheita Tardia",
+      available: "Disponível",
+      collection: "Coleção",
+      soldOut: "Esgotado",
+    },
+    seeDetails: "Ver Detalhes",
+    points: "pontos",
+    backHome: "Voltar à Página Inicial",
+    meta: {
+      description: "Vinhos de excelência DOC Douro.",
+    },
+  },
+  en: {
+    nav: {
+      portfolio: "Portfolio",
+      wines: "Wines",
+      oliveOils: "Olive Oils",
+      camuflado: "Camuflado",
+      contacts: "Contact",
+      home: "Home",
+    },
+    footer: {
+      navigation: "Explore",
+      contacts: "Contact",
+      social: "Follow Us",
+      privacy: "Privacy Policy",
+      rights: (year) => `©${year} Casttêdo Valley. All rights reserved.`,
+      logoAlt: "Casttêdo Valley logo",
+    },
+    menu: "Open menu",
+    language: "Language",
+    wineTypes: { Tinto: "Red", Branco: "White" },
+    badges: {
+      oaked: "Oaked",
+      unoaked: "Unoaked",
+      curtimenta: "Orange Wine",
+      organic: "Organic",
+      lateHarvest: "Late Harvest",
+      available: "Available",
+      collection: "Collection",
+      soldOut: "Sold Out",
+    },
+    seeDetails: "View Details",
+    points: "points",
+    backHome: "Back to Home",
+    meta: {
+      description: "Fine Douro DOC wines and organic extra virgin olive oil from a family estate in the heart of the Douro Valley.",
+    },
+  },
+};

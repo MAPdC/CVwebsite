@@ -3,10 +3,39 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Droplets } from 'lucide-react';
 import { oliveOils } from '../mocks/products.js';
 import "../styles/OliveOilCarousel.css";
+import { formatDecimal, localizeProduct, useLang } from '../i18n';
+import { COMMON } from '../i18n/common';
+
+const TEXT = {
+  pt: {
+    acidity: 'Acidez',
+    lowAcidity: 'Acidez Baixa',
+    subtitle: 'Ouro Líquido do Douro',
+    title: 'AZEITES',
+    prev: 'Azeite anterior',
+    next: 'Próximo azeite',
+    goTo: (n) => `Ir para azeite ${n}`,
+    portfolio: 'VER TODO O PORTEFÓLIO',
+  },
+  en: {
+    acidity: 'Acidity',
+    lowAcidity: 'Low Acidity',
+    subtitle: 'Liquid Gold from the Douro',
+    title: 'OLIVE OILS',
+    prev: 'Previous olive oil',
+    next: 'Next olive oil',
+    goTo: (n) => `Go to olive oil ${n}`,
+    portfolio: 'VIEW THE FULL PORTFOLIO',
+  },
+};
 
 
 // Cartão de Azeite (Não clicável individualmente por agora)
 const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
+  const { lang } = useLang();
+  const badges = COMMON[lang].badges;
+  const text = TEXT[lang];
+
   return (
     <div
       className={`oil-card-premium ${isHovered ? 'hovered' : ''}`}
@@ -16,8 +45,8 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
       <div className="oil-card-border-glow" />
       <div className="oil-card-shimmer" />
 
-      {oil.organic && <span className="badge-premium organic">Biológico</span>}
-      {oil.lateHarvest && <span className="badge-premium late-harvest">Colheita Tardia</span>}
+      {oil.organic && <span className="badge-premium organic">{badges.organic}</span>}
+      {oil.lateHarvest && <span className="badge-premium late-harvest">{badges.lateHarvest}</span>}
 
       <div className="oil-image-wrapper-premium">
         <img
@@ -40,7 +69,7 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
               <span key={idx}><Leaf size={13} /> {variety}</span>
           ))}
           {/* Adicionar mais ícones se necessário, e.g., acidez */}
-          <span title={`Acidez: ${oil.technical?.acidity || 'N/A'}`}><Droplets size={13} /> Acidez Baixa</span>
+          <span title={`${text.acidity}: ${formatDecimal(oil.technical?.acidity, lang) || 'N/A'}`}><Droplets size={13} /> {text.lowAcidity}</span>
         </div>
         {/* Botão individual removido */}
       </div>
@@ -54,8 +83,10 @@ const OliveOilCarousel = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
 
-  const availableOils = oliveOils.filter(oil => oil.onmarket && !oil.soldout); // Filtra disponíveis
+  const availableOils = oliveOils.filter(oil => oil.onmarket && !oil.soldout).map(oil => localizeProduct(oil, lang)); // Filtra disponíveis
   const totalSlides = availableOils.length;
 
   useEffect(() => {
@@ -95,9 +126,9 @@ const OliveOilCarousel = () => {
         {/* Cabeçalho */}
         <div className="olive-oil-header-premium">
           <div className="olive-oil-subtitle-premium">
-            <Leaf size={14} /> <span>Ouro Líquido do Douro</span> <Leaf size={14} />
+            <Leaf size={14} /> <span>{text.subtitle}</span> <Leaf size={14} />
           </div>
-          <h2 className="olive-oil-title-premium">AZEITES</h2>
+          <h2 className="olive-oil-title-premium">{text.title}</h2>
           <div className="olive-oil-ornament">
             <div className="ornament-line-left" /> <Droplets size={10} className="ornament-droplet"/> <div className="ornament-line-right" />
           </div>
@@ -105,27 +136,27 @@ const OliveOilCarousel = () => {
 
         {/* Wrapper do Carrossel */}
         <div className={`olive-oil-wrapper-premium ${totalSlides < 3 ? 'justify-center' : ''}`}>
-          {totalSlides > 1 && <button onClick={prevSlide} className="carousel-nav-premium oil-nav prev" aria-label="Azeite anterior"><ChevronLeft size={20} /></button>}
+          {totalSlides > 1 && <button onClick={prevSlide} className="carousel-nav-premium oil-nav prev" aria-label={text.prev}><ChevronLeft size={20} /></button>}
           {/* Grelha de Cartões */}
           <div className={`olive-oil-cards-grid-premium ${totalSlides === 1 ? 'single' : totalSlides === 2 ? 'double' : 'triple'}`}>
             {getVisibleOils().map(({ oil, position }) => (
               <OliveOilCard key={oil.id || `oil-${position}`} oil={oil} isHovered={hoveredCard === (oil.id || `oil-${position}`)} setIsHovered={(h) => setHoveredCard(h ? (oil.id || `oil-${position}`) : null)} />
             ))}
           </div>
-          {totalSlides > 1 && <button onClick={nextSlide} className="carousel-nav-premium oil-nav next" aria-label="Próximo azeite"><ChevronRight size={20} /></button>}
+          {totalSlides > 1 && <button onClick={nextSlide} className="carousel-nav-premium oil-nav next" aria-label={text.next}><ChevronRight size={20} /></button>}
         </div>
 
         {/* Indicadores */}
         {totalSlides > 1 && (
           <div className="olive-oil-indicators-premium">
-            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir para azeite ${index + 1}`} />)}
+            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} />)}
           </div>
         )}
 
         {/* Link Geral */}
         <div className="carousel-portfolio-link-container oil-link-container">
-          <Link to="/portfolio/olive-oils" className="carousel-portfolio-link oil-link">
-            VER TODO O PORTEFÓLIO <ArrowRight size={16} className="portfolio-link-arrow" />
+          <Link to={to("/portfolio/olive-oils")} className="carousel-portfolio-link oil-link">
+            {text.portfolio} <ArrowRight size={16} className="portfolio-link-arrow" />
           </Link>
         </div>
       </div>

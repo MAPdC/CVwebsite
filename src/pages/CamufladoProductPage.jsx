@@ -4,13 +4,15 @@ import WineProductDetail from "../components/WineProductDetail";
 import RelatedProducts from "../components/RelatedProducts";
 import NotFoundPage from "./NotFoundPage";
 import useReveal from "../hooks/useReveal";
+import { localizeProduct, useLang } from "../i18n";
 import "../styles/CamufladoProductPage.css";
 
 const CamufladoProductPage = () => {
   const { slug } = useParams();
   const revealRef = useReveal();
+  const { lang } = useLang();
 
-  const currentProduct = camufladoProducts.find((p) => p.slug === slug);
+  const currentProduct = localizeProduct(camufladoProducts.find((p) => p.slug === slug), lang);
 
   if (!currentProduct) return <NotFoundPage />;
 
@@ -39,7 +41,7 @@ const CamufladoProductPage = () => {
       />
       <RelatedProducts
         products={relatedProducts}
-        title="Outros Camuflados"
+        title={lang === "en" ? "More from Camuflado" : "Outros Camuflados"}
         basePath="/camuflado"
       />
     </div>

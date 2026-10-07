@@ -17,6 +17,7 @@ O website inclui:
 - Portefólio de azeites com estrutura equivalente
 - Página de contactos com morada, informações de acesso e experiências disponíveis
 - Página de política de privacidade
+- Versão em inglês de todo o site (caminhos com o prefixo `/en`), com seletor PT | EN no cabeçalho
 - Páginas em desenvolvimento: História, Sustentabilidade e Sobre Nós
 
 ---
@@ -43,6 +44,7 @@ O website inclui:
 src/
 ├── assets/          # Imagens, logótipos e ícones
 ├── components/      # Componentes reutilizáveis (Header, Footer, Carrosséis, Secções)
+├── i18n/            # Idiomas (PT/EN): deteção pelo URL, textos partilhados e utilitários
 ├── fonts/           # Tipografia personalizada
 ├── mocks/           # Dados dos produtos (vinhos e azeites)
 ├── pages/           # Páginas da aplicação
@@ -78,6 +80,17 @@ npm run build
 # Pré-visualizar o build
 npm run preview
 ```
+
+---
+
+## Idiomas
+
+O site existe em português (caminhos na raiz, ex.: `/contacts`) e em inglês (os mesmos caminhos com o prefixo `/en`, ex.: `/en/contacts`). O idioma é sempre lido do URL.
+
+- Textos partilhados (menus, rodapé, etiquetas): `src/i18n/common.js`.
+- Textos de cada página: no próprio componente, num objeto `TEXT = { pt: {...}, en: {...} }`.
+- Produtos: os campos PT estão no topo de cada produto em `src/mocks/`; o bloco `en` substitui os campos que mudam em inglês.
+- Links internos devem passar por `to()` do hook `useLang()`, para manterem o idioma atual.
 
 ---
 

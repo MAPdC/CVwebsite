@@ -1,219 +1,461 @@
 import React, { useEffect, useState } from 'react';
+import { useLang } from '../i18n';
 import '../styles/PrivacyPage.css';
 
 const EMAIL = 'casttedovalley@gmail.com';
 const EmailLink = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>;
 
-// Resumo apresentado no topo da página
-const SUMMARY = [
-  ['Sem cookies', 'O website não guarda cookies no seu dispositivo.'],
-  ['Estatísticas anónimas', 'Contamos visitas sem identificar quem nos visita.'],
-  ['Sem formulários', 'Só tratamos os dados que nos enviar por email ou telefone.'],
-  ['Os seus direitos', 'Pode aceder, corrigir ou apagar os seus dados a qualquer momento.'],
-];
+const CnpdLink = () => (
+  <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">www.cnpd.pt</a>
+);
 
-// Cada secção gera também uma entrada no índice
-const SECTIONS = [
-  {
-    id: 'introducao',
-    title: 'Introdução',
-    body: (
-      <>
-        <p>
-          Bem-vindo ao website do Casttêdo Valley. A sua privacidade é de extrema importância para nós. Esta Política de Privacidade explica que dados são tratados quando visita o nosso website (casttedovalley.com) ou quando nos contacta, para que finalidades e quais os seus direitos.
-        </p>
-        <p>
-          O nosso website é informativo: não tem formulários, não requer registo e não utiliza cookies.
-        </p>
-      </>
-    ),
+const Contact = () => (
+  <address className="pp-contact">
+    <span className="pp-contact__name">Casttêdo Valley</span>
+    <span>Largo Padre António Veiga, 5070-226 Castedo, Alijó</span>
+    <EmailLink />
+    <a href="tel:+351933305966">+351 933 305 966</a>
+  </address>
+);
+
+const TEXT = {
+  pt: {
+    eyebrow: 'Informação Legal',
+    title: 'Política de Privacidade',
+    lead: 'Um website sem cookies, sem formulários e com estatísticas anónimas. Explicamos aqui que dados são tratados e quais são os seus direitos.',
+    updated: 'Última atualização · 7 de outubro de 2026',
+    toc: 'Índice',
+
+    // Resumo apresentado no topo da página
+    summary: [
+      ['Sem cookies', 'O website não guarda cookies no seu dispositivo.'],
+      ['Estatísticas anónimas', 'Contamos visitas sem identificar quem nos visita.'],
+      ['Sem formulários', 'Só tratamos os dados que nos enviar por email ou telefone.'],
+      ['Os seus direitos', 'Pode aceder, corrigir ou apagar os seus dados a qualquer momento.'],
+    ],
+
+    // Cada secção gera também uma entrada no índice
+    sections: [
+      {
+        id: 'introducao',
+        title: 'Introdução',
+        body: (
+          <>
+            <p>
+              Bem-vindo ao website do Casttêdo Valley. A sua privacidade é de extrema importância para nós. Esta Política de Privacidade explica que dados são tratados quando visita o nosso website (casttedovalley.com) ou quando nos contacta, para que finalidades e quais os seus direitos.
+            </p>
+            <p>
+              O nosso website é informativo: não tem formulários, não requer registo e não utiliza cookies.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'responsavel',
+        title: 'Responsável pelo Tratamento',
+        body: (
+          <>
+            <p>
+              A entidade responsável pelo tratamento dos seus dados pessoais é o Casttêdo Valley, com sede no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
+            </p>
+            <p>
+              Para qualquer questão relacionada com a sua privacidade, pode contactar-nos através do email <EmailLink />.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'informacoes',
+        title: 'Informações que Recolhemos',
+        body: (
+          <dl className="pp-defs">
+            <div>
+              <dt>Estatísticas de utilização</dt>
+              <dd>
+                Utilizamos o Umami, uma ferramenta de análise que não usa cookies nem identifica visitantes individualmente, para recolher dados agregados e anónimos sobre a utilização do site: páginas visitadas, origem da visita (por exemplo, um motor de busca ou rede social), país, tipo de dispositivo e navegador, e interações como o descarregamento de fichas técnicas. O endereço IP não é armazenado.
+              </dd>
+            </div>
+            <div>
+              <dt>Dados técnicos de acesso</dt>
+              <dd>
+                Como em qualquer website, o seu navegador comunica o seu endereço IP e dados técnicos (tipo de navegador, página pedida) aos servidores que entregam o site. Estes dados são tratados pelos nossos prestadores de serviços, conforme descrito na secção 6, e não são utilizados por nós para o identificar.
+              </dd>
+            </div>
+            <div>
+              <dt>Dados que nos envia ao contactar-nos</dt>
+              <dd>
+                Se nos contactar por email ou telefone (por exemplo, para reservar uma visita ou prova de vinhos), tratamos os dados que nos fornecer, como o seu nome, email, número de telefone e o conteúdo do pedido.
+              </dd>
+            </div>
+          </dl>
+        ),
+      },
+      {
+        id: 'finalidades',
+        title: 'Finalidades e Fundamentos Legais',
+        body: (
+          <dl className="pp-defs">
+            <div>
+              <dt>Responder aos seus contactos e gerir reservas de visitas e provas</dt>
+              <dd>Com base nas diligências pré-contratuais ou no contrato que nos solicita.</dd>
+            </div>
+            <div>
+              <dt>Compreender como o website é utilizado e melhorá-lo</dt>
+              <dd>Com base no nosso interesse legítimo, utilizando apenas dados agregados e anónimos.</dd>
+            </div>
+            <div>
+              <dt>Garantir o funcionamento e a segurança do website</dt>
+              <dd>Com base no nosso interesse legítimo.</dd>
+            </div>
+            <div>
+              <dt>Cumprir obrigações legais</dt>
+              <dd>Quando a lei assim o exija.</dd>
+            </div>
+          </dl>
+        ),
+      },
+      {
+        id: 'conservacao',
+        title: 'Conservação dos Dados',
+        body: (
+          <p>
+            Os dados que nos envia ao contactar-nos são conservados apenas pelo tempo necessário para responder ao seu pedido ou gerir a sua reserva, ou pelo período exigido por lei. As estatísticas de utilização são anónimas e agregadas, não permitindo identificar qualquer visitante.
+          </p>
+        ),
+      },
+      {
+        id: 'partilha',
+        title: 'Partilha de Informações',
+        body: (
+          <>
+            <p>
+              O Casttêdo Valley não vende, aluga nem partilha as suas informações pessoais com terceiros para fins de marketing. Para o funcionamento do website, recorremos aos seguintes prestadores de serviços:
+            </p>
+            <dl className="pp-defs">
+              <div>
+                <dt>GitHub · alojamento do website</dt>
+                <dd>Regista o endereço IP dos visitantes por motivos de segurança.</dd>
+              </div>
+              <div>
+                <dt>Umami · estatísticas de utilização</dt>
+                <dd>Recebe os dados descritos na secção 3, sem cookies e sem armazenar o endereço IP.</dd>
+              </div>
+              <div>
+                <dt>Google · Gmail</dt>
+                <dd>Serviço de email através do qual recebemos e respondemos às suas mensagens.</dd>
+              </div>
+            </dl>
+            <p>
+              Alguns destes prestadores estão sediados nos Estados Unidos. Nesses casos, a transferência de dados é feita ao abrigo dos mecanismos previstos no RGPD, como o Quadro de Privacidade de Dados UE-EUA ou cláusulas contratuais-tipo.
+            </p>
+            <p>
+              Poderemos ainda divulgar informações às autoridades competentes se formos obrigados por lei ou por ordem judicial.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'ligacoes',
+        title: 'Ligações para Outros Websites',
+        body: (
+          <p>
+            O nosso website contém ligações para o Facebook, o Instagram e o Google Maps. Ao segui-las, passa a estar sujeito às políticas de privacidade desses serviços, pelas quais não somos responsáveis.
+          </p>
+        ),
+      },
+      {
+        id: 'direitos',
+        title: 'Os Seus Direitos',
+        body: (
+          <>
+            <p>De acordo com o Regulamento Geral sobre a Proteção de Dados (RGPD), tem o direito de:</p>
+            <dl className="pp-defs pp-defs--grid">
+              <div><dt>Acesso</dt><dd>Solicitar o acesso às informações pessoais que temos sobre si.</dd></div>
+              <div><dt>Retificação</dt><dd>Solicitar a correção de dados incorretos ou incompletos.</dd></div>
+              <div><dt>Apagamento</dt><dd>Solicitar a eliminação dos seus dados pessoais.</dd></div>
+              <div><dt>Limitação</dt><dd>Solicitar a limitação da forma como tratamos os seus dados.</dd></div>
+              <div><dt>Portabilidade</dt><dd>Receber os seus dados num formato estruturado e de uso corrente.</dd></div>
+              <div><dt>Oposição</dt><dd>Opor-se ao tratamento dos seus dados baseado no nosso interesse legítimo.</dd></div>
+            </dl>
+            <p>
+              Para exercer estes direitos, contacte-nos através do email <EmailLink />.
+            </p>
+            <p>
+              Tem também o direito de apresentar reclamação junto da Comissão Nacional de Proteção de Dados (CNPD), através de <CnpdLink />.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'cookies',
+        title: 'Cookies',
+        body: (
+          <>
+            <p>
+              O nosso website não utiliza cookies, nem para estatísticas nem para publicidade. Por esse motivo, não lhe é apresentado nenhum aviso de consentimento de cookies.
+            </p>
+            <p>
+              Quando escolhe o idioma do website (português ou inglês), essa preferência fica guardada apenas no armazenamento local do seu navegador, para que o site abra no mesmo idioma na próxima visita. Esta informação não sai do seu dispositivo, não o identifica e pode ser apagada a qualquer momento nas definições do navegador.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'seguranca',
+        title: 'Segurança dos Dados',
+        body: (
+          <p>
+            Implementamos medidas de segurança técnicas e organizacionais adequadas para proteger as suas informações pessoais contra perda, uso indevido, acesso não autorizado ou divulgação.
+          </p>
+        ),
+      },
+      {
+        id: 'alteracoes',
+        title: 'Alterações a esta Política',
+        body: (
+          <p>
+            Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Quaisquer alterações serão publicadas nesta página com a indicação da data da última atualização. Recomendamos que reveja esta política regularmente.
+          </p>
+        ),
+      },
+      {
+        id: 'contacto',
+        title: 'Contacto',
+        body: (
+          <>
+            <p>
+              Se tiver alguma dúvida sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, contacte-nos:
+            </p>
+            <Contact />
+          </>
+        ),
+      },
+    ],
   },
-  {
-    id: 'responsavel',
-    title: 'Responsável pelo Tratamento',
-    body: (
-      <>
-        <p>
-          A entidade responsável pelo tratamento dos seus dados pessoais é o Casttêdo Valley, com sede no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
-        </p>
-        <p>
-          Para qualquer questão relacionada com a sua privacidade, pode contactar-nos através do email <EmailLink />.
-        </p>
-      </>
-    ),
+
+  en: {
+    eyebrow: 'Legal Information',
+    title: 'Privacy Policy',
+    lead: 'A website with no cookies, no forms and anonymous statistics. Here we explain what data is processed and what your rights are.',
+    updated: 'Last updated · 7 October 2026',
+    toc: 'Contents',
+
+    summary: [
+      ['No cookies', 'This website does not store cookies on your device.'],
+      ['Anonymous statistics', 'We count visits without identifying who you are.'],
+      ['No forms', 'We only process the details you send us by email or phone.'],
+      ['Your rights', 'You can access, correct or delete your data at any time.'],
+    ],
+
+    sections: [
+      {
+        id: 'introducao',
+        title: 'Introduction',
+        body: (
+          <>
+            <p>
+              Welcome to the Casttêdo Valley website. Your privacy matters greatly to us. This Privacy Policy explains what data is processed when you visit our website (casttedovalley.com) or contact us, for what purposes, and what your rights are.
+            </p>
+            <p>
+              Our website is purely informational: it has no forms, requires no registration and does not use cookies.
+            </p>
+            <p>
+              This English version is provided for your convenience. In the event of any discrepancy, the Portuguese version shall prevail.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'responsavel',
+        title: 'Data Controller',
+        body: (
+          <>
+            <p>
+              The controller responsible for processing your personal data is Casttêdo Valley, Largo Padre António Veiga, 5070-226 Castedo, Alijó, Portugal.
+            </p>
+            <p>
+              For any question about your privacy, please contact us at <EmailLink />.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'informacoes',
+        title: 'Information We Collect',
+        body: (
+          <dl className="pp-defs">
+            <div>
+              <dt>Usage statistics</dt>
+              <dd>
+                We use Umami, an analytics tool that does not use cookies or identify individual visitors, to collect aggregated, anonymous data on how the website is used: pages visited, where the visit came from (for example, a search engine or social network), country, device type and browser, and interactions such as downloading technical sheets. IP addresses are not stored.
+              </dd>
+            </div>
+            <div>
+              <dt>Technical access data</dt>
+              <dd>
+                As with any website, your browser sends your IP address and technical data (browser type, page requested) to the servers that deliver the site. This data is processed by our service providers, as described in section 6, and is not used by us to identify you.
+              </dd>
+            </div>
+            <div>
+              <dt>Data you send us when you get in touch</dt>
+              <dd>
+                If you contact us by email or phone (for example, to book a visit or wine tasting), we process the details you provide, such as your name, email address, phone number and the content of your request.
+              </dd>
+            </div>
+          </dl>
+        ),
+      },
+      {
+        id: 'finalidades',
+        title: 'Purposes and Legal Bases',
+        body: (
+          <dl className="pp-defs">
+            <div>
+              <dt>Replying to your enquiries and managing visit and tasting bookings</dt>
+              <dd>Based on steps taken at your request prior to entering into a contract, or on the contract you request.</dd>
+            </div>
+            <div>
+              <dt>Understanding how the website is used and improving it</dt>
+              <dd>Based on our legitimate interest, using only aggregated, anonymous data.</dd>
+            </div>
+            <div>
+              <dt>Ensuring the website works properly and securely</dt>
+              <dd>Based on our legitimate interest.</dd>
+            </div>
+            <div>
+              <dt>Complying with legal obligations</dt>
+              <dd>Where required by law.</dd>
+            </div>
+          </dl>
+        ),
+      },
+      {
+        id: 'conservacao',
+        title: 'Data Retention',
+        body: (
+          <p>
+            The data you send us when you get in touch is kept only for as long as needed to reply to your request or manage your booking, or for the period required by law. Usage statistics are anonymous and aggregated, and cannot be used to identify any visitor.
+          </p>
+        ),
+      },
+      {
+        id: 'partilha',
+        title: 'Sharing of Information',
+        body: (
+          <>
+            <p>
+              Casttêdo Valley does not sell, rent or share your personal information with third parties for marketing purposes. To run the website, we use the following service providers:
+            </p>
+            <dl className="pp-defs">
+              <div>
+                <dt>GitHub · website hosting</dt>
+                <dd>Logs visitors' IP addresses for security purposes.</dd>
+              </div>
+              <div>
+                <dt>Umami · usage statistics</dt>
+                <dd>Receives the data described in section 3, without cookies and without storing IP addresses.</dd>
+              </div>
+              <div>
+                <dt>Google · Gmail</dt>
+                <dd>The email service through which we receive and reply to your messages.</dd>
+              </div>
+            </dl>
+            <p>
+              Some of these providers are based in the United States. In those cases, data is transferred under the mechanisms provided for in the GDPR, such as the EU-U.S. Data Privacy Framework or standard contractual clauses.
+            </p>
+            <p>
+              We may also disclose information to the competent authorities where required by law or by court order.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'ligacoes',
+        title: 'Links to Other Websites',
+        body: (
+          <p>
+            Our website contains links to Facebook, Instagram and Google Maps. If you follow them, you become subject to the privacy policies of those services, for which we are not responsible.
+          </p>
+        ),
+      },
+      {
+        id: 'direitos',
+        title: 'Your Rights',
+        body: (
+          <>
+            <p>Under the General Data Protection Regulation (GDPR), you have the right to:</p>
+            <dl className="pp-defs pp-defs--grid">
+              <div><dt>Access</dt><dd>Request access to the personal information we hold about you.</dd></div>
+              <div><dt>Rectification</dt><dd>Request the correction of inaccurate or incomplete data.</dd></div>
+              <div><dt>Erasure</dt><dd>Request the deletion of your personal data.</dd></div>
+              <div><dt>Restriction</dt><dd>Request that we restrict how we process your data.</dd></div>
+              <div><dt>Portability</dt><dd>Receive your data in a structured, commonly used format.</dd></div>
+              <div><dt>Objection</dt><dd>Object to the processing of your data based on our legitimate interest.</dd></div>
+            </dl>
+            <p>
+              To exercise these rights, please contact us at <EmailLink />.
+            </p>
+            <p>
+              You also have the right to lodge a complaint with the Portuguese data protection authority, the Comissão Nacional de Proteção de Dados (CNPD), at <CnpdLink />.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'cookies',
+        title: 'Cookies',
+        body: (
+          <>
+            <p>
+              Our website does not use cookies, whether for statistics or advertising. For this reason, you are not shown a cookie consent banner.
+            </p>
+            <p>
+              When you choose the website's language (Portuguese or English), that preference is saved only in your browser's local storage, so that the site opens in the same language on your next visit. This information never leaves your device, does not identify you and can be deleted at any time in your browser settings.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: 'seguranca',
+        title: 'Data Security',
+        body: (
+          <p>
+            We implement appropriate technical and organisational security measures to protect your personal information against loss, misuse, unauthorised access or disclosure.
+          </p>
+        ),
+      },
+      {
+        id: 'alteracoes',
+        title: 'Changes to this Policy',
+        body: (
+          <p>
+            We reserve the right to update this Privacy Policy from time to time. Any changes will be published on this page together with the date of the latest update. We recommend that you review this policy regularly.
+          </p>
+        ),
+      },
+      {
+        id: 'contacto',
+        title: 'Contact',
+        body: (
+          <>
+            <p>
+              If you have any questions about this Privacy Policy or how we process your data, please contact us:
+            </p>
+            <Contact />
+          </>
+        ),
+      },
+    ],
   },
-  {
-    id: 'informacoes',
-    title: 'Informações que Recolhemos',
-    body: (
-      <dl className="pp-defs">
-        <div>
-          <dt>Estatísticas de utilização</dt>
-          <dd>
-            Utilizamos o Umami, uma ferramenta de análise que não usa cookies nem identifica visitantes individualmente, para recolher dados agregados e anónimos sobre a utilização do site: páginas visitadas, origem da visita (por exemplo, um motor de busca ou rede social), país, tipo de dispositivo e navegador, e interações como o descarregamento de fichas técnicas. O endereço IP não é armazenado.
-          </dd>
-        </div>
-        <div>
-          <dt>Dados técnicos de acesso</dt>
-          <dd>
-            Como em qualquer website, o seu navegador comunica o seu endereço IP e dados técnicos (tipo de navegador, página pedida) aos servidores que entregam o site. Estes dados são tratados pelos nossos prestadores de serviços, conforme descrito na secção 6, e não são utilizados por nós para o identificar.
-          </dd>
-        </div>
-        <div>
-          <dt>Dados que nos envia ao contactar-nos</dt>
-          <dd>
-            Se nos contactar por email ou telefone (por exemplo, para reservar uma visita ou prova de vinhos), tratamos os dados que nos fornecer, como o seu nome, email, número de telefone e o conteúdo do pedido.
-          </dd>
-        </div>
-      </dl>
-    ),
-  },
-  {
-    id: 'finalidades',
-    title: 'Finalidades e Fundamentos Legais',
-    body: (
-      <dl className="pp-defs">
-        <div>
-          <dt>Responder aos seus contactos e gerir reservas de visitas e provas</dt>
-          <dd>Com base nas diligências pré-contratuais ou no contrato que nos solicita.</dd>
-        </div>
-        <div>
-          <dt>Compreender como o website é utilizado e melhorá-lo</dt>
-          <dd>Com base no nosso interesse legítimo, utilizando apenas dados agregados e anónimos.</dd>
-        </div>
-        <div>
-          <dt>Garantir o funcionamento e a segurança do website</dt>
-          <dd>Com base no nosso interesse legítimo.</dd>
-        </div>
-        <div>
-          <dt>Cumprir obrigações legais</dt>
-          <dd>Quando a lei assim o exija.</dd>
-        </div>
-      </dl>
-    ),
-  },
-  {
-    id: 'conservacao',
-    title: 'Conservação dos Dados',
-    body: (
-      <p>
-        Os dados que nos envia ao contactar-nos são conservados apenas pelo tempo necessário para responder ao seu pedido ou gerir a sua reserva, ou pelo período exigido por lei. As estatísticas de utilização são anónimas e agregadas, não permitindo identificar qualquer visitante.
-      </p>
-    ),
-  },
-  {
-    id: 'partilha',
-    title: 'Partilha de Informações',
-    body: (
-      <>
-        <p>
-          O Casttêdo Valley não vende, aluga nem partilha as suas informações pessoais com terceiros para fins de marketing. Para o funcionamento do website, recorremos aos seguintes prestadores de serviços:
-        </p>
-        <dl className="pp-defs">
-          <div>
-            <dt>GitHub · alojamento do website</dt>
-            <dd>Regista o endereço IP dos visitantes por motivos de segurança.</dd>
-          </div>
-          <div>
-            <dt>Umami · estatísticas de utilização</dt>
-            <dd>Recebe os dados descritos na secção 3, sem cookies e sem armazenar o endereço IP.</dd>
-          </div>
-          <div>
-            <dt>Google · Gmail</dt>
-            <dd>Serviço de email através do qual recebemos e respondemos às suas mensagens.</dd>
-          </div>
-        </dl>
-        <p>
-          Alguns destes prestadores estão sediados nos Estados Unidos. Nesses casos, a transferência de dados é feita ao abrigo dos mecanismos previstos no RGPD, como o Quadro de Privacidade de Dados UE-EUA ou cláusulas contratuais-tipo.
-        </p>
-        <p>
-          Poderemos ainda divulgar informações às autoridades competentes se formos obrigados por lei ou por ordem judicial.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: 'ligacoes',
-    title: 'Ligações para Outros Websites',
-    body: (
-      <p>
-        O nosso website contém ligações para o Facebook, o Instagram e o Google Maps. Ao segui-las, passa a estar sujeito às políticas de privacidade desses serviços, pelas quais não somos responsáveis.
-      </p>
-    ),
-  },
-  {
-    id: 'direitos',
-    title: 'Os Seus Direitos',
-    body: (
-      <>
-        <p>De acordo com o Regulamento Geral sobre a Proteção de Dados (RGPD), tem o direito de:</p>
-        <dl className="pp-defs pp-defs--grid">
-          <div><dt>Acesso</dt><dd>Solicitar o acesso às informações pessoais que temos sobre si.</dd></div>
-          <div><dt>Retificação</dt><dd>Solicitar a correção de dados incorretos ou incompletos.</dd></div>
-          <div><dt>Apagamento</dt><dd>Solicitar a eliminação dos seus dados pessoais.</dd></div>
-          <div><dt>Limitação</dt><dd>Solicitar a limitação da forma como tratamos os seus dados.</dd></div>
-          <div><dt>Portabilidade</dt><dd>Receber os seus dados num formato estruturado e de uso corrente.</dd></div>
-          <div><dt>Oposição</dt><dd>Opor-se ao tratamento dos seus dados baseado no nosso interesse legítimo.</dd></div>
-        </dl>
-        <p>
-          Para exercer estes direitos, contacte-nos através do email <EmailLink />.
-        </p>
-        <p>
-          Tem também o direito de apresentar reclamação junto da Comissão Nacional de Proteção de Dados (CNPD), através de <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">www.cnpd.pt</a>.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: 'cookies',
-    title: 'Cookies',
-    body: (
-      <p>
-        O nosso website não utiliza cookies, nem para estatísticas nem para publicidade. Por esse motivo, não lhe é apresentado nenhum aviso de consentimento de cookies.
-      </p>
-    ),
-  },
-  {
-    id: 'seguranca',
-    title: 'Segurança dos Dados',
-    body: (
-      <p>
-        Implementamos medidas de segurança técnicas e organizacionais adequadas para proteger as suas informações pessoais contra perda, uso indevido, acesso não autorizado ou divulgação.
-      </p>
-    ),
-  },
-  {
-    id: 'alteracoes',
-    title: 'Alterações a esta Política',
-    body: (
-      <p>
-        Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Quaisquer alterações serão publicadas nesta página com a indicação da data da última atualização. Recomendamos que reveja esta política regularmente.
-      </p>
-    ),
-  },
-  {
-    id: 'contacto',
-    title: 'Contacto',
-    body: (
-      <>
-        <p>
-          Se tiver alguma dúvida sobre esta Política de Privacidade ou sobre o tratamento dos seus dados, contacte-nos:
-        </p>
-        <address className="pp-contact">
-          <span className="pp-contact__name">Casttêdo Valley</span>
-          <span>Largo Padre António Veiga, 5070-226 Castedo, Alijó</span>
-          <EmailLink />
-          <a href="tel:+351933305966">+351 933 305 966</a>
-        </address>
-      </>
-    ),
-  },
-];
+};
 
 const number = (i) => String(i + 1).padStart(2, '0');
 
 const PrivacyPage = () => {
-  const [activeId, setActiveId] = useState(SECTIONS[0].id);
+  const { lang } = useLang();
+  const text = TEXT[lang];
+  const sections = text.sections;
+  const [activeId, setActiveId] = useState(sections[0].id);
 
   useEffect(() => {
     // Garante que a página abre no topo
@@ -226,13 +468,13 @@ const PrivacyPage = () => {
       });
     }, { rootMargin: '-30% 0px -60% 0px' });
 
-    SECTIONS.forEach(({ id }) => {
+    sections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   // Desloca até à secção sem alterar o URL
   const goTo = (e, id) => {
@@ -243,29 +485,27 @@ const PrivacyPage = () => {
   return (
     <div className="pp">
       <header className="pp-hero">
-        <p className="pp-eyebrow">Informação Legal</p>
-        <h1 className="pp-title">Política de Privacidade</h1>
+        <p className="pp-eyebrow">{text.eyebrow}</p>
+        <h1 className="pp-title">{text.title}</h1>
         <span className="pp-rule" aria-hidden="true" />
-        <p className="pp-lead">
-          Um website sem cookies, sem formulários e com estatísticas anónimas. Explicamos aqui que dados são tratados e quais são os seus direitos.
-        </p>
-        <p className="pp-updated">Última atualização · 7 de outubro de 2026</p>
+        <p className="pp-lead">{text.lead}</p>
+        <p className="pp-updated">{text.updated}</p>
       </header>
 
       <ul className="pp-summary">
-        {SUMMARY.map(([title, text]) => (
+        {text.summary.map(([title, summaryText]) => (
           <li key={title}>
             <strong>{title}</strong>
-            <span>{text}</span>
+            <span>{summaryText}</span>
           </li>
         ))}
       </ul>
 
       <div className="pp-layout">
-        <nav className="pp-toc" aria-label="Índice">
-          <p className="pp-toc__title">Índice</p>
+        <nav className="pp-toc" aria-label={text.toc}>
+          <p className="pp-toc__title">{text.toc}</p>
           <ol>
-            {SECTIONS.map(({ id, title }, i) => (
+            {sections.map(({ id, title }, i) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
@@ -281,7 +521,7 @@ const PrivacyPage = () => {
         </nav>
 
         <div className="pp-body">
-          {SECTIONS.map(({ id, title, body }, i) => (
+          {sections.map(({ id, title, body }, i) => (
             <section key={id} id={id} className="pp-section">
               <h2 className="pp-section__title">
                 <span className="pp-section__num">{number(i)}</span>

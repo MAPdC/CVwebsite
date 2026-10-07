@@ -3,8 +3,14 @@ import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { MapPin, Phone, Mail } from 'lucide-react'; // Importar ícones
 import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo correto
 import "../styles/Footer.css"; // Manter o link para o CSS
+import { useLang } from '../i18n';
+import { COMMON } from '../i18n/common';
 
 const Footer = () => {
+    const { lang, to } = useLang();
+    const nav = COMMON[lang].nav;
+    const text = COMMON[lang].footer;
+
     return (
       <footer className="footer">
         <div className="footer-container">
@@ -13,30 +19,30 @@ const Footer = () => {
             
             {/* Coluna da Esquerda: Navegação */}
             <div className="footer-column footer-nav-links">
-              <h3 className="column-title">Navegação</h3>
+              <h3 className="column-title">{text.navigation}</h3>
               <ul className="footer-nav">
-                <li><a href="/">Início</a></li>
-                <li><a href="/portfolio/wines">Vinhos</a></li>
-                <li><a href="/portfolio/olive-oils">Azeites</a></li>
-                <li><a href="/camuflado">Camuflado</a></li>
+                <li><a href={to("/")}>{nav.home}</a></li>
+                <li><a href={to("/portfolio/wines")}>{nav.wines}</a></li>
+                <li><a href={to("/portfolio/olive-oils")}>{nav.oliveOils}</a></li>
+                <li><a href={to("/camuflado")}>{nav.camuflado}</a></li>
                 {/*<li><a href="/about-us">Sobre Nós</a></li>*/}
                 {/*<li><a href="/history">História</a></li>*/}
                 {/*<li><a href="/sustainability">Sustentabilidade</a></li>*/}
-                <li><a href="/contacts">Contactos</a></li>
+                <li><a href={to("/contacts")}>{nav.contacts}</a></li>
               </ul>
             </div>
   
             {/* Coluna Central: Logo */}
             <div className="footer-column footer-logo-container">
-              <a href="/">
+              <a href={to("/")}>
                 <img 
                   src={logoCobre} // Usar o logo importado
-                  alt="Casttêdo Valley Logo" 
+                  alt={text.logoAlt} 
                   className="footer-logo"
                 />
               </a>
               {/* Título CASTTÊDO VALLEY por baixo do logo */}
-              <a href="/" className="footer-logo-text">
+              <a href={to("/")} className="footer-logo-text">
                 <span className="logo__line1">CASTTÊDO</span>
                 <span className="logo__line2">VALLEY</span>
               </a>
@@ -44,7 +50,7 @@ const Footer = () => {
   
             {/* Coluna da Direita: Contactos e Redes Sociais */}
             <div className="footer-column footer-contacts">
-              <h3 className="column-title">Contactos</h3>
+              <h3 className="column-title">{text.contacts}</h3>
               <div className="contact-info">
                 {/* Morada em 3 linhas */}
                 <p className="address-multi-line">
@@ -74,7 +80,7 @@ const Footer = () => {
                 </p>
               </div>
               
-              <h3 className="column-title social-title">Redes Sociais</h3>
+              <h3 className="column-title social-title">{text.social}</h3>
               <div className="social-icons">
                 <a 
                     href="https://www.facebook.com/casttedovalley10"
@@ -103,10 +109,10 @@ const Footer = () => {
           {/* Secção Inferior: Legal */}
           <div className="footer-bottom">
             <div className="footer-links">
-              <a href="/privacy-policies">POLÍTICA DE PRIVACIDADE</a>
+              <a href={to("/privacy-policies")}>{text.privacy}</a>
             </div>
             <div className="copyright">
-              ©{new Date().getFullYear()} por Casttêdo Valley. Todos os direitos reservados.
+              {text.rights(new Date().getFullYear())}
             </div>
           </div>
         </div>

@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom"; // Importar Link adicionado
+import { Link } from "react-router-dom";
 import "../styles/Header.css";
 import logoBranco from "../assets/cv-logo-branco.webp";
 import logoCobre from "../assets/cv-logo-castanho.webp";
+import LanguageSwitch from "./LanguageSwitch";
+import { useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const location = useLocation();
+  const { lang, path, to } = useLang();
+  const text = COMMON[lang].nav;
   
   // Verificar se estamos na HomePage
-  const isHomePage = location.pathname === '/' || location.pathname === '/home';
+  const isHomePage = path === '/' || path === '/home';
   
   // Verificar se estamos no universo Camuflado
-  const isCamuflado = location.pathname.startsWith('/camuflado');
+  const isCamuflado = path.startsWith('/camuflado');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,12 +56,12 @@ function Header() {
     <header className={`header ${isScrolled ? "header--scrolled" : ""} ${isHomePage ? "header--homepage" : ""} ${isCamuflado ? "header--camuflado" : ""}`}>
       
       {/* Uso de Link em vez de a href */}
-      <Link to="/" className="header__text" onClick={closeMenu}>
+      <Link to={to("/")} className="header__text" onClick={closeMenu}>
         <span className="logo__line1">CASTTÊDO</span>
         <span className="logo__line2">VALLEY</span>
       </Link>
       
-      <Link to="/" className={`logo__link ${isHomePage && !isScrolled ? "logo__link--hidden" : ""}`} onClick={closeMenu}>
+      <Link to={to("/")} className={`logo__link ${isHomePage && !isScrolled ? "logo__link--hidden" : ""}`} onClick={closeMenu}>
         <img 
           src={isScrolled ? logoCobre : logoBranco} 
           alt="CASTTÊDO VALLEY" 
@@ -65,28 +69,31 @@ function Header() {
         />
       </Link>
 
-      <div className="menu-icon" onClick={toggleMenu}>
-        <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
-        <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
-        <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
+      <div className="header__actions">
+        <LanguageSwitch onSelect={closeMenu} />
+        <div className="menu-icon" onClick={toggleMenu} role="button" aria-label={COMMON[lang].menu}>
+          <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
+          <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
+          <span className={`menu-icon__line ${isScrolled ? "menu-icon__line--scrolled" : ""}`}></span>
+        </div>
       </div>
 
       <nav className={`header__nav ${isMenuOpen ? "header__nav--open" : ""}`}>
         <ul>
           <li className="dropdown">
-            <a href="#" onClick={toggleDropdown}>PORTEFÓLIO</a>
+            <a href="#" onClick={toggleDropdown}>{text.portfolio}</a>
             <ul className={`dropdown__menu ${isDropdownOpen ? "dropdown__menu--open" : ""}`}>
-              <li><Link to="/portfolio/wines" onClick={closeMenu}>VINHOS</Link></li>
-              <li><Link to="/portfolio/olive-oils" onClick={closeMenu}>AZEITES</Link></li>
+              <li><Link to={to("/portfolio/wines")} onClick={closeMenu}>{text.wines}</Link></li>
+              <li><Link to={to("/portfolio/olive-oils")} onClick={closeMenu}>{text.oliveOils}</Link></li>
               {/* Item Camuflado com classe própria */}
               <li>
-                <Link to="/camuflado" className="nav-item-camuflado" onClick={closeMenu}>
-                  CAMUFLADO
+                <Link to={to("/camuflado")} className="nav-item-camuflado" onClick={closeMenu}>
+                  {text.camuflado}
                 </Link>
               </li>
             </ul>
           </li>
-          <li><Link to="/contacts" onClick={closeMenu}>CONTACTOS</Link></li>
+          <li><Link to={to("/contacts")} onClick={closeMenu}>{text.contacts}</Link></li>
         </ul>
       </nav>
     </header>

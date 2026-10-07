@@ -13,12 +13,22 @@ const description = 'Entre a diversidade floral que reveste as nossas vinhas, a 
 
 const presentation = 'Há um detalhe oculto nesta garrafa. Fique atento ao rótulo à medida que a temperatura varia.';
 
+// Textos em inglês (base: fichas técnicas EN do Camuflado, revistas)
+const descriptionEn = 'Amid the wildflowers that carpet our vineyards, beneficial wildlife and game find shelter, food and camouflage, roaming freely between the vines. From this living ecosystem comes an unexpected wine: red grapes transformed, as if by metamorphosis, into a luminous white, shrouded in mystery and complexity, where freshness and elegance unfold at every moment.';
+
+const presentationEn = 'There is a hidden detail in this bottle. Keep an eye on the label as the temperature changes.';
+
+const pairingEn = 'Fish, seafood, fresh cheeses, or simply on its own.';
+
+const serveEn = '8–10°C / 46–50°F';
+
 const datasheets = (slug) => ({
   pt: `/fichas/camuflado/pt/${slug}.pdf`,
   en: `/fichas/camuflado/en/${slug}.pdf`,
 });
 
 // accent: "lebre" | "lebre-oaked" | "raposa" -> cor do vinho (ver --camuflado-accent-* em index.css)
+// en: textos da versão inglesa (substituem os campos PT com o mesmo nome)
 // technical: acidez, açúcares e pH a null até termos os valores (a página mostra "Em breve")
 export const camufladoProducts = [
   {
@@ -32,7 +42,6 @@ export const camufladoProducts = [
     accent: 'lebre',
     animalLogo: lebre,
     description,
-    // RASCUNHO
     briefdescription: 'Touriga Nacional vinificada em branco: floral, fresca e com a acidez natural das bagas.',
     varieties: ["Touriga Nacional"],
     images: [
@@ -54,6 +63,16 @@ export const camufladoProducts = [
     presentation,
     maturation: null,
     datasheets: datasheets('blanc-de-noirs-touriga-nacional-unoaked-2024'),
+    en: {
+      name: 'Blanc de Noirs - Touriga Nacional Unoaked 2024',
+      animal: 'Hare',
+      description: descriptionEn,
+      briefdescription: 'Touriga Nacional vinified as a white: floral and fresh, lifted by natural acidity.',
+      sensorial: 'Fresh floral notes on the nose; on the palate, berry fruit and natural acidity lend persistence and elegance.',
+      consumo: pairingEn,
+      temperatura: serveEn,
+      presentation: presentationEn,
+    },
   },
   {
     id: 2,
@@ -66,7 +85,6 @@ export const camufladoProducts = [
     accent: 'lebre-oaked',
     animalLogo: lebre,
     description,
-    // RASCUNHO
     briefdescription: 'A mesma Touriga Nacional, agora com passagem por barrica de carvalho português: frutos secos, especiarias e um toque de côco.',
     varieties: ["Touriga Nacional"],
     images: [
@@ -88,6 +106,17 @@ export const camufladoProducts = [
     presentation,
     maturation: "Barrica de Carvalho Português",
     datasheets: datasheets('blanc-de-noirs-touriga-nacional-oaked-2024'),
+    en: {
+      name: 'Blanc de Noirs - Touriga Nacional Oaked 2024',
+      animal: 'Hare',
+      description: descriptionEn,
+      briefdescription: 'The same Touriga Nacional, now aged in Portuguese oak: dried fruit, spice and a touch of coconut.',
+      sensorial: 'Fresh floral aromas with soft hints of dried fruit, spice and a touch of coconut, joined on the palate by berry fruit and natural acidity that lend persistence and elegance.',
+      consumo: pairingEn,
+      temperatura: serveEn,
+      presentation: presentationEn,
+      maturation: 'Portuguese oak barrels',
+    },
   },
   {
     id: 3,
@@ -100,7 +129,6 @@ export const camufladoProducts = [
     accent: 'raposa',
     animalLogo: raposa,
     description,
-    // RASCUNHO
     briefdescription: 'Tinta Carvalha vinificada em branco: notas florais com lichias e ameixas, fresca e persistente.',
     varieties: ["Tinta Carvalha"],
     images: [
@@ -122,5 +150,15 @@ export const camufladoProducts = [
     presentation,
     maturation: null,
     datasheets: datasheets('blanc-de-noirs-tinta-carvalha-unoaked-2024'),
+    en: {
+      name: 'Blanc de Noirs - Tinta Carvalha Unoaked 2024',
+      animal: 'Fox',
+      description: descriptionEn,
+      briefdescription: 'Tinta Carvalha vinified as a white: floral, with lychee and plum, fresh and persistent.',
+      sensorial: 'Fresh floral aromas, subtly interwoven with delicate hints of lychee and plum. The palate reveals berry fruit and natural acidity that lend persistence and elegance.',
+      consumo: pairingEn,
+      temperatura: serveEn,
+      presentation: presentationEn,
+    },
   },
 ];

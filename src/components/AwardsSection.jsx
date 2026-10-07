@@ -3,10 +3,27 @@ import { Link } from 'react-router-dom';
 import { wines, oliveOils } from '../mocks/products.js'; // Importar os dados
 import '../styles/AwardsSection.css'; // Criaremos este CSS a seguir
 import { Award, Star } from 'lucide-react'; // Ícones para estilo
+import { localizeProduct, useLang } from '../i18n';
+import { COMMON } from '../i18n/common';
+
+const TEXT = {
+  pt: {
+    subtitle: 'Reconhecimento & Prestígio',
+    title: 'DISTINÇÕES',
+    medal: (n) => `Medalha ${n}`,
+  },
+  en: {
+    subtitle: 'Recognition & Prestige',
+    title: 'AWARDS',
+    medal: (n) => `Medal ${n}`,
+  },
+};
 
 const AwardsSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
 
   // Combina vinhos e azeites e filtra os que têm prémios
   const allProducts = [...wines, ...oliveOils];
@@ -14,7 +31,8 @@ const AwardsSection = () => {
     .filter(p => p.awards && p.awards.length > 0) // Filtra produtos no mercado com prémios
     // Ordena para mostrar talvez os com mais prémios ou mais recentes primeiro (opcional)
     .sort((a, b) => b.awards.length - a.awards.length)
-    .slice(0, 3); // Limita a 3 produtos em destaque
+    .slice(0, 3) // Limita a 3 produtos em destaque
+    .map(p => localizeProduct(p, lang));
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,9 +67,9 @@ const AwardsSection = () => {
     // Determina se é vinho ou azeite pelo slug ou outra propriedade única
     // Esta é uma suposição, ajuste se necessário
     if (product.slug.includes('red') || product.slug.includes('white')) {
-      return `/portfolio/wines/${product.slug}`;
+      return to(`/portfolio/wines/${product.slug}`);
     } else {
-      return `/portfolio/olive-oils/${product.slug}`;
+      return to(`/portfolio/olive-oils/${product.slug}`);
     }
   };
 
@@ -67,9 +85,9 @@ const AwardsSection = () => {
         {/* Header da Secção */}
         <div className="highlight-awards-header">
           <div className="highlight-awards-subtitle">
-             Reconhecimento & Prestígio
+             {text.subtitle}
           </div>
-          <h2 className="highlight-awards-title">DISTINÇÕES</h2>
+          <h2 className="highlight-awards-title">{text.title}</h2>
           <div className="highlight-awards-ornament">
             <div className="ornament-line-left" />
             <Award size={14} className="ornament-icon"/>
@@ -101,7 +119,7 @@ const AwardsSection = () => {
                         <img
                           key={medalIndex}
                           src={medalUrl}
-                          alt={`Medalha ${medalIndex + 1}`}
+                          alt={text.medal(medalIndex + 1)}
                           className="award-card-medal-stacked"
                           loading="lazy"
                           style={{ zIndex: allMedalUrls.length - medalIndex }} // Para empilhar corretamente
@@ -119,7 +137,7 @@ const AwardsSection = () => {
                     {product.awards.map((award, awardIndex) => (
                       <div className="award-card-details-item" key={awardIndex}>
                         {/* Opcional: Mostrar a medalha pequena ao lado de cada descrição */}
-                        {award[1] && <img src={award[1]} alt="Medalha pequena" className="award-medal-icon-small" loading="lazy" />}
+                        {award[1] && <img src={award[1]} alt="" className="award-medal-icon-small" loading="lazy" />}
                         <span className="award-name">{award[2]}</span>
                         {award[3] && <span className="award-score">({award[3]} pts)</span>}
                       </div>
@@ -128,7 +146,7 @@ const AwardsSection = () => {
                   {/* FIM DA MODIFICAÇÃO */}
 
                   <span className="award-card-link">
-                    Ver Detalhes <span className="arrow">→</span>
+                    {COMMON[lang].seeDetails} <span className="arrow">→</span>
                   </span>
                 </div>
               </Link>

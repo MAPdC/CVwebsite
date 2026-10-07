@@ -4,12 +4,38 @@ import "../styles/WinePortfolioPage.css";
 import heroBackground from '../assets/old-references-tiny.webp';
 import { wines } from "../mocks/products";
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
+import { localizeProduct, useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
+
+const TEXT = {
+  pt: {
+    title: "Excelência.",
+    subtitle: "Descubra a expressão do terroir do Douro em cada garrafa",
+    search: "Procurar por nome, casta ou ano...",
+    all: "Todos",
+    found: (n) => `${n} ${n === 1 ? "vinho encontrado" : "vinhos encontrados"}`,
+    noResults: "Nenhum vinho encontrado",
+    noResultsHint: "Tente uma pesquisa diferente ou remova os filtros.",
+  },
+  en: {
+    title: "Excellence.",
+    subtitle: "Discover the expression of Douro terroir in every bottle",
+    search: "Search by name, grape variety or vintage...",
+    all: "All",
+    found: (n) => `${n} ${n === 1 ? "wine found" : "wines found"}`,
+    noResults: "No wines found",
+    noResultsHint: "Try a different search or clear the filters.",
+  },
+};
 
 function WinePortfolioPage() {
   const [wineList, setWineList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
+  const common = COMMON[lang];
 
   useEffect(() => {
     // Agora usamos os dados do arquivo products.js
@@ -17,7 +43,7 @@ function WinePortfolioPage() {
       setLoading(true);
       
       // Mapeamos os dados do arquivo products.js para o formato que precisamos
-      const formattedWines = wines.map(wine => ({
+      const formattedWines = wines.map(w => localizeProduct(w, lang)).map(wine => ({
         id: wine.id,
         slug: wine.slug,
         name: wine.name,
@@ -43,7 +69,7 @@ function WinePortfolioPage() {
     
     // Scroll para o topo ao carregar
     window.scrollTo(0, 0);
-  }, []);
+  }, [lang]);
 
   // Filtrar vinhos baseado no tipo e termo de busca
   const filteredWines = wineList.filter(wine => {
@@ -67,8 +93,8 @@ function WinePortfolioPage() {
       <main className="wine-catalog">
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
-            <h1 className="catalog-hero__title">Excelência.</h1>
-            <p className="catalog-hero__subtitle">Descubra a expressão do terroir do Douro em cada garrafa</p>
+            <h1 className="catalog-hero__title">{text.title}</h1>
+            <p className="catalog-hero__subtitle">{text.subtitle}</p>
           </div>
           {/* Indicador de Scroll para baixo */}
           <div className="scroll-down-prompt">
@@ -82,7 +108,7 @@ function WinePortfolioPage() {
               <FaSearch className="search-icon" />
               <input 
                 type="text" 
-                placeholder="Procurar por nome, casta ou ano..." 
+                placeholder={text.search}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -93,19 +119,19 @@ function WinePortfolioPage() {
                 className={`filter-btn ${filter === "all" ? "active-all" : ""}`}
                 onClick={() => setFilter("all")}
               >
-                Todos
+                {text.all}
               </button>
               <button 
                 className={`filter-btn ${filter === "tinto" ? "active-tinto" : ""}`}
                 onClick={() => setFilter("tinto")}
               >
-                Tinto
+                {common.wineTypes.Tinto}
               </button>
               <button 
                 className={`filter-btn ${filter === "branco" ? "active-branco" : ""}`}
                 onClick={() => setFilter("branco")}
               >
-                Branco
+                {common.wineTypes.Branco}
               </button>
               {/*
               <button 
@@ -125,21 +151,21 @@ function WinePortfolioPage() {
           ) : (
             <>
               <div className="results-count">
-                {sortedWines.length} {sortedWines.length === 1 ? "vinho encontrado" : "vinhos encontrados"}
+                {text.found(sortedWines.length)}
               </div>
               
               <div className="wine-grid">
                 {sortedWines.map((wine) => (
-                  <Link to={`/portfolio/wines/${wine.slug}`} className="wine-card" key={wine.id}>
+                  <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card" key={wine.id}>
                     <div className="wine-card__image-container">
                       <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
                       
                       {/* Badge para Disponível ou Coleção */}
                       {wine.onmarket && (
-                        <div className="wine-card__badge wine-card__badge--onmarket">Disponível</div>
+                        <div className="wine-card__badge wine-card__badge--onmarket">{common.badges.available}</div>
                       )}
                       {wine.collection && (
-                        <div className="wine-card__badge wine-card__badge--collection">Coleção</div>
+                        <div className="wine-card__badge wine-card__badge--collection">{common.badges.collection}</div>
                       )}
                       
                       {/* Mostrar Medalhas */}
@@ -179,7 +205,7 @@ function WinePortfolioPage() {
                       </div>
                       
                       <div className="wine-card__cta">
-                        <span>Ver Detalhes</span>
+                        <span>{common.seeDetails}</span>
                       </div>
                     </div>
                   </Link>
@@ -188,8 +214,8 @@ function WinePortfolioPage() {
               
               {sortedWines.length === 0 && (
                 <div className="no-results">
-                  <h3>Nenhum vinho encontrado</h3>
-                  <p>Tente uma pesquisa diferente ou remova os filtros.</p>
+                  <h3>{text.noResults}</h3>
+                  <p>{text.noResultsHint}</p>
                 </div>
               )}
             </>
