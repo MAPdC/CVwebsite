@@ -109,7 +109,7 @@ const ContactPage = () => {
               <h3 className="column-title">Contactos & Localização</h3>
               
               <div className="contact-details">
-                <div className="info-item clickable" onClick={() => window.open("https://maps.google.com/?q=Largo+Padre+António+Veiga,+5070-226,+Castedo,+Alijó,+Portugal", "_blank")}>
+                <div className="info-item clickable" data-umami-event="mapa" onClick={() => window.open("https://maps.google.com/?q=Largo+Padre+António+Veiga,+5070-226,+Castedo,+Alijó,+Portugal", "_blank")}>
                   <MapPin size={20} className="info-icon" />
                   <div className="info-text">
                     <strong>Morada</strong>
@@ -131,6 +131,8 @@ const ContactPage = () => {
                     <div className="phone-group">
                       <p 
                         className="clickable-phone"
+                        data-umami-event="telefone"
+                        data-umami-event-local="contactos"
                         onClick={() => copyPhoneToClipboard("+351933305966")}
                       >
                         +351 933 305 966
@@ -139,6 +141,8 @@ const ContactPage = () => {
                       {/* NOVO NÚMERO ADICIONADO */}
                       <p 
                         className="clickable-phone"
+                        data-umami-event="telefone"
+                        data-umami-event-local="contactos"
                         onClick={() => copyPhoneToClipboard("+351933467002")}
                       >
                         +351 933 467 002
@@ -149,7 +153,12 @@ const ContactPage = () => {
                 </div>
                 {/* --- FIM DA MODIFICAÇÃO --- */}
 
-                <div className="info-item clickable" onClick={copyEmailToClipboard}>
+                <div
+                  className="info-item clickable"
+                  data-umami-event="email"
+                  data-umami-event-local="contactos"
+                  onClick={copyEmailToClipboard}
+                >
                   <Mail size={20} className="info-icon" />
                   <div className="info-text">
                     <strong>Email</strong>

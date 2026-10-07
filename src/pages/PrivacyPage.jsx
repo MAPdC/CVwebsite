@@ -11,7 +11,7 @@ const PrivacyPage = () => {
     <div className="privacy-page-container">
       <div className="privacy-header">
         <h1>Política de Privacidade</h1>
-        <p className="last-updated">Última atualização: 05 de novembro de 2025</p>
+        <p className="last-updated">Última atualização: 07 de outubro de 2026</p>
       </div>
 
       <div className="privacy-content">
@@ -41,7 +41,7 @@ const PrivacyPage = () => {
           <p>Podemos recolher os seguintes tipos de informações:</p>
           <ul>
             <li>
-              <strong>Informações Recolhidas Automaticamente:</strong> Dados recolhidos através de cookies e tecnologias semelhantes, como o seu endereço IP, tipo de navegador, páginas visitadas no nosso site e a duração da sua visita. Estes dados são geralmente anónimos e usados para fins estatísticos.
+              <strong>Estatísticas de Utilização:</strong> Utilizamos o Umami, uma ferramenta de análise que não usa cookies nem identifica visitantes individualmente, para recolher dados agregados e anónimos sobre a utilização do site: páginas visitadas, origem da visita (por exemplo, um motor de busca ou rede social), país, tipo de dispositivo e navegador, e interações como o descarregamento de fichas técnicas. O endereço IP não é armazenado.
             </li>
           </ul>
         </section>
@@ -67,7 +67,7 @@ const PrivacyPage = () => {
           </p>
           <ul>
             <li>
-              <strong>Prestadores de Serviços:</strong> Entidades terceiras que nos auxiliam na operação do website (ex: serviços de alojamento web, ferramentas de análise). Estes prestadores têm acesso limitado aos seus dados e estão contratualmente obrigados a protegê-los.
+              <strong>Prestadores de Serviços:</strong> Entidades terceiras que nos auxiliam na operação do website (ex: serviços de alojamento web e a ferramenta de estatísticas Umami). Estes prestadores têm acesso limitado aos seus dados e estão contratualmente obrigados a protegê-los.
             </li>
             <li>
               <strong>Autoridades Legais:</strong> Se formos obrigados por lei ou por ordem judicial a divulgar as suas informações.
@@ -96,7 +96,7 @@ const PrivacyPage = () => {
         <section>
           <h2>7. Cookies</h2>
           <p>
-            O nosso website utiliza cookies para melhorar a sua experiência de navegação. Cookies são pequenos ficheiros de texto armazenados no seu dispositivo que nos ajudam a lembrar as suas preferências e a recolher dados estatísticos. Pode gerir ou desativar os cookies através das definições do seu navegador.
+            O nosso website não utiliza cookies de rastreamento nem de publicidade. As estatísticas de utilização são recolhidas sem cookies, conforme descrito na secção 3. Pode, ainda assim, gerir ou desativar os cookies através das definições do seu navegador.
           </p>
         </section>
 
