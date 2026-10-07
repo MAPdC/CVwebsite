@@ -128,6 +128,15 @@ p {
   font-display: swap;
 }
 
+/* Montserrat - Light */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Montserrat - Regular */
 @font-face {
   font-family: 'Montserrat';
