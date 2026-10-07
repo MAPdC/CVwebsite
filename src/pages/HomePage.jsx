@@ -11,6 +11,7 @@ import heroImage from "../assets/douro-1-tiny.webp";
 import logoBranco from "../assets/cv-logo-branco.webp";
 import logoRaposa from "../assets/camuflado-raposa-vermelho.webp";
 import logoLebre  from "../assets/camuflado-lebre-azul.webp";
+import { useLang } from "../i18n";
 
 const HERO_SLIDES = [
   {
@@ -18,7 +19,6 @@ const HERO_SLIDES = [
     image: heroImage,
     brand: "CASTTÊDO VALLEY",
     logos: [logoBranco],
-    logoAlt: ["Casttêdo Valley Logo"],
   },
   {
     id: "camuflado",
@@ -28,11 +28,28 @@ const HERO_SLIDES = [
       logoRaposa,
       logoLebre,
     ],
-    logoAlt: ["Camuflado Raposa Logo", "Camuflado Lebre Logo"],
     link: "/camuflado",
-    linkLabel: "Descobrir Camuflado",
   },
 ];
+
+const TEXT = {
+  pt: {
+    logoAlt: {
+      casttedo: ["Logótipo Casttêdo Valley"],
+      camuflado: ["Raposa Camuflado", "Lebre Camuflado"],
+    },
+    linkLabel: "Descobrir Camuflado",
+    showSlide: (brand) => `Ver ${brand}`,
+  },
+  en: {
+    logoAlt: {
+      casttedo: ["Casttêdo Valley logo"],
+      camuflado: ["Camuflado fox", "Camuflado hare"],
+    },
+    linkLabel: "Discover Camuflado",
+    showSlide: (brand) => `Show ${brand}`,
+  },
+};
 
 const SLIDE_DURATION = 5000; // ms que cada slide fica visível
 
@@ -40,6 +57,8 @@ const HomePage = () => {
   const [scrollY, setScrollY]   = useState(0);
   const [active, setActive]     = useState(0);
   const timerRef                = useRef(null);
+  const { lang, to }            = useLang();
+  const text                    = TEXT[lang];
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -97,7 +116,7 @@ const HomePage = () => {
                   <img
                     key={li}
                     src={logo}
-                    alt={slide.logoAlt[li]}
+                    alt={text.logoAlt[slide.id][li]}
                     className="hero-logo"
                   />
                 ))}
@@ -106,8 +125,8 @@ const HomePage = () => {
                 {slide.brand}
               </h1>
               {slide.link && (
-                <Link to={slide.link} className="hero-cta" tabIndex={i === active ? 0 : -1}>
-                  {slide.linkLabel}
+                <Link to={to(slide.link)} className="hero-cta" tabIndex={i === active ? 0 : -1}>
+                  {text.linkLabel}
                 </Link>
               )}
             </div>
@@ -121,7 +140,7 @@ const HomePage = () => {
               <button
                 key={s.id}
                 className={`hero-dot ${i === active ? "hero-dot--active" : ""}`}
-                aria-label={`Ver ${s.brand}`}
+                aria-label={text.showSlide(s.brand)}
                 onClick={() => goTo(i)}
               />
             ))}

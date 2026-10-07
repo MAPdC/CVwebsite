@@ -4,22 +4,50 @@ import "../styles/OliveOilPortfolioPage.css";
 import heroBackground from '../assets/oliveira-1.webp';
 import { oliveOils as productsData } from "../mocks/products";
 import { FaLeaf, FaSearch } from "react-icons/fa";
+import { localizeProduct, useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
+
+const TEXT = {
+  pt: {
+    title: "Pureza.",
+    subtitle: "A essência do campo e a tradição centenária em cada gota de azeite",
+    search: "Procurar por nome ou variedade...",
+    all: "Todos",
+    category: "Azeite Virgem Extra",
+    found: (n) => `${n} ${n === 1 ? "azeite encontrado" : "azeites encontrados"}`,
+    noResults: "Nenhum azeite encontrado",
+    noResultsHint: "Tente uma pesquisa diferente ou remova os filtros.",
+  },
+  en: {
+    title: "Purity.",
+    subtitle: "The essence of the land and a century-old tradition in every drop",
+    search: "Search by name or variety...",
+    all: "All",
+    category: "Extra Virgin Olive Oil",
+    found: (n) => `${n} ${n === 1 ? "olive oil found" : "olive oils found"}`,
+    noResults: "No olive oils found",
+    noResultsHint: "Try a different search or clear the filters.",
+  },
+};
 
 function OliveOilPortfolioPage() {
   const [oilList, setOilList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
+  const common = COMMON[lang];
 
   useEffect(() => {
     const loadOils = () => {
       setLoading(true);
 
-      const formattedOils = productsData.map(oil => ({
+      const formattedOils = productsData.map(o => localizeProduct(o, lang)).map(oil => ({
         id: oil.id,
         slug: oil.slug,
         name: oil.name,
-        category: "Azeite Virgem Extra",
+        category: TEXT[lang].category,
         briefDescription: oil.briefDescription,
         varieties: oil.varieties,
         image: oil.images && oil.images.length > 0 ? oil.images[0] : "/placeholder-image.webp",
@@ -38,7 +66,7 @@ function OliveOilPortfolioPage() {
 
     loadOils();
     window.scrollTo(0, 0);
-  }, []);
+  }, [lang]);
 
   // Filtrar azeites
   const filteredOils = oilList.filter(oil => {
@@ -64,8 +92,8 @@ function OliveOilPortfolioPage() {
       <main className="oil-catalog">
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
-            <h1 className="catalog-hero__title">Pureza.</h1>
-            <p className="catalog-hero__subtitle">A essência do campo e a tradição centenária em cada gota de azeite</p>
+            <h1 className="catalog-hero__title">{text.title}</h1>
+            <p className="catalog-hero__subtitle">{text.subtitle}</p>
           </div>
           <div className="scroll-down-prompt">
             <div className="scroll-down-arrow"></div>
@@ -78,7 +106,7 @@ function OliveOilPortfolioPage() {
               <FaSearch className="search-icon" />
               <input
                 type="text"
-                placeholder="Procurar por nome ou variedade..."
+                placeholder={text.search}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -89,13 +117,13 @@ function OliveOilPortfolioPage() {
                 className={`filter-btn ${filter === "all" ? "active" : ""}`}
                 onClick={() => setFilter("all")}
               >
-                Todos
+                {text.all}
               </button>
               <button
                 className={`filter-btn filter-btn--late-harvest ${filter === "lateHarvest" ? "active" : ""}`}
                 onClick={() => setFilter("lateHarvest")}
               >
-                Colheita Tardia
+                {common.badges.lateHarvest}
               </button>
             </div>
           </div>
@@ -107,20 +135,20 @@ function OliveOilPortfolioPage() {
           ) : (
             <>
               <div className="results-count">
-                {sortedOils.length} {sortedOils.length === 1 ? "azeite encontrado" : "azeites encontrados"}
+                {text.found(sortedOils.length)}
               </div>
 
               <div className="oil-grid">
                 {sortedOils.map((oil) => (
-                  <Link to={`/portfolio/olive-oils/${oil.slug}`} className="oil-card" key={oil.id}>
+                  <Link to={to(`/portfolio/olive-oils/${oil.slug}`)} className="oil-card" key={oil.id}>
                     <div className="oil-card__image-container">
                       <img src={oil.image} alt={oil.name} className="oil-card__image" />
                        {/* Badge para Esgotado */}
                        {!oil.onmarket && oil.soldout && (
-                         <div className="oil-card__badge oil-card__badge--soldout">Esgotado</div>
+                         <div className="oil-card__badge oil-card__badge--soldout">{common.badges.soldOut}</div>
                        )}
                        {oil.onmarket && !oil.soldout && (
-                         <div className="oil-card__badge oil-card__badge--available">Disponível</div>
+                         <div className="oil-card__badge oil-card__badge--available">{common.badges.available}</div>
                        )}
                        {/* Adicionar badge para prémios se existirem? */}
                     </div>
@@ -146,7 +174,7 @@ function OliveOilPortfolioPage() {
                       </div>
 
                       <div className="oil-card__cta">
-                        <span>Ver Detalhes</span>
+                        <span>{common.seeDetails}</span>
                       </div>
                     </div>
                   </Link>
@@ -155,8 +183,8 @@ function OliveOilPortfolioPage() {
 
               {sortedOils.length === 0 && (
                 <div className="no-results">
-                  <h3>Nenhum azeite encontrado</h3>
-                  <p>Tente uma pesquisa diferente ou remova os filtros.</p>
+                  <h3>{text.noResults}</h3>
+                  <p>{text.noResultsHint}</p>
                 </div>
               )}
             </>

@@ -74,6 +74,25 @@ import ouro22 from '../assets/vinduero-ouro-22.webp';
 import ourof24 from '../assets/vinduero-ourof-24.webp';
 
 
+// --- Textos em inglês ---
+// Baseados nas fichas técnicas EN (MATERIAL/Fichas Técnicas/.../EN), revistos para inglês idiomático.
+// Cada produto tem um bloco `en` com os campos que mudam; os restantes vêm da versão PT.
+
+const EN_INTRO = "Always true to its roots, Casttêdo Valley is a wine defined by its essence: a wine of personality, with an identity all its own. Our vineyards enjoy the perfect meeting of a unique microclimate and soils born of ancient schist, planted with meticulously selected vines and farmed with practices that promote biodiversity. This terroir yields healthy, distinctive grapes";
+
+const EN_DESCRIPTION = `${EN_INTRO}, which are transformed in granite lagares dating from 1873, where history and tradition meet modern winemaking to craft wines of remarkable character.`;
+
+const EN_RED_PAIRING = "Grilled or wood-oven roasted red meats, game, bacalhau (salt cod), charcuterie, cheeses and pâtés.";
+const EN_RED_OAKED_NOTES = "An intense, elegant nose in harmony with a full-bodied, structured palate and a long finish, marked by ripe red fruit and nuances of vanilla and cocoa gracefully imparted by the oak.";
+const EN_RED_UNOAKED_NOTES = "An intense, elegant nose in harmony with a full-bodied, structured palate and a long finish, marked by notes of ripe red fruit compote.";
+const EN_WHITE_OAKED_NOTES = "A fresh nose with hints of vanilla. The palate is citrusy, intense and structured, balancing fresh fruit and oak, with an elegant, persistent finish.";
+const EN_WHITE_OAKED_PAIRING = "Poultry, grilled or fried fish, cooked shellfish, starters and fried snacks, or simply on its own.";
+const EN_WHITE_HARVEST_NOTES = "Fresh floral notes on the nose. The palate is striking, with citrus flavours, vibrant natural acidity and a pleasantly persistent finish.";
+
+const EN_SERVE_RED = "16–18°C / 61–64°F";
+const EN_SERVE_WHITE = "8–10°C / 46–50°F";
+
+
 export const wines = [
     {
       id: 1,
@@ -95,15 +114,24 @@ export const wines = [
       temperatura: "16 a 18°C",
       technical: {
         alcohol: "13,5%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0.0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [[vinduero, ourof23, "Medalha de Ouro em Feminino 2023","90,00"]],
       onmarket: false,
       collection: true,
       oaked: true,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve Red Oaked 2019",
+        description: EN_DESCRIPTION,
+        briefdescription: "An intense, elegant red with notes of ripe red fruit and a touch of oak.",
+        sensorial: EN_RED_OAKED_NOTES,
+        consumo: EN_RED_PAIRING,
+        temperatura: EN_SERVE_RED,
+        awards: [[vinduero, ourof23, "Gold Medal, Women's Jury 2023", "90.00"]],
+      }
     },
     {
       id: 2,
@@ -125,15 +153,24 @@ export const wines = [
       temperatura: "16 a 18°C",
       technical: {
         alcohol: "14,5%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [[vinduero, ouro24, "Medalha de Ouro 2024","92,55"], [vinduero, ourof24, "Medalha de Ouro em Feminino 2024", "92,93"]],
       onmarket: false,
       collection: true,
       oaked: false,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve Red Unoaked 2020",
+        description: EN_DESCRIPTION,
+        briefdescription: "Intense, elegant and fruit-driven, with notes of ripe red fruit compote.",
+        sensorial: EN_RED_UNOAKED_NOTES,
+        consumo: EN_RED_PAIRING,
+        temperatura: EN_SERVE_RED,
+        awards: [[vinduero, ouro24, "Gold Medal 2024", "92.55"], [vinduero, ourof24, "Gold Medal, Women's Jury 2024", "92.93"]],
+      }
     },
     {
       id: 3,
@@ -155,15 +192,24 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [[vinduero, ouro22, "Medalha de Ouro 2022","90,77"]],
       onmarket: false,
       collection: true,
       oaked: true,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve White Oaked 2020",
+        description: EN_DESCRIPTION,
+        briefdescription: "A structured, elegant white that balances freshness and oak.",
+        sensorial: EN_WHITE_OAKED_NOTES,
+        consumo: EN_WHITE_OAKED_PAIRING,
+        temperatura: EN_SERVE_WHITE,
+        awards: [[vinduero, ouro22, "Gold Medal 2022", "90.77"]],
+      }
     },
     {
       id: 4,
@@ -182,19 +228,27 @@ export const wines = [
         vbun21_4
       ],
       sensorial: "Aroma com notas florais frescas, na boca é notável, com o sabor cítrico de acidez natural vibrante e de agradável persistência.",
-      consumo: "Peixes, mariscos, shushi, pratos picantes e salgados, francesinha, saladas ou simplesmente só.",
+      consumo: "Peixes, mariscos, sushi, pratos picantes e salgados, francesinha, saladas ou simplesmente só.",
       temperatura: "6 a 8°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [],
       onmarket: false,
       collection: true,
       oaked: false,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Harvest White Unoaked 2021",
+        description: EN_DESCRIPTION,
+        briefdescription: "Light and vibrant, with refreshing citrus notes.",
+        sensorial: EN_WHITE_HARVEST_NOTES,
+        consumo: "Fish, shellfish, sushi, spicy and savoury dishes, the francesinha (Porto's signature sandwich), salads, or simply on its own.",
+        temperatura: "6–8°C / 43–46°F",
+      }
     },
     {
       id: 5,
@@ -213,19 +267,27 @@ export const wines = [
         vbun23_4
       ],
       sensorial: "Aroma com notas florais frescas, na boca é notável, com o sabor cítrico de acidez natural vibrante e de agradável persistência.",
-      consumo: "Peixe, mariscos, shushi, ceviche, pratos picantes e salgados, saladas ou simplesmente só.",
+      consumo: "Peixe, mariscos, sushi, ceviche, pratos picantes e salgados, saladas ou simplesmente só.",
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "12,5%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [],
       onmarket: false,
       collection: true,
       oaked: false,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Harvest White Unoaked 2023",
+        description: EN_DESCRIPTION,
+        briefdescription: "Light and vibrant, with refreshing citrus notes. Made for sharing with friends.",
+        sensorial: EN_WHITE_HARVEST_NOTES,
+        consumo: "Fish, shellfish, sushi, ceviche, spicy and savoury dishes, salads, or simply on its own.",
+        temperatura: EN_SERVE_WHITE,
+      }
     },
     {
       id: 6,
@@ -247,15 +309,23 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [],
       onmarket: true,
       collection: false,
       oaked: true,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve White Oaked 2022",
+        description: `${EN_INTRO}.\n\nThe 2022 Reserve White stands out for the intensity of its colour, aroma and flavour, the result of the soil and climate conditions of an exceptionally dry year. These produced grapes more concentrated in colour and phenolic compounds, but with low juice yields, bringing the harvest forward by around ten days. True to our principle of respecting the natural quality of the fruit, the wine reflects that intensity. Maturation in French oak barrels balanced the ripe fruit with the complexity of the oak, creating an elegant, harmonious wine of striking character.`,
+        briefdescription: "A structured, elegant white that balances freshness and oak.",
+        sensorial: EN_WHITE_OAKED_NOTES,
+        consumo: EN_WHITE_OAKED_PAIRING,
+        temperatura: EN_SERVE_WHITE,
+      }
     },
     {
       id: 7,
@@ -275,15 +345,23 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L", 
-        ph: "0"
+        acidity: null,
+        sugar: null, 
+        ph: null
       },
       awards: [],
       onmarket: false,
       collection: true,
       oaked: false,
-      curtimenta: true
+      curtimenta: true,
+      en: {
+        name: "Harvest Orange Wine Unoaked 2023",
+        description: EN_DESCRIPTION,
+        briefdescription: "An intense, full-bodied orange wine, marked by notes of orange peel.",
+        sensorial: "An intense nose and a full-bodied, structured, persistent palate, marked by notes of orange peel and ripe peach, pear and mango.",
+        consumo: "Grilled meat and fish, richly spiced cuisines, cheeses and pâtés.",
+        temperatura: EN_SERVE_WHITE,
+      }
     },
     {
       id: 8,
@@ -303,15 +381,23 @@ export const wines = [
       temperatura: "8 a 10°C",
       technical: {
         alcohol: "13,0%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [],
       onmarket: false,
       collection: true,
       oaked: true,
-      curtimenta: true
+      curtimenta: true,
+      en: {
+        name: "Reserve Orange Wine Oaked 2023",
+        description: EN_DESCRIPTION,
+        briefdescription: "Intense, full-bodied and persistent, with notes of honeycomb.",
+        sensorial: "An intense nose and a full-bodied, persistent palate, with structured notes of peach, pear and orange and nuances of cocoa, coconut and honeycomb.",
+        consumo: "Wood-oven roast suckling pig, lamb and kid, game, bacalhau (salt cod), bold, richly spiced dishes, charcuterie, cheeses and pâtés.",
+        temperatura: EN_SERVE_WHITE,
+      }
     },
     {
       id: 9,
@@ -333,15 +419,23 @@ export const wines = [
       temperatura: "16 a 18°C",
       technical: {
         alcohol: "13,5%",
-        acidity: "0.0 g/L",
-        sugar: "0.0 g/L",
-        ph: "0.0"
+        acidity: null,
+        sugar: null,
+        ph: null
       },
       awards: [],
       onmarket: true,
       collection: false,
       oaked: true,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve Red Oaked 2020",
+        description: EN_DESCRIPTION,
+        briefdescription: "An intense, elegant red with notes of ripe red fruit and subtle oak.",
+        sensorial: EN_RED_OAKED_NOTES,
+        consumo: EN_RED_PAIRING,
+        temperatura: EN_SERVE_RED,
+      }
     },
     {
       id: 10,
@@ -371,7 +465,15 @@ export const wines = [
       onmarket: true,
       collection: false,
       oaked: false,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Reserve Red Unoaked 2021",
+        description: EN_DESCRIPTION,
+        briefdescription: "Intense, elegant and fruit-driven, with notes of ripe red fruit compote.",
+        sensorial: EN_RED_UNOAKED_NOTES,
+        consumo: EN_RED_PAIRING,
+        temperatura: EN_SERVE_RED,
+      }
     },
     {
       id: 11,
@@ -402,7 +504,15 @@ export const wines = [
       onmarket: true,
       collection: false,
       oaked: false,
-      curtimenta: false
+      curtimenta: false,
+      en: {
+        name: "Harvest White Unoaked 2024",
+        description: EN_DESCRIPTION,
+        briefdescription: "Light and vibrant, with refreshing citrus notes. Made for sharing with friends.",
+        sensorial: EN_WHITE_HARVEST_NOTES,
+        consumo: "Fish, shellfish, sushi, ceviche, spicy and savoury dishes, salads, or simply on its own.",
+        temperatura: EN_SERVE_WHITE,
+      }
     },
   ];
   
@@ -444,6 +554,18 @@ export const wines = [
       soldout: false,
       organic: true,
       lateHarvest: true,
+      en: {
+        name: "Extra Virgin Olive Oil | Organic & Late Harvest",
+        description: "Superior category olive oil obtained directly from olives and solely by mechanical means. Made from organically grown olives, harvested late in the season for a more intense and complex flavour.",
+        briefDescription: "A late-harvest olive oil, picked in December. Perfect for fine dining.",
+        type: "Extra Virgin",
+        sensory: "Lightly pungent and bitter on the palate, with pronounced notes of almond and a silky, velvety texture. The nose offers subtle hints of tomato leaf and freshly crushed green olive leaves with ripe olives.",
+        pairing: "Delicate dishes: steamed fish, meat and vegetables, or toasted bread with a light touch of garlic and aromatic herbs.",
+        extraInfo: {
+          store: "Store away from light, air, heat and strong odours.",
+          available: "Available in 500 ml bottles."
+        },
+      },
     },
     // outros azeites
   ];

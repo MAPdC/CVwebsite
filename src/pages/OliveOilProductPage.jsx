@@ -6,11 +6,14 @@ import { oliveOils, wines } from "../mocks/products";
 import OliveOilProductDetail from "../components/OliveOilProductDetail";
 // Importar componente de produtos relacionados (reutilizado)
 import RelatedProducts from "../components/RelatedProducts";
+import { localizeProduct, useLang } from "../i18n";
 // Importar o CSS do WineProductDetail serve como base, mas pode criar um específico se precisar
 import "../styles/WineProductDetail.css"; // Reutiliza estilos gerais da página de produto
 
 const OliveOilProductPage = () => {
   const { slug } = useParams(); // Obtém o slug da URL
+  const { lang, to } = useLang();
+  const en = lang === "en";
 
   // Encontrar o azeite atual usando o slug
   const currentProduct = oliveOils.find((oil) => oil.slug === slug);
@@ -19,9 +22,9 @@ const OliveOilProductPage = () => {
   if (!currentProduct) {
     return (
         <div style={{ padding: '120px 20px', textAlign: 'center' }}>
-            <h2>Azeite não encontrado</h2>
-            <p>O produto que procura pode não existir ou ter sido movido.</p>
-            <Link to="/portfolio/olive-oils">Voltar ao Portefólio de Azeites</Link>
+            <h2>{en ? "Olive oil not found" : "Azeite não encontrado"}</h2>
+            <p>{en ? "The product you are looking for may not exist or may have been moved." : "O produto que procura pode não existir ou ter sido movido."}</p>
+            <Link to={to("/portfolio/olive-oils")}>{en ? "Back to the Olive Oil Portfolio" : "Voltar ao Portefólio de Azeites"}</Link>
         </div>
     );
   }
@@ -48,11 +51,11 @@ const OliveOilProductPage = () => {
     // Usar uma classe geral para a página se necessário estilizar a página em si
     <div className="oil-product-page">
       {/* Renderiza o componente de detalhe com o azeite encontrado */}
-      <OliveOilProductDetail product={currentProduct} />
+      <OliveOilProductDetail product={localizeProduct(currentProduct, lang)} />
 
       {/* Renderiza a secção de produtos relacionados */}
       {/* O título pode ser personalizado */}
-      <RelatedProducts products={relatedProducts} title="Explore Outros Azeites" basePath="/portfolio/olive-oils" />
+      <RelatedProducts products={relatedProducts} title={en ? "Explore other olive oils" : "Explore Outros Azeites"} basePath="/portfolio/olive-oils" />
       {/* Ou se usar misto: <RelatedProducts products={mixedRelatedProducts} title="Pode Também Gostar" /> */}
     </div>
   );

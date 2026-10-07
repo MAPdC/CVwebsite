@@ -1,15 +1,77 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { getPackshotTransform } from "../utils/packshotTransform";
+import { formatDecimal, useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
 import "../styles/WineDetail.css";
 
-// null = valor ainda por confirmar; vazio/undefined = não se aplica
-const techValue = (value) => (value === null ? "Em breve" : value || "—");
+const TEXT = {
+  pt: {
+    comingSoon: "Em breve",
+    appellation: "Denominação",
+    vintage: "Colheita",
+    type: "Tipo",
+    variety: "Casta",
+    varieties: "Castas",
+    maturation: "Maturação",
+    alcohol: "Teor alcoólico",
+    acidity: "Acidez total",
+    sugar: "Açúcares residuais",
+    image: (n) => `imagem ${n}`,
+    noImage: "Imagem não disponível",
+    gallery: "Imagens do vinho",
+    viewImage: (n) => `Ver imagem ${n}`,
+    breadcrumb: "Navegação",
+    serveAt: "Servir a",
+    theWine: "O Vinho",
+    tasting: "Prova",
+    tastingNotes: "Notas de prova",
+    pairing: "Harmonização",
+    notAvailable: "Informação não disponível.",
+    techSheet: "Ficha Técnica",
+    download: "Descarregar ficha técnica",
+    awards: "Distinções",
+  },
+  en: {
+    comingSoon: "Soon",
+    appellation: "Appellation",
+    vintage: "Vintage",
+    type: "Style",
+    variety: "Grape variety",
+    varieties: "Grape varieties",
+    maturation: "Ageing",
+    alcohol: "Alcohol",
+    acidity: "Total acidity",
+    sugar: "Residual sugar",
+    image: (n) => `image ${n}`,
+    noImage: "Image not available",
+    gallery: "Wine images",
+    viewImage: (n) => `View image ${n}`,
+    breadcrumb: "Breadcrumb",
+    serveAt: "Serve at",
+    theWine: "The Wine",
+    tasting: "Tasting",
+    tastingNotes: "Tasting notes",
+    pairing: "Food pairing",
+    notAvailable: "Information not available.",
+    techSheet: "Technical Sheet",
+    download: "Download technical sheet",
+    awards: "Awards",
+  },
+};
 
 // Página de detalhe de um vinho (Casttêdo Valley e Camuflado).
 // O aspeto vem das variáveis --wd-* (ver WineDetail.css); cada marca pode redefini-las num wrapper.
 // heroAddon: conteúdo opcional por cima do título (ex.: animal Camuflado)
-function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel = "Vinhos", heroAddon = null }) {
+function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, heroAddon = null }) {
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
+  const common = COMMON[lang];
+
+  // null = valor ainda por confirmar; vazio/undefined = não se aplica
+  const techValue = (value) => (value === null ? text.comingSoon : formatDecimal(value, lang) || "—");
+  const wineType = (type) => common.wineTypes[type] || type;
+
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [packshotTransform, setPackshotTransform] = useState(null);
   const imageRef = useRef(null);
@@ -52,14 +114,14 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
   const mainImage = images[activeImageIndex];
 
   const specs = [
-    ["Denominação", product.category],
-    ["Colheita", product.year],
-    ["Tipo", product.type],
-    ["Castas", product.varieties?.join(", ")],
-    product.maturation ? ["Maturação", product.maturation] : null,
-    ["Teor alcoólico", techValue(product.technical?.alcohol)],
-    ["Acidez total", techValue(product.technical?.acidity)],
-    ["Açúcares residuais", techValue(product.technical?.sugar)],
+    [text.appellation, product.category],
+    [text.vintage, product.year],
+    [text.type, wineType(product.type)],
+    [text.varieties, product.varieties?.join(", ")],
+    product.maturation ? [text.maturation, product.maturation] : null,
+    [text.alcohol, techValue(product.technical?.alcohol)],
+    [text.acidity, techValue(product.technical?.acidity)],
+    [text.sugar, techValue(product.technical?.sugar)],
     ["pH", techValue(product.technical?.ph)],
   ].filter(Boolean);
 
@@ -73,26 +135,26 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
               <img
                 key={mainImage}
                 src={mainImage}
-                alt={`${product.name}${isPackshot ? "" : ` — imagem ${activeImageIndex + 1}`}`}
+                alt={`${product.name}${isPackshot ? "" : ` — ${text.image(activeImageIndex + 1)}`}`}
                 ref={imageRef}
                 className="wd-media__image"
                 onLoad={updatePackshot}
                 style={isPackshot && packshotTransform ? { "--crop": packshotTransform } : undefined}
               />
             ) : (
-              <span className="wd-media__placeholder">Imagem não disponível</span>
+              <span className="wd-media__placeholder">{text.noImage}</span>
             )}
           </div>
 
           {images.length > 1 && (
-            <div className="wd-thumbs" role="tablist" aria-label="Imagens do vinho">
+            <div className="wd-thumbs" role="tablist" aria-label={text.gallery}>
               {images.map((imageUrl, index) => (
                 <button
                   type="button"
                   key={imageUrl}
                   className={`wd-thumb ${index === activeImageIndex ? "wd-thumb--active" : ""}`}
                   onClick={() => setActiveImageIndex(index)}
-                  aria-label={`Ver imagem ${index + 1}`}
+                  aria-label={text.viewImage(index + 1)}
                   aria-selected={index === activeImageIndex}
                   role="tab"
                 >
@@ -106,16 +168,16 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
         {/* --- Conteúdo --- */}
         <article className="wd-content">
           <header className="wd-intro">
-            <nav className="wd-breadcrumb" aria-label="Navegação">
-              <Link to="/">Início</Link>
+            <nav className="wd-breadcrumb" aria-label={text.breadcrumb}>
+              <Link to={to("/")}>{common.nav.home}</Link>
               <span aria-hidden="true">·</span>
-              <Link to={basePath}>{baseLabel}</Link>
+              <Link to={to(basePath)}>{baseLabel ?? common.nav.wines}</Link>
             </nav>
 
             {heroAddon}
 
             <p className="wd-eyebrow">
-              {[product.category, product.type, product.year].filter(Boolean).join("  ·  ")}
+              {[product.category, wineType(product.type), product.year].filter(Boolean).join("  ·  ")}
             </p>
             <h1 className="wd-title">{product.name}</h1>
             <span className="wd-rule" aria-hidden="true" />
@@ -124,22 +186,22 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
 
             <dl className="wd-facts">
               <div>
-                <dt>{product.varieties?.length > 1 ? "Castas" : "Casta"}</dt>
+                <dt>{product.varieties?.length > 1 ? text.varieties : text.variety}</dt>
                 <dd>{product.varieties?.join(", ")}</dd>
               </div>
               <div>
-                <dt>Teor alcoólico</dt>
+                <dt>{text.alcohol}</dt>
                 <dd>{techValue(product.technical?.alcohol)}</dd>
               </div>
               <div>
-                <dt>Servir a</dt>
+                <dt>{text.serveAt}</dt>
                 <dd>{product.temperatura || "—"}</dd>
               </div>
             </dl>
           </header>
 
           <section className="wd-section">
-            <h2 className="wd-label">O Vinho</h2>
+            <h2 className="wd-label">{text.theWine}</h2>
             {/* Parágrafos separados por uma linha em branco ("\n\n") no texto do produto */}
             {(product.description || "").split(/\n\s*\n/).map((paragraph, index) => (
               <p key={index} className="wd-story">{paragraph}</p>
@@ -147,19 +209,19 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
           </section>
 
           <section className="wd-section">
-            <h2 className="wd-label">Prova</h2>
+            <h2 className="wd-label">{text.tasting}</h2>
             <dl className="wd-notes">
               <div>
-                <dt>Notas de prova</dt>
-                <dd>{product.sensorial || "Informação não disponível."}</dd>
+                <dt>{text.tastingNotes}</dt>
+                <dd>{product.sensorial || text.notAvailable}</dd>
               </div>
               <div>
-                <dt>Harmonização</dt>
-                <dd>{product.consumo || "Informação não disponível."}</dd>
+                <dt>{text.pairing}</dt>
+                <dd>{product.consumo || text.notAvailable}</dd>
               </div>
               {product.maturation && (
                 <div>
-                  <dt>Maturação</dt>
+                  <dt>{text.maturation}</dt>
                   <dd>{product.maturation}</dd>
                 </div>
               )}
@@ -173,7 +235,7 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
           )}
 
           <section className="wd-section">
-            <h2 className="wd-label">Ficha Técnica</h2>
+            <h2 className="wd-label">{text.techSheet}</h2>
             <dl className="wd-specs">
               {specs.map(([label, value]) => (
                 <div key={label}>
@@ -185,14 +247,14 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
 
             {product.datasheets && (
               <p className="wd-downloads">
-                Descarregar ficha técnica
+                {text.download}
                 {product.datasheets.pt && (
                   <a
                     href={product.datasheets.pt}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-umami-event="ficha-tecnica"
-                    data-umami-event-produto={product.name}
+                    data-umami-event-produto={product.trackingName ?? product.name}
                     data-umami-event-idioma="pt"
                   >PT</a>
                 )}
@@ -202,7 +264,7 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
                     target="_blank"
                     rel="noopener noreferrer"
                     data-umami-event="ficha-tecnica"
-                    data-umami-event-produto={product.name}
+                    data-umami-event-produto={product.trackingName ?? product.name}
                     data-umami-event-idioma="en"
                   >EN</a>
                 )}
@@ -212,14 +274,14 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
 
           {product.awards && product.awards.length > 0 && (
             <section className="wd-section">
-              <h2 className="wd-label">Distinções</h2>
+              <h2 className="wd-label">{text.awards}</h2>
               <ul className="wd-awards">
                 {product.awards.map((award, index) => (
                   <li key={index} className="wd-award">
                     {award[1] && <img src={award[1]} alt="" className="wd-award__medal" />}
                     <div>
                       <span className="wd-award__name">{award[2]}</span>
-                      {award[3] && <span className="wd-award__points">{award[3]} pontos</span>}
+                      {award[3] && <span className="wd-award__points">{award[3]} {common.points}</span>}
                     </div>
                   </li>
                 ))}

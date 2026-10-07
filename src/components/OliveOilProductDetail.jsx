@@ -1,13 +1,83 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Award, Leaf, Info, Utensils, Microscope, HeartPulse, Box } from "lucide-react";
+import { formatDecimal, useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
 import "../styles/OliveOilProductDetail.css";
+
+const TEXT = {
+  pt: {
+    noNutrition: "Informação nutricional não disponível.",
+    nutrition: {
+      energy: "Energia",
+      fat: "Lípidos",
+      saturatedFat: "dos quais Saturados",
+      carbohydrates: "Hidratos de Carbono",
+      sugars: "dos quais Açúcares",
+      protein: "Proteínas",
+      salt: "Sal"
+    },
+    noExtra: "Sem informações adicionais.",
+    storage: "Conservação:",
+    availability: "Disponibilidade:",
+    defaultType: "Azeite Virgem Extra",
+    mainImage: "imagem principal",
+    noImage: "Imagem não disponível",
+    viewImage: (n) => `Ver imagem ${n}`,
+    thumbnail: (n) => `miniatura ${n}`,
+    tabs: { features: "Características", technical: "Detalhes Técnicos", nutrition: "Info Nutricional", awards: "Prémios" },
+    varieties: "Variedades",
+    sensory: "Notas Sensoriais",
+    pairing: "Harmonização",
+    notAvailable: "Informação não disponível.",
+    acidity: "Acidez",
+    peroxide: "Índice de Peróxidos",
+    nutritionTitle: "Declaração Nutricional",
+    per100: "(por 100ml)",
+    otherInfo: "Outras Informações",
+    medal: "Medalha",
+  },
+  en: {
+    noNutrition: "Nutrition information not available.",
+    nutrition: {
+      energy: "Energy",
+      fat: "Fat",
+      saturatedFat: "of which saturates",
+      carbohydrates: "Carbohydrate",
+      sugars: "of which sugars",
+      protein: "Protein",
+      salt: "Salt"
+    },
+    noExtra: "No additional information.",
+    storage: "Storage:",
+    availability: "Availability:",
+    defaultType: "Extra Virgin Olive Oil",
+    mainImage: "main image",
+    noImage: "Image not available",
+    viewImage: (n) => `View image ${n}`,
+    thumbnail: (n) => `thumbnail ${n}`,
+    tabs: { features: "Profile", technical: "Technical Details", nutrition: "Nutrition", awards: "Awards" },
+    varieties: "Olive Varieties",
+    sensory: "Tasting Notes",
+    pairing: "Food Pairing",
+    notAvailable: "Information not available.",
+    acidity: "Acidity",
+    peroxide: "Peroxide Value",
+    nutritionTitle: "Nutrition Declaration",
+    per100: "(per 100 ml)",
+    otherInfo: "Further Information",
+    medal: "Medal",
+  },
+};
 
 function OliveOilProductDetail({ product }) {
   const [activeTab, setActiveTab] = useState("caracteristicas");
   const [mainImage, setMainImage] = useState(null);
   const [thumbnailImages, setThumbnailImages] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const { lang, to } = useLang();
+  const text = TEXT[lang];
+  const common = COMMON[lang];
 
   // Efeito para inicializar imagens e rolar para o topo
   useEffect(() => {
@@ -38,17 +108,9 @@ function OliveOilProductDetail({ product }) {
   
   // Helper para renderizar a declaração nutricional
   const renderNutrition = (nutrition) => {
-    if (!nutrition) return <p>Informação nutricional não disponível.</p>;
+    if (!nutrition) return <p>{text.noNutrition}</p>;
 
-    const translations = {
-      energy: "Energia",
-      fat: "Lípidos",
-      saturatedFat: "dos quais Saturados",
-      carbohydrates: "Hidratos de Carbono",
-      sugars: "dos quais Açúcares",
-      protein: "Proteínas",
-      salt: "Sal"
-    };
+    const translations = text.nutrition;
 
     const displayOrder = ['energy', 'fat', 'saturatedFat', 'carbohydrates', 'sugars', 'protein', 'salt'];
 
@@ -57,7 +119,7 @@ function OliveOilProductDetail({ product }) {
         {displayOrder.map(key => {
           if (nutrition.hasOwnProperty(key) && translations[key]) {
             const label = translations[key];
-            const value = nutrition[key];
+            const value = formatDecimal(nutrition[key], lang);
             const isSubItem = key === 'saturatedFat' || key === 'sugars';
             return (
               <li key={key} className={isSubItem ? 'sub-item' : ''}>
@@ -74,11 +136,11 @@ function OliveOilProductDetail({ product }) {
 
   // Helper para renderizar informações extras
   const renderExtraInfo = (extra) => {
-    if (!extra) return <p>Sem informações adicionais.</p>;
+    if (!extra) return <p>{text.noExtra}</p>;
     return (
       <ul className="extra-info-list">
-        {extra.store && <li><strong>Conservação:</strong> {extra.store}</li>}
-        {extra.available && <li><strong>Disponibilidade:</strong> {extra.available}</li>}
+        {extra.store && <li><strong>{text.storage}</strong> {extra.store}</li>}
+        {extra.available && <li><strong>{text.availability}</strong> {extra.available}</li>}
       </ul>
     );
   };
@@ -97,16 +159,16 @@ function OliveOilProductDetail({ product }) {
       {/* --- Secção Hero --- */}
       <section className="new-oil-hero">
         <div className="new-oil-breadcrumb">
-          <Link to="/">Início</Link> / 
-          <Link to={"/portfolio/olive-oils"}>Azeites</Link> / 
+          <Link to={to("/")}>{common.nav.home}</Link> / 
+          <Link to={to("/portfolio/olive-oils")}>{common.nav.oliveOils}</Link> / 
           <span>{product.name.replace(/\|/g, '').trim()}</span>
         </div>
         <h1 className="new-oil-title">{product.name.replace(/\|/g, '').trim()}</h1>
-        <div className="new-oil-category">{product.type || 'Azeite Virgem Extra'}</div>
+        <div className="new-oil-category">{product.type || text.defaultType}</div>
         {/* Badges para Biológico e Colheita Tardia */}
         <div className="new-oil-badges">
-          {product.organic && <span className="badge organic"><Leaf size={14}/> Biológico</span>}
-          {product.lateHarvest && <span className="badge late-harvest">Colheita Tardia</span>}
+          {product.organic && <span className="badge organic"><Leaf size={14}/> {common.badges.organic}</span>}
+          {product.lateHarvest && <span className="badge late-harvest">{common.badges.lateHarvest}</span>}
         </div>
       </section>
       
@@ -119,12 +181,12 @@ function OliveOilProductDetail({ product }) {
             {mainImage ? (
               <img 
                 src={mainImage} 
-                alt={`${product.name} - imagem principal`}
+                alt={`${product.name} - ${text.mainImage}`}
                 className="gallery-main-image"
               />
             ) : (
               <div className="image-placeholder">
-                <span>Imagem não disponível</span>
+                <span>{text.noImage}</span>
               </div>
             )}
           </div>
@@ -138,11 +200,11 @@ function OliveOilProductDetail({ product }) {
                 onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && changeMainImage(index)}
                 tabIndex={0}
                 role="button"
-                aria-label={`Ver imagem ${index + 1}`}
+                aria-label={text.viewImage(index + 1)}
               >
                 <img 
                   src={imageUrl}
-                  alt={`${product.name} - miniatura ${index + 1}`}
+                  alt={`${product.name} - ${text.thumbnail(index + 1)}`}
                 />
               </div>
             ))}
@@ -161,26 +223,26 @@ function OliveOilProductDetail({ product }) {
                 className={`tab-button ${activeTab === "caracteristicas" ? "active" : ""}`}
                 onClick={() => setActiveTab("caracteristicas")}
               >
-                Características
+                {text.tabs.features}
               </button>
               <button 
                 className={`tab-button ${activeTab === "tecnico" ? "active" : ""}`}
                 onClick={() => setActiveTab("tecnico")}
               >
-                Detalhes Técnicos
+                {text.tabs.technical}
               </button>
               <button 
                 className={`tab-button ${activeTab === "adicional" ? "active" : ""}`}
                 onClick={() => setActiveTab("adicional")}
               >
-                Info Nutricional
+                {text.tabs.nutrition}
               </button>
               {product.awards && product.awards.length > 0 && (
                 <button 
                   className={`tab-button ${activeTab === "premios" ? "active" : ""}`}
                   onClick={() => setActiveTab("premios")}
                 >
-                  Prémios
+                  {text.tabs.awards}
                 </button>
               )}
             </div>
@@ -190,7 +252,7 @@ function OliveOilProductDetail({ product }) {
               {activeTab === "caracteristicas" && (
                 <div className="tab-panel">
                   <div className="content-section">
-                    <h3><Leaf size={18} /> Variedades</h3>
+                    <h3><Leaf size={18} /> {text.varieties}</h3>
                     <ul className="varieties-list">
                       {product.varieties.map((variety, index) => (
                         <li key={index}>{variety}</li>
@@ -199,13 +261,13 @@ function OliveOilProductDetail({ product }) {
                   </div>
                   
                   <div className="content-section">
-                    <h3><Info size={18} /> Notas Sensoriais</h3>
-                    <p>{product.sensory || "Informação não disponível."}</p>
+                    <h3><Info size={18} /> {text.sensory}</h3>
+                    <p>{product.sensory || text.notAvailable}</p>
                   </div>
                   
                   <div className="content-section">
-                    <h3><Utensils size={18} /> Harmonização</h3>
-                    <p>{product.pairing || "Informação não disponível."}</p>
+                    <h3><Utensils size={18} /> {text.pairing}</h3>
+                    <p>{product.pairing || text.notAvailable}</p>
                   </div>
                 </div>
               )}
@@ -215,20 +277,20 @@ function OliveOilProductDetail({ product }) {
                 <div className="tab-panel">
                   <div className="technical-specs">
                     <div className="tech-item">
-                      <span className="tech-label">Acidez</span>
-                      <span className="tech-value">{product.technical.acidity || "N/A"}</span>
+                      <span className="tech-label">{text.acidity}</span>
+                      <span className="tech-value">{formatDecimal(product.technical.acidity, lang) || "N/A"}</span>
                     </div>
                     <div className="tech-item">
-                      <span className="tech-label">Índice de Peróxidos</span>
-                      <span className="tech-value">{product.technical.peroxide || "N/A"}</span>
+                      <span className="tech-label">{text.peroxide}</span>
+                      <span className="tech-value">{formatDecimal(product.technical.peroxide, lang) || "N/A"}</span>
                     </div>
                     <div className="tech-item">
                       <span className="tech-label">K232</span>
-                      <span className="tech-value">{product.technical.k232 || "N/A"}</span>
+                      <span className="tech-value">{formatDecimal(product.technical.k232, lang) || "N/A"}</span>
                     </div>
                     <div className="tech-item">
                       <span className="tech-label">K268 / ΔK</span>
-                      <span className="tech-value">{product.technical.k268 || "N/A"}</span>
+                      <span className="tech-value">{formatDecimal(product.technical.k268, lang) || "N/A"}</span>
                     </div>
                   </div>
                 </div>
@@ -239,13 +301,13 @@ function OliveOilProductDetail({ product }) {
                 <div className="tab-panel">
                   {product.nutritionDeclaration && (
                     <div className="content-section">
-                      <h3><HeartPulse size={18} /> Declaração Nutricional <span className="nutrition-note">(por 100ml)</span></h3>
+                      <h3><HeartPulse size={18} /> {text.nutritionTitle} <span className="nutrition-note">{text.per100}</span></h3>
                       {renderNutrition(product.nutritionDeclaration)}
                     </div>
                   )}
                   {product.extraInfo && (
                     <div className="content-section">
-                      <h3><Box size={18} /> Outras Informações</h3>
+                      <h3><Box size={18} /> {text.otherInfo}</h3>
                       {renderExtraInfo(product.extraInfo)}
                     </div>
                   )}
@@ -266,7 +328,7 @@ function OliveOilProductDetail({ product }) {
                         {award[1] && (
                           <img 
                             src={award[1]} 
-                            alt="Medalha" 
+                            alt={text.medal} 
                             className="award-medal-image"
                           />
                         )}
