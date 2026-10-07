@@ -30,17 +30,19 @@ const TEXT = {
 };
 
 
-// Cartão de Azeite (Não clicável individualmente por agora)
+// Cartão de Azeite (abre a página do azeite)
 const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
-  const { lang } = useLang();
+  const { lang, to } = useLang();
   const badges = COMMON[lang].badges;
   const text = TEXT[lang];
 
   return (
-    <div
+    <Link
+      to={to(`/portfolio/olive-oils/${oil.slug}`)}
       className={`oil-card-premium ${isHovered ? 'hovered' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{ textDecoration: 'none' }}
     >
       <div className="oil-card-border-glow" />
       <div className="oil-card-shimmer" />
@@ -50,7 +52,7 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
 
       <div className="oil-image-wrapper-premium">
         <img
-          src={oil.images} // Usa a imagem do objeto oil
+          src={oil.images[0]}
           alt={oil.name}
           className="oil-image-premium"
           onError={(e) => { e.target.src = '/placeholder-image.webp'; }} // Imagem de fallback
@@ -71,9 +73,8 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
           {/* Adicionar mais ícones se necessário, e.g., acidez */}
           <span title={`${text.acidity}: ${formatDecimal(oil.technical?.acidity, lang) || 'N/A'}`}><Droplets size={13} /> {text.lowAcidity}</span>
         </div>
-        {/* Botão individual removido */}
       </div>
-    </div>
+    </Link>
   );
 };
 
