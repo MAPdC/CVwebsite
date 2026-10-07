@@ -14,17 +14,24 @@ const WineProductPage = () => {
 
   if (!currentProduct) return <NotFoundPage />;
 
-  // Filtrar produtos relacionados (exemplo: mesma categoria, exceto o atual)
-  const relatedProducts = wines.filter(
-    (p) =>
-      (p.category === currentProduct.category || p.type === currentProduct.type) &&
-      p.slug !== currentProduct.slug
-  ).slice(0, 3);
+  // Produtos relacionados: alterna vinhos disponíveis e de coleção, com os do mesmo tipo (tinto/branco) primeiro
+  const others = wines.filter((p) => p.slug !== currentProduct.slug);
+  const sameTypeFirst = (list) =>
+    [...list].sort((a, b) => (b.type === currentProduct.type) - (a.type === currentProduct.type));
+  const available = sameTypeFirst(others.filter((p) => p.onmarket));
+  const collection = sameTypeFirst(others.filter((p) => !p.onmarket));
+
+  const relatedProducts = [];
+  for (let i = 0; relatedProducts.length < 3 && (i < available.length || i < collection.length); i++) {
+    if (available[i]) relatedProducts.push(available[i]);
+    if (collection[i]) relatedProducts.push(collection[i]);
+  }
+  relatedProducts.splice(3);
 
   return (
     <div className="wine-page">
       <WineProductDetail product={localizeProduct(currentProduct, lang)} />
-      <RelatedProducts products={relatedProducts} />
+      <RelatedProducts products={relatedProducts} showStatus />
     </div>
   );
 };

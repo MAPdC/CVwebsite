@@ -1,62 +1,31 @@
-// src/pages/OliveOilProductPage.jsx
-import { useParams, Link } from "react-router-dom";
-// Importar dados de azeites e vinhos (para produtos relacionados mistos, se desejar)
-import { oliveOils, wines } from "../mocks/products";
-// Importar o novo componente de detalhe
+import { useParams } from "react-router-dom";
+import { oliveOils } from "../mocks/products";
 import OliveOilProductDetail from "../components/OliveOilProductDetail";
-// Importar componente de produtos relacionados (reutilizado)
 import RelatedProducts from "../components/RelatedProducts";
+import NotFoundPage from "./NotFoundPage";
 import { localizeProduct, useLang } from "../i18n";
-// Importar o CSS do WineProductDetail serve como base, mas pode criar um específico se precisar
-import "../styles/WineProductDetail.css"; // Reutiliza estilos gerais da página de produto
+// Já não estiliza esta página, mas as variáveis :root que define são usadas noutras partes do site
+import "../styles/WineProductDetail.css";
 
 const OliveOilProductPage = () => {
-  const { slug } = useParams(); // Obtém o slug da URL
-  const { lang, to } = useLang();
-  const en = lang === "en";
+  const { slug } = useParams();
+  const { lang } = useLang();
 
-  // Encontrar o azeite atual usando o slug
   const currentProduct = oliveOils.find((oil) => oil.slug === slug);
 
-  // Se o azeite não for encontrado, exibe mensagem
-  if (!currentProduct) {
-    return (
-        <div style={{ padding: '120px 20px', textAlign: 'center' }}>
-            <h2>{en ? "Olive oil not found" : "Azeite não encontrado"}</h2>
-            <p>{en ? "The product you are looking for may not exist or may have been moved." : "O produto que procura pode não existir ou ter sido movido."}</p>
-            <Link to={to("/portfolio/olive-oils")}>{en ? "Back to the Olive Oil Portfolio" : "Voltar ao Portefólio de Azeites"}</Link>
-        </div>
-    );
-  }
+  if (!currentProduct) return <NotFoundPage />;
 
-  // Filtrar produtos relacionados:
-  // Opção 1: Apenas outros azeites
-  const relatedOliveOils = oliveOils.filter(
-    (oil) => oil.slug !== currentProduct.slug // Exclui o azeite atual
-  ).slice(0, 3); // Limita a 3 produtos
-
-  // Opção 2: Misturar azeites e vinhos (exemplo)
-  // const relatedWines = wines.slice(0, 2); // Pega 2 vinhos
-  // const relatedOtherOils = oliveOils.filter(oil => oil.slug !== currentProduct.slug).slice(0, 1); // Pega 1 outro azeite
-  // const mixedRelatedProducts = [...relatedOtherOils, ...relatedWines];
-
-  // Escolher a lógica de produtos relacionados que preferir
-  const relatedProducts = relatedOliveOils; // Usando apenas outros azeites
-
-  // Adapta os produtos relacionados para o formato esperado por RelatedProducts (se necessário)
-  // O componente RelatedProducts espera 'slug' e 'images[0]' para o Link e a Imagem.
-  // Como tanto vinhos quanto azeites agora têm esses campos, deve funcionar diretamente.
+  // Os outros azeites (a secção não aparece enquanto houver só um)
+  const relatedProducts = oliveOils.filter((oil) => oil.slug !== currentProduct.slug).slice(0, 3);
 
   return (
-    // Usar uma classe geral para a página se necessário estilizar a página em si
     <div className="oil-product-page">
-      {/* Renderiza o componente de detalhe com o azeite encontrado */}
       <OliveOilProductDetail product={localizeProduct(currentProduct, lang)} />
-
-      {/* Renderiza a secção de produtos relacionados */}
-      {/* O título pode ser personalizado */}
-      <RelatedProducts products={relatedProducts} title={en ? "Explore other olive oils" : "Explore Outros Azeites"} basePath="/portfolio/olive-oils" />
-      {/* Ou se usar misto: <RelatedProducts products={mixedRelatedProducts} title="Pode Também Gostar" /> */}
+      <RelatedProducts
+        products={relatedProducts}
+        title={lang === "en" ? "Explore other olive oils" : "Explore outros azeites"}
+        basePath="/portfolio/olive-oils"
+      />
     </div>
   );
 };

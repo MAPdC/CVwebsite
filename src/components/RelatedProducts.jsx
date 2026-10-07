@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { getPackshotTransform } from "../utils/packshotTransform";
 import { localizeProduct, useLang } from "../i18n";
+import { COMMON } from "../i18n/common";
 import "../styles/RelatedProducts.css";
 
 const TEXT = {
@@ -19,10 +20,12 @@ const applyCrop = (img) => {
   }
 };
 
-function RelatedProducts({ products, title, basePath = "/portfolio/wines" }) {
+// showStatus: etiqueta "Disponível" / "Coleção" em cada cartão (vinhos Casttêdo Valley)
+function RelatedProducts({ products, title, basePath = "/portfolio/wines", showStatus = false }) {
   const productsRef = useRef(null);
   const { lang, to } = useLang();
   const text = TEXT[lang];
+  const badges = COMMON[lang].badges;
 
   // Os cartões aparecem com um fade ao entrar no ecrã
   useEffect(() => {
@@ -71,6 +74,11 @@ function RelatedProducts({ products, title, basePath = "/portfolio/wines" }) {
           >
             <div className="related-product__image">
               <img src={product.images[0]} alt={product.name} loading="lazy" />
+              {showStatus && (product.collection || product.onmarket) && (
+                <span className={`related-product__status related-product__status--${product.collection ? "collection" : "available"}`}>
+                  {product.collection ? badges.collection : badges.available}
+                </span>
+              )}
             </div>
 
             <div className="related-product__info">
