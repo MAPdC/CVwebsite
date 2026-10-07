@@ -29,7 +29,7 @@ import vbcun23_1 from '../assets/vbcun23-1.webp';
 import vbco23_1 from '../assets/vbco23-1.webp';
 // É preciso mais imagens para este vinho
 
-// Imagens do Branco Colheita Unoaked 2023 (No Mercado)
+// Imagens do Branco Colheita Unoaked 2023 (Coleção)
 // Estão com as imagens da referência anterior (21) porque ainda não há fotos do 23
 import vbun23_1 from '../assets/vbun21-1.webp';
 import vbun23_2 from '../assets/vbun21-2.webp';
@@ -48,6 +48,19 @@ import vto20_1 from '../assets/vto19-1.webp';
 import vto20_2 from '../assets/vto19-2.webp';
 import vto20_3 from '../assets/vto19-3.webp';
 import { text } from '@fortawesome/fontawesome-svg-core';
+
+// Imagens do Tinto Reserva Unoaked 2021 (No Mercado)
+// Estão com as imagens da referência anterior (20) porque ainda não há fotos do 21
+import vtun21_1 from '../assets/vtun20-1.webp';
+import vtun21_2 from '../assets/vtun20-2.webp';
+import vtun21_3 from '../assets/vtun20-3.webp';
+
+// Imagens do Branco Colheita Unoaked 2024 (No Mercado)
+// Estão com as imagens da referência anterior (23, que usa as do 21) porque ainda não há fotos do 24
+import vbun24_1 from '../assets/vbun21-1.webp';
+import vbun24_2 from '../assets/vbun21-2.webp';
+import vbun24_3 from '../assets/vbun21-3.webp';
+import vbun24_4 from '../assets/vbun21-4.webp';
 
 // Imagens do Azeite Virgem Extra Biológico Colheita Tardia
 // É preciso importar as imagens usadas nos azeites
@@ -209,8 +222,8 @@ export const wines = [
         ph: "0"
       },
       awards: [],
-      onmarket: true,
-      collection: false,
+      onmarket: false,
+      collection: true,
       oaked: false,
       curtimenta: false
     },
@@ -219,7 +232,7 @@ export const wines = [
       slug: "white-reserve-oaked-2022", 
       name: "Branco Reserva Oaked 2022", 
       year: "2022",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas.\n\nO Branco Reserva 2022 distingue-se pela intensidade de cor, aroma e sabor, resultado das condições edafoclimáticas de um ano excecionalmente seco. Estas originaram uvas mais concentradas em cor e compostos fenólicos, mas de baixo rendimento líquido, levando à antecipação da vindima em cerca de 10 dias. Fiéis ao princípio de respeitar a qualidade natural da uva, o vinho reflete essa intensidade. A maturação em barricas de carvalho francês equilibrou a fruta madura com a complexidade da madeira, criando um vinho elegante, harmonioso e de carácter marcante.",
       briefdescription: "Um vinho estruturado e elegante com equilíbrio entre a frescura e a madeira.",
       type: "Branco",
       category: "Douro DOC",
@@ -330,8 +343,67 @@ export const wines = [
       oaked: true,
       curtimenta: false
     },
-    
-    
+    {
+      id: 10,
+      slug: "red-reserve-unoaked-2021",
+      name: "Tinto Reserva Unoaked 2021",
+      year: "2021",
+      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      briefdescription: "Um vinho intenso, elegante e frutado com notas de compota de frutos vermelhos bem maduros.",
+      type: "Tinto",
+      category: "Douro DOC",
+      varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
+      images: [
+        vtun21_1,
+        vtun21_2,
+        vtun21_3
+      ],
+      sensorial: "Aroma intenso e elegante, em harmonia com o sabor encorpado, estruturado e persistente, marcado por notas de compota de frutos vermelhos bem maduros.",
+      consumo: "Carnes vermelhas grelhadas ou assadas em forno a lenha, pratos de caça, bacalhau, enchidos, queijos e patês.",
+      temperatura: "16 a 18°C",
+      technical: {
+        alcohol: "14%",
+        acidity: null, // null = "Em breve" (as fichas técnicas não têm estes valores)
+        sugar: null,
+        ph: null
+      },
+      awards: [],
+      onmarket: true,
+      collection: false,
+      oaked: false,
+      curtimenta: false
+    },
+    {
+      id: 11,
+      slug: "white-harvest-unoaked-2024",
+      name: "Branco Colheita Unoaked 2024",
+      year: "2024",
+      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      briefdescription: "Um vinho leve e vibrante, com notas cítricas refrescantes perfeito para partilhar entre amigos.",
+      type: "Branco",
+      category: "Douro DOC",
+      varieties: ["Arinto", "Verdelho", "Viosinho"],
+      images: [
+        vbun24_1,
+        vbun24_2,
+        vbun24_3,
+        vbun24_4
+      ],
+      sensorial: "Aroma com notas florais frescas, na boca é notável, com o sabor cítrico de acidez natural vibrante e de agradável persistência.",
+      consumo: "Peixe, mariscos, sushi, ceviche, pratos picantes e salgados, saladas ou simplesmente só.",
+      temperatura: "8 a 10°C",
+      technical: {
+        alcohol: "12%",
+        acidity: null,
+        sugar: null,
+        ph: null
+      },
+      awards: [],
+      onmarket: true,
+      collection: false,
+      oaked: false,
+      curtimenta: false
+    },
   ];
   
   export const oliveOils = [

@@ -140,7 +140,10 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel =
 
           <section className="wd-section">
             <h2 className="wd-label">O Vinho</h2>
-            <p className="wd-story">{product.description}</p>
+            {/* Parágrafos separados por uma linha em branco ("\n\n") no texto do produto */}
+            {(product.description || "").split(/\n\s*\n/).map((paragraph, index) => (
+              <p key={index} className="wd-story">{paragraph}</p>
+            ))}
           </section>
 
           <section className="wd-section">

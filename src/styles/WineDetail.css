@@ -265,7 +265,12 @@
   color: var(--wd-ink);
 }
 
-.wd-story::first-letter {
+.wd-story + .wd-story {
+  margin-top: 1.1em;
+}
+
+/* Capitular só no primeiro parágrafo */
+.wd-story:first-of-type::first-letter {
   float: left;
   margin: 8px 10px 0 0;
   font-family: var(--wd-display);
