@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useLang } from '../i18n';
-import { LEGAL } from '../legal';
+import { LEGAL, COMPLAINTS_BOOK_URL, RAL } from '../legal';
 import '../styles/PrivacyPage.css';
 
 const EMAIL = 'casttedovalley@gmail.com';
 const EmailLink = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>;
+
+const ExternalLink = ({ href, children }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+);
 
 const CnpdLink = () => (
   <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">www.cnpd.pt</a>
@@ -218,6 +223,23 @@ const TEXT = {
           <p>
             Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Quaisquer alterações serão publicadas nesta página com a indicação da data da última atualização. Recomendamos que reveja esta política regularmente.
           </p>
+        ),
+      },
+      {
+        id: 'informacao-legal',
+        title: 'Informação Legal',
+        body: (
+          <>
+            <p>
+              O website casttedovalley.com e a marca Casttêdo Valley são explorados por {LEGAL.name}, empresária em nome individual, NIF {LEGAL.nif}, com domicílio profissional no {LEGAL.address}.
+            </p>
+            <p>
+              <strong>Livro de Reclamações.</strong> Pode apresentar uma reclamação no Livro de Reclamações Eletrónico, em <ExternalLink href={COMPLAINTS_BOOK_URL}>www.livroreclamacoes.pt</ExternalLink>, ou no livro de reclamações em papel disponível na adega.
+            </p>
+            <p>
+              <strong>Resolução alternativa de litígios.</strong> Em caso de litígio, o consumidor pode recorrer a uma entidade de Resolução Alternativa de Litígios de consumo: <ExternalLink href={RAL.entityUrl}>{RAL.entity}</ExternalLink>. Mais informações no Portal do Consumidor, em <ExternalLink href={RAL.portalUrl}>www.consumidor.gov.pt</ExternalLink>.
+            </p>
+          </>
         ),
       },
       {
@@ -436,6 +458,23 @@ const TEXT = {
         ),
       },
       {
+        id: 'informacao-legal',
+        title: 'Legal Information',
+        body: (
+          <>
+            <p>
+              The casttedovalley.com website and the Casttêdo Valley brand are run by {LEGAL.name}, a sole trader (tax number {LEGAL.nif}), with business address at {LEGAL.address}.
+            </p>
+            <p>
+              <strong>Complaints Book.</strong> You can file a complaint in the Portuguese electronic Complaints Book at <ExternalLink href={COMPLAINTS_BOOK_URL}>www.livroreclamacoes.pt</ExternalLink>, or in the paper complaints book available at the winery.
+            </p>
+            <p>
+              <strong>Alternative dispute resolution.</strong> In the event of a dispute, consumers may turn to an alternative consumer dispute resolution body: <ExternalLink href={RAL.entityUrl}>{RAL.entity}</ExternalLink>. More information on the Portuguese Consumer Portal at <ExternalLink href={RAL.portalUrl}>www.consumidor.gov.pt</ExternalLink>.
+            </p>
+          </>
+        ),
+      },
+      {
         id: 'contacto',
         title: 'Contact',
         body: (
@@ -458,6 +497,12 @@ const PrivacyPage = () => {
   const text = TEXT[lang];
   const sections = text.sections;
   const [activeId, setActiveId] = useState(sections[0].id);
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView();
+  }, [hash]);
 
   useEffect(() => {
     // Destaca no índice a secção que está a ser lida

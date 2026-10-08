@@ -7,7 +7,8 @@ export const LEGAL = {
 };
 
 // Livro de Reclamações Eletrónico (DL 156/2005, na redação do DL 74/2017)
-export const COMPLAINTS_BOOK_URL = "https://www.livroreclamacoes.pt/Inicio/";
+// O ícone deve estar visível na página inicial e apontar para este endereço (manual de utilização da DGC)
+export const COMPLAINTS_BOOK_URL = "https://www.livroreclamacoes.pt/inicio";
 
 // Resolução Alternativa de Litígios de consumo (Lei 144/2015, art. 18.º)
 export const RAL = {
