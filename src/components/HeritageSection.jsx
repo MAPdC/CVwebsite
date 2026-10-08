@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/HeritageSection.css';
 import heritageBgImage from '../assets/padre-antonio-veiga-douro-tiny.webp';
 import { useLang } from '../i18n';
 

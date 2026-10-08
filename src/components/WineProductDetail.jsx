@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getPackshotTransform } from "../utils/packshotTransform";
 import { formatDecimal, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
-import "../styles/WineDetail.css";
 
 const TEXT = {
   pt: {
@@ -166,7 +165,7 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
                   aria-selected={index === activeImageIndex}
                   role="tab"
                 >
-                  <img src={imageUrl} alt="" />
+                  <img src={imageUrl} alt="" loading="lazy" />
                 </button>
               ))}
             </div>

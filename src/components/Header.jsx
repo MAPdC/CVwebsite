@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../styles/Header.css";
 import logoBranco from "../assets/cv-logo-branco.webp";
 import logoCobre from "../assets/cv-logo-castanho.webp";
 import LanguageSwitch from "./LanguageSwitch";

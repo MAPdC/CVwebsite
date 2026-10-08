@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 import { wines } from '../mocks/products.js';
-import "../styles/WineCarousel.css";
 import { localizeProduct, useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
 
@@ -25,14 +24,13 @@ const TEXT = {
   },
 };
 
-const WineCard = ({ wine, isHovered, setIsHovered }) => {
+const WineCard = ({ wine }) => {
   const { lang, to } = useLang();
   const badges = COMMON[lang].badges;
 
+  // O efeito ao passar o rato (ou com o foco do teclado) é feito em CSS: :hover / :focus-visible
   return (
-    <Link to={to(`/portfolio/wines/${wine.slug}`)} className={`wine-card-premium ${isHovered ? 'hovered' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card-premium"
       style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <div className="wine-card-shimmer" />
@@ -73,7 +71,6 @@ const WineCard = ({ wine, isHovered, setIsHovered }) => {
 const WineCarouselPremium = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
   const { lang, to } = useLang();
   const text = TEXT[lang];
@@ -172,8 +169,6 @@ const WineCarouselPremium = () => {
               <WineCard
                 key={`${wine.id}-${position}`}
                 wine={wine}
-                isHovered={hoveredCard === `${wine.id}-${position}`}
-                setIsHovered={(hovered) => setHoveredCard(hovered ? `${wine.id}-${position}` : null)}
               />
             ))}
           </div>

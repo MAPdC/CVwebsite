@@ -1,4 +1,3 @@
-import "../styles/HomePage.css";
 import { Link } from "react-router-dom";
 import HeritageSection from "../components/HeritageSection.jsx";
 import CamufladoSection from "../components/CamufladoSection.jsx";

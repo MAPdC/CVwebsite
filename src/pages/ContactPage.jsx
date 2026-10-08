@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "../styles/ContactPage.css";
 import heroBackground from "../assets/douro-2-tiny.webp"; 
 import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
 import { Car, Train, Ship } from 'lucide-react';

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLang } from '../i18n';
 import { LEGAL, COMPLAINTS_BOOK_URL, RAL } from '../legal';
-import '../styles/PrivacyPage.css';
 
 const EMAIL = 'casttedovalley@gmail.com';
 const EmailLink = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>;

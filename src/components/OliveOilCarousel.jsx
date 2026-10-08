@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Droplets } from 'lucide-react';
 import { oliveOils } from '../mocks/products.js';
-import "../styles/OliveOilCarousel.css";
+import placeholder from "../assets/cv-logo-castanho.webp";
 import { formatDecimal, localizeProduct, useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
 
@@ -30,8 +30,14 @@ const TEXT = {
 };
 
 
+// Imagem que falhou: mostra o logótipo. Desliga o handler antes, para não entrar em ciclo se o logótipo também falhar
+const showPlaceholder = (e) => {
+  e.currentTarget.onerror = null;
+  e.currentTarget.src = placeholder;
+};
+
 // Cartão de Azeite (abre a página do azeite)
-const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
+const OliveOilCard = ({ oil }) => {
   const { lang, to } = useLang();
   const badges = COMMON[lang].badges;
   const text = TEXT[lang];
@@ -39,9 +45,7 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
   return (
     <Link
       to={to(`/portfolio/olive-oils/${oil.slug}`)}
-      className={`oil-card-premium ${isHovered ? 'hovered' : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="oil-card-premium" // efeito ao passar o rato / com foco: :hover e :focus-visible no CSS
       style={{ textDecoration: 'none' }}
     >
       <div className="oil-card-border-glow" />
@@ -55,7 +59,7 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
           src={oil.images[0]}
           alt={oil.name}
           className="oil-image-premium"
-          onError={(e) => { e.target.src = '/placeholder-image.webp'; }} // Imagem de fallback
+          onError={showPlaceholder}
           loading="lazy"
         />
         <div className="oil-image-reflection"></div>
@@ -82,7 +86,6 @@ const OliveOilCard = ({ oil, isHovered, setIsHovered }) => {
 const OliveOilCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
   const { lang, to } = useLang();
   const text = TEXT[lang];
@@ -141,7 +144,7 @@ const OliveOilCarousel = () => {
           {/* Grelha de Cartões */}
           <div className={`olive-oil-cards-grid-premium ${totalSlides === 1 ? 'single' : totalSlides === 2 ? 'double' : 'triple'}`}>
             {getVisibleOils().map(({ oil, position }) => (
-              <OliveOilCard key={oil.id || `oil-${position}`} oil={oil} isHovered={hoveredCard === (oil.id || `oil-${position}`)} setIsHovered={(h) => setHoveredCard(h ? (oil.id || `oil-${position}`) : null)} />
+              <OliveOilCard key={oil.id || `oil-${position}`} oil={oil} />
             ))}
           </div>
           {totalSlides > 1 && <button onClick={nextSlide} className="carousel-nav-premium oil-nav next" aria-label={text.next}><ChevronRight size={20} /></button>}

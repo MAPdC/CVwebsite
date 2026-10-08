@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/OliveOilPortfolioPage.css";
 import heroBackground from '../assets/oliveira-1.webp';
+import placeholder from '../assets/cv-logo-castanho.webp';
 import { oliveOils as productsData } from "../mocks/products";
 import { FaLeaf, FaSearch } from "react-icons/fa";
 import { localizeProduct, useLang } from "../i18n";
@@ -37,41 +37,31 @@ const TEXT = {
 };
 
 function OliveOilPortfolioPage() {
-  const [oilList, setOilList] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const { lang, to } = useLang();
   const text = TEXT[lang];
   const common = COMMON[lang];
 
-  useEffect(() => {
-    const loadOils = () => {
-      setLoading(true);
-
-      const formattedOils = productsData.map(o => localizeProduct(o, lang)).map(oil => ({
+  // Os dados são estáticos (src/mocks/products.js): calculados logo, sem esperas
+  const oilList = useMemo(
+    () =>
+      productsData.map((o) => localizeProduct(o, lang)).map((oil) => ({
         id: oil.id,
         slug: oil.slug,
         name: oil.name,
         category: TEXT[lang].category,
         briefDescription: oil.briefDescription,
         varieties: oil.varieties,
-        image: oil.images && oil.images.length > 0 ? oil.images[0] : "/placeholder-image.webp",
+        image: oil.images?.[0] ?? placeholder,
         onmarket: oil.onmarket,
         soldout: oil.soldout,
         organic: oil.organic,
         lateHarvest: oil.lateHarvest,
         awards: oil.awards || []
-      }));
-
-      setTimeout(() => {
-        setOilList(formattedOils);
-        setLoading(false);
-      }, 600);
-    };
-
-    loadOils();
-  }, [lang]);
+      })),
+    [lang]
+  );
 
   // Filtrar azeites
   const filteredOils = oilList.filter(oil => {
@@ -143,67 +133,61 @@ function OliveOilPortfolioPage() {
             </div>
           </div>
 
-          {loading ? (
-            <div className="loading-container">
-              <div className="elegant-loader"></div>
+          <>
+            <div className="results-count" role="status">
+              {text.found(sortedOils.length)}
             </div>
-          ) : (
-            <>
-              <div className="results-count" role="status">
-                {text.found(sortedOils.length)}
-              </div>
 
-              <div className="oil-grid">
-                {sortedOils.map((oil) => (
-                  <Link to={to(`/portfolio/olive-oils/${oil.slug}`)} className="oil-card" key={oil.id}>
-                    <div className="oil-card__image-container">
-                      <img src={oil.image} alt={oil.name} className="oil-card__image" />
-                       {/* Badge para Esgotado */}
-                       {!oil.onmarket && oil.soldout && (
-                         <div className="oil-card__badge oil-card__badge--soldout">{common.badges.soldOut}</div>
-                       )}
-                       {oil.onmarket && !oil.soldout && (
-                         <div className="oil-card__badge oil-card__badge--available">{common.badges.available}</div>
-                       )}
-                       {/* Adicionar badge para prémios se existirem? */}
+            <div className="oil-grid">
+              {sortedOils.map((oil) => (
+                <Link to={to(`/portfolio/olive-oils/${oil.slug}`)} className="oil-card" key={oil.id}>
+                  <div className="oil-card__image-container">
+                    <img src={oil.image} alt={oil.name} className="oil-card__image" />
+                     {/* Badge para Esgotado */}
+                     {!oil.onmarket && oil.soldout && (
+                       <div className="oil-card__badge oil-card__badge--soldout">{common.badges.soldOut}</div>
+                     )}
+                     {oil.onmarket && !oil.soldout && (
+                       <div className="oil-card__badge oil-card__badge--available">{common.badges.available}</div>
+                     )}
+                     {/* Adicionar badge para prémios se existirem? */}
+                  </div>
+
+                  <div className="oil-card__content">
+                    <div className="oil-card__header">
+                      <h2 className="oil-card__name">{oil.name.replace(/\|/g, '')}</h2> {/* Remove a barra vertical se existir */}
                     </div>
 
-                    <div className="oil-card__content">
-                      <div className="oil-card__header">
-                        <h2 className="oil-card__name">{oil.name.replace(/\|/g, '')}</h2> {/* Remove a barra vertical se existir */}
-                      </div>
+                    <div className="oil-card__category">
+                      {/* Indicador de cor removido ou adaptado */}
+                      {/* <span className="oil-type-indicator" style={{ backgroundColor: getTypeColor(oil.type) }}></span> */}
+                      {oil.category} {/* Usar a categoria definida */}
+                    </div>
 
-                      <div className="oil-card__category">
-                        {/* Indicador de cor removido ou adaptado */}
-                        {/* <span className="oil-type-indicator" style={{ backgroundColor: getTypeColor(oil.type) }}></span> */}
-                        {oil.category} {/* Usar a categoria definida */}
-                      </div>
+                    <p className="oil-card__description">{oil.briefDescription}</p>
 
-                      <p className="oil-card__description">{oil.briefDescription}</p>
-
-                      <div className="oil-card__footer">
-                        <div className="oil-card__varieties">
-                          <FaLeaf className="variety-icon" />
-                          <span>{oil.varieties.slice(0, 2).join(", ")}{oil.varieties.length > 2 ? "..." : ""}</span>
-                        </div>
-                      </div>
-
-                      <div className="oil-card__cta">
-                        <span>{common.seeDetails}</span>
+                    <div className="oil-card__footer">
+                      <div className="oil-card__varieties">
+                        <FaLeaf className="variety-icon" />
+                        <span>{oil.varieties.slice(0, 2).join(", ")}{oil.varieties.length > 2 ? "..." : ""}</span>
                       </div>
                     </div>
-                  </Link>
-                ))}
-              </div>
 
-              {sortedOils.length === 0 && (
-                <div className="no-results">
-                  <h3>{text.noResults}</h3>
-                  <p>{text.noResultsHint}</p>
-                </div>
-              )}
-            </>
-          )}
+                    <div className="oil-card__cta">
+                      <span>{common.seeDetails}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {sortedOils.length === 0 && (
+              <div className="no-results">
+                <h3>{text.noResults}</h3>
+                <p>{text.noResultsHint}</p>
+              </div>
+            )}
+          </>
         </div>
       </div>
     </>

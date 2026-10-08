@@ -206,7 +206,8 @@
   overflow: hidden;
 }
 
-.wine-card-premium.hovered {
+.wine-card-premium:hover,
+.wine-card-premium:focus-visible {
   transform: translateY(-8px); /* Elevação ligeiramente reduzida */
   box-shadow: 0 15px 45px rgba(192, 160, 128, 0.15); /* Sombra hover mais subtil */
 }
@@ -222,7 +223,8 @@
   pointer-events: none;
 }
 
-.wine-card-premium.hovered .wine-card-shimmer {
+.wine-card-premium:hover .wine-card-shimmer,
+.wine-card-premium:focus-visible .wine-card-shimmer {
   animation: shimmer 1.8s infinite; /* Animação ligeiramente mais lenta */
 }
 
@@ -268,7 +270,8 @@
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Transição mais rápida */
 }
 
-.wine-card-premium.hovered .wine-image-wrapper-premium {
+.wine-card-premium:hover .wine-image-wrapper-premium,
+.wine-card-premium:focus-visible .wine-image-wrapper-premium {
   transform: scale(1.04); /* Scale ligeiramente reduzido */
 }
 
@@ -369,7 +372,8 @@
   font-weight: 500; /* Reduzido peso */
 }
 
-.wine-card-premium.hovered .wine-cta-premium {
+.wine-card-premium:hover .wine-cta-premium,
+.wine-card-premium:focus-visible .wine-cta-premium {
   background: linear-gradient(135deg, #d4b896, #e6c9a8);
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(192, 160, 128, 0.4); /* Sombra hover reduzida */
@@ -379,7 +383,8 @@
   transition: transform 0.3s ease;
 }
 
-.wine-card-premium.hovered .cta-arrow-premium {
+.wine-card-premium:hover .cta-arrow-premium,
+.wine-card-premium:focus-visible .cta-arrow-premium {
   transform: translateX(4px); /* Movimento reduzido */
 }
 

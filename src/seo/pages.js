@@ -85,6 +85,7 @@ const ORGANIZATION = {
   "@id": `${SITE_URL}/#organizacao`,
   name: BRAND,
   url: SITE_URL,
+  logo: `${SITE_URL}/apple-touch-icon.png`,
   image: OG_IMAGE,
   email: "casttedovalley@gmail.com",
   telephone: "+351933305966",

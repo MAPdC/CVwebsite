@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Compass, ArrowLeft } from 'lucide-react'; // Ícones
 import heroBackground from '../assets/douro-1.webp'; // Imagem de fundo
-import '../styles/NotFoundPage.css'; // Novo CSS
 import { useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
 

@@ -1,6 +1,5 @@
 import { Construction, ArrowLeft } from 'lucide-react'; // Ícones
 import { Link } from 'react-router-dom'; // Para o botão de voltar
-import '../styles/UnderConstructionPage.css'; // Novo CSS
 import { useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
 

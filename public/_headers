@@ -7,3 +7,8 @@ https://:project.pages.dev/*
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
+
+# Ficheiros do build (JS, CSS, imagens, fontes): o nome inclui um hash do conteúdo,
+# por isso nunca mudam e podem ficar em cache um ano (um deploy novo gera nomes novos)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
