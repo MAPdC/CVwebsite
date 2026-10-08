@@ -283,7 +283,7 @@
 }
 .info-text .hint {
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: #6e6560; /* var(--text-light) resolvia para #e8e8e8 (quase invisível) */
   margin-left: 8px; /* Espaço entre o número e o hint */
   font-style: italic;
   font-family: var(--font-sans);
@@ -312,6 +312,62 @@
   color: var(--primary-color); /* Destaca no hover */
 }
 /* --- Fim dos Novos Estilos --- */
+
+/* A morada é um link para o mapa: mantém o aspeto do bloco */
+a.info-item {
+  color: inherit;
+  text-decoration: none;
+}
+
+.info-text ul.phone-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.info-text .phone-group li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.info-text .phone-group .hint {
+  margin-left: 0;
+}
+
+/* Botão "Copiar" ao lado do telefone e por baixo do email */
+.copy-btn {
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 1px solid rgba(139, 107, 74, 0.5);
+  border-radius: 16px;
+  background: none;
+  color: #8b6b4a;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: var(--bg-accent, #f9f7f5);
+  border-color: #8b6b4a;
+}
+
+.copy-btn--block {
+  margin-top: 8px;
+}
+
+/* Confirmação da cópia: ocupa sempre a mesma altura para a página não saltar */
+.copy-status {
+  min-height: 1.5em;
+  margin: 4px 0 0 50px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: #5f7a35;
+}
 
 /* Mapa */
 .map-wrapper {
@@ -525,4 +581,7 @@
   .column-title {
     font-size: 1.4rem;
   }
+}
+.copy-status--error {
+  color: #a23b2c;
 }
