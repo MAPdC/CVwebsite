@@ -1,14 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../styles/ContactPage.css";
 import heroBackground from "../assets/douro-2-tiny.webp"; 
 import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
 import { Car, Train, Ship } from 'lucide-react';
 import { useLang } from '../i18n';
+import useCopy from '../hooks/useCopy';
+
+const EMAIL = "casttedovalley@gmail.com";
+const PHONES = [
+  ["+351933305966", "+351 933 305 966"],
+  ["+351933467002", "+351 933 467 002"],
+];
+// Coordenadas da adega (as mesmas dos dados estruturados em src/seo/pages.js)
+const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=41.225723,-7.465944";
 
 const TEXT = {
   pt: {
-    emailCopied: "Email copiado para a área de transferência!",
-    phoneCopied: "Telefone copiado para a área de transferência!",
     heroTitle: "Contacte-nos",
     heroSubtitle: "Estamos no coração do Douro, prontos para o receber.",
     whereTitle: "Onde Estamos",
@@ -18,7 +25,11 @@ const TEXT = {
     openMap: "Clique para abrir no mapa",
     phone: "Telefone",
     mobile: "(Móvel)",
-    copy: "Clique para copiar",
+    copyShort: "Copiar",
+    copyPhone: (number) => `Copiar ${number}`,
+    copyEmail: "Copiar email",
+    copied: "Copiado para a área de transferência.",
+    copyFailed: "Não foi possível copiar. Selecione o texto e copie manualmente.",
     directionsTitle: "Como Chegar",
     byCar: "De Carro",
     byCarText: "Do Porto: Siga a A4 em direção a Vila Real, saia para o IC5, depois siga pela N322 até Alijó e siga pela M597 até ao Castêdo.",
@@ -37,8 +48,6 @@ const TEXT = {
     bookingText: "Para garantir a melhor experiência possível, recomendamos que faça a sua reserva com pelo menos 48 horas de antecedência através do nosso telefone ou email.",
   },
   en: {
-    emailCopied: "Email address copied to clipboard!",
-    phoneCopied: "Phone number copied to clipboard!",
     heroTitle: "Contact Us",
     heroSubtitle: "In the heart of the Douro, ready to welcome you.",
     whereTitle: "Where to Find Us",
@@ -48,7 +57,11 @@ const TEXT = {
     openMap: "Click to open in Maps",
     phone: "Phone",
     mobile: "(Mobile)",
-    copy: "Click to copy",
+    copyShort: "Copy",
+    copyPhone: (number) => `Copy ${number}`,
+    copyEmail: "Copy email",
+    copied: "Copied to clipboard.",
+    copyFailed: "Couldn't copy. Please select the text and copy it manually.",
     directionsTitle: "Getting Here",
     byCar: "By Car",
     byCarText: "From Porto: take the A4 towards Vila Real, exit onto the IC5, then follow the N322 to Alijó and the M597 to Castedo.",
@@ -94,6 +107,7 @@ const ContactPage = () => {
   const contentRef = useRef(null);
   const experiencesRef = useRef(null);
   const reservationRef = useRef(null);
+  const { copy, status: copyStatus } = useCopy();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -112,18 +126,6 @@ const ContactPage = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  // Funções de cópia
-  const copyEmailToClipboard = () => {
-    navigator.clipboard.writeText("casttedovalley@gmail.com");
-    alert(text.emailCopied);
-  };
-
-  // Função de cópia de telefone atualizada
-  const copyPhoneToClipboard = (number) => {
-    navigator.clipboard.writeText(number);
-    alert(text.phoneCopied);
-  };
 
   return (
     <div className="contact-page-new">
@@ -159,8 +161,14 @@ const ContactPage = () => {
               <h3 className="column-title">{text.contactTitle}</h3>
               
               <div className="contact-details">
-                <div className="info-item clickable" data-umami-event="mapa" onClick={() => window.open("https://maps.google.com/?q=Largo+Padre+António+Veiga,+5070-226,+Castedo,+Alijó,+Portugal", "_blank")}>
-                  <MapPin size={20} className="info-icon" />
+                <a
+                  className="info-item clickable"
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-umami-event="mapa"
+                >
+                  <MapPin size={20} className="info-icon" aria-hidden="true" />
                   <div className="info-text">
                     <strong>{text.address}</strong>
                     <p>
@@ -170,52 +178,67 @@ const ContactPage = () => {
                     </p>
                     <span className="hint">{text.openMap}</span>
                   </div>
-                </div>
+                </a>
 
-                {/* --- ITEM DE TELEFONE MODIFICADO --- */}
-                <div className="info-item"> {/* Removido o 'clickable' principal */}
-                  <Phone size={20} className="info-icon" />
+                <div className="info-item">
+                  <Phone size={20} className="info-icon" aria-hidden="true" />
                   <div className="info-text">
                     <strong>{text.phone}</strong>
-                    {/* Agrupador para múltiplos números */}
-                    <div className="phone-group">
-                      <p 
-                        className="clickable-phone"
-                        data-umami-event="telefone"
-                        data-umami-event-local="contactos"
-                        onClick={() => copyPhoneToClipboard("+351933305966")}
-                      >
-                        +351 933 305 966
-                        <span className="hint"> {text.mobile}</span>
-                      </p>
-                      {/* NOVO NÚMERO ADICIONADO */}
-                      <p 
-                        className="clickable-phone"
-                        data-umami-event="telefone"
-                        data-umami-event-local="contactos"
-                        onClick={() => copyPhoneToClipboard("+351933467002")}
-                      >
-                        +351 933 467 002
-                        <span className="hint"> {text.mobile}</span>
-                      </p>
-                    </div>
+                    {/* No telemóvel, tocar no número liga; o botão copia */}
+                    <ul className="phone-group">
+                      {PHONES.map(([tel, label]) => (
+                        <li key={tel}>
+                          <a
+                            href={`tel:${tel}`}
+                            className="clickable-phone"
+                            data-umami-event="telefone"
+                            data-umami-event-local="contactos"
+                          >
+                            {label}
+                          </a>
+                          <span className="hint">{text.mobile}</span>
+                          <button
+                            type="button"
+                            className="copy-btn"
+                            onClick={() => copy(tel)}
+                            aria-label={text.copyPhone(label)}
+                            data-umami-event="copiar"
+                            data-umami-event-tipo="telefone"
+                          >
+                            {text.copyShort}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                {/* --- FIM DA MODIFICAÇÃO --- */}
 
-                <div
-                  className="info-item clickable"
-                  data-umami-event="email"
-                  data-umami-event-local="contactos"
-                  onClick={copyEmailToClipboard}
-                >
-                  <Mail size={20} className="info-icon" />
+                <div className="info-item">
+                  <Mail size={20} className="info-icon" aria-hidden="true" />
                   <div className="info-text">
                     <strong>Email</strong>
-                    <p>casttedovalley@gmail.com</p>
-                    <span className="hint">{text.copy}</span>
+                    <p>
+                      <a href={`mailto:${EMAIL}`} data-umami-event="email" data-umami-event-local="contactos">
+                        {EMAIL}
+                      </a>
+                    </p>
+                    <button
+                      type="button"
+                      className="copy-btn copy-btn--block"
+                      onClick={() => copy(EMAIL)}
+                      data-umami-event="copiar"
+                      data-umami-event-tipo="email"
+                    >
+                      {text.copyEmail}
+                    </button>
                   </div>
                 </div>
+
+                {/* Confirmação da cópia, anunciada pelos leitores de ecrã */}
+                <p className={`copy-status ${copyStatus === "error" ? "copy-status--error" : ""}`} role="status">
+                  {copyStatus === "ok" && text.copied}
+                  {copyStatus === "error" && text.copyFailed}
+                </p>
               </div>
             </div>
 
