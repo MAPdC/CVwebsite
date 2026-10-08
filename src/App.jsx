@@ -50,7 +50,8 @@ const skipToContent = (e) => {
   document.getElementById("conteudo")?.focus();
 };
 
-function PageLayout() {
+// Exportado também para os testes (src/App.test.jsx), que o montam com um MemoryRouter
+export function PageLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { lang, path } = useLang();

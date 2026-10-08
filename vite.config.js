@@ -17,4 +17,10 @@ export default defineConfig({
     // para pré-carregar o código de cada página (e apagada a seguir)
     manifest: true,
   },
+  // Testes (npm test): ambiente de browser simulado; ver src/test/setup.js
+  test: {
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.js',
+    exclude: ['node_modules', 'dist', 'src/_draft'],
+  },
 })
