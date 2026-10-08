@@ -137,6 +137,11 @@
   display: none; /* Esconde o separador "/" em mobile */
 }
 
+/* Cada número fica inteiro numa linha (não parte a meio em colunas estreitas) */
+.contact-info .phone-numbers a {
+  white-space: nowrap;
+}
+
 
 /* Redes Sociais */
 .social-icons {
@@ -237,7 +242,8 @@
 
   .contact-info .phone-numbers {
     flex-direction: row; /* Lado a lado em desktop */
-    gap: 8px;
+    flex-wrap: wrap; /* se a coluna for estreita, o segundo número passa para baixo */
+    gap: 4px 8px;
     justify-content: flex-end; /* Alinha à direita */
   }
   .contact-info .phone-separator {
