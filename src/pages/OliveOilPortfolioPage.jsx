@@ -88,7 +88,7 @@ function OliveOilPortfolioPage() {
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
             <h1 className="catalog-hero__title">
-              <span className="hero-eyebrow">{text.titleSeo}</span>
+              <span className="hero-eyebrow">{text.titleSeo}</span>{" "}
               {text.title}
             </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
