@@ -47,7 +47,6 @@ import vbo22_3 from '../assets/vbo20-3.webp';
 import vto20_1 from '../assets/vto19-1.webp';
 import vto20_2 from '../assets/vto19-2.webp';
 import vto20_3 from '../assets/vto19-3.webp';
-import { text } from '@fortawesome/fontawesome-svg-core';
 
 // Imagens do Tinto Reserva Unoaked 2021 (No Mercado)
 // Estão com as imagens da referência anterior (20) porque ainda não há fotos do 21

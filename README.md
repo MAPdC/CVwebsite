@@ -29,10 +29,9 @@ O website inclui:
 | [React 19](https://react.dev/) | Framework de UI |
 | [Vite 6](https://vitejs.dev/) | Bundler e servidor de desenvolvimento |
 | [React Router 7](https://reactrouter.com/) | Navegação client-side (SPA) |
-| [Swiper](https://swiperjs.com/) | Carrosséis de produtos |
 | [Lucide React](https://lucide.dev/) | Iconografia |
-| [Font Awesome](https://fontawesome.com/) | Ícones de redes sociais |
-| CSS Modules (custom) | Estilização por componente |
+| [React Icons](https://react-icons.github.io/react-icons/) | Ícones de redes sociais e pesquisa |
+| CSS (um ficheiro por componente, global) | Estilização |
 | GitHub Actions | CI/CD — build e deploy automático |
 | GitHub Pages | Hosting |
 
@@ -45,7 +44,6 @@ src/
 ├── assets/          # Imagens, logótipos e ícones
 ├── components/      # Componentes reutilizáveis (Header, Footer, Carrosséis, Secções)
 ├── i18n/            # Idiomas (PT/EN): deteção pelo URL, textos partilhados e utilitários
-├── fonts/           # Tipografia personalizada
 ├── mocks/           # Dados dos produtos (vinhos e azeites)
 ├── pages/           # Páginas da aplicação
 ├── styles/          # Ficheiros CSS por componente
@@ -57,7 +55,7 @@ src/
 
 ## Correr Localmente
 
-**Pré-requisitos:** Node.js 18+
+**Pré-requisitos:** Node.js 22 (versão indicada em `.nvmrc`)
 
 ```bash
 # Clonar o repositório
@@ -71,7 +69,9 @@ npm install
 npm run dev
 ```
 
-O servidor fica disponível em `http://localhost:5173`.
+O servidor fica disponível em `http://localhost:5173`, só neste computador.
+
+Para testar no telemóvel, use `npm run dev:lan`: o servidor fica acessível a toda a rede local, por isso use-o apenas em redes de confiança (nunca em Wi-Fi pública).
 
 ```bash
 # Build de produção

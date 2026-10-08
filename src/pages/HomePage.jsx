@@ -66,7 +66,7 @@ const HomePage = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const startTimer = (from) => {
+  const startTimer = () => {
     clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setActive((cur) => (cur + 1) % HERO_SLIDES.length);
@@ -74,13 +74,13 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    startTimer(0);
+    startTimer();
     return () => clearInterval(timerRef.current);
   }, []);
 
   const goTo = (i) => {
     setActive(i);
-    startTimer(i);
+    startTimer();
   };
 
   const parallax = { transform: `translateY(${scrollY * 0.4}px)` };
