@@ -4,14 +4,7 @@ import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
 import { Car, Train, Ship } from 'lucide-react';
 import { useLang } from '../i18n';
 import useCopy from '../hooks/useCopy';
-
-const EMAIL = "casttedovalley@gmail.com";
-const PHONES = [
-  ["+351933305966", "+351 933 305 966"],
-  ["+351933467002", "+351 933 467 002"],
-];
-// Coordenadas da adega (as mesmas dos dados estruturados em src/seo/pages.js)
-const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=41.225723,-7.465944";
+import { EMAIL, PHONES, MAPS_URL } from '../contacts';
 
 const TEXT = {
   pt: {

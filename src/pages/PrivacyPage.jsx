@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLang } from '../i18n';
 import { LEGAL, COMPLAINTS_BOOK_URL, RAL } from '../legal';
+import { EMAIL, PHONES } from '../contacts';
 
-const EMAIL = 'casttedovalley@gmail.com';
 const EmailLink = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>;
 
 const ExternalLink = ({ href, children }) => (
@@ -20,7 +20,7 @@ const Contact = () => (
     <span>{LEGAL.name} · NIF {LEGAL.nif}</span>
     <span>Largo Padre António Veiga, 5070-226 Castedo, Alijó</span>
     <EmailLink />
-    <a href="tel:+351933305966">+351 933 305 966</a>
+    <a href={`tel:${PHONES[0][0]}`}>{PHONES[0][1]}</a>
   </address>
 );
 
