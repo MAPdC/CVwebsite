@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { LANGS, getStoredLang, localizePath, useLang } from './i18n';
-import { COMMON } from './i18n/common';
+import usePageMeta from './seo/usePageMeta';
 import Header from './components/Header';
 import HeaderInternal from './components/HeaderInternal';
 import Footer from './components/Footer';
@@ -38,39 +38,13 @@ const PAGES = [
   ["/about-us", <UnderConstructionPage />],
 ];
 
-const DESCRIPTION = Object.fromEntries(LANGS.map((l) => [l, COMMON[l].meta.description]));
-
-// Mantém o <html lang>, a descrição e as ligações hreflang de acordo com o idioma da página
-function useDocumentLanguage(lang, path) {
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", DESCRIPTION[lang]);
-
-    const origin = window.location.origin;
-    const alternates = [
-      ...LANGS.map((l) => [l, localizePath(path, l)]),
-      ["x-default", path],
-    ];
-    alternates.forEach(([hreflang, href]) => {
-      let link = document.head.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`);
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "alternate";
-        link.hreflang = hreflang;
-        document.head.appendChild(link);
-      }
-      link.href = `${origin}${href}`;
-    });
-  }, [lang, path]);
-}
-
 // Componente para selecionar o header correto
 function PageLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { lang, path } = useLang();
 
-  useDocumentLanguage(lang, path);
+  usePageMeta();
 
   // À chegada ao site, abre no idioma que o visitante escolheu numa visita anterior
   useEffect(() => {

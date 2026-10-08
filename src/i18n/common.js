@@ -1,5 +1,6 @@
 // Textos partilhados por vários componentes (menus, rodapé, etiquetas de produto).
-// Os textos próprios de cada página ficam junto do respetivo componente.
+// Os textos próprios de cada página ficam junto do respetivo componente;
+// títulos e descrições para o Google e redes sociais estão em src/seo/pages.js.
 export const COMMON = {
   pt: {
     nav: {
@@ -34,9 +35,6 @@ export const COMMON = {
     seeDetails: "Ver Detalhes",
     points: "pontos",
     backHome: "Voltar à Página Inicial",
-    meta: {
-      description: "Vinhos de excelência DOC Douro.",
-    },
   },
   en: {
     nav: {
@@ -71,8 +69,5 @@ export const COMMON = {
     seeDetails: "View Details",
     points: "points",
     backHome: "Back to Home",
-    meta: {
-      description: "Fine Douro DOC wines and organic extra virgin olive oil from a family estate in the heart of the Douro Valley.",
-    },
   },
 };
