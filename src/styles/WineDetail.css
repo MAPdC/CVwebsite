@@ -456,3 +456,18 @@
     animation: none;
   }
 }
+
+/* "Imagem ilustrativa" (fotos de outra colheita), discreta no topo do painel da garrafa */
+.wd-media__note {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  margin: 0;
+  font-family: var(--wd-label-font);
+  font-size: 0.68rem;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  color: #6e6560;
+  pointer-events: none;
+}
