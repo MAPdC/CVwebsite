@@ -23,7 +23,7 @@ const TEXT = {
     eyebrow: 'Informação Legal',
     title: 'Política de Privacidade',
     lead: 'Um website sem cookies, sem formulários e com estatísticas anónimas. Explicamos aqui que dados são tratados e quais são os seus direitos.',
-    updated: 'Última atualização · 7 de outubro de 2026',
+    updated: 'Última atualização · 8 de outubro de 2026',
     toc: 'Índice',
 
     // Resumo apresentado no topo da página
@@ -133,8 +133,8 @@ const TEXT = {
             </p>
             <dl className="pp-defs">
               <div>
-                <dt>GitHub · alojamento do website</dt>
-                <dd>Regista o endereço IP dos visitantes por motivos de segurança.</dd>
+                <dt>Cloudflare · alojamento do website</dt>
+                <dd>Entrega as páginas a partir do servidor mais próximo de si e trata o endereço IP dos visitantes para o funcionamento e a segurança do serviço, por exemplo na proteção contra ataques.</dd>
               </div>
               <div>
                 <dt>Umami · estatísticas de utilização</dt>
@@ -237,7 +237,7 @@ const TEXT = {
     eyebrow: 'Legal Information',
     title: 'Privacy Policy',
     lead: 'A website with no cookies, no forms and anonymous statistics. Here we explain what data is processed and what your rights are.',
-    updated: 'Last updated · 7 October 2026',
+    updated: 'Last updated · 8 October 2026',
     toc: 'Contents',
 
     summary: [
@@ -348,8 +348,8 @@ const TEXT = {
             </p>
             <dl className="pp-defs">
               <div>
-                <dt>GitHub · website hosting</dt>
-                <dd>Logs visitors' IP addresses for security purposes.</dd>
+                <dt>Cloudflare · website hosting</dt>
+                <dd>Delivers the pages from the server closest to you and processes visitors' IP addresses to run and secure the service, for example to protect against attacks.</dd>
               </div>
               <div>
                 <dt>Umami · usage statistics</dt>
