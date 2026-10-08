@@ -9,12 +9,10 @@ const TEXT = {
   pt: {
     subtitle: 'Reconhecimento & Prestígio',
     title: 'Distinções',
-    medal: (n) => `Medalha ${n}`,
   },
   en: {
     subtitle: 'Recognition & Prestige',
     title: 'Awards',
-    medal: (n) => `Medal ${n}`,
   },
 };
 
@@ -106,7 +104,7 @@ const AwardsSection = () => {
                 <div className="award-card-image-wrapper">
                   <img
                     src={product.images[0]}
-                    alt={product.name}
+                    alt="" // nome no título do cartão
                     className="award-card-image"
                     loading="lazy"
                   />
@@ -117,7 +115,7 @@ const AwardsSection = () => {
                         <img
                           key={medalIndex}
                           src={medalUrl}
-                          alt={text.medal(medalIndex + 1)}
+                          alt="" // os prémios estão escritos por baixo
                           className="award-card-medal-stacked"
                           loading="lazy"
                           style={{ zIndex: allMedalUrls.length - medalIndex }} // Para empilhar corretamente

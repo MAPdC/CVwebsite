@@ -58,7 +58,7 @@ const HeritageSection = () => {
       <div className="section-line-top" />
       <div className="heritage-background">
         <div className="heritage-overlay"></div>
-        <img src={heritageBgImage} alt="Padre António Veiga - Douro" className="heritage-bg-image" loading="lazy" />
+        <img src={heritageBgImage} alt="" className="heritage-bg-image" loading="lazy" />
       </div>
       
       <div className="heritage-content">

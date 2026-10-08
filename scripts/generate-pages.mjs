@@ -61,6 +61,21 @@ function preloadsFor(basePath) {
   return [...files].map((file) => `<link rel="modulepreload" crossorigin href="/${file}">`);
 }
 
+// Fotografia do hero da página inicial: sem isto o browser só a descobre depois de executar o JavaScript.
+// Os "media" têm de ser os mesmos do <picture> em HomePage.jsx, para descarregar só a versão certa.
+const HERO_IMAGES = [
+  ["src/assets/douro-1-tiny.webp", "(orientation: landscape)"],
+  ["src/assets/douro-1-portrait.webp", "(orientation: portrait)"],
+];
+
+function heroPreloads(basePath) {
+  if (basePath !== "/") return [];
+  return HERO_IMAGES.map(([src, media]) => {
+    if (!manifest[src]) throw new Error(`${src} não está no manifest do Vite`);
+    return `<link rel="preload" as="image" href="/${manifest[src].file}" media="${media}" fetchpriority="high">`;
+  });
+}
+
 function render(page) {
   const url = `${SITE_URL}${page.path}`;
   const head = [
@@ -81,6 +96,7 @@ function render(page) {
     `<meta name="twitter:card" content="summary_large_image">`,
     page.jsonLd && `<script type="application/ld+json">${json(page.jsonLd)}</script>`,
     ...(page.basePath ? preloadsFor(page.basePath) : []),
+    ...(page.basePath ? heroPreloads(page.basePath) : []),
   ].filter(Boolean).join("\n    ");
 
   return template

@@ -14,7 +14,7 @@
   --wd-bg: #faf8f5;
   --wd-tint: #efe9e3;            /* painel por trás da garrafa */
 
-  --wd-header: 80px;             /* altura do header fixo */
+  --wd-header: var(--header-h);  /* altura do header fixo (tokens.css) */
 }
 
 @keyframes wd-fade-up {
@@ -167,7 +167,7 @@
   font-size: 0.72rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  white-space: pre; /* mantém o espaçamento à volta dos "·" */
+  white-space: pre-wrap; /* mantém o espaçamento à volta dos "·" e deixa quebrar a linha em ecrãs estreitos */
   color: var(--wd-accent);
 }
 

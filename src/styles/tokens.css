@@ -77,4 +77,14 @@
   --camuflado-accent-raposa: #C12E35;
   --camuflado-accent-lebre: #2C5898;
   --camuflado-accent-lebre-oaked: #8B5A43;
+
+  /* === Header fixo: altura com fundo (depois de fazer scroll e nas páginas internas) ===
+     As páginas que começam por baixo do header compensam com este valor. */
+  --header-h: 80px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 70px;
+  }
 }

@@ -170,7 +170,7 @@ function OliveOilProductDetail({ product }) {
           </div>
 
           {images.length > 1 && (
-            <div className="wd-thumbs" role="tablist" aria-label={text.gallery}>
+            <div className="wd-thumbs" role="group" aria-label={text.gallery}>
               {images.map((imageUrl, index) => (
                 <button
                   type="button"
@@ -178,8 +178,7 @@ function OliveOilProductDetail({ product }) {
                   className={`wd-thumb ${index === activeImageIndex ? "wd-thumb--active" : ""}`}
                   onClick={() => setActiveImageIndex(index)}
                   aria-label={text.viewImage(index + 1)}
-                  aria-selected={index === activeImageIndex}
-                  role="tab"
+                  aria-pressed={index === activeImageIndex}
                 >
                   <img src={imageUrl} alt="" loading="lazy" />
                 </button>

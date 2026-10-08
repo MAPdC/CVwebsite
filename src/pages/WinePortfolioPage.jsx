@@ -84,7 +84,7 @@ function WinePortfolioPage() {
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
             <h1 className="catalog-hero__title">
-              <span className="hero-eyebrow">{text.titleSeo}</span>
+              <span className="hero-eyebrow">{text.titleSeo}</span>{" "}
               {text.title}
             </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
@@ -155,7 +155,7 @@ function WinePortfolioPage() {
               {sortedWines.map((wine) => (
                 <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card" key={wine.id}>
                   <div className="wine-card__image-container">
-                    <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
+                    <img src={wine.image} alt="" className="wine-card__image" />
                     
                     {/* Badge para Disponível ou Coleção */}
                     {wine.onmarket && (

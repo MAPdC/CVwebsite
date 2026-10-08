@@ -7,7 +7,8 @@ import OliveOilCarousel from "../components/OliveOilCarousel.jsx";
 
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
-import heroImage from "../assets/douro-1-tiny.webp";
+import heroLandscape from "../assets/douro-1-tiny.webp";
+import heroPortrait from "../assets/douro-1-portrait.webp"; // recorte 782×1391 de douro-1.jpg, ao centro
 import logoBranco from "../assets/cv-logo-branco.webp";
 import logoRaposa from "../assets/camuflado-raposa-vermelho.webp";
 import logoLebre  from "../assets/camuflado-lebre-azul.webp";
@@ -16,13 +17,11 @@ import { useLang } from "../i18n";
 const HERO_SLIDES = [
   {
     id: "casttedo",
-    image: heroImage,
     brand: "CASTTÊDO VALLEY",
     logos: [logoBranco],
   },
   {
     id: "camuflado",
-    image: heroImage,
     brand: "CAMUFLADO",
     logos: [
       logoRaposa,
@@ -117,22 +116,24 @@ const HomePage = () => {
       >
         <h1 className="visually-hidden">{text.pageTitle}</h1>
 
-        {/* Imagens de fundo — cross-fade entre si */}
-        {HERO_SLIDES.map((slide, i) => (
-          <div
-            key={slide.id}
-            className={`hero-slide ${i === active ? "hero-slide--active" : ""}`}
-          >
-            <div className="hero-bg">
+        {/* Fotografia de fundo, a mesma nos dois slides. Em ecrãs verticais (telemóveis) vem um recorte
+            vertical da foto original, mais nítido do que ampliar a versão horizontal.
+            O HTML da página inicial pré-carrega as duas versões (scripts/generate-pages.mjs). */}
+        <div className="hero-slide hero-slide--active">
+          <div className="hero-bg">
+            <picture>
+              <source media="(orientation: portrait)" srcSet={heroPortrait} width="782" height="1391" />
               <img
-                src={slide.image}
+                src={heroLandscape}
                 alt=""
                 className="hero-image"
-                fetchPriority={i === 0 ? "high" : undefined}
+                width="1600"
+                height="739"
+                fetchPriority="high"
               />
-            </div>
+            </picture>
           </div>
-        ))}
+        </div>
 
         {/* Overlay escuro — acima das imagens, abaixo do conteúdo */}
         <div className="hero-overlay-home" />

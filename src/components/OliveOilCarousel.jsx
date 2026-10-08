@@ -55,7 +55,7 @@ const OliveOilCard = ({ oil }) => {
       <div className="oil-image-wrapper-premium">
         <img
           src={oil.images[0]}
-          alt={oil.name}
+          alt="" // o nome já está no título do cartão
           className="oil-image-premium"
           onError={showPlaceholder}
           loading="lazy"
@@ -153,7 +153,7 @@ const OliveOilCarousel = () => {
         {/* Indicadores */}
         {totalSlides > 1 && (
           <div className="olive-oil-indicators-premium">
-            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} />)}
+            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} aria-current={index === currentIndex ? "true" : undefined} />)}
           </div>
         )}
 

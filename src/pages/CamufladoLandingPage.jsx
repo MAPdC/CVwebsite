@@ -97,7 +97,7 @@ function AnimalCard({ animal, name, text }) {
       <img
         ref={revealRef}
         src={animal.logo}
-        alt={name}
+        alt="" // o nome está no título a seguir
         className="camuflado-animal__logo camuflado-reveal"
       />
       <h3 className="camuflado-animal__name">{name}</h3>
@@ -161,7 +161,7 @@ function CamufladoLandingPage() {
               style={{ "--camuflado-accent": `var(--camuflado-accent-${wine.accent})` }}
             >
               <div className="camuflado-wine-card__image">
-                <img src={wine.images[0]} alt={wine.name} />
+                <img src={wine.images[0]} alt="" />
               </div>
               <span className="camuflado-wine-card__tag">{wine.oaked ? badges.oaked : badges.unoaked}</span>
               <h3 className="camuflado-wine-card__name">{wine.varieties.join(", ")}</h3>

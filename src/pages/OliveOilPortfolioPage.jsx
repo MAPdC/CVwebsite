@@ -88,7 +88,7 @@ function OliveOilPortfolioPage() {
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
             <h1 className="catalog-hero__title">
-              <span className="hero-eyebrow">{text.titleSeo}</span>
+              <span className="hero-eyebrow">{text.titleSeo}</span>{" "}
               {text.title}
             </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
@@ -142,7 +142,7 @@ function OliveOilPortfolioPage() {
               {sortedOils.map((oil) => (
                 <Link to={to(`/portfolio/olive-oils/${oil.slug}`)} className="oil-card" key={oil.id}>
                   <div className="oil-card__image-container">
-                    <img src={oil.image} alt={oil.name} className="oil-card__image" />
+                    <img src={oil.image} alt="" className="oil-card__image" />
                      {/* Badge para Esgotado */}
                      {!oil.onmarket && oil.soldout && (
                        <div className="oil-card__badge oil-card__badge--soldout">{common.badges.soldOut}</div>
