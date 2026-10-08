@@ -106,8 +106,17 @@ const ORGANIZATION = {
 const SECTIONS = [
   { list: wines, path: "/portfolio/wines", name: { pt: "Vinhos", en: "Wines" }, title: (p) => p.name },
   { list: oliveOils, path: "/portfolio/olive-oils", name: { pt: "Azeites", en: "Olive Oils" }, title: (p) => p.name.replace(/\s*\|\s*/g, " ") },
-  // "Branco de Uvas Tintas - Touriga Nacional Unoaked 2024" → "Camuflado Touriga Nacional Unoaked 2024"
-  { list: camufladoProducts, path: "/camuflado", name: { pt: "Camuflado", en: "Camuflado" }, title: (p) => p.name.replace(/^.*?-\s*/, "Camuflado ") },
+  // "Branco de Uvas Tintas - Touriga Nacional Unoaked 2024" → "Camuflado Touriga Nacional Unoaked 2024 · Branco de Uvas Tintas"
+  // (o estilo no fim distingue o título PT do EN: "Blanc de Noirs")
+  {
+    list: camufladoProducts,
+    path: "/camuflado",
+    name: { pt: "Camuflado", en: "Camuflado" },
+    title: (p) => {
+      const [style, wine] = p.name.split(" - ");
+      return `Camuflado ${wine} · ${style}`;
+    },
+  },
 ];
 
 function buildPages() {
