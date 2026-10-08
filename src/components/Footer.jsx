@@ -127,6 +127,8 @@ const Footer = () => {
               </a>
             </div>
             <div className="copyright">
+              {/* Não é obrigatório num site institucional, mas é prática do setor do vinho */}
+              <p className="footer-responsible">{text.responsible}</p>
               {text.rights(new Date().getFullYear())}
             </div>
           </div>

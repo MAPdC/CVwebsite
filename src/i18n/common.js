@@ -18,6 +18,7 @@ export const COMMON = {
       privacy: "Política de Privacidade",
       complaints: "Livro de Reclamações",
       legalInfo: "Informação Legal",
+      responsible: "Seja responsável. Beba com moderação.",
       rights: (year) => `©${year} por Casttêdo Valley. Todos os direitos reservados.`,
     },
     menu: "Menu", // o estado (aberto/fechado) é anunciado pelo aria-expanded
@@ -55,6 +56,7 @@ export const COMMON = {
       privacy: "Privacy Policy",
       complaints: "Complaints Book",
       legalInfo: "Legal Information",
+      responsible: "Please enjoy responsibly.",
       rights: (year) => `©${year} Casttêdo Valley. All rights reserved.`,
     },
     menu: "Menu",
