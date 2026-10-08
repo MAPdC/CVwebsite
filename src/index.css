@@ -89,6 +89,20 @@ main:focus {
   border: 0;
 }
 
+/* Linha pequena por cima do título dos heros (portefólios, contactos): faz parte do <h1>
+   e diz o que a página tem ("Vinhos DOC Douro"), sem mudar o título editorial ("Excelência.") */
+.hero-eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--font-secundary);
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 4px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
 /* ************************ */
 /*         Camuflado        */
 /* ************************ */
