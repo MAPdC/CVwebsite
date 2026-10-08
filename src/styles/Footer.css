@@ -191,6 +191,12 @@
   font-size: 0.8rem;
 }
 
+.footer-responsible {
+  margin: 0 0 6px;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
 /* Media Query for larger screens (Tablets e Desktops) */
 @media (min-width: 992px) {
   .footer-top {
