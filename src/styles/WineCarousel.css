@@ -393,27 +393,38 @@
 .wine-carousel-indicators-premium {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Reduzido gap */
+  gap: 0; /* o espaço entre pontos vem da área de toque de cada botão */
   margin-top: 50px; /* Reduzida margem */
 }
 
+/* Botão com 24 px de altura para o toque (WCAG 2.5.8); o ponto visível é o ::before */
 .indicator-premium {
-  width: 10px; /* Reduzido tamanho */
-  height: 10px; /* Reduzido tamanho */
-  border-radius: 5px; /* Ajustado raio */
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
   border: none;
-  background: rgba(255, 255, 255, 0.15); /* Cor inativa mais subtil */
+  background: none;
   cursor: pointer;
+}
+
+.indicator-premium::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.15); /* Cor inativa mais subtil */
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); /* Transição mais rápida */
 }
 
-.indicator-premium.active {
+.indicator-premium.active::before {
   width: 30px; /* Largura ativa reduzida */
   background: linear-gradient(90deg, #c0a080, #d4b896);
   box-shadow: 0 3px 10px rgba(192, 160, 128, 0.3); /* Sombra reduzida */
 }
 
-.indicator-premium:not(.active):hover {
+.indicator-premium:not(.active):hover::before {
   background: rgba(255, 255, 255, 0.3); /* Hover inativo mais subtil */
 }
 

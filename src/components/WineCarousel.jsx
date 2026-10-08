@@ -182,7 +182,7 @@ const WineCarouselPremium = () => {
         {totalSlides > 1 && (
           <div className="wine-carousel-indicators-premium">
             {availableWines.map((_, index) => (
-              <button key={index} className={`indicator-premium ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} />
+              <button key={index} className={`indicator-premium ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} aria-current={index === currentIndex ? "true" : undefined} />
             ))}
           </div>
         )}

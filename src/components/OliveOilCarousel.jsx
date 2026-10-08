@@ -153,7 +153,7 @@ const OliveOilCarousel = () => {
         {/* Indicadores */}
         {totalSlides > 1 && (
           <div className="olive-oil-indicators-premium">
-            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} />)}
+            {availableOils.map((_, index) => <button key={index} className={`indicator-premium oil-indicator ${index === currentIndex ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={text.goTo(index + 1)} aria-current={index === currentIndex ? "true" : undefined} />)}
           </div>
         )}
 

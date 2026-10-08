@@ -169,10 +169,11 @@
 .oil-features-premium svg { color: var(--olive-green-medium); }
 
 /* --- Indicadores --- */
-.olive-oil-indicators-premium { display: flex; justify-content: center; gap: 10px; margin-top: 50px; }
-.indicator-premium.oil-indicator { width: 10px; height: 10px; border-radius: 5px; border: none; background: rgba(212, 175, 55, 0.3); cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
-.indicator-premium.oil-indicator.active { width: 30px; background: linear-gradient(90deg, var(--olive-gold), var(--olive-gold-light)); box-shadow: 0 3px 10px rgba(184, 134, 11, 0.4); }
-.indicator-premium.oil-indicator:not(.active):hover { background: rgba(212, 175, 55, 0.5); }
+/* Tamanho e área de toque em WineCarousel.css (.indicator-premium); aqui só as cores */
+.olive-oil-indicators-premium { display: flex; justify-content: center; gap: 0; margin-top: 50px; }
+.indicator-premium.oil-indicator::before { background: rgba(212, 175, 55, 0.3); }
+.indicator-premium.oil-indicator.active::before { background: linear-gradient(90deg, var(--olive-gold), var(--olive-gold-light)); box-shadow: 0 3px 10px rgba(184, 134, 11, 0.4); }
+.indicator-premium.oil-indicator:not(.active):hover::before { background: rgba(212, 175, 55, 0.5); }
 
 /* --- Link Geral Portefólio (Azeite) --- */
 .carousel-portfolio-link-container.oil-link-container { text-align: center; margin-top: 60px; }
