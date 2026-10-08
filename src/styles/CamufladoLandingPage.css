@@ -20,8 +20,16 @@
   text-align: center;
 }
 
-.camuflado-hero__wordmark {
+/* h1 que envolve o logótipo: a largura passa para o h1, a imagem ocupa-o todo */
+.camuflado-hero__title {
   width: min(520px, 80%);
+  margin: 0;
+  line-height: 0;
+}
+
+.camuflado-hero__wordmark {
+  display: block;
+  width: 100%;
   height: auto;
 }
 

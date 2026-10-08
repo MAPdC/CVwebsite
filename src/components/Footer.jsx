@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { MapPin, Phone, Mail } from 'lucide-react'; // Importar ícones
 import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo correto
@@ -21,31 +21,28 @@ const Footer = () => {
             <div className="footer-column footer-nav-links">
               <h3 className="column-title">{text.navigation}</h3>
               <ul className="footer-nav">
-                <li><a href={to("/")}>{nav.home}</a></li>
-                <li><a href={to("/portfolio/wines")}>{nav.wines}</a></li>
-                <li><a href={to("/portfolio/olive-oils")}>{nav.oliveOils}</a></li>
-                <li><a href={to("/camuflado")}>{nav.camuflado}</a></li>
+                <li><Link to={to("/")}>{nav.home}</Link></li>
+                <li><Link to={to("/portfolio/wines")}>{nav.wines}</Link></li>
+                <li><Link to={to("/portfolio/olive-oils")}>{nav.oliveOils}</Link></li>
+                <li><Link to={to("/camuflado")}>{nav.camuflado}</Link></li>
                 {/*<li><a href="/about-us">Sobre Nós</a></li>*/}
                 {/*<li><a href="/history">História</a></li>*/}
                 {/*<li><a href="/sustainability">Sustentabilidade</a></li>*/}
-                <li><a href={to("/contacts")}>{nav.contacts}</a></li>
+                <li><Link to={to("/contacts")}>{nav.contacts}</Link></li>
               </ul>
             </div>
   
             {/* Coluna Central: Logo */}
             <div className="footer-column footer-logo-container">
-              <a href={to("/")}>
-                <img 
-                  src={logoCobre} // Usar o logo importado
-                  alt={text.logoAlt} 
-                  className="footer-logo"
-                />
-              </a>
+              {/* Logótipo decorativo: o título por baixo já leva à página inicial */}
+              <Link to={to("/")} tabIndex={-1} aria-hidden="true">
+                <img src={logoCobre} alt="" className="footer-logo" />
+              </Link>
               {/* Título CASTTÊDO VALLEY por baixo do logo */}
-              <a href={to("/")} className="footer-logo-text">
+              <Link to={to("/")} className="footer-logo-text">
                 <span className="logo__line1">CASTTÊDO</span>
                 <span className="logo__line2">VALLEY</span>
-              </a>
+              </Link>
             </div>
   
             {/* Coluna da Direita: Contactos e Redes Sociais */}
@@ -109,7 +106,7 @@ const Footer = () => {
           {/* Secção Inferior: Legal */}
           <div className="footer-bottom">
             <div className="footer-links">
-              <a href={to("/privacy-policies")}>{text.privacy}</a>
+              <Link to={to("/privacy-policies")}>{text.privacy}</Link>
             </div>
             <div className="copyright">
               {text.rights(new Date().getFullYear())}

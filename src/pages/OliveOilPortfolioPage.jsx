@@ -10,6 +10,7 @@ import { COMMON } from "../i18n/common";
 const TEXT = {
   pt: {
     title: "Pureza.",
+    titleSeo: "Azeite Virgem Extra Biológico", // completa o h1 para o Google e leitores de ecrã (não aparece no ecrã)
     subtitle: "A essência do campo e a tradição centenária em cada gota de azeite",
     search: "Procurar por nome ou variedade...",
     all: "Todos",
@@ -20,6 +21,7 @@ const TEXT = {
   },
   en: {
     title: "Purity.",
+    titleSeo: "Organic Extra Virgin Olive Oil",
     subtitle: "The essence of the land and a century-old tradition in every drop",
     search: "Search by name or variety...",
     all: "All",
@@ -65,7 +67,6 @@ function OliveOilPortfolioPage() {
     };
 
     loadOils();
-    window.scrollTo(0, 0);
   }, [lang]);
 
   // Filtrar azeites
@@ -89,10 +90,13 @@ function OliveOilPortfolioPage() {
 
   return (
     <>
-      <main className="oil-catalog">
+      <div className="oil-catalog">
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
-            <h1 className="catalog-hero__title">{text.title}</h1>
+            <h1 className="catalog-hero__title">
+              {text.title}
+              <span className="visually-hidden"> {text.titleSeo}</span>
+            </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
           </div>
           <div className="scroll-down-prompt">
@@ -190,7 +194,7 @@ function OliveOilPortfolioPage() {
             </>
           )}
         </div>
-      </main>
+      </div>
     </>
   );
 }

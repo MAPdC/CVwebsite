@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { camufladoProducts } from "../mocks/camufladoProducts";
 import useReveal from "../hooks/useReveal";
@@ -115,15 +114,14 @@ function CamufladoLandingPage() {
   const badges = COMMON[lang].badges;
   const wines = camufladoProducts.map((wine) => localizeProduct(wine, lang));
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="theme-camuflado camuflado-landing">
       {/* Hero */}
       <section className="camuflado-hero">
-        <img src={titulo} alt="Camuflado" className="camuflado-hero__wordmark" />
+        {/* O logótipo é o título da página (o alt "Camuflado" é o texto do h1) */}
+        <h1 className="camuflado-hero__title">
+          <img src={titulo} alt="Camuflado" className="camuflado-hero__wordmark" />
+        </h1>
         <p className="camuflado-hero__subtitle">{text.subtitle}</p>
         <img
           src={renderGarrafas}

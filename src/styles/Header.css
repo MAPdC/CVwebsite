@@ -105,13 +105,17 @@
   background-color: rgba(35, 35, 35, 0.98);
   padding: 80px 20px 20px;
   overflow-y: auto;
-  transition: all 0.4s ease-in-out;
   z-index: 1001;
+  /* Fechado: escondido também para o teclado e leitores de ecrã (só depois de a animação de saída acabar) */
+  visibility: hidden;
+  transition: right 0.4s ease-in-out, box-shadow 0.4s ease-in-out, visibility 0s linear 0.4s;
 }
 
 .header__nav--open {
   right: 0;
+  visibility: visible;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transition: right 0.4s ease-in-out, box-shadow 0.4s ease-in-out, visibility 0s;
 }
 
 .header__nav ul {
@@ -145,8 +149,26 @@
 }
 
 .header__nav a:hover,
-.header__nav a.active {
+.header__nav a.active,
+.dropdown__toggle:hover {
   color: rgba(255, 255, 255, 0.8); /* Hover branco com transparência */
+}
+
+/* "Portefólio" abre o submenu: é um botão, com o mesmo aspeto dos links do menu */
+.dropdown__toggle {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Cormorant SC', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
 }
 
 /* Dropdown Menu */
@@ -199,13 +221,17 @@
   color: rgba(255, 255, 255, 0.7) !important;
 }
 
-/* Menu Icon */
+/* Menu Icon: botão com área de toque de 44×45 px; as três linhas continuam a ocupar 30×21 px */
 .menu-icon {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: 44px;
+  height: 45px;
+  padding: 12px 7px;
+  margin: -12px -7px; /* a área extra não afasta o botão dos outros elementos */
+  background: none;
+  border: 0;
   cursor: pointer;
   z-index: 1002;
 }

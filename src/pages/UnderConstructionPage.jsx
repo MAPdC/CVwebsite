@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Construction, ArrowLeft } from 'lucide-react'; // Ícones
 import { Link } from 'react-router-dom'; // Para o botão de voltar
 import '../styles/UnderConstructionPage.css'; // Novo CSS
@@ -13,11 +12,6 @@ const TEXT = {
 const UnderConstructionPage = () => {
   const { lang, to } = useLang();
   const text = TEXT[lang];
-
-  useEffect(() => {
-    // Garante que a página abre no topo
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="under-construction-page">

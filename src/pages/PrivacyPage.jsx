@@ -458,9 +458,6 @@ const PrivacyPage = () => {
   const [activeId, setActiveId] = useState(sections[0].id);
 
   useEffect(() => {
-    // Garante que a página abre no topo
-    window.scrollTo(0, 0);
-
     // Destaca no índice a secção que está a ser lida
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
