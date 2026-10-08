@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getPackshotTransform } from "../utils/packshotTransform";
 import { formatDecimal, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
+import ProductEnquiry from "./ProductEnquiry";
 
 const TEXT = {
   pt: {
@@ -302,6 +303,8 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
               </ul>
             </section>
           )}
+
+          <ProductEnquiry product={product} name={baseLabel ? `${baseLabel} ${product.name}` : product.name} />
         </article>
       </div>
     </div>
