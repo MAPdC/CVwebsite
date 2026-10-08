@@ -120,7 +120,7 @@ function OliveOilProductDetail({ product }) {
     <div className="wd oil-detail">
       <div className="wd-layout">
         {/* --- Garrafa / galeria (fixa em desktop) --- */}
-        <ProductGallery images={product.images} alt={fullName} labels={text} resetKey={product.slug} />
+        <ProductGallery key={product.slug} images={product.images} alt={fullName} labels={text} />
 
         {/* --- Conteúdo --- */}
         <article className="wd-content">

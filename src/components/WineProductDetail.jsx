@@ -107,11 +107,11 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
       <div className="wd-layout">
         {/* --- Garrafa / galeria (fixa em desktop); nota se as fotos forem de outra colheita (illustrativeImages) --- */}
         <ProductGallery
+          key={product.slug}
           images={product.images}
           alt={product.name}
           labels={text}
           note={product.illustrativeImages ? text.illustrative : null}
-          resetKey={product.slug}
         />
 
         {/* --- Conteúdo --- */}

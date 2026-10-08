@@ -5,17 +5,12 @@ import { getPackshotTransform } from "../utils/packshotTransform";
 // A primeira imagem é a garrafa (packshot), ampliada para ocupar o painel; as outras são fotografias.
 // labels: { gallery, viewImage(n), image(n), noImage } no idioma da página
 // note: texto opcional por cima da imagem (ex.: "Imagem ilustrativa")
-function ProductGallery({ images: allImages, alt, labels, note = null, resetKey }) {
+// Quem a usa passa key={slug}: noutro produto a galeria começa de novo, na primeira imagem.
+function ProductGallery({ images: allImages, alt, labels, note = null }) {
   const images = (allImages || []).filter((url) => typeof url === "string" && url.trim() !== "");
   const [activeIndex, setActiveIndex] = useState(0);
   const [packshotTransform, setPackshotTransform] = useState(null);
   const imageRef = useRef(null);
-
-  // Outro produto: volta à primeira imagem (o scroll para o topo é feito pelo ScrollToTop)
-  useEffect(() => {
-    setActiveIndex(0);
-    setPackshotTransform(null);
-  }, [resetKey]);
 
   // Zoom da garrafa (só na primeira imagem); recalculado quando a janela muda de tamanho
   const updatePackshot = () => {
@@ -32,7 +27,7 @@ function ProductGallery({ images: allImages, alt, labels, note = null, resetKey 
     updatePackshot(); // imagem já em cache: o onLoad pode ter disparado antes
     window.addEventListener("resize", updatePackshot);
     return () => window.removeEventListener("resize", updatePackshot);
-  }, [activeIndex, resetKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const isPackshot = activeIndex === 0;
   const mainImage = images[activeIndex];
