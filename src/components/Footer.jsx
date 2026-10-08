@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { MapPin, Phone, Mail } from 'lucide-react'; // Importar ícones
@@ -5,6 +6,7 @@ import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo corr
 import { useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
 import { COMPLAINTS_BOOK_URL } from '../legal';
+import { EMAIL, PHONES } from '../contacts';
 import livroReclamacoes from '../assets/livro-reclamacoes.png';
 
 const Footer = () => {
@@ -66,15 +68,18 @@ const Footer = () => {
                 <p>
                   <Phone size={14} />
                   <span className="phone-numbers">
-                    <a href="tel:+351933305966" data-umami-event="telefone" data-umami-event-local="rodape">+351 933 305 966</a>
-                    <span className="phone-separator"> / </span>
-                    <a href="tel:+351933467002" data-umami-event="telefone" data-umami-event-local="rodape">+351 933 467 002</a>
+                    {PHONES.map(([tel, label], index) => (
+                      <Fragment key={tel}>
+                        {index > 0 && <span className="phone-separator"> / </span>}
+                        <a href={`tel:${tel}`} data-umami-event="telefone" data-umami-event-local="rodape">{label}</a>
+                      </Fragment>
+                    ))}
                   </span>
                 </p>
-                
+
                 <p>
                   <Mail size={14} />
-                  <a href="mailto:casttedovalley@gmail.com" data-umami-event="email" data-umami-event-local="rodape">casttedovalley@gmail.com</a>
+                  <a href={`mailto:${EMAIL}`} data-umami-event="email" data-umami-event-local="rodape">{EMAIL}</a>
                 </p>
               </div>
               

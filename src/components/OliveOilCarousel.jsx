@@ -9,23 +9,21 @@ import { COMMON } from '../i18n/common';
 const TEXT = {
   pt: {
     acidity: 'Acidez',
-    lowAcidity: 'Acidez Baixa',
     subtitle: 'Ouro Líquido do Douro',
-    title: 'AZEITES',
+    title: 'Azeites',
     prev: 'Azeite anterior',
     next: 'Próximo azeite',
     goTo: (n) => `Ir para azeite ${n}`,
-    portfolio: 'VER TODO O PORTEFÓLIO',
+    portfolio: 'Ver todo o portefólio',
   },
   en: {
     acidity: 'Acidity',
-    lowAcidity: 'Low Acidity',
     subtitle: 'Liquid Gold from the Douro',
-    title: 'OLIVE OILS',
+    title: 'Olive Oils',
     prev: 'Previous olive oil',
     next: 'Next olive oil',
     goTo: (n) => `Go to olive oil ${n}`,
-    portfolio: 'VIEW THE FULL PORTFOLIO',
+    portfolio: 'View the full portfolio',
   },
 };
 
@@ -74,8 +72,10 @@ const OliveOilCard = ({ oil }) => {
           {oil.varieties.slice(0, 3).map((variety, idx) => ( // Mostra até 3 variedades
               <span key={idx}><Leaf size={13} /> {variety}</span>
           ))}
-          {/* Adicionar mais ícones se necessário, e.g., acidez */}
-          <span title={`${text.acidity}: ${formatDecimal(oil.technical?.acidity, lang) || 'N/A'}`}><Droplets size={13} /> {text.lowAcidity}</span>
+          {/* O valor real da análise (antes era uma etiqueta fixa "Acidez Baixa") */}
+          {oil.technical?.acidity && (
+            <span><Droplets size={13} aria-hidden="true" /> {text.acidity} {formatDecimal(oil.technical.acidity, lang)}</span>
+          )}
         </div>
       </div>
     </Link>

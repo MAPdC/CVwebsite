@@ -10,7 +10,7 @@ import { COMMON } from "../i18n/common";
 const TEXT = {
   pt: {
     title: "Excelência.",
-    titleSeo: "Vinhos DOC Douro", // completa o h1 para o Google e leitores de ecrã (não aparece no ecrã)
+    titleSeo: "Vinhos DOC Douro", // por cima do título, dentro do h1: diz ao Google o que a página tem
     subtitle: "Descubra a expressão do terroir do Douro em cada garrafa",
     search: "Procurar por nome, casta ou ano...",
     searchLabel: "Pesquisar vinhos",
@@ -84,8 +84,8 @@ function WinePortfolioPage() {
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
             <h1 className="catalog-hero__title">
+              <span className="hero-eyebrow">{text.titleSeo}</span>
               {text.title}
-              <span className="visually-hidden"> {text.titleSeo}</span>
             </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
           </div>

@@ -101,6 +101,7 @@
 }
 
 .heritage-title {
+  text-transform: uppercase;
   font-family: 'Cormorant SC', serif;
   font-size: 1.8rem; /* Tamanho para mobile */
   font-weight: 300;
@@ -144,6 +145,7 @@
 }
 
 .heritage-link {
+  text-transform: uppercase;
   font-family: 'Cormorant SC', serif;
   font-size: 0.8rem; /* Tamanho para mobile */
   letter-spacing: 2px;

@@ -4,17 +4,11 @@ import { MapPin, Phone, Mail, Award, Calendar } from 'lucide-react';
 import { Car, Train, Ship } from 'lucide-react';
 import { useLang } from '../i18n';
 import useCopy from '../hooks/useCopy';
-
-const EMAIL = "casttedovalley@gmail.com";
-const PHONES = [
-  ["+351933305966", "+351 933 305 966"],
-  ["+351933467002", "+351 933 467 002"],
-];
-// Coordenadas da adega (as mesmas dos dados estruturados em src/seo/pages.js)
-const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=41.225723,-7.465944";
+import { EMAIL, PHONES, MAPS_URL } from '../contacts';
 
 const TEXT = {
   pt: {
+    heroEyebrow: "Visitas e provas · Castedo, Alijó",
     heroTitle: "Contacte-nos",
     heroSubtitle: "Estamos no coração do Douro, prontos para o receber.",
     whereTitle: "Onde Estamos",
@@ -47,6 +41,7 @@ const TEXT = {
     bookingText: "Para garantir a melhor experiência possível, recomendamos que faça a sua reserva com pelo menos 48 horas de antecedência através do nosso telefone ou email.",
   },
   en: {
+    heroEyebrow: "Visits & tastings · Castedo, Alijó",
     heroTitle: "Contact Us",
     heroSubtitle: "In the heart of the Douro, ready to welcome you.",
     whereTitle: "Where to Find Us",
@@ -134,7 +129,10 @@ const ContactPage = () => {
         <div className="hero-image" style={{ backgroundImage: `url(${heroBackground})` }} />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1 className="contact-hero-title">{text.heroTitle}</h1>
+          <h1 className="contact-hero-title">
+            <span className="hero-eyebrow">{text.heroEyebrow}</span>
+            {text.heroTitle}
+          </h1>
           <p className="hero-subtitle">{text.heroSubtitle}</p>
         </div>
         {/* Seta de scroll para mobile */}
