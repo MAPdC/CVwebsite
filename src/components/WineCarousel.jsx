@@ -8,19 +8,19 @@ import { COMMON } from '../i18n/common';
 const TEXT = {
   pt: {
     subtitle: 'A Nossa Seleção',
-    title: 'VINHOS',
+    title: 'Vinhos',
     prev: 'Vinho anterior',
     next: 'Próximo vinho',
     goTo: (n) => `Ir para vinho ${n}`,
-    portfolio: 'Ver Todo o Portefólio',
+    portfolio: 'Ver todo o portefólio',
   },
   en: {
     subtitle: 'Our Selection',
-    title: 'WINES',
+    title: 'Wines',
     prev: 'Previous wine',
     next: 'Next wine',
     goTo: (n) => `Go to wine ${n}`,
-    portfolio: 'View the Full Portfolio',
+    portfolio: 'View the full portfolio',
   },
 };
 

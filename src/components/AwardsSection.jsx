@@ -8,12 +8,12 @@ import { COMMON } from '../i18n/common';
 const TEXT = {
   pt: {
     subtitle: 'Reconhecimento & Prestígio',
-    title: 'DISTINÇÕES',
+    title: 'Distinções',
     medal: (n) => `Medalha ${n}`,
   },
   en: {
     subtitle: 'Recognition & Prestige',
-    title: 'AWARDS',
+    title: 'Awards',
     medal: (n) => `Medal ${n}`,
   },
 };

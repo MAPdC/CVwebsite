@@ -66,6 +66,7 @@
 }
 .olive-oil-subtitle-premium svg { color: var(--olive-green-medium); }
 .olive-oil-title-premium {
+  text-transform: uppercase;
   font-family: 'Cormorant', serif; font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 300;
   color: var(--olive-cream, #F5F5DC); margin: 0 0 25px 0; letter-spacing: 1.5px;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
