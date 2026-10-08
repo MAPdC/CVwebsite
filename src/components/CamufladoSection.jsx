@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import useReveal from "../hooks/useReveal";
-import "../styles/CamufladoSection.css";
 
 import titulo from "../assets/camuflado-titulo.webp";
 import renderGarrafas from "../assets/camuflado-render-garrafas.webp";

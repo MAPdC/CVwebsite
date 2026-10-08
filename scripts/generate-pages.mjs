@@ -25,6 +25,42 @@ const template = await fs.readFile(path.join(DIST, "index.html"), "utf8");
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const json = (data) => JSON.stringify(data).replace(/</g, "\\u003c");
 
+// Código de cada página (React.lazy em App.jsx): o HTML de cada rota pré-carrega o seu ficheiro,
+// para o browser o descarregar em paralelo com o bundle principal (e não só depois dele).
+const MANIFEST_DIR = path.join(DIST, ".vite");
+const manifest = JSON.parse(await fs.readFile(path.join(MANIFEST_DIR, "manifest.json"), "utf8"));
+const PAGE_MODULES = [
+  // [caminho base, ficheiro da página]: o primeiro que corresponder ("/" está no bundle principal).
+  // Um prefixo terminado em "/" apanha as páginas de produto dessa secção.
+  ["/portfolio/wines/", "src/pages/WineProductPage.jsx"],
+  ["/portfolio/wines", "src/pages/WinePortfolioPage.jsx"],
+  ["/portfolio/olive-oils/", "src/pages/OliveOilProductPage.jsx"],
+  ["/portfolio/olive-oils", "src/pages/OliveOilPortfolioPage.jsx"],
+  ["/camuflado/", "src/pages/CamufladoProductPage.jsx"],
+  ["/camuflado", "src/pages/CamufladoLandingPage.jsx"],
+  ["/contacts", "src/pages/ContactPage.jsx"],
+  ["/privacy-policies", "src/pages/PrivacyPage.jsx"],
+  ["/history", "src/pages/UnderConstructionPage.jsx"],
+  ["/sustainability", "src/pages/UnderConstructionPage.jsx"],
+  ["/about-us", "src/pages/UnderConstructionPage.jsx"],
+];
+const entryFile = manifest["index.html"].file;
+
+function preloadsFor(basePath) {
+  const match = PAGE_MODULES.find(([prefix]) => (prefix.endsWith("/") ? basePath.startsWith(prefix) : basePath === prefix));
+  if (!match) return [];
+  if (!manifest[match[1]]) throw new Error(`${match[1]} não está no manifest do Vite`);
+  const files = new Set();
+  const collect = (key) => {
+    const chunk = manifest[key];
+    if (!chunk || chunk.file === entryFile || files.has(chunk.file)) return;
+    files.add(chunk.file);
+    (chunk.imports || []).forEach(collect);
+  };
+  collect(match[1]);
+  return [...files].map((file) => `<link rel="modulepreload" crossorigin href="/${file}">`);
+}
+
 function render(page) {
   const url = `${SITE_URL}${page.path}`;
   const head = [
@@ -44,6 +80,7 @@ function render(page) {
     `<meta property="og:locale" content="${page.lang === "en" ? "en_GB" : "pt_PT"}">`,
     `<meta name="twitter:card" content="summary_large_image">`,
     page.jsonLd && `<script type="application/ld+json">${json(page.jsonLd)}</script>`,
+    ...(page.basePath ? preloadsFor(page.basePath) : []),
   ].filter(Boolean).join("\n    ");
 
   return template
@@ -85,5 +122,8 @@ ${page.alternates.map(([hreflang, p]) => `    <xhtml:link rel="alternate" hrefla
 </urlset>
 `;
 await fs.writeFile(path.join(DIST, "sitemap.xml"), sitemap);
+
+// O manifest só serve para este script: não é publicado
+await fs.rm(MANIFEST_DIR, { recursive: true, force: true });
 
 console.log(`✓ ${pages.length} páginas geradas, ${indexable.length} no sitemap, mais 404.html`);

@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { LANGS, localizePath, storeLang, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
-import "../styles/LanguageSwitch.css";
 
 // Seletor PT | EN: leva à mesma página no outro idioma e memoriza a escolha
 function LanguageSwitch({ className = "", onSelect }) {

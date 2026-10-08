@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { LANGS, getStoredLang, localizePath, useLang } from './i18n';
 import { COMMON } from './i18n/common';
@@ -6,17 +6,19 @@ import usePageMeta from './seo/usePageMeta';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
+// A página inicial e a 404 vêm no bundle principal; as restantes são carregadas só quando são abertas
 import HomePage from './pages/HomePage';
-import ContactPage from './pages/ContactPage';
-import PrivacyPage from './pages/PrivacyPage';
 import NotFoundPage from './pages/NotFoundPage';
-import WinePortfolioPage from './pages/WinePortfolioPage';
-import OliveOilPortfolioPage from './pages/OliveOilPortfolioPage';
-import WineProductPage from './pages/WineProductPage';
-import OliveOilProductPage from './pages/OliveOilProductPage';
-import UnderConstructionPage from './pages/UnderConstructionPage';
-import CamufladoLandingPage from './pages/CamufladoLandingPage';
-import CamufladoProductPage from './pages/CamufladoProductPage';
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
+const WinePortfolioPage = lazy(() => import('./pages/WinePortfolioPage'));
+const OliveOilPortfolioPage = lazy(() => import('./pages/OliveOilPortfolioPage'));
+const WineProductPage = lazy(() => import('./pages/WineProductPage'));
+const OliveOilProductPage = lazy(() => import('./pages/OliveOilProductPage'));
+const UnderConstructionPage = lazy(() => import('./pages/UnderConstructionPage'));
+const CamufladoLandingPage = lazy(() => import('./pages/CamufladoLandingPage'));
+const CamufladoProductPage = lazy(() => import('./pages/CamufladoProductPage'));
 import LanguageSuggestion from './components/LanguageSuggestion';
 
 // Páginas do site (caminhos PT). Cada uma existe também em inglês com o prefixo "/en".
@@ -73,16 +75,21 @@ function PageLayout() {
       {/* key: ao mudar de idioma a página é montada de novo, com os textos certos.
           tabIndex -1: recebe o foco ao mudar de página, para o leitor de ecrã anunciar o conteúdo novo */}
       <main id="conteudo" tabIndex={-1} className="content" key={lang}>
-        <Routes>
-          {LANGS.flatMap((l) =>
-            PAGES.map(([pagePath, element]) => {
-              const routePath = localizePath(pagePath, l);
-              return <Route key={routePath} path={routePath} element={element} />;
-            })
-          )}
+        {/* key: um erro numa página não bloqueia as outras (repõe ao mudar de página) */}
+        <ErrorBoundary key={path}>
+          <Suspense fallback={<div className="page-loading" aria-busy="true" />}>
+            <Routes>
+              {LANGS.flatMap((l) =>
+                PAGES.map(([pagePath, element]) => {
+                  const routePath = localizePath(pagePath, l);
+                  return <Route key={routePath} path={routePath} element={element} />;
+                })
+              )}
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </main>
       <Footer />
       <LanguageSuggestion />

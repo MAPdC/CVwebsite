@@ -3,7 +3,6 @@ import { camufladoProducts } from "../mocks/camufladoProducts";
 import useReveal from "../hooks/useReveal";
 import { localizeProduct, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
-import "../styles/CamufladoLandingPage.css";
 
 import titulo from "../assets/camuflado-titulo.webp";
 import renderGarrafas from "../assets/camuflado-render-garrafas.webp";

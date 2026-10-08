@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getStoredLang, localizePath, storeLang, useLang } from "../i18n";
-import "../styles/LanguageSwitch.css";
 
 const DISMISS_KEY = "cv-lang-banner";
 

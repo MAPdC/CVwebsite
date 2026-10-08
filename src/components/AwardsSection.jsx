@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { wines, oliveOils } from '../mocks/products.js'; // Importar os dados
-import '../styles/AwardsSection.css'; // Criaremos este CSS a seguir
 import { Award, Star } from 'lucide-react'; // Ícones para estilo
 import { localizeProduct, useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
@@ -19,20 +18,19 @@ const TEXT = {
   },
 };
 
+// Os 3 produtos com mais prémios (os dados são estáticos: calculado uma vez)
+const AWARDED = [...wines, ...oliveOils]
+  .filter((p) => p.awards && p.awards.length > 0)
+  .sort((a, b) => b.awards.length - a.awards.length)
+  .slice(0, 3);
+
 const AwardsSection = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
-  // Combina vinhos e azeites e filtra os que têm prémios
-  const allProducts = [...wines, ...oliveOils];
-  const awardedProducts = allProducts
-    .filter(p => p.awards && p.awards.length > 0) // Filtra produtos no mercado com prémios
-    // Ordena para mostrar talvez os com mais prémios ou mais recentes primeiro (opcional)
-    .sort((a, b) => b.awards.length - a.awards.length)
-    .slice(0, 3) // Limita a 3 produtos em destaque
-    .map(p => localizeProduct(p, lang));
+  const awardedProducts = useMemo(() => AWARDED.map((p) => localizeProduct(p, lang)), [lang]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

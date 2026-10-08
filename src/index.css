@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-
 /* === Estilos Globais === */
 
 /* body -> Conteúdo visivel*/
@@ -90,56 +89,9 @@ main:focus {
   border: 0;
 }
 
-
 /* ************************ */
 /*         Camuflado        */
 /* ************************ */
-
-/* Playfair Display - Regular */
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2'); /* Ajusta o caminho */
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Playfair Display - Italic */
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('/fonts/PlayfairDisplay-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Montserrat - Light */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Montserrat - Regular */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Montserrat - Medium */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/fonts/Montserrat-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 
 /* Aplica o "universo" Camuflado a um bloco/página */
 .theme-camuflado {
@@ -189,4 +141,36 @@ main:focus {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Enquanto o código de uma página carrega: ocupa o ecrã para o rodapé não saltar para cima */
+.page-loading {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* Mensagem quando uma página falha (ErrorBoundary) */
+.error-fallback {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 160px 24px 120px;
+  text-align: center;
+  color: var(--text-body);
+}
+
+.error-fallback h1 {
+  margin-bottom: 16px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.error-fallback button {
+  margin-top: 24px;
+  padding: 10px 24px;
+  border: 1px solid var(--gold-text);
+  border-radius: 24px;
+  background: none;
+  color: var(--gold-text);
+  font: inherit;
+  cursor: pointer;
 }

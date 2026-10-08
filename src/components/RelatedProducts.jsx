@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import { getPackshotTransform } from "../utils/packshotTransform";
 import { localizeProduct, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
-import "../styles/RelatedProducts.css";
 
 const TEXT = {
   pt: { title: "Também pode gostar", eyebrow: "Continue a descobrir", cta: "Descobrir" },

@@ -12,4 +12,9 @@ export default defineConfig({
       webp: { quality: 78 },
     }),
   ],
+  build: {
+    // Lista de ficheiros gerados por página, usada por scripts/generate-pages.mjs
+    // para pré-carregar o código de cada página (e apagada a seguir)
+    manifest: true,
+  },
 })

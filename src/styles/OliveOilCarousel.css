@@ -111,7 +111,8 @@
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   cursor: pointer; overflow: hidden; color: var(--olive-text-dark, #3a3a3a);
 }
-.oil-card-premium.hovered {
+.oil-card-premium:hover,
+.oil-card-premium:focus-visible {
   transform: translateY(-8px); box-shadow: 0 15px 45px rgba(184, 134, 11, 0.15); border-color: rgba(184, 134, 11, 0.4);
 }
 /* Badges */
@@ -125,27 +126,31 @@
   background: radial-gradient(circle, rgba(212, 175, 55, 0.5) 0%, transparent 60%);
   opacity: 0; transition: opacity 0.4s ease; z-index: -1; pointer-events: none;
 }
-.oil-card-premium.hovered .oil-card-border-glow { opacity: 1; }
+.oil-card-premium:hover .oil-card-border-glow,
+.oil-card-premium:focus-visible .oil-card-border-glow { opacity: 1; }
 /* Shimmer */
 .oil-card-shimmer {
   position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   pointer-events: none; opacity: 0;
 }
-.oil-card-premium.hovered .oil-card-shimmer { animation: shimmer-light 1.8s infinite; opacity: 1; }
+.oil-card-premium:hover .oil-card-shimmer,
+.oil-card-premium:focus-visible .oil-card-shimmer { animation: shimmer-light 1.8s infinite; opacity: 1; }
 @keyframes shimmer-light { 0% { left: -100%; } 100% { left: 200%; } }
 
 /* --- Imagem Azeite --- */
 .oil-image-wrapper-premium { position: relative; margin-bottom: 25px; width: 150px; height: 250px; display: flex; align-items: center; justify-content: center; }
 .oil-image-premium { max-width: 100%; max-height: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2)); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
-.oil-card-premium.hovered .oil-image-premium { transform: scale(1.06); }
+.oil-card-premium:hover .oil-image-premium,
+.oil-card-premium:focus-visible .oil-image-premium { transform: scale(1.06); }
 /* Reflexo */
 .oil-image-reflection {
   position: absolute; bottom: -10px; left: 10%; width: 80%; height: 30px;
   background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%);
   border-radius: 50%; opacity: 0.6; transition: opacity 0.4s ease;
 }
-.oil-card-premium.hovered .oil-image-reflection { opacity: 0.8; }
+.oil-card-premium:hover .oil-image-reflection,
+.oil-card-premium:focus-visible .oil-image-reflection { opacity: 0.8; }
 
 /* --- Info Azeite --- */
 .oil-info-premium { text-align: center; width: 100%; }

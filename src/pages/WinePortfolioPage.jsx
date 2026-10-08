@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/WinePortfolioPage.css";
 import heroBackground from '../assets/old-references-tiny.webp';
+import placeholder from '../assets/cv-logo-castanho.webp';
 import { wines } from "../mocks/products";
 import { FaWineGlassAlt, FaSearch } from "react-icons/fa";
 import { localizeProduct, useLang } from "../i18n";
@@ -35,44 +35,31 @@ const TEXT = {
 };
 
 function WinePortfolioPage() {
-  const [wineList, setWineList] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const { lang, to } = useLang();
   const text = TEXT[lang];
   const common = COMMON[lang];
 
-  useEffect(() => {
-    // Agora usamos os dados do arquivo products.js
-    const loadWines = () => {
-      setLoading(true);
-      
-      // Mapeamos os dados do arquivo products.js para o formato que precisamos
-      const formattedWines = wines.map(w => localizeProduct(w, lang)).map(wine => ({
+  // Os dados são estáticos (src/mocks/products.js): calculados logo, sem esperas
+  const wineList = useMemo(
+    () =>
+      wines.map((w) => localizeProduct(w, lang)).map((wine) => ({
         id: wine.id,
         slug: wine.slug,
         name: wine.name,
         year: wine.year,
         type: wine.type,
         category: wine.category,
-        briefDescription: wine.briefdescription || wine.description.substring(0, 100) + "...",
+        briefDescription: wine.briefdescription || (wine.description ?? "").substring(0, 100) + "...",
         varieties: wine.varieties,
-        image: wine.images && wine.images.length > 0 ? wine.images[0] : "/images/vinho-default.webp",
+        image: wine.images?.[0] ?? placeholder,
         onmarket: wine.onmarket || false,
         collection: wine.collection || false,
         awards: wine.awards || []
-      }));
-      
-      // Adicionar um pequeno delay para simular carregamento
-      setTimeout(() => {
-        setWineList(formattedWines);
-        setLoading(false);
-      }, 600);
-    };
-
-    loadWines();
-  }, [lang]);
+      })),
+    [lang]
+  );
 
   // Filtrar vinhos baseado no tipo e termo de busca
   const filteredWines = wineList.filter(wine => {
@@ -159,82 +146,76 @@ function WinePortfolioPage() {
             </div>
           </div>
           
-          {loading ? (
-            <div className="loading-container">
-              <div className="elegant-loader"></div>
+          <>
+            <div className="results-count" role="status">
+              {text.found(sortedWines.length)}
             </div>
-          ) : (
-            <>
-              <div className="results-count" role="status">
-                {text.found(sortedWines.length)}
-              </div>
-              
-              <div className="wine-grid">
-                {sortedWines.map((wine) => (
-                  <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card" key={wine.id}>
-                    <div className="wine-card__image-container">
-                      <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
-                      
-                      {/* Badge para Disponível ou Coleção */}
-                      {wine.onmarket && (
-                        <div className="wine-card__badge wine-card__badge--onmarket">{common.badges.available}</div>
-                      )}
-                      {wine.collection && (
-                        <div className="wine-card__badge wine-card__badge--collection">{common.badges.collection}</div>
-                      )}
-                      
-                      {/* Mostrar Medalhas */}
-                      {wine.awards && wine.awards.length > 0 && (
-                        <div className="wine-card__awards">
-                          {wine.awards.map((award, index) => (
-                            <div key={index} className="wine-card__award" title={`${award[2]} (${award[3]})`}>
-                              <img src={award[1]} alt={award[2]} className="award-medal" />
-                            </div>
-                          ))}
-                        </div>
-                      )}
+            
+            <div className="wine-grid">
+              {sortedWines.map((wine) => (
+                <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card" key={wine.id}>
+                  <div className="wine-card__image-container">
+                    <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
+                    
+                    {/* Badge para Disponível ou Coleção */}
+                    {wine.onmarket && (
+                      <div className="wine-card__badge wine-card__badge--onmarket">{common.badges.available}</div>
+                    )}
+                    {wine.collection && (
+                      <div className="wine-card__badge wine-card__badge--collection">{common.badges.collection}</div>
+                    )}
+                    
+                    {/* Mostrar Medalhas */}
+                    {wine.awards && wine.awards.length > 0 && (
+                      <div className="wine-card__awards">
+                        {wine.awards.map((award, index) => (
+                          <div key={index} className="wine-card__award" title={`${award[2]} (${award[3]})`}>
+                            <img src={award[1]} alt={award[2]} className="award-medal" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="wine-card__content">
+                    <div className="wine-card__header">
+                      <h2 className="wine-card__name">{wine.name}</h2>
                     </div>
                     
-                    <div className="wine-card__content">
-                      <div className="wine-card__header">
-                        <h2 className="wine-card__name">{wine.name}</h2>
-                      </div>
-                      
-                      <div className="wine-card__category">
-                        <span className="wine-type-indicator" style={{
-                          backgroundColor: 
-                            wine.type.toLowerCase() === "tinto" ? "#7b0323" : 
-                            wine.type.toLowerCase() === "branco" ? "#f0e68c" : 
-                            "#e8a7b9"
-                        }}></span>
-                        {wine.category}
-                      </div>
-                      
-                      <p className="wine-card__description">{wine.briefDescription}</p>
-                      
-                      <div className="wine-card__footer">
-                        <div className="wine-card__varieties">
-                          <FaWineGlassAlt className="variety-icon" />
-                          <span>{wine.varieties.slice(0, 2).join(", ")}{wine.varieties.length > 2 ? "..." : ""}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="wine-card__cta">
-                        <span>{common.seeDetails}</span>
+                    <div className="wine-card__category">
+                      <span className="wine-type-indicator" style={{
+                        backgroundColor: 
+                          wine.type.toLowerCase() === "tinto" ? "#7b0323" : 
+                          wine.type.toLowerCase() === "branco" ? "#f0e68c" : 
+                          "#e8a7b9"
+                      }}></span>
+                      {wine.category}
+                    </div>
+                    
+                    <p className="wine-card__description">{wine.briefDescription}</p>
+                    
+                    <div className="wine-card__footer">
+                      <div className="wine-card__varieties">
+                        <FaWineGlassAlt className="variety-icon" />
+                        <span>{wine.varieties.slice(0, 2).join(", ")}{wine.varieties.length > 2 ? "..." : ""}</span>
                       </div>
                     </div>
-                  </Link>
-                ))}
+                    
+                    <div className="wine-card__cta">
+                      <span>{common.seeDetails}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            
+            {sortedWines.length === 0 && (
+              <div className="no-results">
+                <h3>{text.noResults}</h3>
+                <p>{text.noResultsHint}</p>
               </div>
-              
-              {sortedWines.length === 0 && (
-                <div className="no-results">
-                  <h3>{text.noResults}</h3>
-                  <p>{text.noResultsHint}</p>
-                </div>
-              )}
-            </>
-          )}
+            )}
+          </>
         </div>
       </div>
       

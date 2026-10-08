@@ -5,7 +5,6 @@ import RelatedProducts from "../components/RelatedProducts";
 import NotFoundPage from "./NotFoundPage";
 import useReveal from "../hooks/useReveal";
 import { localizeProduct, useLang } from "../i18n";
-import "../styles/CamufladoProductPage.css";
 
 const CamufladoProductPage = () => {
   const { slug } = useParams();
