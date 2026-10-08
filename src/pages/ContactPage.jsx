@@ -90,12 +90,10 @@ const DirectionItem = ({ icon, title, text }) => (
 const ContactPage = () => {
   const { lang } = useLang();
   const text = TEXT[lang];
-  const refs = {
-    hero: useRef(null),
-    content: useRef(null),
-    experiences: useRef(null),
-    reservation: useRef(null),
-  };
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
+  const experiencesRef = useRef(null);
+  const reservationRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,22 +107,13 @@ const ContactPage = () => {
       });
     }, { threshold: 0.1 });
 
-    // Observar todos os elementos
-    Object.values(refs).forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
+    // As secções aparecem com um fade ao entrar no ecrã
+    [heroRef, contentRef, experiencesRef, reservationRef].forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
     });
 
-    return () => {
-      Object.values(refs).forEach(ref => {
-        if (ref.current) {
-          // Garante que o unobserve é chamado apenas se o ref ainda existir
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, []); // O array de dependências vazio garante que isto corre apenas na montagem
+    return () => observer.disconnect();
+  }, []);
 
   // Funções de cópia
   const copyEmailToClipboard = () => {
@@ -142,7 +131,7 @@ const ContactPage = () => {
     <div className="contact-page-new">
       
       {/* --- Hero Section (100vh) --- */}
-      <section className="contact-hero-section" ref={refs.hero}>
+      <section className="contact-hero-section" ref={heroRef}>
         <div className="hero-image" style={{ backgroundImage: `url(${heroBackground})` }} />
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -156,7 +145,7 @@ const ContactPage = () => {
       </section>
 
       {/* --- Secção Principal (Grelha de Contacto e Como Chegar) --- */}
-      <section className="contact-main-content" ref={refs.content}>
+      <section className="contact-main-content" ref={contentRef}>
         <div className="contact-container">
           
           <div className="contact-header">
@@ -259,7 +248,7 @@ const ContactPage = () => {
       </section>
 
       {/* --- Secção de Experiências --- */}
-      <section className="contact-section experiences-section" ref={refs.experiences}>
+      <section className="contact-section experiences-section" ref={experiencesRef}>
         <div className="contact-container">
           <div className="contact-header">
             <h2 className="section-title">{text.experiencesTitle}</h2>
@@ -287,7 +276,7 @@ const ContactPage = () => {
       </section>
 
       {/* --- Secção de Reserva Prévia --- */}
-      <section className="contact-section reservation-section" ref={refs.reservation}>
+      <section className="contact-section reservation-section" ref={reservationRef}>
         <div className="contact-container">
           <div className="reservation-notice">
             <div className="notice-icon">
