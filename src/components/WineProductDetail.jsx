@@ -115,16 +115,23 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
   const isPackshot = activeImageIndex === 0;
   const mainImage = images[activeImageIndex];
 
+  // Valores analíticos ainda por confirmar (null) ficam fora da ficha até existirem
+  const analysis = [
+    [text.alcohol, product.technical?.alcohol],
+    [text.acidity, product.technical?.acidity],
+    [text.sugar, product.technical?.sugar],
+    ["pH", product.technical?.ph],
+  ]
+    .filter(([, value]) => value !== null)
+    .map(([label, value]) => [label, techValue(value)]);
+
   const specs = [
     [text.appellation, product.category],
     [text.vintage, product.year],
     [text.type, wineType(product.type)],
     [text.varieties, product.varieties?.join(", ")],
     product.maturation ? [text.maturation, product.maturation] : null,
-    [text.alcohol, techValue(product.technical?.alcohol)],
-    [text.acidity, techValue(product.technical?.acidity)],
-    [text.sugar, techValue(product.technical?.sugar)],
-    ["pH", techValue(product.technical?.ph)],
+    ...analysis,
   ].filter(Boolean);
 
   return (
