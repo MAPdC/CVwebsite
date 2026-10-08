@@ -5,6 +5,8 @@ import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo corr
 import "../styles/Footer.css"; // Manter o link para o CSS
 import { useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
+import { COMPLAINTS_BOOK_URL } from '../legal';
+import livroReclamacoes from '../assets/livro-reclamacoes.png';
 
 const Footer = () => {
     const { lang, to } = useLang();
@@ -107,6 +109,18 @@ const Footer = () => {
           <div className="footer-bottom">
             <div className="footer-links">
               <Link to={to("/privacy-policies")}>{text.privacy}</Link>
+              {/* Identificação de quem explora o site e resolução de litígios (secção da página de privacidade) */}
+              <Link to={to("/privacy-policies#informacao-legal")}>{text.legalInfo}</Link>
+              {/* Ícone oficial do Livro de Reclamações Eletrónico (obrigatório, visível e com ligação à plataforma) */}
+              <a
+                href={COMPLAINTS_BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-complaints"
+                data-umami-event="livro-reclamacoes"
+              >
+                <img src={livroReclamacoes} alt={text.complaints} width="131" height="24" />
+              </a>
             </div>
             <div className="copyright">
               {text.rights(new Date().getFullYear())}

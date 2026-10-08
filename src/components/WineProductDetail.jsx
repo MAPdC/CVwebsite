@@ -19,6 +19,7 @@ const TEXT = {
     sugar: "Açúcares residuais",
     image: (n) => `imagem ${n}`,
     noImage: "Imagem não disponível",
+    illustrative: "Imagem ilustrativa: o rótulo pode mostrar outra colheita.",
     gallery: "Imagens do vinho",
     viewImage: (n) => `Ver imagem ${n}`,
     breadcrumb: "Navegação",
@@ -45,6 +46,7 @@ const TEXT = {
     sugar: "Residual sugar",
     image: (n) => `image ${n}`,
     noImage: "Image not available",
+    illustrative: "Illustrative image: the label may show a different vintage.",
     gallery: "Wine images",
     viewImage: (n) => `View image ${n}`,
     breadcrumb: "Breadcrumb",
@@ -146,6 +148,11 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
               <span className="wd-media__placeholder">{text.noImage}</span>
             )}
           </div>
+
+          {/* Fotos de uma colheita anterior (ver illustrativeImages em products.js) */}
+          {product.illustrativeImages && mainImage && (
+            <p className="wd-media__note">{text.illustrative}</p>
+          )}
 
           {images.length > 1 && (
             <div className="wd-thumbs" role="tablist" aria-label={text.gallery}>

@@ -252,6 +252,7 @@ export const wines = [
     {
       id: 5,
       slug: "white-harvest-unoaked-2023", 
+      illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Branco Colheita Unoaked 2023", 
       year: "2023",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
@@ -291,6 +292,7 @@ export const wines = [
     {
       id: 6,
       slug: "white-reserve-oaked-2022", 
+      illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Branco Reserva Oaked 2022", 
       year: "2022",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas.\n\nO Branco Reserva 2022 distingue-se pela intensidade de cor, aroma e sabor, resultado das condições edafoclimáticas de um ano excecionalmente seco. Estas originaram uvas mais concentradas em cor e compostos fenólicos, mas de baixo rendimento líquido, levando à antecipação da vindima em cerca de 10 dias. Fiéis ao princípio de respeitar a qualidade natural da uva, o vinho reflete essa intensidade. A maturação em barricas de carvalho francês equilibrou a fruta madura com a complexidade da madeira, criando um vinho elegante, harmonioso e de carácter marcante.",
@@ -401,6 +403,7 @@ export const wines = [
     {
       id: 9,
       slug: "red-reserve-oaked-2020", 
+      illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Tinto Reserva Oaked 2020", 
       year: "2020",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
@@ -439,6 +442,7 @@ export const wines = [
     {
       id: 10,
       slug: "red-reserve-unoaked-2021",
+      illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Tinto Reserva Unoaked 2021",
       year: "2021",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
@@ -477,6 +481,7 @@ export const wines = [
     {
       id: 11,
       slug: "white-harvest-unoaked-2024",
+      illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Branco Colheita Unoaked 2024",
       year: "2024",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",

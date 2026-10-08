@@ -16,6 +16,8 @@ export const COMMON = {
       contacts: "Contactos",
       social: "Redes Sociais",
       privacy: "Política de Privacidade",
+      complaints: "Livro de Reclamações",
+      legalInfo: "Informação Legal",
       rights: (year) => `©${year} por Casttêdo Valley. Todos os direitos reservados.`,
     },
     menu: "Menu", // o estado (aberto/fechado) é anunciado pelo aria-expanded
@@ -51,6 +53,8 @@ export const COMMON = {
       contacts: "Contact",
       social: "Follow Us",
       privacy: "Privacy Policy",
+      complaints: "Complaints Book",
+      legalInfo: "Legal Information",
       rights: (year) => `©${year} Casttêdo Valley. All rights reserved.`,
     },
     menu: "Menu",

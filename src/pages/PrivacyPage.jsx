@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useLang } from '../i18n';
+import { LEGAL, COMPLAINTS_BOOK_URL, RAL } from '../legal';
 import '../styles/PrivacyPage.css';
 
 const EMAIL = 'casttedovalley@gmail.com';
 const EmailLink = () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>;
+
+const ExternalLink = ({ href, children }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+);
 
 const CnpdLink = () => (
   <a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">www.cnpd.pt</a>
@@ -12,6 +18,7 @@ const CnpdLink = () => (
 const Contact = () => (
   <address className="pp-contact">
     <span className="pp-contact__name">Casttêdo Valley</span>
+    <span>{LEGAL.name} · NIF {LEGAL.nif}</span>
     <span>Largo Padre António Veiga, 5070-226 Castedo, Alijó</span>
     <EmailLink />
     <a href="tel:+351933305966">+351 933 305 966</a>
@@ -56,7 +63,7 @@ const TEXT = {
         body: (
           <>
             <p>
-              A entidade responsável pelo tratamento dos seus dados pessoais é o Casttêdo Valley, com sede no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
+              A responsável pelo tratamento dos seus dados pessoais é {LEGAL.name}, empresária em nome individual, NIF {LEGAL.nif}, que explora a marca Casttêdo Valley, com domicílio profissional no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
             </p>
             <p>
               Para qualquer questão relacionada com a sua privacidade, pode contactar-nos através do email <EmailLink />.
@@ -195,7 +202,7 @@ const TEXT = {
               O nosso website não utiliza cookies, nem para estatísticas nem para publicidade. Por esse motivo, não lhe é apresentado nenhum aviso de consentimento de cookies.
             </p>
             <p>
-              Quando escolhe o idioma do website (português ou inglês), essa preferência fica guardada apenas no armazenamento local do seu navegador, para que o site abra no mesmo idioma na próxima visita. Esta informação não sai do seu dispositivo, não o identifica e pode ser apagada a qualquer momento nas definições do navegador.
+              Quando escolhe o idioma do website (português ou inglês), ou fecha o aviso que sugere a versão em inglês, essa escolha fica guardada apenas no armazenamento local do seu navegador, para que o site abra no mesmo idioma e o aviso não volte a aparecer na próxima visita. Esta informação não sai do seu dispositivo, não o identifica e pode ser apagada a qualquer momento nas definições do navegador.
             </p>
           </>
         ),
@@ -216,6 +223,23 @@ const TEXT = {
           <p>
             Reservamo-nos o direito de atualizar esta Política de Privacidade periodicamente. Quaisquer alterações serão publicadas nesta página com a indicação da data da última atualização. Recomendamos que reveja esta política regularmente.
           </p>
+        ),
+      },
+      {
+        id: 'informacao-legal',
+        title: 'Informação Legal',
+        body: (
+          <>
+            <p>
+              O website casttedovalley.com e a marca Casttêdo Valley são explorados por {LEGAL.name}, empresária em nome individual, NIF {LEGAL.nif}, com domicílio profissional no {LEGAL.address}.
+            </p>
+            <p>
+              <strong>Livro de Reclamações.</strong> Pode apresentar uma reclamação no Livro de Reclamações Eletrónico, em <ExternalLink href={COMPLAINTS_BOOK_URL}>www.livroreclamacoes.pt</ExternalLink>, ou no livro de reclamações em papel disponível na adega.
+            </p>
+            <p>
+              <strong>Resolução alternativa de litígios.</strong> Em caso de litígio, o consumidor pode recorrer a uma entidade de Resolução Alternativa de Litígios de consumo: <ExternalLink href={RAL.entityUrl}>{RAL.entity}</ExternalLink>. Mais informações no Portal do Consumidor, em <ExternalLink href={RAL.portalUrl}>www.consumidor.gov.pt</ExternalLink>.
+            </p>
+          </>
         ),
       },
       {
@@ -271,7 +295,7 @@ const TEXT = {
         body: (
           <>
             <p>
-              The controller responsible for processing your personal data is Casttêdo Valley, Largo Padre António Veiga, 5070-226 Castedo, Alijó, Portugal.
+              The controller responsible for processing your personal data is {LEGAL.name}, a sole trader (tax number {LEGAL.nif}) who runs the Casttêdo Valley brand, with business address at Largo Padre António Veiga, 5070-226 Castedo, Alijó, Portugal.
             </p>
             <p>
               For any question about your privacy, please contact us at <EmailLink />.
@@ -410,7 +434,7 @@ const TEXT = {
               Our website does not use cookies, whether for statistics or advertising. For this reason, you are not shown a cookie consent banner.
             </p>
             <p>
-              When you choose the website's language (Portuguese or English), that preference is saved only in your browser's local storage, so that the site opens in the same language on your next visit. This information never leaves your device, does not identify you and can be deleted at any time in your browser settings.
+              When you choose the website's language (Portuguese or English), or close the notice suggesting the English version, that choice is saved only in your browser's local storage, so that the site opens in the same language and the notice does not reappear on your next visit. This information never leaves your device, does not identify you and can be deleted at any time in your browser settings.
             </p>
           </>
         ),
@@ -431,6 +455,23 @@ const TEXT = {
           <p>
             We reserve the right to update this Privacy Policy from time to time. Any changes will be published on this page together with the date of the latest update. We recommend that you review this policy regularly.
           </p>
+        ),
+      },
+      {
+        id: 'informacao-legal',
+        title: 'Legal Information',
+        body: (
+          <>
+            <p>
+              The casttedovalley.com website and the Casttêdo Valley brand are run by {LEGAL.name}, a sole trader (tax number {LEGAL.nif}), with business address at {LEGAL.address}.
+            </p>
+            <p>
+              <strong>Complaints Book.</strong> You can file a complaint in the Portuguese electronic Complaints Book at <ExternalLink href={COMPLAINTS_BOOK_URL}>www.livroreclamacoes.pt</ExternalLink>, or in the paper complaints book available at the winery.
+            </p>
+            <p>
+              <strong>Alternative dispute resolution.</strong> In the event of a dispute, consumers may turn to an alternative consumer dispute resolution body: <ExternalLink href={RAL.entityUrl}>{RAL.entity}</ExternalLink>. More information on the Portuguese Consumer Portal at <ExternalLink href={RAL.portalUrl}>www.consumidor.gov.pt</ExternalLink>.
+            </p>
+          </>
         ),
       },
       {
@@ -456,6 +497,12 @@ const PrivacyPage = () => {
   const text = TEXT[lang];
   const sections = text.sections;
   const [activeId, setActiveId] = useState(sections[0].id);
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView();
+  }, [hash]);
 
   useEffect(() => {
     // Destaca no índice a secção que está a ser lida

@@ -259,3 +259,20 @@
     margin: 0;
   }
 }
+/* Ícone oficial do Livro de Reclamações (versão preta, para contrastar com o fundo creme) */
+.footer-links .footer-complaints {
+  align-self: center;
+  line-height: 0;
+}
+
+.footer-complaints img {
+  display: block;
+  height: 24px;
+  width: auto;
+}
+
+@media (min-width: 992px) {
+  .footer-links {
+    align-items: center;
+  }
+}
