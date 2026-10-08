@@ -1,0 +1,43 @@
+# Verificação automática de cada PR (e de cada push para o main).
+# O deploy é feito pelo Cloudflare Pages; isto só confirma que o código está bom antes do merge.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Lint, testes e build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint -- --max-warnings=0
+
+      - name: Testes
+        run: npm test -- --run
+
+      - name: Build (inclui a geração das páginas e do sitemap)
+        run: npm run build
+
+      - name: Vulnerabilidades nas dependências do site
+        run: npm audit --omit=dev --audit-level=high
