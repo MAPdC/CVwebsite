@@ -1,5 +1,19 @@
 # Cabeçalhos HTTP do Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/headers/)
 
+# Segurança, em todas as respostas:
+# - HSTS: o browser passa a usar sempre HTTPS (1 ano; sem preload, que é difícil de desfazer)
+# - CSP: só carrega scripts, estilos, imagens e fontes do próprio site, mais o Umami
+#   (script em cloud.umami.is, envio das estatísticas para gateway.umami.is); impede ser embutido noutro site
+# - nosniff, Referrer-Policy, Permissions-Policy (sem câmara, microfone, localização…), COOP
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cloud.umami.is; connect-src 'self' https://gateway.umami.is; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+
 # Os endereços *.pages.dev (produção e pré-visualizações) são cópias do site:
 # ficam fora do Google para não competirem com https://www.casttedovalley.com
 https://:project.pages.dev/*
