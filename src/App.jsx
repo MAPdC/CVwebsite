@@ -58,10 +58,12 @@ export function PageLayout() {
 
   usePageMeta();
 
-  // À chegada ao site, abre no idioma que o visitante escolheu numa visita anterior
+  // À chegada pela página inicial (escrever o endereço, um favorito), abre no idioma que o visitante
+  // escolheu numa visita anterior. Um link direto para outra página (enviado por alguém, um resultado
+  // do Google) abre sempre no idioma do próprio link.
   useEffect(() => {
     const stored = getStoredLang();
-    if (stored && stored !== lang) {
+    if (stored && stored !== lang && location.pathname === "/") {
       navigate(`${localizePath(path, stored)}${location.search}${location.hash}`, { replace: true });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

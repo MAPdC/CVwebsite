@@ -2,7 +2,7 @@
 // a página aparece, tem um único <main> e um único <h1>, e o título do separador é o certo.
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { PageLayout } from "./App";
 import { getAllPages } from "./seo/pages";
 
@@ -23,6 +23,24 @@ describe.each(getAllPages().map((page) => [page.path, page]))("%s", (path, page)
     expect(screen.queryByRole("alert")).toBeNull(); // sem a mensagem de erro do ErrorBoundary
     await waitFor(() => expect(document.title).toBe(page.title));
     expect(document.documentElement.lang).toBe(page.lang);
+  });
+});
+
+describe("idioma escolhido numa visita anterior", () => {
+  afterEach(() => localStorage.clear());
+
+  it("a página inicial abre no idioma guardado", async () => {
+    localStorage.setItem("cv-lang", "en");
+    renderAt("/");
+    await waitFor(() => expect(document.documentElement.lang).toBe("en"));
+  });
+
+  it("um link direto para outra página abre no idioma do link", async () => {
+    localStorage.setItem("cv-lang", "en");
+    renderAt("/contacts");
+    await screen.findAllByRole("heading", { level: 1 }, { timeout: 5000 });
+    await waitFor(() => expect(document.title).toBe("Contactos e Visitas | Casttêdo Valley"));
+    expect(document.documentElement.lang).toBe("pt");
   });
 });
 
