@@ -54,6 +54,7 @@
   position: absolute;
   inset: 0;
   will-change: transform;
+  transform: translate3d(0, var(--parallax, 0px), 0); /* --parallax é atualizado no JSX ao fazer scroll */
 }
 
 .hero-image {
@@ -168,36 +169,86 @@
   text-transform: none;
 }
 
-/* ── Dots ── */
-.hero-dots {
+/* ── Pausa e indicadores ── */
+.hero-controls {
   position: absolute;
-  bottom: 28px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 40;
   display: flex;
-  gap: 10px;
+  align-items: center;
 }
 
+.hero-pause {
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hero-pause:hover {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Área de toque de 24×24 px; o ponto visível continua com 8 px */
 .hero-dot {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: width 0.4s ease;
+}
+
+.hero-dot::before {
+  content: "";
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.38);
-  cursor: pointer;
-  transition: all 0.4s ease;
+  transition: width 0.4s ease, background-color 0.4s ease;
 }
 
 .hero-dot--active {
+  width: 36px;
+}
+
+.hero-dot--active::before {
   width: 26px;
-  border-radius: 4px;
   background: rgba(255, 255, 255, 0.90);
 }
 
-.hero-dot:hover:not(.hero-dot--active) {
+.hero-dot:hover:not(.hero-dot--active)::before {
   background: rgba(255, 255, 255, 0.62);
+}
+
+/* Em pausa, o zoom lento da fotografia também para */
+.hero--paused .hero-image {
+  animation-play-state: paused;
+}
+
+/* Quem pede menos movimento: sem zoom contínuo nem transições longas entre slides */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none;
+  }
+
+  .hero-slide,
+  .hero-content-slide {
+    transition: none;
+  }
 }
 
 /* ═══════════════════════════════════════════
