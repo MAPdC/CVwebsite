@@ -78,7 +78,7 @@ const TEXT = {
             <div>
               <dt>Estatísticas de utilização</dt>
               <dd>
-                Utilizamos o Umami, uma ferramenta de análise que não usa cookies nem identifica visitantes individualmente, para recolher dados agregados e anónimos sobre a utilização do site: páginas visitadas, origem da visita (por exemplo, um motor de busca ou rede social), país, tipo de dispositivo e navegador, e interações como o descarregamento de fichas técnicas. O endereço IP não é armazenado.
+                Utilizamos o Umami, uma ferramenta de análise que não usa cookies nem identifica visitantes individualmente, para recolher dados agregados e anónimos sobre a utilização do site: páginas visitadas, origem da visita (por exemplo, um motor de busca ou rede social), país, tipo de dispositivo e navegador, interações como o descarregamento de fichas técnicas e eventuais erros técnicos do site (a mensagem de erro e a página onde ocorreu). O endereço IP não é armazenado.
               </dd>
             </div>
             <div>
@@ -310,7 +310,7 @@ const TEXT = {
             <div>
               <dt>Usage statistics</dt>
               <dd>
-                We use Umami, an analytics tool that does not use cookies or identify individual visitors, to collect aggregated, anonymous data on how the website is used: pages visited, where the visit came from (for example, a search engine or social network), country, device type and browser, and interactions such as downloading technical sheets. IP addresses are not stored.
+                We use Umami, an analytics tool that does not use cookies or identify individual visitors, to collect aggregated, anonymous data on how the website is used: pages visited, where the visit came from (for example, a search engine or social network), country, device type and browser, interactions such as downloading technical sheets, and any technical errors on the site (the error message and the page where it happened). IP addresses are not stored.
               </dd>
             </div>
             <div>
