@@ -59,7 +59,7 @@
   font-size: 1rem;
   font-style: italic;
   letter-spacing: 1.5px;
-  color: var(--gold, #c0a080); /* Cor dourada */
+  color: var(--gold-text); /* Cor dourada */
   margin-bottom: 15px;
   opacity: 0;
   animation: fadeInHeader 1s ease forwards 0.3s; /* Animação */
@@ -239,7 +239,7 @@
 .award-card-category {
   font-family: 'Work Sans', sans-serif;
   font-size: 0.8rem;
-  color: #888;
+  color: #666;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 15px;
@@ -304,7 +304,7 @@
 .award-score {
   font-family: 'Work Sans', sans-serif;
   font-size: 0.85rem;
-  color: var(--gold, #c0a080);
+  color: var(--gold-text);
   font-weight: 500;
   margin-left: 5px;
   white-space: nowrap; /* Evita que a pontuação quebre linha */
@@ -315,7 +315,7 @@
   font-family: 'Work Sans', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--gold, #c0a080);
+  color: var(--gold-text);
   margin-top: auto; /* Empurra para o fundo do flex container */
   padding: 8px 0;
   position: relative;

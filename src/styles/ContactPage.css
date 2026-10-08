@@ -1,20 +1,4 @@
-/* src/styles/ContactPage.css
-  NOVO FICHEIRO DE RAIZ
-*/
-
-:root {
-  --primary-color: #c0a080;
-  --text-dark: #3a3a3a;
-  --text-medium: #555;
-  --text-light: #777;
-  --bg-light: #fdfdfa;
-  --bg-white: #fff;
-  --bg-accent: #f9f7f5;
-  --border-light: #eee;
-  --font-display: 'Cormorant SC', serif;
-  --font-paragraph: 'Cormorant', serif;
-  --font-sans: 'Work Sans', sans-serif;
-}
+/* src/styles/ContactPage.css */
 
 /* --- Base da Página --- */
 .contact-page-new {
@@ -27,6 +11,7 @@
 .contact-hero-section {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -175,7 +160,7 @@
   font-size: 2.5rem;
   font-weight: 300;
   letter-spacing: 5px;
-  color: var(--primary-color, #c0a080);
+  color: var(--gold-text);
   margin-bottom: 20px;
 }
 

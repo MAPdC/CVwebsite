@@ -3,6 +3,7 @@
 .camuflado-landing {
   --camuflado-render-bg: #ede9e6; /* cor de fundo do render das garrafas, para fundir a imagem */
   min-height: 100vh;
+  min-height: 100svh;
   line-height: 1.7;
 }
 

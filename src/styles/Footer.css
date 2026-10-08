@@ -1,4 +1,4 @@
-/* Assumindo que as variáveis :root de index.css estão disponíveis */
+/* Variáveis globais em src/styles/tokens.css */
 
 .footer {
   background-color: #f5f3f0; /* Alterado de preto para creme */
@@ -30,7 +30,7 @@
 }
 
 .column-title {
-  color: var(--primary-color, #c0a080); /* Cor primária (dourado) */
+  color: var(--gold-text); /* Cor primária (dourado) */
   font-family: var(--font-display, 'Cormorant SC', serif);
   font-size: 1.2rem;
   letter-spacing: 2px;
@@ -83,7 +83,7 @@
   font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 1.3px;
-  color: var(--primary-color, #c0a080);
+  color: var(--gold-text);
   line-height: 1.2;
 }
 

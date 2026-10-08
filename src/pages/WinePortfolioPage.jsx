@@ -13,6 +13,8 @@ const TEXT = {
     titleSeo: "Vinhos DOC Douro", // completa o h1 para o Google e leitores de ecrã (não aparece no ecrã)
     subtitle: "Descubra a expressão do terroir do Douro em cada garrafa",
     search: "Procurar por nome, casta ou ano...",
+    searchLabel: "Pesquisar vinhos",
+    filterLabel: "Filtrar por tipo",
     all: "Todos",
     found: (n) => `${n} ${n === 1 ? "vinho encontrado" : "vinhos encontrados"}`,
     noResults: "Nenhum vinho encontrado",
@@ -23,6 +25,8 @@ const TEXT = {
     titleSeo: "Douro DOC Wines",
     subtitle: "Discover the expression of Douro terroir in every bottle",
     search: "Search by name, grape variety or vintage...",
+    searchLabel: "Search wines",
+    filterLabel: "Filter by style",
     all: "All",
     found: (n) => `${n} ${n === 1 ? "wine found" : "wines found"}`,
     noResults: "No wines found",
@@ -106,9 +110,12 @@ function WinePortfolioPage() {
         
         <div className="catalog-content">
           <div className="catalog-filters">
-            <div className="search-bar">
-              <FaSearch className="search-icon" />
-              <input 
+            <div className="search-bar" role="search">
+              <label htmlFor="wine-search" className="visually-hidden">{text.searchLabel}</label>
+              <FaSearch className="search-icon" aria-hidden="true" />
+              <input
+                id="wine-search"
+                autoComplete="off" 
                 type="text" 
                 placeholder={text.search}
                 value={searchTerm}
@@ -116,20 +123,26 @@ function WinePortfolioPage() {
               />
             </div>
             
-            <div className="filter-options">
-              <button 
+            <div className="filter-options" role="group" aria-label={text.filterLabel}>
+              <button
+                type="button"
+                aria-pressed={filter === "all"}
                 className={`filter-btn ${filter === "all" ? "active-all" : ""}`}
                 onClick={() => setFilter("all")}
               >
                 {text.all}
               </button>
-              <button 
+              <button
+                type="button"
+                aria-pressed={filter === "tinto"}
                 className={`filter-btn ${filter === "tinto" ? "active-tinto" : ""}`}
                 onClick={() => setFilter("tinto")}
               >
                 {common.wineTypes.Tinto}
               </button>
-              <button 
+              <button
+                type="button"
+                aria-pressed={filter === "branco"}
                 className={`filter-btn ${filter === "branco" ? "active-branco" : ""}`}
                 onClick={() => setFilter("branco")}
               >
@@ -152,7 +165,7 @@ function WinePortfolioPage() {
             </div>
           ) : (
             <>
-              <div className="results-count">
+              <div className="results-count" role="status">
                 {text.found(sortedWines.length)}
               </div>
               

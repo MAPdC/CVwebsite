@@ -1,17 +1,5 @@
 /* src/styles/UnderConstructionPage.css */
 
-/* Variáveis (assumindo que estão em :root ou importadas) */
-:root {
-  --primary-color: #c0a080;
-  --text-dark: #3a3a3a;
-  --text-medium: #555;
-  --bg-light: #fdfdfa;
-  --bg-white: #fff;
-  --border-light: #eee;
-  --font-display: 'Cormorant SC', serif;
-  --font-paragraph: 'Cormorant', serif;
-  --font-sans: 'Work Sans', sans-serif;
-}
 
 .under-construction-page {
   display: flex;
@@ -20,6 +8,7 @@
   text-align: center;
   /* Ocupa o espaço vertical (100vh - altura do header com scroll) */
   min-height: calc(100vh - 80px); 
+  min-height: calc(100svh - 80px);
   padding: 100px 20px 40px; /* Padding para garantir espaço */
   background-color: var(--bg-light);
   /* Compensa o header fixo */
@@ -75,9 +64,9 @@
   align-items: center;
   gap: 10px;
   padding: 12px 28px;
-  background-color: var(--primary-color);
+  background-color: var(--gold-text);
   color: white;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--gold-text);
   border-radius: 50px;
   font-family: var(--font-sans);
   font-size: 0.9rem;
@@ -93,8 +82,8 @@
 }
 
 .construction-home-link:hover {
-  background-color: #ab8a62; /* Um tom de dourado mais escuro */
-  border-color: #ab8a62;
+  background-color: #6f5534; /* Um tom de dourado mais escuro */
+  border-color: #6f5534;
   box-shadow: 0 5px 15px rgba(192, 160, 128, 0.3);
   transform: translateY(-2px);
 }
@@ -108,6 +97,7 @@
   .under-construction-page {
     /* Altura do header mobile com scroll */
     min-height: calc(100vh - 70px); 
+    min-height: calc(100svh - 70px);
     padding-top: 120px; /* Padding-top para header mobile (100px) + 20px */
   }
 }

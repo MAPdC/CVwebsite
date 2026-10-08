@@ -4,6 +4,7 @@
 .wine-catalog {
     background-color: #fafafa;
     min-height: 100vh;
+    min-height: 100svh;
 }
   
 /* Hero da página - melhorado para responsividade */
@@ -12,6 +13,7 @@
     background-size: cover;
     background-position: center;
     height: 100vh; /* Ajustado para 90vh para melhor responsividade */
+    height: 100svh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -222,7 +224,7 @@
 .filter-btn.active-all {
   background-color: rgba(192, 160, 128, 0.9); /* Cor original para "Todos" */
   border-color: #c0a080;
-  color: white;
+  color: var(--text-dark);
 }
 
 .filter-btn.active-tinto {
@@ -239,17 +241,17 @@
 .filter-btn.active-branco {
   background-color: #d4af37; /* Tom de ouro / branco encorpado */
   border-color: #c29e31;
-  color: white;
+  color: var(--text-dark);
 }
 
 .filter-btn.active-branco:hover {
   background-color: #c29e31; 
-  color: white;
+  color: var(--text-dark);
 }
   
 .results-count {
     margin-bottom: 30px;
-    color: #888;
+    color: #666;
     font-family: 'Work Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 300;
@@ -331,7 +333,7 @@
     font-family: 'Cormorant SC', serif;
     font-size: 1.5rem;
     font-weight: 300;
-    color: #c0a080;
+    color: var(--gold-text);
     margin: 0;
     letter-spacing: 1px;
 }
@@ -382,7 +384,7 @@
     align-items: center;
     font-family: 'Work Sans', sans-serif;
     font-size: 0.85rem;
-    color: #777;
+    color: #666;
 }
   
 .variety-icon {
@@ -448,7 +450,7 @@
     padding: 10px;
     background-color: rgba(192, 160, 128, 0.1);
     border-top: 1px solid rgba(192, 160, 128, 0.1);
-    color: #c0a080;
+    color: var(--gold-text);
     font-family: 'Work Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 400;
@@ -472,7 +474,7 @@
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 15px;
-    color: #c0a080;
+    color: var(--gold-text);
 }
   
 .no-results p {
@@ -625,4 +627,9 @@
         font-size: 0.85rem; /* Reduz tamanho da fonte nos botões de filtro */
         padding: 6px 12px;
     }
+}
+/* Foco da pesquisa visível com teclado (a borda clara do :focus não chegava a 3:1) */
+.search-bar input:focus-visible {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 2px;
 }

@@ -4,8 +4,6 @@ import OliveOilProductDetail from "../components/OliveOilProductDetail";
 import RelatedProducts from "../components/RelatedProducts";
 import NotFoundPage from "./NotFoundPage";
 import { localizeProduct, useLang } from "../i18n";
-// Já não estiliza esta página, mas as variáveis :root que define são usadas noutras partes do site
-import "../styles/WineProductDetail.css";
 
 const OliveOilProductPage = () => {
   const { slug } = useParams();

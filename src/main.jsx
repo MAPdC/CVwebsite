@@ -1,5 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+// Variáveis globais primeiro (src/styles/tokens.css é a única fonte de :root)
+import './styles/tokens.css'
 import App from './App.jsx'
 
 // Fontes alojadas no próprio site (antes vinham do Google Fonts).
