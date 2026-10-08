@@ -9,7 +9,6 @@ import { COMMON } from '../i18n/common';
 const TEXT = {
   pt: {
     acidity: 'Acidez',
-    lowAcidity: 'Acidez Baixa',
     subtitle: 'Ouro Líquido do Douro',
     title: 'Azeites',
     prev: 'Azeite anterior',
@@ -19,7 +18,6 @@ const TEXT = {
   },
   en: {
     acidity: 'Acidity',
-    lowAcidity: 'Low Acidity',
     subtitle: 'Liquid Gold from the Douro',
     title: 'Olive Oils',
     prev: 'Previous olive oil',
@@ -74,8 +72,10 @@ const OliveOilCard = ({ oil }) => {
           {oil.varieties.slice(0, 3).map((variety, idx) => ( // Mostra até 3 variedades
               <span key={idx}><Leaf size={13} /> {variety}</span>
           ))}
-          {/* Adicionar mais ícones se necessário, e.g., acidez */}
-          <span title={`${text.acidity}: ${formatDecimal(oil.technical?.acidity, lang) || 'N/A'}`}><Droplets size={13} /> {text.lowAcidity}</span>
+          {/* O valor real da análise (antes era uma etiqueta fixa "Acidez Baixa") */}
+          {oil.technical?.acidity && (
+            <span><Droplets size={13} aria-hidden="true" /> {text.acidity} {formatDecimal(oil.technical.acidity, lang)}</span>
+          )}
         </div>
       </div>
     </Link>
