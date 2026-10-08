@@ -43,7 +43,7 @@ const WineCard = ({ wine }) => {
       <div className="wine-image-wrapper-premium">
         <img
           src={wine.images[0]}
-          alt={wine.name}
+          alt="" // o nome já está no título do cartão (dentro do mesmo link)
           className="wine-image-premium"
           loading="lazy"
         />

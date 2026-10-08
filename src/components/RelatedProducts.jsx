@@ -72,7 +72,7 @@ function RelatedProducts({ products, title, basePath = "/portfolio/wines", showS
             key={product.id}
           >
             <div className="related-product__image">
-              <img src={product.images[0]} alt={product.name} loading="lazy" />
+              <img src={product.images[0]} alt="" loading="lazy" />
               {showStatus && (product.collection || product.onmarket) && (
                 <span className={`related-product__status related-product__status--${product.collection ? "collection" : "available"}`}>
                   {product.collection ? badges.collection : badges.available}

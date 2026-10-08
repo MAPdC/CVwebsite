@@ -155,7 +155,7 @@ function WinePortfolioPage() {
               {sortedWines.map((wine) => (
                 <Link to={to(`/portfolio/wines/${wine.slug}`)} className="wine-card" key={wine.id}>
                   <div className="wine-card__image-container">
-                    <img src={wine.image} alt={`${wine.name} ${wine.year}`} className="wine-card__image" />
+                    <img src={wine.image} alt="" className="wine-card__image" />
                     
                     {/* Badge para Disponível ou Coleção */}
                     {wine.onmarket && (

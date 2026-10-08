@@ -55,7 +55,7 @@ const OliveOilCard = ({ oil }) => {
       <div className="oil-image-wrapper-premium">
         <img
           src={oil.images[0]}
-          alt={oil.name}
+          alt="" // o nome já está no título do cartão
           className="oil-image-premium"
           onError={showPlaceholder}
           loading="lazy"
