@@ -91,11 +91,12 @@ function OliveOilProductDetail({ product }) {
 
   const images = (product?.images || []).filter((url) => typeof url === "string" && url.trim() !== "");
 
+  // Outro produto: volta à primeira imagem (o scroll para o topo é feito pelo ScrollToTop)
+  const productKey = product?.slug;
   useEffect(() => {
-    window.scrollTo(0, 0);
     setActiveImageIndex(0);
     setPackshotTransform(null);
-  }, [product]);
+  }, [productKey]);
 
   // Zoom da garrafa (só na primeira imagem); recalculado quando a janela muda de tamanho
   const updatePackshot = () => {
@@ -149,7 +150,7 @@ function OliveOilProductDetail({ product }) {
   const extra = product.extraInfo;
 
   return (
-    <main className="wd oil-detail">
+    <div className="wd oil-detail">
       <div className="wd-layout">
         {/* --- Garrafa / galeria (fixa em desktop) --- */}
         <aside className="wd-media">
@@ -307,7 +308,7 @@ function OliveOilProductDetail({ product }) {
           )}
         </article>
       </div>
-    </main>
+    </div>
   );
 }
 

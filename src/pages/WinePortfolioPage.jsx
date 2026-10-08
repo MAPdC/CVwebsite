@@ -10,6 +10,7 @@ import { COMMON } from "../i18n/common";
 const TEXT = {
   pt: {
     title: "Excelência.",
+    titleSeo: "Vinhos DOC Douro", // completa o h1 para o Google e leitores de ecrã (não aparece no ecrã)
     subtitle: "Descubra a expressão do terroir do Douro em cada garrafa",
     search: "Procurar por nome, casta ou ano...",
     all: "Todos",
@@ -19,6 +20,7 @@ const TEXT = {
   },
   en: {
     title: "Excellence.",
+    titleSeo: "Douro DOC Wines",
     subtitle: "Discover the expression of Douro terroir in every bottle",
     search: "Search by name, grape variety or vintage...",
     all: "All",
@@ -66,9 +68,6 @@ function WinePortfolioPage() {
     };
 
     loadWines();
-    
-    // Scroll para o topo ao carregar
-    window.scrollTo(0, 0);
   }, [lang]);
 
   // Filtrar vinhos baseado no tipo e termo de busca
@@ -90,10 +89,13 @@ function WinePortfolioPage() {
   return (
     <>
       
-      <main className="wine-catalog">
+      <div className="wine-catalog">
         <div className="catalog-hero" style={{ backgroundImage: `url(${heroBackground})` }}>
           <div className="catalog-hero__content">
-            <h1 className="catalog-hero__title">{text.title}</h1>
+            <h1 className="catalog-hero__title">
+              {text.title}
+              <span className="visually-hidden"> {text.titleSeo}</span>
+            </h1>
             <p className="catalog-hero__subtitle">{text.subtitle}</p>
           </div>
           {/* Indicador de Scroll para baixo */}
@@ -221,7 +223,7 @@ function WinePortfolioPage() {
             </>
           )}
         </div>
-      </main>
+      </div>
       
     </>
   );

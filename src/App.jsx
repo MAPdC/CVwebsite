@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { LANGS, getStoredLang, localizePath, useLang } from './i18n';
+import { COMMON } from './i18n/common';
 import usePageMeta from './seo/usePageMeta';
 import Header from './components/Header';
-import HeaderInternal from './components/HeaderInternal';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPage from './pages/PrivacyPage';
@@ -26,7 +27,7 @@ const PAGES = [
   ["/portfolio/olive-oils", <OliveOilPortfolioPage />],
   ["/portfolio/olive-oils/:slug", <OliveOilProductPage />],
 
-  // Camuflado (usa o HeaderInternal com tema Camuflado)
+  // Camuflado (o header ganha o tema Camuflado nestas páginas)
   ["/camuflado", <CamufladoLandingPage />],
   ["/camuflado/:slug", <CamufladoProductPage />],
 
@@ -38,7 +39,15 @@ const PAGES = [
   ["/about-us", <UnderConstructionPage />],
 ];
 
-// Componente para selecionar o header correto
+// Páginas com hero de ecrã inteiro: o header começa transparente por cima da imagem
+const TRANSPARENT_HEADER_PATHS = new Set(["/", "/contacts", "/portfolio/wines", "/portfolio/olive-oils"]);
+
+// Leva o foco para o conteúdo (link "Saltar para o conteúdo"), sem alterar o URL
+const skipToContent = (e) => {
+  e.preventDefault();
+  document.getElementById("conteudo")?.focus();
+};
+
 function PageLayout() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -54,28 +63,16 @@ function PageLayout() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Lista de caminhos que devem usar o header transparente
-  const transparentHeaderPaths = [
-    '/',                      // Home page
-    '/contacts',              // Contactos
-    '/portfolio/wines',       // Portefólio de vinhos
-    '/portfolio/olive-oils',  // Portefólio de azeites
-    // '/about-us',               // Onde nos encontrar?
-    // '/sustainability'         // Sustentabilidade
-    // Adicione mais caminhos conforme necessário
-  ];
-  
-  // Verifica se o caminho atual deve usar o header transparente
-  const shouldUseTransparentHeader = transparentHeaderPaths.includes(path);
-  
-  // Seleciona o header apropriado
-  const HeaderComponent = shouldUseTransparentHeader ? Header : HeaderInternal;
-  
   return (
     <>
-      <HeaderComponent />
-      {/* key: ao mudar de idioma a página é montada de novo, com os textos certos */}
-      <main className="content" key={lang}>
+      <a className="skip-link" href="#conteudo" onClick={skipToContent}>
+        {COMMON[lang].skip}
+      </a>
+      <ScrollToTop />
+      <Header transparent={TRANSPARENT_HEADER_PATHS.has(path)} />
+      {/* key: ao mudar de idioma a página é montada de novo, com os textos certos.
+          tabIndex -1: recebe o foco ao mudar de página, para o leitor de ecrã anunciar o conteúdo novo */}
+      <main id="conteudo" tabIndex={-1} className="content" key={lang}>
         <Routes>
           {LANGS.flatMap((l) =>
             PAGES.map(([pagePath, element]) => {

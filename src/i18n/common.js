@@ -17,9 +17,10 @@ export const COMMON = {
       social: "Redes Sociais",
       privacy: "Política de Privacidade",
       rights: (year) => `©${year} por Casttêdo Valley. Todos os direitos reservados.`,
-      logoAlt: "Logótipo Casttêdo Valley",
     },
-    menu: "Abrir menu",
+    menu: "Menu", // o estado (aberto/fechado) é anunciado pelo aria-expanded
+    mainNav: "Navegação principal",
+    skip: "Saltar para o conteúdo",
     language: "Idioma",
     wineTypes: { Tinto: "Tinto", Branco: "Branco" },
     badges: {
@@ -51,9 +52,10 @@ export const COMMON = {
       social: "Follow Us",
       privacy: "Privacy Policy",
       rights: (year) => `©${year} Casttêdo Valley. All rights reserved.`,
-      logoAlt: "Casttêdo Valley logo",
     },
-    menu: "Open menu",
+    menu: "Menu",
+    mainNav: "Main navigation",
+    skip: "Skip to content",
     language: "Language",
     wineTypes: { Tinto: "Red", Branco: "White" },
     badges: {

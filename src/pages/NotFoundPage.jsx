@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Compass, ArrowLeft } from 'lucide-react'; // Ícones
 import heroBackground from '../assets/douro-1.webp'; // Imagem de fundo
@@ -14,11 +13,6 @@ const TEXT = {
 const NotFoundPage = () => {
   const { lang, to } = useLang();
   const text = TEXT[lang];
-
-  useEffect(() => {
-    // Garante que a página abre no topo
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div 
