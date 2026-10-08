@@ -14,7 +14,7 @@
   --pp-bg: #faf8f5;
   --pp-tint: #efe9e3;
 
-  --pp-header: 80px;             /* altura do header fixo */
+  --pp-header: var(--header-h);  /* altura do header fixo (tokens.css) */
 
   background-color: var(--pp-bg);
   color: var(--pp-ink);

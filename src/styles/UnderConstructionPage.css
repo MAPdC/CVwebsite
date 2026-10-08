@@ -7,8 +7,8 @@
   justify-content: center;
   text-align: center;
   /* Ocupa o espaço vertical (100vh - altura do header com scroll) */
-  min-height: calc(100vh - 80px); 
-  min-height: calc(100svh - 80px);
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
   padding: 100px 20px 40px; /* Padding para garantir espaço */
   background-color: var(--bg-light);
   /* Compensa o header fixo */
@@ -95,9 +95,6 @@
 /* Responsividade */
 @media (max-width: 768px) {
   .under-construction-page {
-    /* Altura do header mobile com scroll */
-    min-height: calc(100vh - 70px); 
-    min-height: calc(100svh - 70px);
     padding-top: 120px; /* Padding-top para header mobile (100px) + 20px */
   }
 }
