@@ -45,7 +45,7 @@
 
 .header--scrolled .logo__line1,
 .header--scrolled .logo__line2 {
-  color: #c0a080; /* Muda para cobre quando scrolled */
+  color: var(--gold-text); /* Muda para cobre quando scrolled */
 }
 
 /* Logo Image */
@@ -101,6 +101,7 @@
   top: 0;
   right: -280px;
   height: 100vh;
+  height: 100dvh;
   width: 280px;
   background-color: rgba(35, 35, 35, 0.98);
   padding: 80px 20px 20px;
@@ -245,7 +246,7 @@
 }
 
 .menu-icon__line--scrolled {
-  background-color: #c0a080;
+  background-color: var(--gold-text);
 }
 
 /* Item Camuflado no dropdown: tipografia da marca (a cor segue a dos outros itens do menu escuro) */

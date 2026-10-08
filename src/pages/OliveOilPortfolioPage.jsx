@@ -13,6 +13,8 @@ const TEXT = {
     titleSeo: "Azeite Virgem Extra Biológico", // completa o h1 para o Google e leitores de ecrã (não aparece no ecrã)
     subtitle: "A essência do campo e a tradição centenária em cada gota de azeite",
     search: "Procurar por nome ou variedade...",
+    searchLabel: "Pesquisar azeites",
+    filterLabel: "Filtrar azeites",
     all: "Todos",
     category: "Azeite Virgem Extra",
     found: (n) => `${n} ${n === 1 ? "azeite encontrado" : "azeites encontrados"}`,
@@ -24,6 +26,8 @@ const TEXT = {
     titleSeo: "Organic Extra Virgin Olive Oil",
     subtitle: "The essence of the land and a century-old tradition in every drop",
     search: "Search by name or variety...",
+    searchLabel: "Search olive oils",
+    filterLabel: "Filter olive oils",
     all: "All",
     category: "Extra Virgin Olive Oil",
     found: (n) => `${n} ${n === 1 ? "olive oil found" : "olive oils found"}`,
@@ -106,9 +110,12 @@ function OliveOilPortfolioPage() {
 
         <div className="catalog-content">
           <div className="catalog-filters">
-            <div className="search-bar">
-              <FaSearch className="search-icon" />
+            <div className="search-bar" role="search">
+              <label htmlFor="oil-search" className="visually-hidden">{text.searchLabel}</label>
+              <FaSearch className="search-icon" aria-hidden="true" />
               <input
+                id="oil-search"
+                autoComplete="off"
                 type="text"
                 placeholder={text.search}
                 value={searchTerm}
@@ -116,14 +123,18 @@ function OliveOilPortfolioPage() {
               />
             </div>
 
-            <div className="filter-options">
+            <div className="filter-options" role="group" aria-label={text.filterLabel}>
               <button
+                type="button"
+                aria-pressed={filter === "all"}
                 className={`filter-btn ${filter === "all" ? "active" : ""}`}
                 onClick={() => setFilter("all")}
               >
                 {text.all}
               </button>
               <button
+                type="button"
+                aria-pressed={filter === "lateHarvest"}
                 className={`filter-btn filter-btn--late-harvest ${filter === "lateHarvest" ? "active" : ""}`}
                 onClick={() => setFilter("lateHarvest")}
               >
@@ -138,7 +149,7 @@ function OliveOilPortfolioPage() {
             </div>
           ) : (
             <>
-              <div className="results-count">
+              <div className="results-count" role="status">
                 {text.found(sortedOils.length)}
               </div>
 

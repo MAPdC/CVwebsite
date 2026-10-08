@@ -1,14 +1,5 @@
 /* src/styles/NotFoundPage.css */
 
-/* Variáveis (assumindo que estão em :root) */
-:root {
-  --primary-color: #c0a080;
-  --text-dark: #3a3a3a;
-  --bg-light: #fdfdfa;
-  --font-display: 'Cormorant SC', serif;
-  --font-paragraph: 'Cormorant', serif;
-  --font-sans: 'Work Sans', sans-serif;
-}
 
 .not-found-page {
   position: relative;
@@ -20,6 +11,7 @@
   
   /* Garante que ocupa o ecrã, compensando o header */
   min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   padding: 80px 20px; /* 80px para o header */
   

@@ -523,7 +523,8 @@ const PrivacyPage = () => {
   // Desloca até à secção sem alterar o URL
   const goTo = (e, id) => {
     e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
   };
 
   return (

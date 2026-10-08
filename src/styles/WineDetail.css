@@ -8,8 +8,8 @@
   --wd-label-font: 'Montserrat', sans-serif;
 
   --wd-ink: #2c2624;
-  --wd-muted: #8a7f78;
-  --wd-accent: #b46f54;          /* cobre do brasão */
+  --wd-muted: #6e6560;
+  --wd-accent: #94563f; /* cobre do brasão */
   --wd-line: rgba(44, 38, 36, 0.12);
   --wd-bg: #faf8f5;
   --wd-tint: #efe9e3;            /* painel por trás da garrafa */
@@ -429,6 +429,7 @@
     top: var(--wd-header);
     width: 46%;
     height: calc(100vh - var(--wd-header));
+    height: calc(100svh - var(--wd-header));
     flex-shrink: 0;
   }
 

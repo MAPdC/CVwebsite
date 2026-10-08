@@ -40,7 +40,13 @@
 
 /* No header, a cor acompanha as linhas do menu */
 .header--scrolled .lang-switch {
-  color: #c0a080;
+  color: var(--gold-text);
+}
+
+/* Com o header sólido, o idioma inativo fica num cinzento legível (com a opacidade ficava a 1,7:1) */
+.header--scrolled .lang-switch__link:not(.lang-switch__link--active) {
+  opacity: 1;
+  color: var(--text-muted);
 }
 
 .header__actions {
