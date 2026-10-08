@@ -32,6 +32,17 @@ import '@fontsource/playfair-display/latin-400-italic.css'
 
 import './index.css'
 
+// Erros de JavaScript que escapem ao ErrorBoundary: evento anónimo no Umami (Eventos → "erro-js"),
+// para sabermos que algo falhou no browser de um visitante. Só a mensagem e a página.
+const reportError = (message, origin) =>
+  window.umami?.track('erro-js', {
+    mensagem: String(message ?? '').slice(0, 200),
+    origem: origin,
+    pagina: window.location.pathname,
+  })
+window.addEventListener('error', (e) => reportError(e.message, 'error'))
+window.addEventListener('unhandledrejection', (e) => reportError(e.reason?.message ?? e.reason, 'promise'))
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
