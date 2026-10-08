@@ -10,6 +10,20 @@ updates:
     groups:
       atualizacoes-menores:
         update-types: [minor, patch]
+    ignore:
+      # Versões novas "major" (ex.: ESLint 9 → 10, Vite 6 → 8) mudam regras ou exigem atualizar
+      # vários pacotes ao mesmo tempo: fazem-se à mão, num PR próprio. As falhas de segurança
+      # continuam a ser apanhadas pelo `npm audit` do CI.
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
+      # React fica na 19.2.x (só correções): a 19.3 acrescenta ~9 KB (gzip) ao JavaScript
+      # da página inicial sem nada que o site use.
+      - dependency-name: react
+        update-types: [version-update:semver-minor]
+      - dependency-name: react-dom
+        update-types: [version-update:semver-minor]
+      - dependency-name: "@types/react*"
+        update-types: [version-update:semver-minor]
 
   - package-ecosystem: github-actions
     directory: /
