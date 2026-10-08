@@ -66,11 +66,20 @@ import vbun24_4 from '../assets/vbun21-4.webp';
 import lateharvest from '../assets/azeite.webp';
 
 // Imagens de prémios
-import vinduero from '../assets/logo-vinduero.webp';
 import ourof23 from '../assets/vinduero-ourof-23.webp';
 import ouro24 from '../assets/vinduero-ouro-24.webp';
 import ouro22 from '../assets/vinduero-ouro-22.webp';
 import ourof24 from '../assets/vinduero-ourof-24.webp';
+
+
+// --- Textos partilhados ---
+
+// Descrição da marca, igual em quase todos os vinhos (em inglês: EN_DESCRIPTION)
+const PT_DESCRIPTION = "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.";
+
+// Um prémio: imagem da medalha, nome e pontuação. Todos são do concurso Vinduero.
+// Em inglês, o bloco `en` repete a lista com os nomes traduzidos.
+const award = (medal, title, score) => ({ organizer: "Vinduero", medal, title, score });
 
 
 // --- Textos em inglês ---
@@ -98,9 +107,9 @@ export const wines = [
       slug: "red-reserve-oaked-2019", 
       name: "Tinto Reserva Oaked 2019", 
       year: "2019",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso e elegante com notas de frutos vermelhos maduros e um toque de madeira.",
-      type: "Tinto",
+      type: "red",
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
@@ -117,7 +126,7 @@ export const wines = [
         sugar: null,
         ph: null
       },
-      awards: [[vinduero, ourof23, "Medalha de Ouro em Feminino 2023","90,00"]],
+      awards: [award(ourof23, "Medalha de Ouro em Feminino 2023", "90,00")],
       onmarket: false,
       collection: true,
       oaked: true,
@@ -129,7 +138,7 @@ export const wines = [
         sensorial: EN_RED_OAKED_NOTES,
         consumo: EN_RED_PAIRING,
         temperatura: EN_SERVE_RED,
-        awards: [[vinduero, ourof23, "Gold Medal, Women's Jury 2023", "90.00"]],
+        awards: [award(ourof23, "Gold Medal, Women's Jury 2023", "90.00")],
       }
     },
     {
@@ -137,9 +146,9 @@ export const wines = [
       slug: "red-reserve-unoaked-2020", 
       name: "Tinto Reserva Unoaked 2020", 
       year: "2020",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso, elegante e frutado com notas de compota de frutos vermelhos bem maduros.",
-      type: "Tinto",
+      type: "red",
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
@@ -156,7 +165,7 @@ export const wines = [
         sugar: null,
         ph: null
       },
-      awards: [[vinduero, ouro24, "Medalha de Ouro 2024","92,55"], [vinduero, ourof24, "Medalha de Ouro em Feminino 2024", "92,93"]],
+      awards: [award(ouro24, "Medalha de Ouro 2024", "92,55"), award(ourof24, "Medalha de Ouro em Feminino 2024", "92,93")],
       onmarket: false,
       collection: true,
       oaked: false,
@@ -168,7 +177,7 @@ export const wines = [
         sensorial: EN_RED_UNOAKED_NOTES,
         consumo: EN_RED_PAIRING,
         temperatura: EN_SERVE_RED,
-        awards: [[vinduero, ouro24, "Gold Medal 2024", "92.55"], [vinduero, ourof24, "Gold Medal, Women's Jury 2024", "92.93"]],
+        awards: [award(ouro24, "Gold Medal 2024", "92.55"), award(ourof24, "Gold Medal, Women's Jury 2024", "92.93")],
       }
     },
     {
@@ -176,9 +185,9 @@ export const wines = [
       slug: "white-reserve-oaked-2020", 
       name: "Branco Reserva Oaked 2020", 
       year: "2020",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho estruturado e elegante com equilíbrio entre a frescura e a madeira.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -195,7 +204,7 @@ export const wines = [
         sugar: null,
         ph: null
       },
-      awards: [[vinduero, ouro22, "Medalha de Ouro 2022","90,77"]],
+      awards: [award(ouro22, "Medalha de Ouro 2022", "90,77")],
       onmarket: false,
       collection: true,
       oaked: true,
@@ -207,7 +216,7 @@ export const wines = [
         sensorial: EN_WHITE_OAKED_NOTES,
         consumo: EN_WHITE_OAKED_PAIRING,
         temperatura: EN_SERVE_WHITE,
-        awards: [[vinduero, ouro22, "Gold Medal 2022", "90.77"]],
+        awards: [award(ouro22, "Gold Medal 2022", "90.77")],
       }
     },
     {
@@ -215,9 +224,9 @@ export const wines = [
       slug: "white-harvest-unoaked-2021", 
       name: "Branco Colheita Unoaked 2021", 
       year: "2021",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho leve e vibrante, com notas cítricas refrescantes.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -255,9 +264,9 @@ export const wines = [
       illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Branco Colheita Unoaked 2023", 
       year: "2023",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho leve e vibrante, com notas cítricas refrescantes perfeito para partilhar entre amigos.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -297,7 +306,7 @@ export const wines = [
       year: "2022",
       description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas.\n\nO Branco Reserva 2022 distingue-se pela intensidade de cor, aroma e sabor, resultado das condições edafoclimáticas de um ano excecionalmente seco. Estas originaram uvas mais concentradas em cor e compostos fenólicos, mas de baixo rendimento líquido, levando à antecipação da vindima em cerca de 10 dias. Fiéis ao princípio de respeitar a qualidade natural da uva, o vinho reflete essa intensidade. A maturação em barricas de carvalho francês equilibrou a fruta madura com a complexidade da madeira, criando um vinho elegante, harmonioso e de carácter marcante.",
       briefdescription: "Um vinho estruturado e elegante com equilíbrio entre a frescura e a madeira.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -333,9 +342,9 @@ export const wines = [
       slug: "white-harvest-curtimenta-unoaked-2023", 
       name: "Branco Colheita Curtimenta Unoaked 2023",
       year: "2023",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso com sabor encorpado marcado por notas de casca de laranja.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -369,9 +378,9 @@ export const wines = [
       slug: "white-reserve-curtimenta-oaked-2023", 
       name: "Branco Reserva Curtimenta Oaked 2023", 
       year: "2023",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso, encorpado e persistente com notas da cresta dos cortiços.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [
@@ -406,9 +415,9 @@ export const wines = [
       illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Tinto Reserva Oaked 2020", 
       year: "2020",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso e elegante com notas de frutos vermelhos maduros e nuances de madeira.",
-      type: "Tinto",
+      type: "red",
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"], // COLOCAR % DE CADA CASTA?
       images: [
@@ -445,9 +454,9 @@ export const wines = [
       illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Tinto Reserva Unoaked 2021",
       year: "2021",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho intenso, elegante e frutado com notas de compota de frutos vermelhos bem maduros.",
-      type: "Tinto",
+      type: "red",
       category: "Douro DOC",
       varieties: ["Touriga Nacional", "Touriga Franca", "Tinta Roriz", "Tinta da Barca", "Tinto Cão"],
       images: [
@@ -484,9 +493,9 @@ export const wines = [
       illustrativeImages: true, // fotos de uma colheita anterior: o rótulo mostra outro ano
       name: "Branco Colheita Unoaked 2024",
       year: "2024",
-      description: "Sempre ligado às suas raízes, o Casttêdo Valley é um vinho que se caracteriza pela sua essência, um vinho com personalidade e com uma identidade própria, as suas vinhas gozam do encontro perfeito entre um microclima único, um solo extraído de imemoriáveis rochas de xisto, com videiras meticulosamente selecionadas, aliadas a técnicas que promovem a biodiversidade. Um \"terroir\" que garante uvas sãs e únicas, transformadas em lagares datados 1873, carregados de história e tradição aliadas às novas tecnologias na produção de vinhos marcantes.",
+      description: PT_DESCRIPTION,
       briefdescription: "Um vinho leve e vibrante, com notas cítricas refrescantes perfeito para partilhar entre amigos.",
-      type: "Branco",
+      type: "white",
       category: "Douro DOC",
       varieties: ["Arinto", "Verdelho", "Viosinho"],
       images: [

@@ -63,7 +63,7 @@ function WinePortfolioPage() {
 
   // Filtrar vinhos baseado no tipo e termo de busca
   const filteredWines = wineList.filter(wine => {
-    const matchesFilter = filter === "all" || wine.type.toLowerCase() === filter;
+    const matchesFilter = filter === "all" || wine.type === filter;
     const matchesSearch = wine.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           wine.varieties.some(v => v.toLowerCase().includes(searchTerm.toLowerCase())) ||
                           wine.year.includes(searchTerm);
@@ -121,19 +121,19 @@ function WinePortfolioPage() {
               </button>
               <button
                 type="button"
-                aria-pressed={filter === "tinto"}
-                className={`filter-btn ${filter === "tinto" ? "active-tinto" : ""}`}
-                onClick={() => setFilter("tinto")}
+                aria-pressed={filter === "red"}
+                className={`filter-btn ${filter === "red" ? "active-tinto" : ""}`}
+                onClick={() => setFilter("red")}
               >
-                {common.wineTypes.Tinto}
+                {common.wineTypes.red}
               </button>
               <button
                 type="button"
-                aria-pressed={filter === "branco"}
-                className={`filter-btn ${filter === "branco" ? "active-branco" : ""}`}
-                onClick={() => setFilter("branco")}
+                aria-pressed={filter === "white"}
+                className={`filter-btn ${filter === "white" ? "active-branco" : ""}`}
+                onClick={() => setFilter("white")}
               >
-                {common.wineTypes.Branco}
+                {common.wineTypes.white}
               </button>
               {/*
               <button 
@@ -168,9 +168,9 @@ function WinePortfolioPage() {
                     {/* Mostrar Medalhas */}
                     {wine.awards && wine.awards.length > 0 && (
                       <div className="wine-card__awards">
-                        {wine.awards.map((award, index) => (
-                          <div key={index} className="wine-card__award" title={`${award[2]} (${award[3]})`}>
-                            <img src={award[1]} alt={award[2]} className="award-medal" />
+                        {wine.awards.map((award) => (
+                          <div key={award.title} className="wine-card__award" title={`${award.title} (${award.score})`}>
+                            <img src={award.medal} alt={award.title} className="award-medal" />
                           </div>
                         ))}
                       </div>
@@ -185,8 +185,8 @@ function WinePortfolioPage() {
                     <div className="wine-card__category">
                       <span className="wine-type-indicator" style={{
                         backgroundColor: 
-                          wine.type.toLowerCase() === "tinto" ? "#7b0323" : 
-                          wine.type.toLowerCase() === "branco" ? "#f0e68c" : 
+                          wine.type === "red" ? "#7b0323" : 
+                          wine.type === "white" ? "#f0e68c" : 
                           "#e8a7b9"
                       }}></span>
                       {wine.category}

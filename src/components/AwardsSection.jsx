@@ -16,10 +16,13 @@ const TEXT = {
   },
 };
 
-// Os 3 produtos com mais prémios (os dados são estáticos: calculado uma vez)
-const AWARDED = [...wines, ...oliveOils]
-  .filter((p) => p.awards && p.awards.length > 0)
-  .sort((a, b) => b.awards.length - a.awards.length)
+// Os 3 produtos com mais prémios (os dados são estáticos: calculado uma vez), com a secção de cada um
+const AWARDED = [
+  ...wines.map((product) => ({ product, basePath: "/portfolio/wines" })),
+  ...oliveOils.map((product) => ({ product, basePath: "/portfolio/olive-oils" })),
+]
+  .filter(({ product }) => product.awards?.length > 0)
+  .sort((a, b) => b.product.awards.length - a.product.awards.length)
   .slice(0, 3);
 
 const AwardsSection = () => {
@@ -28,7 +31,10 @@ const AwardsSection = () => {
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
-  const awardedProducts = useMemo(() => AWARDED.map((p) => localizeProduct(p, lang)), [lang]);
+  const awardedProducts = useMemo(
+    () => AWARDED.map(({ product, basePath }) => ({ ...localizeProduct(product, lang), basePath })),
+    [lang]
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,16 +65,6 @@ const AwardsSection = () => {
     return null; // Não renderiza a secção se não houver produtos premiados no mercado
   }
 
-  const getProductUrl = (product) => {
-    // Determina se é vinho ou azeite pelo slug ou outra propriedade única
-    // Esta é uma suposição, ajuste se necessário
-    if (product.slug.includes('red') || product.slug.includes('white')) {
-      return to(`/portfolio/wines/${product.slug}`);
-    } else {
-      return to(`/portfolio/olive-oils/${product.slug}`);
-    }
-  };
-
 
   return (
     <section
@@ -95,9 +91,9 @@ const AwardsSection = () => {
         <div className="highlight-awards-grid">
           {awardedProducts.map((product, index) => {
             // Código novo dentro do .map(product => { ... })
-            const productUrl = getProductUrl(product);
+            const productUrl = to(`${product.basePath}/${product.slug}`);
             // Pega em todas as medalhas
-            const allMedalUrls = product.awards.map(award => award[1]).filter(Boolean);
+            const allMedalUrls = product.awards.map((award) => award.medal).filter(Boolean);
 
             return (
               <Link to={productUrl} className="award-card" key={product.id} style={{ animationDelay: `${index * 0.2}s` }}>
@@ -130,12 +126,12 @@ const AwardsSection = () => {
 
                   {/* MODIFICAÇÃO AQUI: Iterar sobre todos os prémios */}
                   <div className="award-card-details-list">
-                    {product.awards.map((award, awardIndex) => (
-                      <div className="award-card-details-item" key={awardIndex}>
+                    {product.awards.map((award) => (
+                      <div className="award-card-details-item" key={award.title}>
                         {/* Opcional: Mostrar a medalha pequena ao lado de cada descrição */}
-                        {award[1] && <img src={award[1]} alt="" className="award-medal-icon-small" loading="lazy" />}
-                        <span className="award-name">{award[2]}</span>
-                        {award[3] && <span className="award-score">({award[3]} pts)</span>}
+                        {award.medal && <img src={award.medal} alt="" className="award-medal-icon-small" loading="lazy" />}
+                        <span className="award-name">{award.title}</span>
+                        {award.score && <span className="award-score">({award.score} pts)</span>}
                       </div>
                     ))}
                   </div>
