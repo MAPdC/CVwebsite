@@ -9,7 +9,7 @@
   /* Hero da página */
   .catalog-hero {
     position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/olive-grove.webp');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); /* a fotografia vem do style inline no JSX */
     background-size: cover;
     background-position: center;
     height: 100vh;
