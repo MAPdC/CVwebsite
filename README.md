@@ -41,11 +41,15 @@ O website inclui:
 ```
 src/
 ├── assets/          # Imagens, logótipos e ícones
-├── components/      # Componentes reutilizáveis (Header, Footer, Carrosséis, Secções)
+├── components/      # Componentes reutilizáveis (Header, Footer, Carrosséis, Secções, galeria e prémios dos produtos)
+├── hooks/           # Comportamentos partilhados (aparecer ao entrar no ecrã, copiar texto)
 ├── i18n/            # Idiomas (PT/EN): deteção pelo URL, textos partilhados e utilitários
-├── mocks/           # Dados dos produtos (vinhos e azeites)
+├── mocks/           # Dados dos produtos (vinhos, azeites e Camuflado)
+├── seo/             # Título, descrição e dados estruturados de cada página
 ├── pages/           # Páginas da aplicação
-├── styles/          # Ficheiros CSS por componente
+├── styles/          # Ficheiros CSS por componente (variáveis globais em tokens.css)
+├── contacts.js      # Email, telefones e mapa
+├── legal.js         # Identificação legal, Livro de Reclamações e RAL
 ├── App.jsx          # Roteamento principal e layout
 └── main.jsx         # Ponto de entrada
 ```
@@ -79,6 +83,18 @@ npm run build
 # Pré-visualizar o build
 npm run preview
 ```
+
+### Antes de fazer merge
+
+O CI corre isto em cada PR, mas convém confirmar antes:
+
+```bash
+npm run lint -- --max-warnings=0
+npm test -- --run
+npm run build && npm run preview
+```
+
+Algumas coisas só existem no build, por isso o `npm run dev` não as mostra: a compressão das imagens, as páginas HTML geradas por `scripts/generate-pages.mjs` (títulos, sitemap, pré-carregamentos) e as estatísticas do Umami (só contam em `www.casttedovalley.com`). A pré-visualização do Cloudflare de cada branch é a forma mais fiel de rever uma alteração.
 
 ---
 
