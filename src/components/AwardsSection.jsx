@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
+import useInView from '../hooks/useInView';
 import { Link } from 'react-router-dom';
 import { wines, oliveOils } from '../mocks/products.js'; // Importar os dados
 import { Award, Star } from 'lucide-react'; // Ícones para estilo
@@ -26,8 +27,7 @@ const AWARDED = [
   .slice(0, 3);
 
 const AwardsSection = () => {
-  const sectionRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [sectionRef, isVisible] = useInView();
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
@@ -35,31 +35,6 @@ const AwardsSection = () => {
     () => AWARDED.map(({ product, basePath }) => ({ ...localizeProduct(product, lang), basePath })),
     [lang]
   );
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const currentSectionRef = sectionRef.current;
-    if (currentSectionRef) {
-      observer.observe(currentSectionRef);
-    }
-
-    return () => {
-      if (currentSectionRef) {
-        observer.unobserve(currentSectionRef);
-      }
-    };
-  }, []);
 
   if (awardedProducts.length === 0) {
     return null; // Não renderiza a secção se não houver produtos premiados no mercado

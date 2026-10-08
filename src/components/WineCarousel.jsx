@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import useInView from '../hooks/useInView';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 import { wines } from '../mocks/products.js';
@@ -70,38 +71,12 @@ const WineCard = ({ wine }) => {
 
 const WineCarouselPremium = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const [sectionRef, isVisible] = useInView();
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
   const availableWines = wines.filter(wine => wine.onmarket).map(wine => localizeProduct(wine, lang));
   const totalSlides = availableWines.length;
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const currentSectionRef = sectionRef.current;
-    if (currentSectionRef) {
-      observer.observe(currentSectionRef);
-    }
-
-    return () => {
-      if (currentSectionRef) {
-        observer.unobserve(currentSectionRef);
-      }
-    };
-  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides);

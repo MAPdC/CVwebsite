@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import useInView from '../hooks/useInView';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, ArrowRight, Leaf, Droplets } from 'lucide-react';
 import { oliveOils } from '../mocks/products.js';
@@ -85,21 +86,12 @@ const OliveOilCard = ({ oil }) => {
 // Componente Principal
 const OliveOilCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const [sectionRef, isVisible] = useInView();
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
   const availableOils = oliveOils.filter(oil => oil.onmarket && !oil.soldout).map(oil => localizeProduct(oil, lang)); // Filtra disponíveis
   const totalSlides = availableOils.length;
-
-  useEffect(() => {
-    // Observer para animação (igual ao WineCarousel)
-    const observer = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && setIsVisible(true)), { threshold: 0.2 });
-    const currentRef = sectionRef.current;
-    if (currentRef) observer.observe(currentRef);
-    return () => { if (currentRef) observer.unobserve(currentRef); };
-  }, []);
 
   const nextSlide = () => setCurrentIndex((p) => (p + 1) % totalSlides);
   const prevSlide = () => setCurrentIndex((p) => (p - 1 + totalSlides) % totalSlides);
