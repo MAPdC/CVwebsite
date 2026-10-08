@@ -39,8 +39,8 @@ describe.each(Object.entries(LISTS))("%s", (_, list) => {
   it("cada prémio tem medalha e nome", () => {
     for (const p of list) {
       for (const award of p.awards ?? []) {
-        expect(award[1], `${p.slug}: medalha`).toBeTruthy();
-        expect(award[2], `${p.slug}: nome do prémio`).toBeTruthy();
+        expect(award.medal, `${p.slug}: medalha`).toBeTruthy();
+        expect(award.title, `${p.slug}: nome do prémio`).toBeTruthy();
       }
     }
   });
@@ -48,7 +48,7 @@ describe.each(Object.entries(LISTS))("%s", (_, list) => {
 
 describe("vinhos", () => {
   it("cada vinho é Tinto ou Branco (o filtro do portefólio depende disto)", () => {
-    for (const w of wines) expect(["Tinto", "Branco"]).toContain(w.type);
+    for (const w of wines) expect(["red", "white"]).toContain(w.type);
   });
 
   it("um vinho à venda não está marcado como coleção", () => {

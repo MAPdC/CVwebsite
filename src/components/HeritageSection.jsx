@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import useInView from '../hooks/useInView';
 import { Link } from 'react-router-dom';
 import heritageBgImage from '../assets/padre-antonio-veiga-douro-tiny.webp';
 import { useLang } from '../i18n';
@@ -19,41 +19,12 @@ const TEXT = {
 };
 
 const HeritageSection = () => {
-  const sectionRef = useRef(null);
+  const [sectionRef, isVisible] = useInView();
   const { lang, to } = useLang();
   const text = TEXT[lang];
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          section.classList.add('reveal-section');
-          observer.unobserve(section);
-        }
-      });
-    }, observerOptions);
-    
-    if (section) {
-      observer.observe(section);
-    }
-    
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
-
   return (
-    <section className="heritage-section" ref={sectionRef}>
+    <section className={`heritage-section ${isVisible ? "reveal-section" : ""}`} ref={sectionRef}>
       <div className="section-glow" />
       <div className="section-line-top" />
       <div className="heritage-background">

@@ -39,4 +39,9 @@ describe("textos dos produtos", () => {
     expect(localizeProduct(product, "pt")).toBe(product);
     expect(localizeProduct(undefined, "en")).toBeUndefined();
   });
+
+  it("traduz parte de um grupo de campos sem perder os outros", () => {
+    const product = { name: "Azeite", technical: { acidity: "≤ 0,4%", peroxide: "8" }, en: { technical: { acidity: "≤ 0.4%" } } };
+    expect(localizeProduct(product, "en").technical).toEqual({ acidity: "≤ 0.4%", peroxide: "8" });
+  });
 });

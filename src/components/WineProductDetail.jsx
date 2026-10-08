@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getPackshotTransform } from "../utils/packshotTransform";
+import ProductGallery from "./ProductGallery";
+import AwardList from "./AwardList";
 import { formatDecimal, useLang } from "../i18n";
 import { COMMON } from "../i18n/common";
 import ProductEnquiry from "./ProductEnquiry";
@@ -74,36 +74,6 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
   const techValue = (value) => (value === null ? text.comingSoon : formatDecimal(value, lang) || "—");
   const wineType = (type) => common.wineTypes[type] || type;
 
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [packshotTransform, setPackshotTransform] = useState(null);
-  const imageRef = useRef(null);
-
-  const images = (product?.images || []).filter((url) => typeof url === "string" && url.trim() !== "");
-
-  // Outro produto: volta à primeira imagem (o scroll para o topo é feito pelo ScrollToTop)
-  const productKey = product?.slug;
-  useEffect(() => {
-    setActiveImageIndex(0);
-    setPackshotTransform(null);
-  }, [productKey]);
-
-  // Zoom da garrafa (só na primeira imagem); recalculado quando a janela muda de tamanho
-  const updatePackshot = () => {
-    const img = imageRef.current;
-    if (activeImageIndex !== 0 || !img || !img.complete) return;
-    try {
-      setPackshotTransform(getPackshotTransform(img));
-    } catch {
-      setPackshotTransform(null); // sem acesso aos píxeis: mostra a imagem tal como está
-    }
-  };
-
-  useEffect(() => {
-    updatePackshot(); // imagem já em cache: o onLoad pode ter disparado antes
-    window.addEventListener("resize", updatePackshot);
-    return () => window.removeEventListener("resize", updatePackshot);
-  }, [activeImageIndex, product]); // eslint-disable-line react-hooks/exhaustive-deps
-
   if (!product) {
     return (
       <div className="new-product-loading">
@@ -112,9 +82,6 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
     );
   }
 
-  // A primeira imagem é a garrafa (packshot); as restantes são fotografias de ambiente
-  const isPackshot = activeImageIndex === 0;
-  const mainImage = images[activeImageIndex];
 
   // Valores analíticos ainda por confirmar (null) ficam fora da ficha até existirem
   const analysis = [
@@ -138,46 +105,14 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
   return (
     <div className="wd">
       <div className="wd-layout">
-        {/* --- Garrafa / galeria (fixa em desktop) --- */}
-        <aside className="wd-media">
-          <div className={`wd-media__stage ${isPackshot ? "wd-media__stage--packshot" : "wd-media__stage--photo"}`}>
-            {mainImage ? (
-              <img
-                key={mainImage}
-                src={mainImage}
-                alt={`${product.name}${isPackshot ? "" : ` — ${text.image(activeImageIndex + 1)}`}`}
-                ref={imageRef}
-                className="wd-media__image"
-                onLoad={updatePackshot}
-                style={isPackshot && packshotTransform ? { "--crop": packshotTransform } : undefined}
-              />
-            ) : (
-              <span className="wd-media__placeholder">{text.noImage}</span>
-            )}
-          </div>
-
-          {/* Fotos de uma colheita anterior (ver illustrativeImages em products.js) */}
-          {product.illustrativeImages && mainImage && (
-            <p className="wd-media__note">{text.illustrative}</p>
-          )}
-
-          {images.length > 1 && (
-            <div className="wd-thumbs" role="group" aria-label={text.gallery}>
-              {images.map((imageUrl, index) => (
-                <button
-                  type="button"
-                  key={imageUrl}
-                  className={`wd-thumb ${index === activeImageIndex ? "wd-thumb--active" : ""}`}
-                  onClick={() => setActiveImageIndex(index)}
-                  aria-label={text.viewImage(index + 1)}
-                  aria-pressed={index === activeImageIndex}
-                >
-                  <img src={imageUrl} alt="" loading="lazy" />
-                </button>
-              ))}
-            </div>
-          )}
-        </aside>
+        {/* --- Garrafa / galeria (fixa em desktop); nota se as fotos forem de outra colheita (illustrativeImages) --- */}
+        <ProductGallery
+          key={product.slug}
+          images={product.images}
+          alt={product.name}
+          labels={text}
+          note={product.illustrativeImages ? text.illustrative : null}
+        />
 
         {/* --- Conteúdo --- */}
         <article className="wd-content">
@@ -286,22 +221,7 @@ function WineProductDetail({ product, basePath = "/portfolio/wines", baseLabel, 
             )}
           </section>
 
-          {product.awards && product.awards.length > 0 && (
-            <section className="wd-section">
-              <h2 className="wd-label">{text.awards}</h2>
-              <ul className="wd-awards">
-                {product.awards.map((award, index) => (
-                  <li key={index} className="wd-award">
-                    {award[1] && <img src={award[1]} alt="" className="wd-award__medal" />}
-                    <div>
-                      <span className="wd-award__name">{award[2]}</span>
-                      {award[3] && <span className="wd-award__points">{award[3]} {common.points}</span>}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          <AwardList awards={product.awards} title={text.awards} />
 
           <ProductEnquiry product={product} name={baseLabel ? `${baseLabel} ${product.name}` : product.name} />
         </article>

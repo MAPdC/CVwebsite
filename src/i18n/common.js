@@ -24,7 +24,7 @@ export const COMMON = {
     mainNav: "Navegação principal",
     skip: "Saltar para o conteúdo",
     language: "Idioma",
-    wineTypes: { Tinto: "Tinto", Branco: "Branco" },
+    wineTypes: { red: "Tinto", white: "Branco" }, // chaves = type em products.js
     badges: {
       oaked: "Oaked",
       unoaked: "Unoaked",
@@ -61,7 +61,7 @@ export const COMMON = {
     mainNav: "Main navigation",
     skip: "Skip to content",
     language: "Language",
-    wineTypes: { Tinto: "Red", Branco: "White" },
+    wineTypes: { red: "Red", white: "White" },
     badges: {
       oaked: "Oaked",
       unoaked: "Unoaked",

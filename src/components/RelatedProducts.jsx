@@ -26,6 +26,9 @@ function RelatedProducts({ products, title, basePath = "/portfolio/wines", showS
   const text = TEXT[lang];
   const badges = COMMON[lang].badges;
 
+  // As páginas criam a lista a cada render: o efeito só volta a correr se os produtos mudarem mesmo
+  const productsKey = products?.map((p) => p.slug).join() ?? "";
+
   // Os cartões aparecem com um fade ao entrar no ecrã
   useEffect(() => {
     if (!productsRef.current) return;
@@ -53,7 +56,7 @@ function RelatedProducts({ products, title, basePath = "/portfolio/wines", showS
       observer.disconnect();
       images.forEach((img) => img.removeEventListener("load", onLoad));
     };
-  }, [products]);
+  }, [productsKey]);
 
   if (!products || products.length === 0) return null;
 

@@ -30,11 +30,13 @@ function Header({ transparent = false }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [transparent]);
 
-  // Ao mudar de página o menu fecha
-  useEffect(() => {
+  // Ao mudar de página o menu fecha (acerto durante o render, sem efeito: https://react.dev/learn/you-might-not-need-an-effect)
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
-  }, [pathname]);
+  }
 
   // Menu aberto: foco no primeiro item; Esc fecha e devolve o foco ao botão
   useEffect(() => {
