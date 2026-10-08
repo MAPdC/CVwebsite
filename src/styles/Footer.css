@@ -259,3 +259,28 @@
     margin: 0;
   }
 }
+/* Identificação legal e informação RAL, no fundo do rodapé */
+.footer-legal {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light, #eee);
+  text-align: center;
+  font-family: var(--font-primary, 'Work Sans', sans-serif);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: #6b625c;
+}
+
+.footer-legal p + p {
+  margin-top: 4px;
+}
+
+.footer-legal a {
+  color: #6b625c;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer-legal a:hover {
+  color: #8b6b4a;
+}

@@ -5,6 +5,7 @@ import logoCobre from '../assets/cv-logo-castanho.webp'; // Importar o logo corr
 import "../styles/Footer.css"; // Manter o link para o CSS
 import { useLang } from '../i18n';
 import { COMMON } from '../i18n/common';
+import { LEGAL, COMPLAINTS_BOOK_URL, RAL } from '../legal';
 
 const Footer = () => {
     const { lang, to } = useLang();
@@ -107,10 +108,31 @@ const Footer = () => {
           <div className="footer-bottom">
             <div className="footer-links">
               <Link to={to("/privacy-policies")}>{text.privacy}</Link>
+              <a
+                href={COMPLAINTS_BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-umami-event="livro-reclamacoes"
+              >
+                {text.complaints}
+              </a>
             </div>
             <div className="copyright">
               {text.rights(new Date().getFullYear())}
             </div>
+          </div>
+
+          {/* Identificação legal (DL 7/2004) e Resolução Alternativa de Litígios (Lei 144/2015) */}
+          <div className="footer-legal">
+            <p>
+              {LEGAL.name} ({text.sellerType}) · NIF {LEGAL.nif} · {LEGAL.address}
+            </p>
+            <p>
+              {text.ral}{" "}
+              <a href={RAL.entityUrl} target="_blank" rel="noopener noreferrer">{RAL.entity}</a>.{" "}
+              {text.ralMore}:{" "}
+              <a href={RAL.portalUrl} target="_blank" rel="noopener noreferrer">www.consumidor.gov.pt</a>.
+            </p>
           </div>
         </div>
       </footer>

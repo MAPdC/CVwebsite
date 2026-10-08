@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLang } from '../i18n';
+import { LEGAL } from '../legal';
 import '../styles/PrivacyPage.css';
 
 const EMAIL = 'casttedovalley@gmail.com';
@@ -12,6 +13,7 @@ const CnpdLink = () => (
 const Contact = () => (
   <address className="pp-contact">
     <span className="pp-contact__name">Casttêdo Valley</span>
+    <span>{LEGAL.name} · NIF {LEGAL.nif}</span>
     <span>Largo Padre António Veiga, 5070-226 Castedo, Alijó</span>
     <EmailLink />
     <a href="tel:+351933305966">+351 933 305 966</a>
@@ -56,7 +58,7 @@ const TEXT = {
         body: (
           <>
             <p>
-              A entidade responsável pelo tratamento dos seus dados pessoais é o Casttêdo Valley, com sede no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
+              A responsável pelo tratamento dos seus dados pessoais é {LEGAL.name}, empresária em nome individual, NIF {LEGAL.nif}, que explora a marca Casttêdo Valley, com domicílio profissional no Largo Padre António Veiga, 5070-226, Castedo, Alijó, Portugal.
             </p>
             <p>
               Para qualquer questão relacionada com a sua privacidade, pode contactar-nos através do email <EmailLink />.
@@ -195,7 +197,7 @@ const TEXT = {
               O nosso website não utiliza cookies, nem para estatísticas nem para publicidade. Por esse motivo, não lhe é apresentado nenhum aviso de consentimento de cookies.
             </p>
             <p>
-              Quando escolhe o idioma do website (português ou inglês), essa preferência fica guardada apenas no armazenamento local do seu navegador, para que o site abra no mesmo idioma na próxima visita. Esta informação não sai do seu dispositivo, não o identifica e pode ser apagada a qualquer momento nas definições do navegador.
+              Quando escolhe o idioma do website (português ou inglês), ou fecha o aviso que sugere a versão em inglês, essa escolha fica guardada apenas no armazenamento local do seu navegador, para que o site abra no mesmo idioma e o aviso não volte a aparecer na próxima visita. Esta informação não sai do seu dispositivo, não o identifica e pode ser apagada a qualquer momento nas definições do navegador.
             </p>
           </>
         ),
@@ -271,7 +273,7 @@ const TEXT = {
         body: (
           <>
             <p>
-              The controller responsible for processing your personal data is Casttêdo Valley, Largo Padre António Veiga, 5070-226 Castedo, Alijó, Portugal.
+              The controller responsible for processing your personal data is {LEGAL.name}, a sole trader (tax number {LEGAL.nif}) who runs the Casttêdo Valley brand, with business address at Largo Padre António Veiga, 5070-226 Castedo, Alijó, Portugal.
             </p>
             <p>
               For any question about your privacy, please contact us at <EmailLink />.
@@ -410,7 +412,7 @@ const TEXT = {
               Our website does not use cookies, whether for statistics or advertising. For this reason, you are not shown a cookie consent banner.
             </p>
             <p>
-              When you choose the website's language (Portuguese or English), that preference is saved only in your browser's local storage, so that the site opens in the same language on your next visit. This information never leaves your device, does not identify you and can be deleted at any time in your browser settings.
+              When you choose the website's language (Portuguese or English), or close the notice suggesting the English version, that choice is saved only in your browser's local storage, so that the site opens in the same language and the notice does not reappear on your next visit. This information never leaves your device, does not identify you and can be deleted at any time in your browser settings.
             </p>
           </>
         ),
