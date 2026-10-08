@@ -27,7 +27,7 @@ O website inclui:
 | Tecnologia | Utilização |
 |---|---|
 | [React 19](https://react.dev/) | Framework de UI |
-| [Vite 6](https://vitejs.dev/) | Bundler e servidor de desenvolvimento |
+| [Vite 8](https://vite.dev/) | Bundler e servidor de desenvolvimento |
 | [React Router 7](https://reactrouter.com/) | Navegação client-side (SPA) |
 | [Lucide React](https://lucide.dev/) | Iconografia |
 | [React Icons](https://react-icons.github.io/react-icons/) | Ícones de redes sociais e pesquisa |
