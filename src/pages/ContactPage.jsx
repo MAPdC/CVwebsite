@@ -130,7 +130,7 @@ const ContactPage = () => {
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1 className="contact-hero-title">
-            <span className="hero-eyebrow">{text.heroEyebrow}</span>
+            <span className="hero-eyebrow">{text.heroEyebrow}</span>{" "}
             {text.heroTitle}
           </h1>
           <p className="hero-subtitle">{text.heroSubtitle}</p>
