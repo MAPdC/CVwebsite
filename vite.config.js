@@ -12,7 +12,4 @@ export default defineConfig({
       webp: { quality: 78 },
     }),
   ],
-  build: {
-    assetsInclude: ['/public/fonts/*.woff2'], // Garante que as fonts sejam incluídas no build
-  },
 })
