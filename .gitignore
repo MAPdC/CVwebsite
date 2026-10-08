@@ -36,4 +36,6 @@ references.md
 
 src/_draft/*
 
-scripts/
+# Scripts locais; só o gerador de páginas (usado no build) é versionado
+scripts/*
+!scripts/generate-pages.mjs
