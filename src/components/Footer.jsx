@@ -119,7 +119,7 @@ const Footer = () => {
                 className="footer-complaints"
                 data-umami-event="livro-reclamacoes"
               >
-                <img src={livroReclamacoes} alt={text.complaints} width="219" height="40" />
+                <img src={livroReclamacoes} alt={text.complaints} width="153" height="28" />
               </a>
             </div>
             <div className="copyright">
