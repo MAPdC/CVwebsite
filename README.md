@@ -32,8 +32,7 @@ O website inclui:
 | [Lucide React](https://lucide.dev/) | Iconografia |
 | [React Icons](https://react-icons.github.io/react-icons/) | Ícones de redes sociais e pesquisa |
 | CSS (um ficheiro por componente, global) | Estilização |
-| GitHub Actions | CI/CD — build e deploy automático |
-| GitHub Pages | Hosting |
+| Cloudflare Pages | Hosting, build e deploy automático |
 
 ---
 
@@ -96,9 +95,13 @@ O site existe em português (caminhos na raiz, ex.: `/contacts`) e em inglês (o
 
 ## Deploy
 
-O deploy é feito automaticamente via **GitHub Actions** para o **GitHub Pages** a cada push para o branch `main`. O workflow encontra-se em `.github/workflows/deploy.yml`.
+O site está alojado no **Cloudflare Pages**, ligado a este repositório:
 
-O domínio personalizado `casttedovalley.com` está configurado através do ficheiro `public/CNAME`.
+- Cada push para o branch `main` publica o site em `www.casttedovalley.com`.
+- Cada push para outro branch gera uma pré-visualização em `<branch>.casttedovalley.pages.dev`, útil para rever alterações antes de as integrar.
+- Build: `npm run build`, pasta de saída `dist`, Node 22 (variável `NODE_VERSION` no projeto e `.nvmrc`).
+
+O DNS do domínio é gerido no Cloudflare (o registo continua na Namecheap). O domínio sem www (`casttedovalley.com`) redireciona com 301 para o www através de uma Redirect Rule do Cloudflare.
 
 ---
 
