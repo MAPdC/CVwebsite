@@ -10,8 +10,14 @@ import path from "node:path";
 
 const DIST = path.resolve(process.argv[2] ?? "dist");
 
-// O Vite carrega src/seo/pages.js tal como na app (resolve os imports de imagens dos produtos)
-const vite = await createServer({ server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
+// O Vite carrega src/seo/pages.js tal como na app (resolve os imports de imagens dos produtos).
+// Sem pré-análise de dependências nem websocket: o servidor só existe durante esta leitura.
+const vite = await createServer({
+  server: { middlewareMode: true, ws: false },
+  optimizeDeps: { noDiscovery: true, include: [] },
+  appType: "custom",
+  logLevel: "error",
+});
 const { getAllPages, SITE_URL, OG_IMAGE } = await vite.ssrLoadModule("/src/seo/pages.js");
 await vite.close();
 
