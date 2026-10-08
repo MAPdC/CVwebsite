@@ -1,0 +1,9 @@
+# Cabeçalhos HTTP do Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/headers/)
+
+# Os endereços *.pages.dev (produção e pré-visualizações) são cópias do site:
+# ficam fora do Google para não competirem com https://www.casttedovalley.com
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
