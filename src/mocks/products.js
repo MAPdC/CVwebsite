@@ -328,6 +328,7 @@ export const wines = [
       collection: false,
       oaked: true,
       curtimenta: false,
+      maturation: "Barrica de Carvalho Francês",
       en: {
         name: "Reserve White Oaked 2022",
         description: `${EN_INTRO}.\n\nThe 2022 Reserve White stands out for the intensity of its colour, aroma and flavour, the result of the soil and climate conditions of an exceptionally dry year. These produced grapes more concentrated in colour and phenolic compounds, but with low juice yields, bringing the harvest forward by around ten days. True to our principle of respecting the natural quality of the fruit, the wine reflects that intensity. Maturation in French oak barrels balanced the ripe fruit with the complexity of the oak, creating an elegant, harmonious wine of striking character.`,
@@ -335,6 +336,7 @@ export const wines = [
         sensorial: EN_WHITE_OAKED_NOTES,
         consumo: EN_WHITE_OAKED_PAIRING,
         temperatura: EN_SERVE_WHITE,
+        maturation: "French oak barrels",
       }
     },
     {
