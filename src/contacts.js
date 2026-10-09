@@ -2,7 +2,7 @@
 // e no "Pedir informações" das páginas de produto.
 export const EMAIL = "casttedovalley@gmail.com";
 
-// [número para o link tel:, como se mostra]
+// [número para o link tel:, como se mostra]. Ambos têm WhatsApp.
 export const PHONES = [
   ["+351933305966", "+351 933 305 966"],
   ["+351933467002", "+351 933 467 002"],
@@ -14,3 +14,7 @@ export const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=41.2257
 // Link de email com assunto e texto já preenchidos
 export const mailto = (subject, body) =>
   `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
+
+// Conversa de WhatsApp com a mensagem já escrita (wa.me quer o número só com dígitos)
+export const whatsapp = (tel, message) =>
+  `https://wa.me/${tel.replace(/\D/g, "")}${message ? `?text=${encodeURIComponent(message)}` : ""}`;

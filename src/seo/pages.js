@@ -16,11 +16,11 @@ const STATIC_PAGES = {
   "/": {
     pt: {
       title: "Casttêdo Valley | Vinhos DOC Douro e Azeite Biológico",
-      description: "Vinhos DOC Douro e azeite virgem extra biológico de uma quinta familiar em Castedo, Alijó, com lagares de granito de 1873.",
+      description: "Vinhos DOC Douro e azeite virgem extra biológico de um produtor familiar em Castedo, Alijó, com lagares de granito de 1873.",
     },
     en: {
       title: "Casttêdo Valley | Douro DOC Wines & Organic Olive Oil",
-      description: "Fine Douro DOC wines and organic extra virgin olive oil from a family estate in Castedo, Alijó, with granite lagares dating from 1873.",
+      description: "Fine Douro DOC wines and organic extra virgin olive oil from a family producer in Castedo, Alijó, with granite lagares dating from 1873.",
     },
   },
   "/portfolio/wines": {
