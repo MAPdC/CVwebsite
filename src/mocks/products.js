@@ -573,8 +573,8 @@ export const wines = [
         available: "Disponível em garrafas de 500ml."
       },
       awards: [],
-      onmarket: true,
-      soldout: false,
+      onmarket: false,
+      soldout: true, // esgotado em out. 2026; segue-se o azeite colhido em novembro
       organic: true,
       lateHarvest: true,
       en: {
