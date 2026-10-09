@@ -3,7 +3,9 @@
 /* --- Base da Página --- */
 .contact-page-new {
   width: 100%;
-  overflow-x: hidden;
+  /* clip e não hidden: hidden tornava a página num contentor de scroll próprio e, com as secções
+     ainda deslocadas pela animação de entrada, aparecia uma 2.ª barra de scroll ao lado da janela */
+  overflow-x: clip;
   background-color: var(--bg-light);
 }
 

@@ -8,7 +8,7 @@
   }
   
   /* Hero da página */
-  .catalog-hero {
+  .oil-catalog .catalog-hero {
     position: relative;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); /* a fotografia vem do style inline no JSX */
     background-size: cover;
@@ -23,7 +23,7 @@
     overflow: hidden;
   }
   
-  .catalog-hero::before {
+  .oil-catalog .catalog-hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -40,7 +40,7 @@
     z-index: 2;
   }
   
-  .catalog-hero__content {
+  .oil-catalog .catalog-hero__content {
     text-align: center;
     color: #fff;
     padding: 0 20px;
@@ -49,7 +49,7 @@
     z-index: 3;
   }
   
-  .catalog-hero__title {
+  .oil-catalog .catalog-hero__title {
     font-family: 'Cormorant SC', serif;
     font-size: 3rem;
     font-weight: 300;
@@ -61,7 +61,7 @@
     animation: fade-in 1.5s ease forwards 0.5s;
   }
   
-  .catalog-hero__subtitle {
+  .oil-catalog .catalog-hero__subtitle {
     font-family: 'Work Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 300;
@@ -85,7 +85,7 @@
   }
 
   /* ----- INÍCIO: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
-  .scroll-down-prompt {
+  .oil-catalog .scroll-down-prompt {
     display: none; /* Escondido por defeito */
     position: absolute;
     bottom: 80px;
@@ -97,7 +97,7 @@
     padding-top: 50px; /* Espaço para a seta */
   }
 
-  .scroll-down-arrow {
+  .oil-catalog .scroll-down-arrow {
     width: 24px;
     height: 24px;
     border-left: 2px solid #fff;
@@ -122,21 +122,21 @@
   /* ----- FIM: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
   
   /* Container principal do conteúdo */
-  .catalog-content {
+  .oil-catalog .catalog-content {
     max-width: 1300px;
     margin: 0 auto;
     padding: 60px 5%;
   }
   
   /* Loading */
-  .loading-container {
+  .oil-catalog .loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
   }
   
-  .elegant-loader {
+  .oil-catalog .elegant-loader {
     width: 40px;
     height: 40px;
     border: 3px solid rgba(122, 153, 76, 0.2);
@@ -150,7 +150,7 @@
   }
   
   /* Filtros e busca */
-  .catalog-filters {
+  .oil-catalog .catalog-filters {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -159,13 +159,13 @@
     gap: 20px;
   }
   
-  .search-bar {
+  .oil-catalog .search-bar {
     position: relative;
     max-width: 400px;
     width: 100%;
   }
   
-  .search-bar input {
+  .oil-catalog .search-bar input {
     width: 100%;
     padding: 12px 20px 12px 45px;
     border: 1px solid rgba(122, 153, 76, 0.3);
@@ -177,13 +177,13 @@
     transition: all 0.3s ease;
   }
   
-  .search-bar input:focus {
+  .oil-catalog .search-bar input:focus {
     outline: none;
     border-color: #7a994c;
     box-shadow: 0 0 0 2px rgba(122, 153, 76, 0.1);
   }
   
-  .search-icon {
+  .oil-catalog .search-icon {
     position: absolute;
     left: 16px;
     top: 50%;
@@ -192,12 +192,12 @@
     font-size: 1rem;
   }
   
-  .filter-options {
+  .oil-catalog .filter-options {
     display: flex;
     gap: 10px;
   }
   
-  .filter-btn {
+  .oil-catalog .filter-btn {
     padding: 8px 16px;
     border: 1px solid rgba(122, 153, 76, 0.3);
     border-radius: 20px;
@@ -209,30 +209,30 @@
     transition: all 0.3s ease;
   }
   
-  .filter-btn:hover {
+  .oil-catalog .filter-btn:hover {
     background-color: rgba(122, 153, 76, 0.05);
   }
   
-  .filter-btn.active {
+  .oil-catalog .filter-btn.active {
     background-color: var(--olive-text);
     color: white;
     border-color: var(--olive-text);
   }
   
   /* Cor Dourada para o botão de Colheita Tardia (hover não ativo) */
-  .filter-btn.filter-btn--late-harvest:hover:not(.active) {
+  .oil-catalog .filter-btn.filter-btn--late-harvest:hover:not(.active) {
     background-color: rgba(212, 175, 55, 0.05); /* Hover dourado claro */
     border-color: rgba(212, 175, 55, 0.3); /* Borda dourada clara */
   }
 
   /* Cor Dourada para o botão de Colheita Tardia (ATIVO) */
-  .filter-btn.filter-btn--late-harvest.active {
+  .oil-catalog .filter-btn.filter-btn--late-harvest.active {
     background-color: #D4AF37; /* Amarelo dourado (ex: #D4AF37 ou #DAA520) */
     border-color: #D4AF37;
     color: var(--text-dark);
   }
 
-  .results-count {
+  .oil-catalog .results-count {
     margin-bottom: 30px;
     color: #666;
     font-family: 'Work Sans', sans-serif;
@@ -377,7 +377,7 @@
     color: #666;
   }
   
-  .variety-icon {
+  .oil-catalog .variety-icon {
     color: #7a994c;
     margin-right: 6px;
     font-size: 0.9rem;
@@ -408,13 +408,13 @@
   }
   
   /* Sem resultados */
-  .no-results {
+  .oil-catalog .no-results {
     text-align: center;
     padding: 60px 0;
     color: #666;
   }
   
-  .no-results h3 {
+  .oil-catalog .no-results h3 {
     font-family: 'Cormorant SC', serif;
     font-size: 1.5rem;
     font-weight: 300;
@@ -422,7 +422,7 @@
     color: var(--olive-text);
   }
   
-  .no-results p {
+  .oil-catalog .no-results p {
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     font-weight: 300;
@@ -430,46 +430,46 @@
   
   /* Responsividade */
   @media (max-width: 992px) {
-    .catalog-hero__title {
+    .oil-catalog .catalog-hero__title {
       font-size: 2.5rem;
     }
     
-    .catalog-filters {
+    .oil-catalog .catalog-filters {
       flex-direction: column;
       align-items: stretch;
     }
     
-    .search-bar {
+    .oil-catalog .search-bar {
       max-width: 100%;
     }
     
-    .filter-options {
+    .oil-catalog .filter-options {
       width: 100%;
       overflow-x: auto;
       padding-bottom: 5px;
       justify-content: center; /* Centraliza botões se couberem */
     }
     
-    .filter-btn {
+    .oil-catalog .filter-btn {
       white-space: nowrap;
     }
   }
   
   @media (max-width: 768px) {
 
-    .scroll-down-prompt {
+    .oil-catalog .scroll-down-prompt {
       display: block; /* Mostra o indicador de scroll */
     }
     
-    .catalog-hero__title {
+    .oil-catalog .catalog-hero__title {
       font-size: 2.2rem;
     }
     
-    .catalog-hero__subtitle {
+    .oil-catalog .catalog-hero__subtitle {
       font-size: 1rem;
     }
     
-    .catalog-content {
+    .oil-catalog .catalog-content {
       padding: 40px 5%;
     }
     
@@ -493,12 +493,12 @@
 
   @media (max-width: 576px) {
 
-    .catalog-hero__title {
+    .oil-catalog .catalog-hero__title {
       font-size: 2rem;
       letter-spacing: 1px;
     }
 
-    .catalog-hero__subtitle {
+    .oil-catalog .catalog-hero__subtitle {
       font-size: 0.95rem;
     }
 
@@ -512,18 +512,18 @@
       height: 300px; /* Imagem maior em layout de 1 coluna */
     }
 
-    .filter-options {
+    .oil-catalog .filter-options {
         justify-content: flex-start; /* Alinha botões à esquerda para scroll */
     }
   }
   
 @media (max-width: 480px) {
 
-  .catalog-hero__title {
+  .oil-catalog .catalog-hero__title {
     font-size: 1.8rem;
   }
 
-  .catalog-hero__subtitle {
+  .oil-catalog .catalog-hero__subtitle {
     font-size: 0.9rem;
   }
 
@@ -535,17 +535,17 @@
       font-size: 1.3rem;
   }
 
-  .search-bar input {
+  .oil-catalog .search-bar input {
       font-size: 0.9rem; /* Reduz tamanho da fonte na barra de pesquisa */
   }
 
-  .filter-btn {
+  .oil-catalog .filter-btn {
       font-size: 0.85rem; /* Reduz tamanho da fonte nos botões de filtro */
       padding: 6px 12px;
   }
 }
 /* Foco da pesquisa visível com teclado (a borda clara do :focus não chegava a 3:1) */
-.search-bar input:focus-visible {
+.oil-catalog .search-bar input:focus-visible {
   outline: 2px solid var(--olive-text);
   outline-offset: 2px;
 }

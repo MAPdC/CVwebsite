@@ -8,7 +8,7 @@
 }
   
 /* Hero da página - melhorado para responsividade */
-.catalog-hero {
+.wine-catalog .catalog-hero {
     position: relative;
     background-size: cover;
     background-position: center;
@@ -22,7 +22,7 @@
     overflow: hidden;
 }
 
-.catalog-hero::before {
+.wine-catalog .catalog-hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -39,7 +39,7 @@
     z-index: 2;
 }
   
-.catalog-hero__content {
+.wine-catalog .catalog-hero__content {
     text-align: center;
     color: #fff;
     padding: 0 20px;
@@ -48,7 +48,7 @@
     z-index: 3;
 }
   
-.catalog-hero__title {
+.wine-catalog .catalog-hero__title {
     font-family: 'Cormorant SC', serif;
     font-size: 4rem; /* Aumentado para maior impacto */
     font-weight: 300;
@@ -61,7 +61,7 @@
 }
   
 /* Subtítulo mais elegante */
-.catalog-hero__subtitle {
+.wine-catalog .catalog-hero__subtitle {
     font-family: 'Work Sans', serif;
     font-size: 1.25rem; /* Aumentado para melhor leitura */
     font-weight: 300;
@@ -89,7 +89,7 @@
 }
 
 /* ----- INÍCIO: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
-.scroll-down-prompt {
+.wine-catalog .scroll-down-prompt {
   display: none; /* Escondido por defeito */
   position: absolute;
   bottom: 30px;
@@ -101,7 +101,7 @@
   padding-top: 50px; /* Espaço para a seta */
 }
 
-.scroll-down-arrow {
+.wine-catalog .scroll-down-arrow {
   width: 24px;
   height: 24px;
   border-left: 2px solid #fff;
@@ -126,21 +126,21 @@
 /* ----- FIM: NOVOS ESTILOS PARA INDICADOR DE SCROLL ----- */
   
 /* Container principal do conteúdo */
-.catalog-content {
+.wine-catalog .catalog-content {
     max-width: 1300px;
     margin: 0 auto;
     padding: 60px 5%;
 }
   
 /* Loading */
-.loading-container {
+.wine-catalog .loading-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 300px;
 }
   
-.elegant-loader {
+.wine-catalog .elegant-loader {
     width: 40px;
     height: 40px;
     border: 3px solid rgba(192, 160, 128, 0.2);
@@ -154,7 +154,7 @@
 }
   
 /* Filtros e busca */
-.catalog-filters {
+.wine-catalog .catalog-filters {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -163,13 +163,13 @@
     gap: 20px;
 }
   
-.search-bar {
+.wine-catalog .search-bar {
     position: relative;
     max-width: 400px;
     width: 100%;
 }
   
-.search-bar input {
+.wine-catalog .search-bar input {
     width: 100%;
     padding: 12px 20px 12px 45px;
     border: 1px solid rgba(192, 160, 128, 0.3);
@@ -181,13 +181,13 @@
     transition: all 0.3s ease;
 }
   
-.search-bar input:focus {
+.wine-catalog .search-bar input:focus {
     outline: none;
     border-color: #c0a080;
     box-shadow: 0 0 0 2px rgba(192, 160, 128,.1);
 }
   
-.search-icon {
+.wine-catalog .search-icon {
     position: absolute;
     left: 16px;
     top: 50%;
@@ -196,12 +196,12 @@
     font-size: 1rem;
 }
   
-.filter-options {
+.wine-catalog .filter-options {
     display: flex;
     gap: 10px;
 }
   
-.filter-btn {
+.wine-catalog .filter-btn {
     padding: 8px 16px;
     border: 1px solid rgba(192, 160, 128, 0.3);
     border-radius: 20px;
@@ -213,43 +213,43 @@
     transition: all 0.3s ease;
 }
   
-.filter-btn:hover {
+.wine-catalog .filter-btn:hover {
     background-color: rgba(192, 160, 128, 0.05);
 }
   
-.filter-btn.active {
+.wine-catalog .filter-btn.active {
     color: white;
 }
 
-.filter-btn.active-all {
+.wine-catalog .filter-btn.active-all {
   background-color: rgba(192, 160, 128, 0.9); /* Cor original para "Todos" */
   border-color: #c0a080;
   color: var(--text-dark);
 }
 
-.filter-btn.active-tinto {
+.wine-catalog .filter-btn.active-tinto {
   background-color: #7b0323; /* Tom de vinho tinto (roxo/vermelho escuro) */
   border-color: #6a021e;
   color: white;
 }
 
-.filter-btn.active-tinto:hover {
+.wine-catalog .filter-btn.active-tinto:hover {
   background-color: #6a021e; /* Mantém a cor escura */
   color: white;
 }
 
-.filter-btn.active-branco {
+.wine-catalog .filter-btn.active-branco {
   background-color: #d4af37; /* Tom de ouro / branco encorpado */
   border-color: #c29e31;
   color: var(--text-dark);
 }
 
-.filter-btn.active-branco:hover {
+.wine-catalog .filter-btn.active-branco:hover {
   background-color: #c29e31; 
   color: var(--text-dark);
 }
   
-.results-count {
+.wine-catalog .results-count {
     margin-bottom: 30px;
     color: #666;
     font-family: 'Work Sans', sans-serif;
@@ -387,7 +387,7 @@
     color: #666;
 }
   
-.variety-icon {
+.wine-catalog .variety-icon {
     color: #c0a080;
     margin-right: 6px;
     font-size: 0.9rem;
@@ -463,13 +463,13 @@
 }
   
 /* Sem resultados */
-.no-results {
+.wine-catalog .no-results {
     text-align: center;
     padding: 60px 0;
     color: #666;
 }
   
-.no-results h3 {
+.wine-catalog .no-results h3 {
     font-family: 'Cormorant SC', serif;
     font-size: 1.5rem;
     font-weight: 300;
@@ -477,7 +477,7 @@
     color: var(--gold-text);
 }
   
-.no-results p {
+.wine-catalog .no-results p {
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     font-weight: 300;
@@ -485,63 +485,63 @@
   
 /* Responsividade melhorada */
 @media (max-width: 1200px) {
-    .catalog-hero__title {
+    .wine-catalog .catalog-hero__title {
         font-size: 3.5rem;
     }
     
-    .catalog-hero__subtitle {
+    .wine-catalog .catalog-hero__subtitle {
         font-size: 1.2rem;
     }
 }
 
 @media (max-width: 992px) {
     
-    .catalog-hero__title {
+    .wine-catalog .catalog-hero__title {
         font-size: 3rem;
     }
     
-    .catalog-hero__subtitle {
+    .wine-catalog .catalog-hero__subtitle {
         font-size: 1.15rem;
     }
     
-    .catalog-filters {
+    .wine-catalog .catalog-filters {
         flex-direction: column;
         align-items: stretch;
     }
     
-    .search-bar {
+    .wine-catalog .search-bar {
         max-width: 100%;
     }
     
-    .filter-options {
+    .wine-catalog .filter-options {
         width: 100%;
         overflow-x: auto;
         padding-bottom: 5px;
         justify-content: center; /* Centraliza os botões */
     }
     
-    .filter-btn {
+    .wine-catalog .filter-btn {
         white-space: nowrap;
     }
 }
   
 @media (max-width: 768px) {
 
-    .scroll-down-prompt {
+    .wine-catalog .scroll-down-prompt {
       display: block; /* Mostra o indicador de scroll */
     }
 
-    .catalog-hero__title {
+    .wine-catalog .catalog-hero__title {
         font-size: 2.5rem;
         margin-bottom: 15px;
     }
     
-    .catalog-hero__subtitle {
+    .wine-catalog .catalog-hero__subtitle {
         font-size: 1.1rem;
         letter-spacing: 1px;
     }
     
-    .catalog-content {
+    .wine-catalog .catalog-content {
         padding: 40px 5%;
     }
     
@@ -565,12 +565,12 @@
 
 @media (max-width: 576px) {
     
-    .catalog-hero__title {
+    .wine-catalog .catalog-hero__title {
         font-size: 2rem;
         letter-spacing: 2px;
     }
     
-    .catalog-hero__subtitle {
+    .wine-catalog .catalog-hero__subtitle {
         font-size: 1rem;
         letter-spacing: 0.5px;
     }
@@ -590,18 +590,18 @@
         height: 35px;
     }
 
-    .filter-options {
+    .wine-catalog .filter-options {
         justify-content: flex-start; /* Alinha botões à esquerda para scroll */
     }
 }
   
 @media (max-width: 480px) {
     
-    .catalog-hero__title {
+    .wine-catalog .catalog-hero__title {
         font-size: 1.8rem;
     }
     
-    .catalog-hero__subtitle {
+    .wine-catalog .catalog-hero__subtitle {
         font-size: 0.95rem;
     }
     
@@ -619,17 +619,17 @@
         font-size: 1.3rem;
     }
 
-    .search-bar input {
+    .wine-catalog .search-bar input {
         font-size: 0.9rem; /* Reduz tamanho da fonte na barra de pesquisa */
     }
 
-    .filter-btn {
+    .wine-catalog .filter-btn {
         font-size: 0.85rem; /* Reduz tamanho da fonte nos botões de filtro */
         padding: 6px 12px;
     }
 }
 /* Foco da pesquisa visível com teclado (a borda clara do :focus não chegava a 3:1) */
-.search-bar input:focus-visible {
+.wine-catalog .search-bar input:focus-visible {
   outline: 2px solid var(--gold-text);
   outline-offset: 2px;
 }
