@@ -2,14 +2,12 @@ import { FaWhatsapp } from "react-icons/fa";
 import { useLang } from "../i18n";
 import { EMAIL, PHONES, mailto, whatsapp } from "../contacts";
 
-// Vendemos sobretudo através de distribuidores: quem pede é encaminhado para o da sua zona,
-// e só onde não há nenhum é que a venda e o envio são feitos diretamente por nós.
 const TEXT = {
   pt: {
     label: "Encomendas",
     title: { wine: "Onde encontrar este vinho", oil: "Onde encontrar este azeite" },
     status: {
-      available: "Diga-nos onde está e indicamos-lhe onde o pode comprar: num distribuidor da sua zona ou, se ainda não houver nenhum, com envio diretamente da adega. Também o pode adquirir quando nos visitar em Castedo.",
+      available: "Para mais informações, contacte-nos.",
       collection: "Vinho de coleção, em quantidade limitada. Fale connosco para saber se ainda há garrafas disponíveis e qual o preço.",
       soldOut: "Esgotado de momento. Fale connosco para saber quando volta a estar disponível.",
     },
@@ -18,14 +16,14 @@ const TEXT = {
     call: (label) => `Ligar para ${label}`,
     whatsapp: (label) => `WhatsApp para ${label}`,
     subject: (name) => `Pedido de informações: ${name}`,
-    body: (name) => `Olá,\n\nGostaria de saber onde posso comprar: ${name}.\n\nLocalidade: \n\nObrigado.`,
-    message: (name) => `Olá, gostaria de saber onde posso comprar: ${name}.`,
+    body: (name) => `Olá,\n\nGostaria de receber mais informações sobre: ${name}.\n\nLocalidade: \n\nObrigado.`,
+    message: (name) => `Olá, gostaria de receber mais informações sobre: ${name}.`,
   },
   en: {
     label: "Orders",
     title: { wine: "Where to find this wine", oil: "Where to find this olive oil" },
     status: {
-      available: "Tell us where you are and we will point you to a stockist in your area or, if there is none yet, ship it directly from the winery. You can also buy it when you visit us in Castedo.",
+      available: "For more information, please get in touch.",
       collection: "A collection wine, in limited quantities. Get in touch to check availability and price.",
       soldOut: "Currently sold out. Get in touch to find out when it will be available again.",
     },
@@ -34,8 +32,8 @@ const TEXT = {
     call: (label) => `Call ${label}`,
     whatsapp: (label) => `WhatsApp ${label}`,
     subject: (name) => `Enquiry: ${name}`,
-    body: (name) => `Hello,\n\nI would like to know where I can buy: ${name}.\n\nLocation: \n\nThank you.`,
-    message: (name) => `Hello, I would like to know where I can buy: ${name}.`,
+    body: (name) => `Hello,\n\nI would like more information about: ${name}.\n\nLocation: \n\nThank you.`,
+    message: (name) => `Hello, I would like more information about: ${name}.`,
   },
 };
 

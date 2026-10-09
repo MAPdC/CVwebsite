@@ -8,7 +8,7 @@ const TEXT = {
     title: 'A nossa história',
     intro: 'A referência mais antiga associada ao Casttêdo Valley remonta a 1873, data em que se ergueram os nossos lagares de granito.',
     text: 'A arte da produção de vinhos e azeites é uma tradição familiar que se estende há, pelo menos, quatro gerações. As vinhas e oliveiras herdadas de geração em geração foram alvo de várias reestruturações e modernizações ao longo dos anos, respeitando sempre a tradição e o terroir único do Douro.',
-    link: 'Venha visitar-nos em Castedo',
+    link: 'Venha visitar-nos ao Castedo',
   },
   en: {
     title: 'Our story',
