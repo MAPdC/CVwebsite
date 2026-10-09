@@ -131,6 +131,7 @@ export const wines = [
       collection: true,
       oaked: true,
       curtimenta: false,
+      maturation: "Barrica de Carvalho Francês e Americano",
       en: {
         name: "Reserve Red Oaked 2019",
         description: EN_DESCRIPTION,
@@ -139,6 +140,7 @@ export const wines = [
         consumo: EN_RED_PAIRING,
         temperatura: EN_SERVE_RED,
         awards: [award(ourof23, "Gold Medal, Women's Jury 2023", "90.00")],
+        maturation: "French and American oak barrels",
       }
     },
     {
@@ -209,6 +211,7 @@ export const wines = [
       collection: true,
       oaked: true,
       curtimenta: false,
+      maturation: "Barrica de Carvalho Francês",
       en: {
         name: "Reserve White Oaked 2020",
         description: EN_DESCRIPTION,
@@ -217,6 +220,7 @@ export const wines = [
         consumo: EN_WHITE_OAKED_PAIRING,
         temperatura: EN_SERVE_WHITE,
         awards: [award(ouro22, "Gold Medal 2022", "90.77")],
+        maturation: "French oak barrels",
       }
     },
     {
@@ -402,6 +406,7 @@ export const wines = [
       collection: true,
       oaked: true,
       curtimenta: true,
+      maturation: "Barrica de Carvalho Português",
       en: {
         name: "Reserve Orange Wine Oaked 2023",
         description: EN_DESCRIPTION,
@@ -409,6 +414,7 @@ export const wines = [
         sensorial: "An intense nose and a full-bodied, persistent palate, with structured notes of peach, pear and orange and nuances of cocoa, coconut and honeycomb.",
         consumo: "Wood-oven roast suckling pig, lamb and kid, game, bacalhau (salt cod), bold, richly spiced dishes, charcuterie, cheeses and pâtés.",
         temperatura: EN_SERVE_WHITE,
+        maturation: "Portuguese oak barrels",
       }
     },
     {
@@ -441,6 +447,7 @@ export const wines = [
       collection: false,
       oaked: true,
       curtimenta: false,
+      maturation: "Barrica de Carvalho Francês e Americano",
       en: {
         name: "Reserve Red Oaked 2020",
         description: EN_DESCRIPTION,
@@ -448,6 +455,7 @@ export const wines = [
         sensorial: EN_RED_OAKED_NOTES,
         consumo: EN_RED_PAIRING,
         temperatura: EN_SERVE_RED,
+        maturation: "French and American oak barrels",
       }
     },
     {
