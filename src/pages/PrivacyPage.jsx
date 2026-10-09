@@ -29,14 +29,14 @@ const TEXT = {
     eyebrow: 'Informação Legal',
     title: 'Política de Privacidade',
     lead: 'Um website sem cookies, sem formulários e com estatísticas anónimas. Explicamos aqui que dados são tratados e quais são os seus direitos.',
-    updated: 'Última atualização · 8 de outubro de 2026',
+    updated: 'Última atualização · 9 de outubro de 2026',
     toc: 'Índice',
 
     // Resumo apresentado no topo da página
     summary: [
       ['Sem cookies', 'O website não guarda cookies no seu dispositivo.'],
       ['Estatísticas anónimas', 'Contamos visitas sem identificar quem nos visita.'],
-      ['Sem formulários', 'Só tratamos os dados que nos enviar por email ou telefone.'],
+      ['Sem formulários', 'Só tratamos os dados que nos enviar por email, telefone ou WhatsApp.'],
       ['Os seus direitos', 'Pode aceder, corrigir ou apagar os seus dados a qualquer momento.'],
     ],
 
@@ -90,7 +90,7 @@ const TEXT = {
             <div>
               <dt>Dados que nos envia ao contactar-nos</dt>
               <dd>
-                Se nos contactar por email ou telefone (por exemplo, para reservar uma visita ou prova de vinhos), tratamos os dados que nos fornecer, como o seu nome, email, número de telefone e o conteúdo do pedido.
+                Se nos contactar por email, telefone ou WhatsApp (por exemplo, para reservar uma visita ou prova de vinhos), tratamos os dados que nos fornecer, como o seu nome, email, número de telefone e o conteúdo do pedido.
               </dd>
             </div>
           </dl>
@@ -150,6 +150,10 @@ const TEXT = {
                 <dt>Google · Gmail</dt>
                 <dd>Serviço de email através do qual recebemos e respondemos às suas mensagens.</dd>
               </div>
+              <div>
+                <dt>WhatsApp · mensagens</dt>
+                <dd>Se optar por nos escrever pelo WhatsApp, a conversa é transmitida por este serviço da Meta, ao abrigo da política de privacidade do WhatsApp.</dd>
+              </div>
             </dl>
             <p>
               Alguns destes prestadores estão sediados nos Estados Unidos. Nesses casos, a transferência de dados é feita ao abrigo dos mecanismos previstos no RGPD, como o Quadro de Privacidade de Dados UE-EUA ou cláusulas contratuais-tipo.
@@ -165,7 +169,7 @@ const TEXT = {
         title: 'Ligações para Outros Websites',
         body: (
           <p>
-            O nosso website contém ligações para o Facebook, o Instagram e o Google Maps. Ao segui-las, passa a estar sujeito às políticas de privacidade desses serviços, pelas quais não somos responsáveis.
+            O nosso website contém ligações para o Facebook, o Instagram, o WhatsApp e o Google Maps. Ao segui-las, passa a estar sujeito às políticas de privacidade desses serviços, pelas quais não somos responsáveis.
           </p>
         ),
       },
@@ -260,13 +264,13 @@ const TEXT = {
     eyebrow: 'Legal Information',
     title: 'Privacy Policy',
     lead: 'A website with no cookies, no forms and anonymous statistics. Here we explain what data is processed and what your rights are.',
-    updated: 'Last updated · 8 October 2026',
+    updated: 'Last updated · 9 October 2026',
     toc: 'Contents',
 
     summary: [
       ['No cookies', 'This website does not store cookies on your device.'],
       ['Anonymous statistics', 'We count visits without identifying who you are.'],
-      ['No forms', 'We only process the details you send us by email or phone.'],
+      ['No forms', 'We only process the details you send us by email, phone or WhatsApp.'],
       ['Your rights', 'You can access, correct or delete your data at any time.'],
     ],
 
@@ -322,7 +326,7 @@ const TEXT = {
             <div>
               <dt>Data you send us when you get in touch</dt>
               <dd>
-                If you contact us by email or phone (for example, to book a visit or wine tasting), we process the details you provide, such as your name, email address, phone number and the content of your request.
+                If you contact us by email, phone or WhatsApp (for example, to book a visit or wine tasting), we process the details you provide, such as your name, email address, phone number and the content of your request.
               </dd>
             </div>
           </dl>
@@ -382,6 +386,10 @@ const TEXT = {
                 <dt>Google · Gmail</dt>
                 <dd>The email service through which we receive and reply to your messages.</dd>
               </div>
+              <div>
+                <dt>WhatsApp · messaging</dt>
+                <dd>If you choose to message us on WhatsApp, the conversation is carried by this Meta service, under WhatsApp's privacy policy.</dd>
+              </div>
             </dl>
             <p>
               Some of these providers are based in the United States. In those cases, data is transferred under the mechanisms provided for in the GDPR, such as the EU-U.S. Data Privacy Framework or standard contractual clauses.
@@ -397,7 +405,7 @@ const TEXT = {
         title: 'Links to Other Websites',
         body: (
           <p>
-            Our website contains links to Facebook, Instagram and Google Maps. If you follow them, you become subject to the privacy policies of those services, for which we are not responsible.
+            Our website contains links to Facebook, Instagram, WhatsApp and Google Maps. If you follow them, you become subject to the privacy policies of those services, for which we are not responsible.
           </p>
         ),
       },

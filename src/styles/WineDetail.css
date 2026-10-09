@@ -490,13 +490,6 @@
   color: var(--wd-ink);
 }
 
-.wd-enquiry__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px 24px;
-}
-
 .wd-enquiry__cta {
   display: inline-block;
   padding: 15px 32px;
@@ -523,14 +516,50 @@
   color: var(--wd-muted);
 }
 
-.wd-enquiry__alt a {
-  padding-bottom: 2px;
-  border-bottom: 1px solid var(--wd-accent);
+.wd-enquiry__alt {
+  margin: 28px 0 12px;
+}
+
+/* Um número por linha: ligar (o próprio número) e WhatsApp ao lado */
+.wd-enquiry__phones {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.wd-enquiry__phones li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.wd-enquiry__phones a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px; /* alvo de toque confortável no telemóvel */
+  font-family: var(--wd-label-font);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
   color: var(--wd-ink);
   white-space: nowrap;
 }
 
-.wd-enquiry__alt a:hover {
+.wd-enquiry__phones a:first-child {
+  text-decoration: underline;
+  text-decoration-color: var(--wd-accent);
+  text-underline-offset: 4px;
+}
+
+.wd-enquiry__whatsapp svg {
+  font-size: 1.05rem;
+  color: var(--wd-accent);
+}
+
+.wd-enquiry__phones a:hover {
   color: var(--wd-accent);
 }
 
