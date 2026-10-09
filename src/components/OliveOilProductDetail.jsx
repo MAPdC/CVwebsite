@@ -30,6 +30,12 @@ const TEXT = {
     tasting: "Prova",
     sensory: "Notas sensoriais",
     pairing: "Harmonização",
+    panel: "Perfil sensorial",
+    panelNote: "Avaliação de um painel de prova reconhecido pelo Conselho Oleícola Internacional, numa escala de 0 a 10.",
+    fruity: { green: "Frutado verde", ripe: "Frutado maduro", default: "Frutado" },
+    bitter: "Amargo",
+    pungent: "Picante",
+    illustrative: "Imagem ilustrativa",
     notAvailable: "Informação não disponível.",
     analysis: "Análise",
     nutritionTitle: "Declaração Nutricional",
@@ -63,6 +69,12 @@ const TEXT = {
     tasting: "Tasting",
     sensory: "Tasting notes",
     pairing: "Food pairing",
+    panel: "Sensory profile",
+    panelNote: "Assessed by a tasting panel recognised by the International Olive Council, on a scale of 0 to 10.",
+    fruity: { green: "Green fruity", ripe: "Ripe fruity", default: "Fruity" },
+    bitter: "Bitter",
+    pungent: "Pungent",
+    illustrative: "Illustrative image",
     notAvailable: "Information not available.",
     analysis: "Analysis",
     nutritionTitle: "Nutrition Declaration",
@@ -101,8 +113,20 @@ function OliveOilProductDetail({ product }) {
 
   const eyebrow = [
     product.organic && common.badges.organic,
+    product.earlyHarvest && common.badges.earlyHarvest,
     product.lateHarvest && common.badges.lateHarvest,
   ].filter(Boolean);
+
+  // Medianas do painel de prova (0 a 10), quando o produto as tiver
+  const panel = product.panel;
+  const panelRows = panel
+    ? [
+        [text.fruity[panel.fruityKind] ?? text.fruity.default, panel.fruity],
+        [text.bitter, panel.bitter],
+        [text.pungent, panel.pungent],
+      ].filter(([, score]) => typeof score === "number")
+    : [];
+  const formatScore = (score) => score.toLocaleString(lang === "pt" ? "pt-PT" : "en-GB", { minimumFractionDigits: 1 });
 
   const specs = [
     [text.category, type],
@@ -120,7 +144,13 @@ function OliveOilProductDetail({ product }) {
     <div className="wd oil-detail">
       <div className="wd-layout">
         {/* --- Garrafa / galeria (fixa em desktop) --- */}
-        <ProductGallery key={product.slug} images={product.images} alt={fullName} labels={text} />
+        <ProductGallery
+          key={product.slug}
+          images={product.images}
+          alt={fullName}
+          labels={text}
+          note={product.illustrativeImages ? text.illustrative : null}
+        />
 
         {/* --- Conteúdo --- */}
         <article className="wd-content">
@@ -172,6 +202,26 @@ function OliveOilProductDetail({ product }) {
                 <dd>{product.pairing || text.notAvailable}</dd>
               </div>
             </dl>
+
+            {panelRows.length > 0 && (
+              <div className="oil-panel">
+                <h3 className="oil-panel__title">{text.panel}</h3>
+                <dl className="oil-panel__list">
+                  {panelRows.map(([label, score]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>
+                        <span className="oil-panel__bar" aria-hidden="true">
+                          <span style={{ width: `${score * 10}%` }} />
+                        </span>
+                        <span className="oil-panel__score">{formatScore(score)}</span>
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="oil-panel__note">{text.panelNote}</p>
+              </div>
+            )}
           </section>
 
           <section className="wd-section">

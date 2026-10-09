@@ -30,3 +30,81 @@
   font-size: 1rem;
   color: var(--wd-muted);
 }
+
+/* Perfil sensorial (medianas do painel de prova, 0 a 10): uma barra por atributo */
+.oil-detail .oil-panel {
+  margin-top: 36px;
+}
+
+.oil-detail .oil-panel__title {
+  margin: 0 0 14px;
+  font-family: var(--wd-label-font);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wd-muted);
+}
+
+.oil-detail .oil-panel__list {
+  margin: 0;
+}
+
+.oil-detail .oil-panel__list > div {
+  display: grid;
+  grid-template-columns: minmax(110px, 9rem) 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--wd-line);
+}
+
+.oil-detail .oil-panel__list > div:first-child {
+  border-top: 1px solid var(--wd-line);
+}
+
+.oil-detail .oil-panel__list dt {
+  font-family: var(--wd-body);
+  font-size: 1.1rem;
+  color: var(--wd-ink);
+}
+
+.oil-detail .oil-panel__list dd {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.oil-detail .oil-panel__bar {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--wd-line);
+  overflow: hidden;
+}
+
+.oil-detail .oil-panel__bar > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 2px;
+  background-color: var(--wd-accent);
+}
+
+.oil-detail .oil-panel__score {
+  min-width: 2.2em;
+  font-family: var(--wd-body);
+  font-size: 1.15rem;
+  text-align: right;
+  color: var(--wd-ink);
+}
+
+.oil-detail .oil-panel__note {
+  margin: 12px 0 0;
+  font-family: var(--wd-label-font);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  color: var(--wd-muted);
+}

@@ -219,6 +219,13 @@
     border-color: var(--olive-text);
   }
   
+  /* Verde mais fresco para o botão de Colheita Precoce (ativo) */
+  .oil-catalog .filter-btn.filter-btn--early-harvest.active {
+    background-color: #2e6e46;
+    border-color: #2e6e46;
+    color: white;
+  }
+
   /* Cor Dourada para o botão de Colheita Tardia (hover não ativo) */
   .oil-catalog .filter-btn.filter-btn--late-harvest:hover:not(.active) {
     background-color: rgba(212, 175, 55, 0.05); /* Hover dourado claro */
