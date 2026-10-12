@@ -36,11 +36,11 @@ const STATIC_PAGES = {
   "/portfolio/olive-oils": {
     pt: {
       title: "Azeite Virgem Extra Biológico",
-      description: "Azeite virgem extra biológico de colheita tardia, das variedades Cordovil, Cobrançosa e Verdeal, produzido no Douro.",
+      description: "Azeite virgem extra biológico de colheita precoce e de colheita tardia, das variedades Cordovil, Cobrançosa e Verdeal, produzido no Douro.",
     },
     en: {
       title: "Organic Extra Virgin Olive Oil",
-      description: "Late-harvest organic extra virgin olive oil from Cordovil, Cobrançosa and Verdeal olives, produced in the Douro.",
+      description: "Early- and late-harvest organic extra virgin olive oil from Cordovil, Cobrançosa and Verdeal olives, produced in the Douro.",
     },
   },
   "/camuflado": {

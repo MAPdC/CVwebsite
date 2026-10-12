@@ -57,6 +57,7 @@ function OliveOilPortfolioPage() {
         onmarket: oil.onmarket,
         soldout: oil.soldout,
         organic: oil.organic,
+        earlyHarvest: oil.earlyHarvest,
         lateHarvest: oil.lateHarvest,
         awards: oil.awards || []
       })),
@@ -66,6 +67,7 @@ function OliveOilPortfolioPage() {
   // Filtrar azeites
   const filteredOils = oilList.filter(oil => {
     const matchesFilter = filter === "all" ||
+                          (filter === "earlyHarvest" && oil.earlyHarvest) ||
                           (filter === "lateHarvest" && oil.lateHarvest);
 
     const matchesSearch = oil.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -121,6 +123,14 @@ function OliveOilPortfolioPage() {
                 onClick={() => setFilter("all")}
               >
                 {text.all}
+              </button>
+              <button
+                type="button"
+                aria-pressed={filter === "earlyHarvest"}
+                className={`filter-btn filter-btn--early-harvest ${filter === "earlyHarvest" ? "active" : ""}`}
+                onClick={() => setFilter("earlyHarvest")}
+              >
+                {common.badges.earlyHarvest}
               </button>
               <button
                 type="button"

@@ -61,7 +61,7 @@ import vbun24_2 from '../assets/vbun21-2.webp';
 import vbun24_3 from '../assets/vbun21-3.webp';
 import vbun24_4 from '../assets/vbun21-4.webp';
 
-// Imagens do Azeite Virgem Extra Biológico Colheita Tardia
+// Imagens do Azeite Virgem Extra Biológico Colheita Tardia (usada também, provisoriamente, no Colheita Precoce)
 // É preciso importar as imagens usadas nos azeites
 import lateharvest from '../assets/azeite.webp';
 
@@ -541,6 +541,65 @@ export const wines = [
   
   export const oliveOils = [
     {
+      id: 2,
+      slug: "organic-extra-virgin-olive-oil-early-harvest",
+      illustrativeImages: true, // foto do Colheita Tardia: a garrafa é a mesma, mas a cápsula deste é esverdeada
+      name: "Azeite Virgem Extra | Biológico & Colheita Precoce",
+      description: "Azeite de categoria superior obtido diretamente de azeitonas, unicamente por processos mecânicos. Produzido a partir de azeitonas cultivadas em modo biológico, colhidas mais cedo, no mês de novembro, para um azeite mais fresco, verde e picante.",
+      briefDescription: "Um azeite de colheita precoce feita no mês de novembro: fresco, verde e picante.",
+      type: "Virgem Extra",
+      varieties: ["Cordovil", "Cobrançosa", "Verdeal"],
+      images: [
+        lateharvest
+      ],
+      sensory: "Frutado verde de intensidade média, a aproximar-se do intenso, com o amargo e o picante bem presentes e em equilíbrio. Fresco e vivo na boca, termina com um picante persistente, sentido na garganta, próprio de uma colheita feita cedo.",
+      pairing: "Pratos com carácter: saladas, legumes e carnes grelhadas, peixes gordos, leguminosas, sopas e pão. Brilha sobretudo em cru, a finalizar o prato.",
+      // Valores medidos no lote CTVL26 (relatório 459.00/26/LET, Instituto Superior de Agronomia, março de 2026)
+      technical: {
+        acidity: "0,12%",
+        peroxide: "7,3 meqO2/kg",
+        k232: "1,90",
+        k268: "0,17 / 0,00"
+      },
+      // Medianas do painel de prova reconhecido pelo COI, numa escala de 0 a 10
+      panel: {
+        fruity: 5.5,
+        fruityKind: "green",
+        bitter: 3.3,
+        pungent: 3.5
+      },
+      nutritionDeclaration: {
+        energy: "3421 kJ / 821 kcal",
+        fat: "91,2 g",
+        saturatedFat: "13,1 g",
+        carbohydrates: "0 g",
+        sugars: "0 g",
+        protein: "0 g",
+        salt: "0 g"
+      },
+      extraInfo: {
+        store: "Conservar ao abrigo da luz, ar, fontes de calor e odores intensos.",
+        available: "Disponível em garrafas de 500ml."
+      },
+      awards: [],
+      onmarket: true,
+      soldout: false,
+      organic: true,
+      earlyHarvest: true,
+      en: {
+        name: "Extra Virgin Olive Oil | Organic & Early Harvest",
+        description: "Superior category olive oil obtained directly from olives and solely by mechanical means. Made from organically grown olives, picked early in the season, in November, for a fresher, greener and more peppery oil.",
+        briefDescription: "An early-harvest olive oil, picked in November: fresh, green and peppery.",
+        type: "Extra Virgin",
+        sensory: "A medium green fruitiness, edging towards intense, with bitterness and pungency clearly present and in balance. Fresh and lively on the palate, it finishes with a lingering peppery catch at the back of the throat, the hallmark of an early harvest.",
+        pairing: "Dishes with character: salads, grilled vegetables and meat, oily fish, pulses, soups and bread. At its best used raw, as a finishing oil.",
+        extraInfo: {
+          store: "Store away from light, air, heat and strong odours.",
+          available: "Available in 500 ml bottles."
+        },
+      },
+    },
+    {
       id: 1,
       slug: "organic-extra-virgin-olive-oil-late-harvest",
       name: "Azeite Virgem Extra | Biológico & Colheita Tardia",
@@ -574,7 +633,7 @@ export const wines = [
       },
       awards: [],
       onmarket: false,
-      soldout: true, // esgotado em out. 2026; segue-se o azeite colhido em novembro
+      soldout: true, // esgotado em out. 2026; substituído pelo Colheita Precoce
       organic: true,
       lateHarvest: true,
       en: {

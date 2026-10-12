@@ -51,6 +51,7 @@ const OliveOilCard = ({ oil }) => {
       <div className="oil-card-shimmer" />
 
       {oil.organic && <span className="badge-premium organic">{badges.organic}</span>}
+      {oil.earlyHarvest && <span className="badge-premium early-harvest">{badges.earlyHarvest}</span>}
       {oil.lateHarvest && <span className="badge-premium late-harvest">{badges.lateHarvest}</span>}
 
       <div className="oil-image-wrapper-premium">
