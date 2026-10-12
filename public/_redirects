@@ -1,0 +1,14 @@
+# Redirecionamentos do Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/redirects/)
+
+# Endereços antigos que o Google ainda conhece (Search Console → "Não encontrado (404)"):
+# um 301 passa-os para a página atual em vez de ficarem perdidos
+/home  /  301
+/en/home  /en  301
+
+# Slugs dos primeiros vinhos (2025), antes de terem o nome atual
+/portfolio/wines/red-wine-reserve-oaked-2019  /portfolio/wines/red-reserve-oaked-2019  301
+/portfolio/wines/reserva-oaked-2019  /portfolio/wines/red-reserve-oaked-2019  301
+
+# /portfolio não tem página própria: quem o escreve à mão vai para os vinhos
+/portfolio  /portfolio/wines  301
+/en/portfolio  /en/portfolio/wines  301
