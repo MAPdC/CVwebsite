@@ -119,6 +119,8 @@ O site está alojado no **Cloudflare Pages**, ligado a este repositório:
 
 O DNS do domínio é gerido no Cloudflare (o registo continua na Namecheap). O domínio sem www (`casttedovalley.com`) redireciona com 301 para o www através de uma Redirect Rule do Cloudflare.
 
+Os cabeçalhos HTTP (segurança, `noindex` nas cópias `*.pages.dev`) estão em `public/_headers`, e os redirecionamentos de endereços antigos em `public/_redirects`. Quando um produto muda de slug, acrescenta-se lá um 301 do endereço antigo para o novo.
+
 ---
 
 ## Estado do Desenvolvimento
