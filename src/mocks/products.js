@@ -612,11 +612,19 @@ export const wines = [
       ],
       sensory: "No sabor é ligeiramente picante e amargo com notas marcantes de amêndoa. É sedoso e aveludado. Com um aroma subtil a rama de tomateiro e a folhas verdes de oliveira moídas com azeitonas maduras.",
       pairing: "Pratos delicados. Peixes, carnes e legumes cozidos a vapor, pão torrado com ligeiro toque de alho e ervas aromáticas.",
+      // Valores medidos no lote CTVL25 (relatório 733.00/25/LET, Instituto Superior de Agronomia, março de 2025)
       technical: {
-        acidity: "≤ 0,4%",
-        peroxide: "≤ 20 meqO2/kg",
-        k232: "≤ 2,50",
-        k268: "≤ 0,22"
+        acidity: "0,26%",
+        peroxide: "5,7 meqO2/kg",
+        k232: "1,70",
+        k268: "0,16 / 0,00"
+      },
+      // Medianas do painel de prova reconhecido pelo COI, numa escala de 0 a 10
+      panel: {
+        fruity: 4.5,
+        fruityKind: "ripe",
+        bitter: 2.8,
+        pungent: 2.5
       },
       nutritionDeclaration: {
         energy: "3421 kJ / 821 kcal",
