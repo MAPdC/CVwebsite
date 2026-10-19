@@ -68,19 +68,3 @@
   background-color: var(--camuflado-text);
   color: var(--camuflado-bg);
 }
-
-@media (min-width: 992px) {
-  .camuflado-section {
-    flex-direction: row;
-    justify-content: center;
-    gap: 6%;
-  }
-
-  .camuflado-section__image {
-    width: 50%;
-  }
-
-  .camuflado-section__image img {
-    margin-left: auto;
-  }
-}
